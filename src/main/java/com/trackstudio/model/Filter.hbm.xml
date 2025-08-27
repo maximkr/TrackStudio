@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Filter" proxy="com.trackstudio.model.Filter" table="gr_filter">
+        <cache usage="nonstrict-read-write"/>
+
+        <id column="filter_id" name="id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+        <property column="filter_name" not-null="true" name="name" type="java.lang.String"/>
+        <property column="filter_description" name="description" type="java.lang.String"/>
+        <property column="filter_preferences" name="preferences" type="java.lang.String"/>
+        <property column="filter_priv" name="priv" type="java.lang.Integer"/>
+
+        <many-to-one name="task" column="filter_task" class="com.trackstudio.model.Task" cascade="none"/>
+        <many-to-one name="owner" column="filter_owner" class="com.trackstudio.model.User" cascade="none"/>
+        <many-to-one name="user" column="filter_user" class="com.trackstudio.model.User" cascade="none"/>
+
+        <set name="subscriptionSet" lazy="true" inverse="true" cascade="all">
+            <key column="subscription_filter"/>
+            <one-to-many class="com.trackstudio.model.Subscription"/>
+        </set>
+
+        <set name="notificationSet" lazy="true" inverse="true" cascade="all">
+            <key column="notification_filter"/>
+            <one-to-many class="com.trackstudio.model.Notification"/>
+        </set>
+
+        <set name="fvalueSet" lazy="true" inverse="true" cascade="delete">
+            <key column="fvalue_filter"/>
+            <one-to-many class="com.trackstudio.model.Fvalue"/>
+        </set>
+
+        <set name="currentFilterSet" lazy="true" inverse="true" cascade="all">
+            <key column="currentfilter_fil"/>
+            <one-to-many class="com.trackstudio.model.CurrentFilter"/>
+        </set>
+
+        <set name="reportSet" lazy="true" inverse="true" cascade="all">
+            <key column="report_filter"/>
+            <one-to-many class="com.trackstudio.model.Report"/>
+        </set>
+
+        <set name="bookmarkSet" lazy="true" inverse="true" cascade="all">
+            <key column="bookmark_filter"/>
+            <one-to-many class="com.trackstudio.model.Bookmark"/>
+        </set>
+    </class>
+</hibernate-mapping>

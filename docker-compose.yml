@@ -1,0 +1,60 @@
+services:
+  db:
+    image: postgres:15
+    container_name: trackstudio-db
+    environment:
+      POSTGRES_USER: trackstudio
+      POSTGRES_DB: trackstudio
+      POSTGRES_PASSWORD: ${DB_PASS}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U trackstudio -d trackstudio"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  migrator:
+    image: liquibase/liquibase:4.30
+    container_name: trackstudio-migrator
+    depends_on:
+      db:
+        condition: service_healthy
+    working_dir: /workspace
+    volumes:
+      - ./liquibase:/workspace:ro
+    command:
+      [
+        "--changelog-file=changelog-master.xml",
+        "--url=jdbc:postgresql://db:5432/trackstudio",
+        "--username=trackstudio",
+        "--password=${DB_PASS}",
+        "update"
+      ]
+    restart: "no"
+
+  app:
+    image: trackstudio/app
+    container_name: trackstudio-app
+    depends_on:
+      - migrator 
+    environment:
+      CATALINA_OPTS: -Dhibernate.connection.password=${DB_PASS}
+    volumes:
+      - tsindex:/data/trackstudio/index
+      - tsupload:/data/trackstudio/upload
+    ports:
+      - "8080:8080"
+    restart: always
+
+volumes:
+  pgdata:
+    driver: local
+  tsindex:
+    driver: local
+  tsupload:
+    driver: local
+    

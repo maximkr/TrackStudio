@@ -1,0 +1,102 @@
+html {
+    height: 100%;
+    max-height: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+body {
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: white;
+}
+div.content {
+    display: block;
+    overflow: auto !important;
+    position: absolute;
+    z-index: 3;
+    top: 26px;
+    bottom: 52px;
+    width: 100%;
+
+    margin-left: 0;
+    left: 0;
+    background: white;
+}
+
+
+#panel_1 div.content{
+    top: 26px;
+    bottom: 52px;
+    overflow: hidden;
+
+}
+#panel_2 div.content{
+    top: 52px;
+    bottom: 26px;
+    overflow: hidden;
+
+}
+#panel_3 div.content{
+    top: 78px;
+    bottom: 0;
+
+}
+
+div.head {
+    position: absolute;
+    margin-left: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    min-width: 100%;
+    background: white;
+    font-size: 1px;
+    z-index: 5;
+}
+
+#panel_1 div.head{
+    height: 26px;
+}
+#panel_2 div.head{
+    height: 52px;
+}
+#panel_3 div.head{
+    height: 78px;
+}
+
+div.foot {
+    text-align: center;
+    position: absolute;
+    margin-left: 0;
+    padding: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    min-width: 100%;
+    font-size: 1px;
+    z-index: 5;
+    color: black;
+}
+
+
+
+#panel_1 div.foot{
+    height: 52px;
+}
+#panel_2 div.foot{
+    height: 26px;
+}
+#panel_3 div.foot{
+    height: 0;
+}
+
+span.number {
+    font-weight: normal;
+    font-size: 100%;
+    vertical-align: middle;
+}

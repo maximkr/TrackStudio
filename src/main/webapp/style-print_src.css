@@ -1,0 +1,1147 @@
+    /*
+            TrackStudio Application StyleSheets
+            Copyright (c) 2004 TrackStudio LLC
+    */
+
+        /*
+        Основные цвета:
+        Черный #000000;
+        Белый #FFFFFF;
+        Самый темный #84B0C7; (Границы, передний фон)
+        Элементы управления: #5E88BF
+        Основной фоновый главный #F8F8F8; (Ячейки таблицы, формы)
+        Основной фоновый побочный #EBF1F2; (Заголовки таблицы)
+        Второй фоновый главный #DAE5EB; (Выделенные элементы)
+        Второй фоновый побочный #A0C1D3;
+        Третий фоновый главный #C7D9E3 (Создание новых элементов)
+        Третий фоновый побочный #B3CDDA;
+
+        Главный шрифт: Tahoma (Arial)
+        Второй шрифт: MS Sans Serif (serif)
+        Основной размер шрифта: 12px;
+
+        Все отступы на четное число пикселей.
+        Лучше всего 4px и 8px
+
+        */
+    BODY {
+        background-color: #FFFFFF;
+        padding: 0px 0px 0px 0px;
+    }
+
+    SELECT {
+        font-family: Tahoma, Arial, sans-serif;
+        font-size: 11px;
+        font-weight: bold;
+        vertical-align: top;
+    }
+
+    INPUT {
+        font-family: Tahoma, Arial, sans-serif;
+        font-size: 11px;
+        font-weight: bold;
+        vertical-align: middle;
+    }
+
+    PRE {
+
+        margin-top: 1px;
+        margin-bottom: 1px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 1px;
+        padding-right: 1px;
+
+    }
+
+    FORM {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    TABLE TD {
+        font-family: Tahoma;
+        font-size: 12px;
+    }
+
+        /*      MAIN MENU STYLESHEETS
+        */
+    TABLE.menu {
+        background-color: #F8F8F8;
+        font-family: Tahoma, Verdana, Arial;
+        font-size: 11px;
+        font-weight: normal;
+        color: #7f7f7f;
+        width: 100%;
+        
+    }
+
+    TABLE.menu A {
+        margin-right: 4px;
+        color: #000000;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    TABLE.menu TD {
+        padding-top: 3px;
+        padding-bottom: 3px;
+        padding-left: 4px;
+        padding-right: 4px;
+        white-space: nowrap;
+        vertical-align: middle;
+    }
+
+    TABLE.menu TD#active A {
+        color: #000000;
+        text-decoration: none;
+        vertical-align: middle;
+    }
+
+    TABLE.menu TD#active A:hover {
+        color: #000000;
+        vertical-align: middle;
+    }
+
+    TABLE.menu TD A {
+        color: #7f7f7f;
+        vertical-align: middle;
+    }
+
+    TABLE.menu TD#active {
+        vertical-align: middle;
+    }
+
+        /*      PATHLINE STYLESHEETS
+        */
+    DIV.path {
+        width: 100%;
+        height: 18px;
+        background-color: #F8F8F8;
+        font-family: Tahoma, Verdana, sans-serif;
+        font-size: 11px;
+        color: #666666;
+    }
+
+    DIV.shadow {
+	display: none;
+        width: 100%;
+        height: 16px;
+        background: url(../cssimages/shadow.gif) #FFFFFF repeat-x;
+    }
+
+        /*      TASKBLOCK STYLESHEETS
+        */
+    DIV.task {
+        width: 100%;
+        min-width: 730px;
+        font-family: Tahoma, Arial, Helvetica, sans-serif;
+        font-size: 11px;
+    }
+
+    DIV.task DIV.tabscombo {
+        background-color: #DAE5EB;
+        padding-right: 4px;
+        text-align: right;
+        color: #000000;
+    }
+
+    DIV.task DIV.tabscombo TABLE {
+        margin-right: 0px;
+        margin-left: auto;
+    }
+
+    DIV.task DIV.tabscombo TABLE TD {
+
+        font-size: 11px;
+        padding: 0px 2px;
+    }
+
+    TABLE.general {
+        font-family: Tahoma, Arial, Helvetica, sans-serif;
+        color: #000000;
+        font-size: 12px;
+        width: 100%;
+    }
+
+    TABLE.general CAPTION {
+        font-family: Tahoma, Arial, Helvetica, sans-serif;
+        color: #000000;
+        font-size: 11px;
+        text-align: left;
+        font-weight: normal;
+        padding-left: 6px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+
+    }
+
+    TABLE.general CAPTION A {
+        color: #000000;
+        font-weight: bold;
+        font-size: 11px;
+        text-decoration: none;
+    }
+
+    TABLE.general TH {
+        color: #000000;
+        text-align: right;
+        font-weight: bold;
+        vertical-align: middle;
+        font-size: 11px;
+        padding-right: 12px;
+
+    }
+
+    TABLE.general TR.WIDE TH {
+        color: #000000;
+        text-align: center;
+        font-weight: bold;
+        vertical-align: middle;
+        font-size: 11px;
+        padding-right: 2px;
+        padding-left: 2px;
+    }
+
+    TABLE.general TD {
+        background-color: #F8F8F8;
+        vertical-align: middle;
+        text-align: left;
+        font-size: 11px;
+    }
+
+    TABLE.general TD.line0 {
+        background-color: #F8F8F8;
+        vertical-align: top;
+        text-align: center;
+        font-size: 11px;
+
+    }
+
+    TABLE.general TD.line1 {
+        background-color: #F8F8F8;
+        vertical-align: top;
+        text-align: center;
+        font-size: 11px;
+
+    }
+
+    TABLE.general TD.message {
+        background-color: #FFFFFF;
+        vertical-align: middle;
+        text-align: left;
+        font-size: 11px;
+        padding-left: 8px;
+        padding-right: 4px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+
+    TABLE.general TD.selected {
+
+        font-weight: bold;
+        font-size: 11px;
+    }
+
+    TABLE.general TD IMG {
+        vertical-align: middle;
+        margin-left: 4px;
+    }
+
+    TABLE.general TR.selected TD {
+        
+        font-weight: bold;
+        font-size: 11px;
+    }
+
+    TABLE.general TR.selected TH {
+        
+        font-weight: bold;
+        font-size: 11px;
+    }
+
+    TABLE.general TR.new TD {
+        
+        font-size: 11px;
+    }
+
+    TABLE.general TR.new TH {
+        
+        font-size: 11px;
+    }
+
+    TABLE.general TD A {
+        color: #000000;
+        font-weight: bold;
+        font-size: 11px;
+        text-decoration: none;
+    }
+
+    TABLE.general TH A {
+        color: #000000;
+        font-weight: bold;
+        font-size: 11px;
+        text-decoration: none;
+    }
+
+    TABLE.general TR.one TD {
+        background-color: #F0F0F0;
+        font-size: 11px;
+    }
+
+    TABLE.general TR.two TD {
+        background-color: #F8F8F8;
+        font-size: 11px;
+    }
+
+    DIV.slider {
+        width: 100%;
+        height: 32px;
+        padding: 0px 0px 0px 0px;
+        font-family: Georgia, Times New Roman, serif;
+        font-size: 12px;
+
+        text-align: center;
+        color: #000000;
+    }
+
+    DIV.slider A {
+        color: #000000;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    DIV.slider A:hover {
+        color: #5E88BF;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    DIV.task TEXTAREA {
+        margin: 8px;
+    }
+
+    DIV.fullpath {
+        font-family: Tahoma;
+        font-size: 11px;
+        vertical-align: middle;
+
+    }
+
+    DIV.fullpath IMG {
+        vertical-align: middle;
+    }
+
+    DIV.logopath {
+        float: left;
+        vertical-align: middle;
+        padding-left: 28px;
+    }
+
+    DIV.logo {
+        font-family: Tahoma;
+        font-size: 11px;
+        color: #666666;
+        background-color: #FFFFFF;
+        padding-left: 0px;
+        vertical-align: middle;
+    }
+
+    DIV.logo A {
+        font-size: 11px;
+        text-decoration: none;
+        color: #000000;
+        font-weight: bold;
+    }
+
+    DIV.login {
+        font-family: Tahoma;
+        font-size: 11px;
+        color: #666666;
+        background-color: #FFFFFF;
+        padding-top: 0px;
+        margin-top: 0px;
+        padding-bottom: 4px;
+        vertical-align: top;
+        text-align: right;
+    }
+
+    DIV.login A {
+        font-size: 11px;
+        text-decoration: none;
+        color: #000000;
+        font-weight: bold;
+    }
+
+    TABLE.allrights {
+	display: none;
+        width: 100%;
+        background: #FFFFFF;
+        font-size: 10px;
+        font-family: Tahoma, Arial, Helvetica, sans-serif;
+        color: #666666;
+    }
+
+    TABLE.allrights TD {
+        font-size: 10px;
+        font-family: Tahoma, Arial, Helvetica, sans-serif;
+        color: #666666;
+    }
+
+    TABLE.allrights TD.techinfo {
+        width: 28%;
+        padding: 11px 10px;
+        line-height: 16px;
+        
+    }
+
+    TABLE.allrights A {
+        color: #84B0C7;
+        text-decoration: none;
+    }
+
+    TABLE.allrights A:hover {
+        color: #84B0C7;
+        text-decoration: underline;
+    }
+
+    DIV.minwidth {
+        width: 730;
+        height: 2px;
+    }
+
+    TABLE.udf {
+        background-color: transparent !important;
+        padding: 0px 0px 0px 0px !important;
+        margin: 0px 0px 0px 0px !important;
+        border-left: 0px !important;
+        border-right: 0px !important;
+        border-top: 0px !important;
+    }
+
+    TABLE.udf TD {
+        vertical-align: top;
+        padding: 1px 1px 1px 1px !important;
+        margin: 0px 0px 0px 0px !important;
+    }
+
+    div.help {
+	display: none;
+        padding-top: 4px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 4px;
+        font-size: 12px;
+        font-weight: normal;
+        background-color: #FFFFFF;
+        color: #000000;
+        text-align: justify;
+        line-height: 130%;
+    }
+
+    div.helptopic {
+        
+        color: #000000;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        font-size: 11px;
+        font-weight: bold;
+        padding-left: 8px;
+	display: none;
+    }
+
+    div.helpcontainer {
+        font-family: Tahoma, Arial, Helvetica, sans serif;
+        
+        margin-top: 8px;
+        margin-bottom: 8px;
+        position: absolute;
+	display: none;
+    }
+
+    .iconized, DIV.ts-menu-bar {
+	display: none;
+    }
+    DIV.text {
+        font-family: Tahoma, Arial, Helvetica, sans-serif;
+        font-size: 11px;
+        color: #5E88BF;
+        text-align: left;
+        width: 100%;
+    }
+
+    TABLE.tabbedpane {
+        width: 100%;
+        margin-top: 14px;
+    }
+
+    TABLE.tabbedpane TD UL {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+    }
+
+    TABLE.tabbedpane TD LI {
+        display: none;
+        margin: 0px;
+        padding: 0px;
+    }
+	TABLE.tabbedpane TD IMG {
+		vertical-align: top;
+    }
+
+    TABLE.tabbedpane TD A {
+        float: left;
+        background: url(../cssimages/tabright.gif) no-repeat right top;
+        font-weight: bolder;
+        font-family: Tahoma;
+        font-size: 12px;
+        color: #5E88BF;
+        vertical-align: middle;
+        text-decoration: none;
+    }
+
+    TABLE.tabbedpane TD A:hover {
+        background-position: 100% -150px;
+    }
+
+    TABLE.tabbedpane TD A:link, TABLE.tabbedpane TD A:visited,
+    TABLE.tabbedpane TD A:active, TABLE.tabbedpane TD A:hover {
+        color: #5E88BF;
+    }
+
+    TABLE.tabbedpane TD SPAN {
+        float: left;
+        display: block;
+        background: url(../cssimages/tableft.gif) no-repeat left top;
+        padding: 5px 9px;
+        white-space: nowrap;
+    }
+
+    TABLE.tabbedpane TD SPAN {
+        float: none;
+    }
+
+    TABLE.tabbedpane TD A:hover SPAN {
+        background-position: 0% -150px;
+    }
+
+    TABLE.tabbedpane TD LI#selectedtab{
+	display: inline;
+}
+    TABLE.tabbedpane TD LI#selectedtab A {
+        background-position: 100% -150px;
+        border-width: 0px;
+    }
+
+
+    TABLE.tabbedpane TD LI#selectedtab SPAN {
+        background-position: 0% -150px;
+        padding-bottom: 6px;
+    }
+
+    TABLE.subtabbedpane {
+        background: #FFFFFF url(../cssimages/tabborder.gif) repeat-x bottom;
+        margin-top: 12px;
+        width: 100%;
+    }
+
+    TABLE.subtabbedpane TD UL {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+    }
+
+    TABLE.subtabbedpane TD LI {
+        display: inline;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    TABLE.subtabbedpane TD A {
+        float: left;
+        background: url(../cssimages/tabright.gif) no-repeat right top;
+        font-weight: bolder;
+        font-family: Tahoma;
+        font-size: 12px;
+        color: #5E88BF;
+        vertical-align: middle;
+        text-decoration: none;
+    }
+
+    TABLE.subtabbedpane TD A:hover {
+        background-position: 100% -150px;
+    }
+
+    TABLE.subtabbedpane TD A:link, TABLE.subtabbedpane TD A:visited,
+    TABLE.subtabbedpane TD A:active, TABLE.subtabbedpane TD A:hover {
+        color: #5E88BF;
+    }
+
+    TABLE.subtabbedpane TD SPAN {
+        float: left;
+        display: block;
+        background: url(../cssimages/tableft.gif) no-repeat left top;
+        padding: 5px 7px;
+        white-space: nowrap;
+    }
+
+    TABLE.subtabbedpane TD SPAN {
+        float: none;
+    }
+
+    TABLE.subtabbedpane TD A:hover SPAN {
+        background-position: 0% -150px;
+
+    }
+
+    TABLE.subtabbedpane TD LI#selected A {
+        background-position: 100% -150px;
+        border-width: 0px;
+    }
+
+    TABLE.subtabbedpane TD LI#selected SPAN {
+        background-position: 0% -150px;
+        padding-bottom: 6px;
+    }
+
+    DIV.tabcontent {
+        background-color: #FFFFFF;
+        padding-bottom: 4px;
+        padding-top: 4px;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    DIV.subtabcontent {
+        background-color: #FFFFFF;
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-bottom: 4px;
+        padding-top: 4px;
+        padding-left: 4px;
+        padding-right: 4px;
+
+    }
+
+    .controls {
+        text-align: right;
+        padding-top: 4px;
+        padding-bottom: 4px;
+
+    }
+
+    DIV.overview {
+        font-family: Tahoma;
+        font-size: 12px;
+    }
+
+    DIV.overview A {
+        color: #5E88BF;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    DIV.overview DIV.title {
+        margin-top: 8px;
+        margin-bottom: 8px; /*background-color: #A0C1D3;*/
+
+        padding-top: 4px;
+        padding-bottom: 4px;
+        padding-left: 8px;
+        margin-left: 0px;
+        margin-right: 0px;
+
+    }
+
+    DIV.overview DIV.paragraph {
+        margin-top: 4px;
+        margin-bottom: 4px;
+        margin-left: 0px;
+        margin-right: 0px;
+        width: 100%;
+    }
+
+    DIV.overview DIV.topic {
+        
+        padding-left: 8px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        color: #000000;
+        font-size: 11px;
+        font-weight: bold;
+        vertical-align: middle;
+    }
+
+    DIV.overview DIV.content {
+        padding-top: 4px;
+        padding-bottom: 4px;
+
+    }
+
+    DIV.overview DIV.content LI {
+        line-height: 140%;
+    }
+
+    DIV.bordered {
+        
+    }
+
+    DIV.general {
+        width: 100%;
+        margin-top: 4px;
+    }
+
+    DIV.tabbedpane {
+        width: 100%;
+    }
+
+    DIV.subtabbedpane {
+        width: 100%;
+    }
+
+    DIV.bigfoot {
+        background-color: #FFFFFF;
+        padding-left: 0px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        vertical-align: middle;
+        color: #666666;
+        font-weight: normal;
+        font-size: 12px;
+        font-family: Georgia;
+    }
+
+    DIV.bigfoot A {
+        color: #666666;
+        font-weight: normal;
+        font-size: 12px;
+        font-family: Georgia;
+        color: #666666;
+        font-weight: normal;
+        vertical-align: middle;
+        text-decoration: none;
+    }
+
+    LABEL.expandable {
+        font-weight: bold;
+        text-decoration: none;
+        cursor: pointer;
+/*        cursor: hand; */
+        vertical-align: middle;
+        font-size: 11px;
+        font-family: Tahoma;
+        display: inline;
+        margin-top: 2px;
+        margin-bottom: 0px;
+    }
+
+    LABEL.expandable A {
+        font-weight: bold;
+        vertical-align: middle;
+        font-size: 12px;
+        color: #000000;
+        font-family: Tahoma;
+        vertical-align: top;
+    }
+
+    LABEL.loadable {
+        font-weight: bold;
+        text-decoration: none;
+        cursor: pointer;
+/*        cursor: hand; */
+        vertical-align: middle;
+        font-size: 11px;
+        font-family: Tahoma;
+        display: inline;
+        margin-top: 2px;
+        margin-bottom: 0px;
+    }
+
+    DIV.taskTitle {
+        margin-top: 4px;
+        margin-bottom: 4px;
+        margin-left: 0px;
+        font-family: Tahoma;
+        font-size: 12px;
+        color: #666666;
+    }
+
+    DIV.taskTitle A {
+        color: #666666;
+        font-weight: normal;
+        font-size: 12px;
+        font-family: Tahoma;
+        margin-left: 0px;
+    }
+
+    DIV.taskTitle IMG {
+        margin-right: 4px;
+		vertical-align: middle;
+    }
+
+    DIV#yellowbox, DIV.yellowbox {
+      margin-top: -20px;
+    }
+
+    DIV.dropdown {
+        margin-bottom: 4px;
+        
+        padding: 4px;
+
+    }
+DIV.labels{
+display: none;
+}
+    DIV.labels UL {
+        margin-left: 0px;
+        padding-left: 0px;
+		margin-bottom: 2px;
+
+    }
+
+    DIV.labels li {
+        list-style: none;
+        display: inline;
+        margin-left: 0px;
+        margin-bottom: 0px;
+
+    }
+
+    DIV.labels A , DIV.labels U{
+        padding-bottom: 2px;
+        background-image: url("'../cssimages/ico.expand.gif'");
+        background-position: left bottom;
+        background-repeat: no-repeat;
+        font-family: Tahoma;
+        padding-left: 16px;
+        font-size: 11px;
+        text-decoration: none;
+        color: #000000;
+        font-weight: bold;
+		text-decoration: none;
+    }
+
+    DIV.labels A#activeDropdown, DIV.labels U#activeDropdown {
+        background-image: url("'../cssimages/ico.collapse.gif'");
+    }
+
+    DIV.labels A.activeDropdown, DIV.labels U.activeDropdown {
+        background-image: url("'../cssimages/ico.collapse.gif'");
+    }
+
+    DIV.labels A.external, DIV.labels U.external {
+        background-image: url("'../cssimages/ico.edit.gif'");
+    }
+
+    div.elev {
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+
+    .elev ul {
+        margin: 0px;
+        padding: 0px;
+        font-family: Tahoma;
+        font-size: 12px;
+        font-weight: normal;
+        color: #666666;
+        text-decoration: none; /* padding-left: 15px; */
+        line-height: 100%;
+
+    }
+
+    .elev a.ul, .elev a.ul:hover {
+        font-family: Tahoma;
+        font-size: 12px;
+        font-weight: normal;
+        color: #666666;
+        text-decoration: none;
+        line-height: 100%;
+        vertical-align: top;
+	padding-right: 8px;
+	padding-left: 0px;
+    }
+    .elev a.ul IMG{
+        vertical-align: middle;
+    }
+    .elev li {
+        margin: 0px;
+        padding: 0px;
+        list-style-image: url("'../cssimages/L.png'");
+        list-style-position: outside;
+        list-style-type: none;
+        font-family: Tahoma;
+        font-size: 12px;
+        font-weight: bold;
+        color: black;
+        text-decoration: none;
+        text-align: left;
+        line-height: 100%;
+        padding-left: 0px;
+        margin-left: -10px;
+
+    }
+
+    .elev li.single {
+        list-style-type: none;
+        list-style-image: none;
+        font-weight: normal;
+        margin-left: 5px;
+    }
+
+    .elev li.single img {
+
+        margin-right: 4px;
+    }
+
+    .elev a, .elev span {
+        font-family: Tahoma;
+        font-size: 12px;
+        font-weight: bold;
+        color: black;
+        text-decoration: none;
+        line-height: 100%;
+        vertical-align: top;
+	padding-left: 8px;
+    }
+
+    span.createnew {
+        font-family: Tahoma;
+        font-style: italic;
+        font-size: 12px;
+        font-weight: bold;
+        color: black;
+        text-decoration: none;
+        line-height: 100%;
+        vertical-align: top;
+
+    }
+
+    .statusDiv li, .statusDiv ul {
+        list-style-image: none;
+        list-style-position: outside;
+        list-style-type: none;
+    }
+
+    .webfx-tree-item input {
+        height: 16px;
+    }
+
+    #yellowbox TABLE.general, .yellowbox TABLE.general {
+	display: none;
+        background-color: rgb( 243, 199, 106 );
+    }
+
+    #yellowbox TABLE.general CAPTION, .yellowbox TABLE.general CAPTION {
+        background-color: rgb( 248, 219, 161 ); /*#B3CDDA; */
+        border-top: rgb( 243, 199, 106 ) 1px solid;
+        border-left: rgb( 243, 199, 106 ) 1px solid;
+        border-right: rgb( 243, 199, 106 ) 1px solid;
+    }
+
+    #yellowbox TABLE.general TH, .yellowbox TABLE.general TH {
+        background-color: rgb( 247, 236, 212 );
+    }
+
+    #yellowbox TABLE.general TD A, .yellowbox TABLE.general TD A {
+        color: #000000;
+        font-weight: bold;
+        font-size: 11px;
+        text-decoration: none;
+
+    }
+
+    #yellowbox div.helptopic, .yellowbox div.helptopic {
+	display: none;
+        background-color: rgb( 248, 219, 161 );
+    }
+
+    #yellowbox div.helpcontainer, .yellowbox div.helpcontainer {
+	display: none;
+        border: rgb( 243, 199, 106 ) 1px solid;
+    }
+
+    .dropdownbox a {
+        color: #000000;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 11px;
+    }
+
+    #yellowbox a, .yellowbox a {
+        color: #000000;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 11px;
+    }
+
+    table.caption {
+        font-family: Tahoma, Arial, Helvetica, sans-serif;
+        color: #000000;
+        font-size: 11px;
+
+    }
+
+    table.caption TH {
+        white-space: nowrap;
+        background-color: #F8F8F8;
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    table.caption TH.mSubmitter {
+        background-color: #F8F8F8;
+        text-align: left;
+        font-weight: normal;
+	font-size: 11px;
+	vertical-align: middle;
+    }
+
+    table.caption TR.vis TH {
+        text-align: left;
+    }
+
+    table.caption TR.vis TD {
+        
+        
+    }
+
+    TABLE.caption TD A {
+        color: #000000;
+        font-weight: bold;
+        font-size: 11px;
+        text-decoration: none;
+
+    }
+
+    table.caption TH.mControls {
+        white-space: nowrap;
+        text-align: left;
+    }
+    table.caption TH.mControls IMG{
+	vertical-align: middle;
+    }
+
+    table.caption TH.mStatus {
+        white-space: nowrap;
+        text-align: left;
+        font-weight: normal;
+    }
+
+    table.caption TH.mTime {
+        white-space: nowrap;
+        font-weight: normal;
+        text-align: left;
+        padding-right: 8px;
+    }
+
+    table.caption TD {
+        font-size: 11px;
+        white-space: normal;
+        background-color: #F8F8F8;
+        padding-left: 10px;
+	vertical-align: middle;
+    }
+
+    DIV.caption {
+        font-family: Tahoma, Arial, Helvetica, sans-serif;
+        color: #000000;
+        font-size: 11px;
+        text-align: left;
+        font-weight: normal;
+        padding-left: 6px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+    DIV.caption IMG {
+	vertical-align: middle;
+	}
+    DIV.message {
+        width: 100%;
+        margin-bottom: 4px;
+    }
+
+    TABLE.message {
+        width: 100%;
+        font-family: Tahoma, Arial, Helvetica, sans-serif;
+        color: #000000;
+        font-size: 12px;
+        
+    }
+
+    TABLE.message TH {
+        color: #000000;
+        text-align: right;
+        font-weight: bold;
+        
+        vertical-align: middle;
+        font-size: 11px;
+        padding-right: 12px;
+
+    }
+
+    TABLE.message TD {
+        background-color: #F8F8F8;
+        vertical-align: middle;
+        text-align: left;
+        font-size: 11px;
+    }
+
+    TABLE.message TD IMG {
+        vertical-align: middle;
+        margin-left: 4px;
+    }
+
+    TABLE.message TD A {
+        color: #000000;
+        font-weight: bold;
+        font-size: 11px;
+        text-decoration: none;
+    }
+
+    TABLE.message TH A {
+        color: #000000;
+        font-weight: bold;
+        font-size: 11px;
+        text-decoration: none;
+    }
+
+    DIV.around {
+        
+
+    }
+
+    LABEL.openMessage {
+        cursor: pointer;
+/*        cursor: hand; */
+    }
+
+    LABEL.openMessage IMG {
+        cursor: pointer;
+/*        cursor: hand; */
+    }
+
+    A.user {
+
+        font-family: Tahoma;
+        font-size: 11px;
+        text-decoration: none;
+        color: #000000;
+        font-weight: bold;
+
+    }
+    A.user IMG{
+        vertical-align: bottom;
+    }
+
+    SPAN.user {
+        font-family: Tahoma;
+        font-size: 11px;
+        text-decoration: none;
+        color: #000000;
+        font-weight: normal;
+
+    }
+    SPAN.user IMG{
+        vertical-align: bottom;
+    }

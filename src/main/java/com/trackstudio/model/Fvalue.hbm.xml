@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Fvalue" proxy="com.trackstudio.model.Fvalue" table="gr_fvalue">
+        <cache usage="nonstrict-read-write"/>
+
+        <id column="fvalue_id" name="id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+        <property column="fvalue_key" name="key" type="java.lang.String"/>
+        <property column="fvalue_value" name="value" type="java.lang.String"/>
+
+        <many-to-one name="filter" column="fvalue_filter" class="com.trackstudio.model.Filter" cascade="none"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Trigger" proxy="com.trackstudio.model.Trigger" table="gr_trigger">
+        <cache usage="nonstrict-read-write"/>
+
+        <id column="trigger_id" name="id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+        <property column="trigger_before" name="before" not-null="false" type="java.lang.String"/>
+        <property column="trigger_after" name="after" not-null="false" type="java.lang.String"/>
+        <property column="trigger_insteadof" name="insteadOf" not-null="false" type="java.lang.String"/>
+
+        <set name="categoryCrSet" lazy="true" inverse="true" cascade="save-update">
+            <key column="category_cr_trigger"/>
+            <one-to-many class="com.trackstudio.model.Category"/>
+        </set>
+
+        <set name="categoryUpdSet" lazy="true" inverse="true" cascade="save-update">
+            <key column="category_upd_trigger"/>
+            <one-to-many class="com.trackstudio.model.Category"/>
+        </set>
+
+        <set name="mstatusSet" lazy="false" inverse="true" cascade="save-update">
+            <key column="mstatus_trigger"/>
+            <one-to-many class="com.trackstudio.model.Mstatus"/>
+        </set>
+
+    </class>
+</hibernate-mapping>

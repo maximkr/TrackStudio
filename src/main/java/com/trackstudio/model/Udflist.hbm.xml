@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Udflist" proxy="com.trackstudio.model.Udflist" table="gr_udflist">
+        <cache usage="nonstrict-read-write"/>
+
+        <id column="udflist_id" name="id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+        <property column="udflist_val" length="200" name="val" type="java.lang.String"/>
+
+
+        <many-to-one name="udf" column="udflist_udf" class="com.trackstudio.model.Udf" cascade="none"/>
+
+        <set name="udfvalSet" lazy="true" inverse="true" cascade="all">
+            <key column="udfval_udflist"/>
+            <one-to-many class="com.trackstudio.model.Udfval"/>
+        </set>
+
+    </class>
+</hibernate-mapping>

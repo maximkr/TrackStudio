@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /task/
+Disallow: /user/
+Disallow: /cssjs/
+Disallow: /download/
+Disallow: /webdav/

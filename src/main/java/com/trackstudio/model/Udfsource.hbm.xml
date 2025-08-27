@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Udfsource" proxy="com.trackstudio.model.Udfsource" table="gr_udfsource">
+        <cache usage="nonstrict-read-write"/>
+
+        <id column="udfsource_id" name="id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+
+        <many-to-one name="task" column="udfsource_task" class="com.trackstudio.model.Task" cascade="none"/>
+        <many-to-one name="user" column="udfsource_user" class="com.trackstudio.model.User" cascade="none"/>
+        <many-to-one name="workflow" column="udfsource_workflow" class="com.trackstudio.model.Workflow" cascade="none"/>
+
+        <set name="udfvalSet" lazy="true" inverse="true" cascade="all">
+            <key column="udfval_udfsource"/>
+            <one-to-many class="com.trackstudio.model.Udfval"/>
+        </set>
+
+        <set name="udfSet" lazy="true" inverse="true" cascade="all">
+            <key column="udf_udfsource"/>
+            <one-to-many class="com.trackstudio.model.Udf"/>
+        </set>
+
+    </class>
+</hibernate-mapping>

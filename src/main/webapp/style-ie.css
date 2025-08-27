@@ -1,0 +1,43 @@
+ html, body{
+     height: 100%;
+     overflow: auto;
+ }
+
+span#topleft img {
+    padding: 2px 2px;
+}
+
+.ts-menu {
+    box-sizing: content-box;
+
+}
+
+
+
+
+div.controlPanel img {
+    vertical-align: middle;
+    margin: 10px 0;
+}
+
+div.controlPanel .ts-menu IMG {
+    padding: 2px 4px 0px;
+    vertical-align: middle;
+    margin: 0 0 !important;
+}
+
+DIV.slider {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+
+
+ div#servicePanel,* html div.norm#servicePanel {
+     position:absolute;
+     bottom: 0;
+ }
+
+ em.number{
+     color: #888888;
+ }

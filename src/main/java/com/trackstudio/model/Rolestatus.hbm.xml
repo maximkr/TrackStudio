@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Rolestatus" proxy="com.trackstudio.model.Rolestatus" table="gr_rolestatus">
+        <cache usage="nonstrict-read-write"/>
+
+        <id name="id" column="rolestatus_id" type="string" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+
+        <many-to-one name="prstatus" column="rolestatus_prstatus" class="com.trackstudio.model.Prstatus"
+                     cascade="none"/>
+        <property column="rolestatus_role" not-null="true" name="role" type="java.lang.String"/>
+
+    </class>
+</hibernate-mapping>
+

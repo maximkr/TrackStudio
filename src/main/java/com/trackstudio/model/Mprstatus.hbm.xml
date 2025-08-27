@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Mprstatus" proxy="com.trackstudio.model.Mprstatus" table="gr_mprstatus">
+        <cache usage="nonstrict-read-write"/>
+
+        <id column="mprstatus_id" name="id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+        <property column="mprstatus_type" name="type" type="java.lang.String"/>
+
+        <many-to-one name="mstatus" column="mprstatus_mstatus" class="com.trackstudio.model.Mstatus" cascade="none"/>
+        <many-to-one name="prstatus" column="mprstatus_prstatus" class="com.trackstudio.model.Prstatus" cascade="none"/>
+    </class>
+</hibernate-mapping>

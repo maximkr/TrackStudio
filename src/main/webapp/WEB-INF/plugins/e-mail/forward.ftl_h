@@ -1,0 +1,7 @@
+<#assign ContentType="text/plain;\n charset=\"${charset}\""/>
+<#assign Subject="Forwarded from ${from} : ${subjectText}"/>
+<#assign Headers={"X-Meta":"data"}/>
+<div>
+    Reason : ${reason}<br/><br/>
+    Details : ${details}
+</div>

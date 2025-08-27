@@ -1,0 +1,1426 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+        "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+
+<struts-config>
+
+
+    <!-- ========== Form Bean Definitions =================================== -->
+    <form-beans>
+
+        <!-- Logon form bean -->
+        <form-bean name="baseForm"
+                   type="com.trackstudio.form.BaseForm"/>
+        <form-bean name="userForm"
+                   type="com.trackstudio.form.UserForm"/>
+        <form-bean name="filterForm"
+                   type="com.trackstudio.form.FilterForm"/>
+        <form-bean name="notifySubscribeForm"
+                   type="com.trackstudio.form.NotifySubscribeForm"/>
+        <form-bean name="prstatusForm"
+                   type="com.trackstudio.form.PrstatusForm"/>
+        <form-bean name="taskForm"
+                   type="com.trackstudio.form.TaskForm"/>
+        <form-bean name="mailImportForm"
+                   type="com.trackstudio.form.MailImportForm"/>
+        <form-bean name="templateForm"
+                   type="com.trackstudio.form.TemplateForm"/>
+
+        <form-bean name="aclForm"
+                   type="com.trackstudio.form.ACLForm"/>
+        <form-bean name="roleTaskSecurityForm"
+                   type="com.trackstudio.form.RoleTaskSecurityForm"/>
+        <form-bean name="roleUserSecurityForm"
+                   type="com.trackstudio.form.RoleUserSecurityForm"/>
+        <form-bean name="roleTaskFieldSecurityForm"
+                   type="com.trackstudio.form.RoleTaskFieldSecurityForm"/>
+        <form-bean name="roleUserFieldSecurityForm"
+                   type="com.trackstudio.form.RoleUserFieldSecurityForm"/>
+        <form-bean name="reportForm"
+                   type="com.trackstudio.form.ReportForm"/>
+
+        <form-bean name="uploadForm"
+                   type="com.trackstudio.form.UploadForm"/>
+        <form-bean name="categoryForm"
+                   type="com.trackstudio.form.CategoryForm"/>
+        <form-bean name="categoryTemplateForm"
+                   type="com.trackstudio.form.CategoryTemplateForm"/>
+        <form-bean name="changePasswordForm"
+                   type="com.trackstudio.form.ChangePasswordForm"/>
+
+        <form-bean name="customForm"
+                   type="com.trackstudio.form.CustomForm"/>
+
+        <form-bean name="workflowForm"
+                   type="com.trackstudio.form.WorkflowForm"/>
+        <form-bean name="preFilterForm"
+                   type="com.trackstudio.form.PreFilterForm"/>
+        <form-bean name="priorityForm"
+                   type="com.trackstudio.form.PriorityForm"/>
+        <form-bean name="taskStatusForm"
+                   type="com.trackstudio.form.TaskStatusForm"/>
+        <form-bean name="mstatusForm"
+                   type="com.trackstudio.form.MstatusForm"/>
+        <form-bean name="resolutionForm"
+                   type="com.trackstudio.form.ResolutionForm"/>
+        <form-bean name="mstatusPermissionForm"
+                   type="com.trackstudio.form.MstatusPermissionForm"/>
+        <form-bean name="transitionForm"
+                   type="com.trackstudio.form.TransitionForm"/>
+        <form-bean name="triggerForm"
+                   type="com.trackstudio.form.TriggerForm"/>
+        <form-bean name="treeLoaderForm"
+                   type="com.trackstudio.form.TreeLoaderForm"/>
+
+        <form-bean name="bookmarkForm"
+                   type="com.trackstudio.form.BookmarkForm"/>
+
+        <form-bean name="registrationForm"
+                   type="com.trackstudio.form.RegistrationForm"/>
+
+        <form-bean name="selectForm"
+                   type="com.trackstudio.form.SelectForm"/>
+
+        <form-bean name="taskListForm"
+                   type="com.trackstudio.form.TaskListForm"/>
+        <form-bean name="userListForm"
+                   type="com.trackstudio.form.UserListForm"/>
+        <form-bean name="messageForm"
+                   type="com.trackstudio.form.MessageForm"/>
+        <form-bean name="udfForm"
+                   type="com.trackstudio.form.UDFForm"/>
+        <form-bean name="rssForm"
+                   type="com.trackstudio.form.RSSForm"/>
+        <form-bean name="appletForm"
+                   type="com.trackstudio.form.TaskForm"/>
+        <form-bean name="mstatusUdfPermForm"
+                   type="com.trackstudio.form.MstatusUdfPermissionForm"/>
+
+
+    </form-beans>
+
+    <!-- ========== Global Forward Definitions ============================== -->
+    <global-forwards>
+
+        <forward name="registerPage" path="/LoginAction.do?method=registerPage"/>
+
+        <forward name="loginPage" path="/LoginAction.do?method=loginPage"/>
+        <forward name="registerInfoPage" path="/LoginAction.do?method=registerInfoPage"/>
+        <forward name="forgotPasswordPage" path="/LoginAction.do?method=forgotPasswordPage"/>
+        <forward name="error" path="/jsp/Error.jsp"/>
+        <forward name="listUserFilterPage" path="/UserFilterAction.do?method=page"/>
+        <forward name="taskViewPage" path="/TaskViewAction.do?method=page"/>
+        <forward name="userViewPage" path="/UserViewAction.do?method=page"/>
+        <forward name="editUserFilterPage" path="/UserFilterEditAction.do?method=page"/>
+        <forward name="viewUserFilterPage" path="/UserFilterViewAction.do?method=page"/>
+        <forward name="forceChangePasswordPage" path="/ForceChangePasswordAction.do?method=page"/>
+        <forward name="userEmegencyNoticePage" path="/UserEmegencyNoticeAction.do?method=page"/>
+
+        <forward name="userSelectPage"  path="/UserSelectAction.do"/>
+        <forward name="taskSelectPage" path="/TaskSelectAction.do"/>
+
+        <forward name="userEditPage" path="/UserEditAction.do?method=page"/>
+        <forward name="userListPage" path="/UserListAction.do?method=page"/>
+        <forward name="changePasswordPage" path="/ChangePasswordAction.do?method=page"/>
+
+        <forward name="userStatusListPage" path="/UserStatusAction.do?method=page"/>
+        <forward name="userStatusEditPage" path="/UserStatusEditAction.do?method=page"/>
+        <forward name="userStatusViewPage" path="/UserStatusViewAction.do?method=page"/>
+        <forward name="subtaskPage" path="/SubtaskAction.do?method=page"/>
+
+        <forward name="taskFilterListPage" path="/TaskFilterAction.do?method=page"/>
+        <forward name="userFilterListPage" path="/UserFilterAction.do?method=page"/>
+        <forward name="editTaskFilterPage" path="/TaskFilterEditAction.do?method=page"/>
+        <forward name="viewTaskFilterPage" path="/TaskFilterViewAction.do?method=page"/>
+
+        <forward name="editTaskFilterTaskSettingsPage" path="/TaskFilterTaskSettingsAction.do?method=page"/>
+        <forward name="editUserFilterSettingsPage" path="/UserFilterSettingsAction.do?method=page"/>
+        <forward name="editTaskFilterMessageSettingsPage" path="/TaskFilterMessageSettingsAction.do?method=page"/>
+        <forward name="taskFilterParametersPage" path="/TaskFilterParametersAction.do?method=page"/>
+        <forward name="userFilterParametersPage" path="/UserFilterParametersAction.do?method=page"/>
+        <forward name="reportFilterParametersPage" path="/ReportFilterParametersAction.do?method=page"/>
+        <forward name="taskNotifyPage" path="/TaskNotifyAction.do?method=page"/>
+        <forward name="taskNotifyEditPage" path="/TaskNotifyEditAction.do?method=page"/>
+        <forward name="taskNotifyViewPage" path="/TaskNotifyViewAction.do?method=page"/>
+
+        <forward name="taskSubscribePage" path="/TaskSubscribeAction.do?method=page"/>
+        <forward name="categoryTemplatePage" path="/CategoryTemplateAction.do?method=page"/>
+        <forward name="taskSubscribeEditPage" path="/TaskSubscribeEditAction.do?method=page"/>
+        <forward name="taskSubscribeViewPage" path="/TaskSubscribeViewAction.do?method=page"/>
+
+        <forward name="editReportPage" path="/ReportEditAction.do?method=page"/>
+        <forward name="viewTaskPage" path="/TaskViewAction.do?method=page"/>
+        <forward name="editTaskPage" path="/TaskEditAction.do?method=page"/>
+        <forward name="customizeTaskPage" path="/TaskCustomizeAction.do?method=page"/>
+        <forward name="similarPage" path="/SimilarAction.do?method=page"/>
+
+        <forward name="taskSearchPage" path="/TaskSearchAction.do?method=page"/>
+        <forward name="userSearchPage" path="/UserSearchAction.do?method=page"/>
+        <forward name="uploadPage" path="/TaskViewAction.do?method=page"/>
+        <forward name="messagePage" path="/TaskViewAction.do?method=page"/>
+        <forward name="mailImportEditPage" path="/MailImportEditAction.do?method=page"/>
+        <forward name="templateEditPage" path="/TemplateEditAction.do?method=page"/>
+        <forward name="attachmentEditPage" path="/AttachmentEditAction.do?method=page"/>
+        <forward name="mailImportViewPage" path="/MailImportViewAction.do?method=page"/>
+        <forward name="templateViewPage" path="/TemplateViewAction.do?method=page"/>
+
+        <forward name="mailImportPage" path="/MailImportAction.do?method=page"/>
+        <forward name="templateListPage" path="/TemplateAction.do?method=page"/>
+        <forward name="taskAclPage" path="/ACLAction.do?method=page"/>
+
+        <forward name="userAclPage" path="/UserACLAction.do?method=page"/>
+
+        <forward name="effectivePermissionsPage" path="/EffectivePermissionAction.do?method=page"/>
+        <forward name="userEffectivePermissionsPage" path="/UserEffectivePermissionAction.do?method=page"/>
+
+        <forward name="reportPage" path="/ReportAction.do?method=page"/>
+        <forward name="reportListPage" path="/ReportAction.do?method=page"/>
+
+        <forward name="viewReportPage" path="/ReportViewAction.do?method=page"/>
+
+        <forward name="categoryListPage" path="/CategoryAction.do?method=page"/>
+
+        <forward name="categoryEditPage" path="/CategoryEditAction.do?method=page"/>
+        <forward name="categoryViewPage" path="/CategoryViewAction.do?method=page"/>
+        <forward name="categoryRelationPage" path="/CategoryRelationAction.do?method=page"/>
+
+        <forward name="categoryPermissionPage" path="/CategoryPermissionAction.do?method=page"/>
+
+        <forward name="workflowPage" path="/WorkflowAction.do?method=page"/>
+        <forward name="workflowEditPage" path="/WorkflowEditAction.do?method=page"/>
+        <forward name="workflowViewPage" path="/WorkflowViewAction.do?method=page"/>
+
+        <forward name="mstatusEditPage" path="/MstatusEditAction.do?method=page"/>
+        <forward name="mstatusViewPage" path="/MstatusViewAction.do?method=page"/>
+
+        <forward name="priorityPage" path="/PriorityAction.do?method=page"/>
+        <forward name="priorityEditPage" path="/PriorityEditAction.do?method=page"/>
+
+        <forward name="taskStatusPage" path="/TaskStatusAction.do?method=page"/>
+        <forward name="taskStatusEditPage" path="/TaskStatusEditAction.do?method=page"/>
+
+        <forward name="mstatusPage" path="/MstatusAction.do?method=page"/>
+        <forward name="mstatusPermissionPage" path="/MstatusPermissionAction.do?method=page"/>
+        <forward name="transitionPage" path="/TransitionAction.do?method=page"/>
+        <forward name="mstatusTriggerPage" path="/MstatusTriggerAction.do?method=page"/>
+        <forward name="mstatusSchedulerPage" path="/MstatusSchedulerAction.do?method=page"/>
+        <forward name="categoryTriggerPage" path="/CategoryTriggerAction.do?method=page"/>
+        <forward name="registrationListPage" path="/RegistrationAction.do?method=page"/>
+        <forward name="registrationViewPage" path="/RegistrationViewAction.do?method=page"/>
+        <forward name="registrationEditGeneralPage" path="/RegistrationEditGeneralAction.do?method=page"/>
+        <forward name="registrationEditGeneral" path="/RegistrationEditGeneralAction.do?method=edit"/>
+
+        <forward name="taskAction" path="/TaskAction.do?method=page"/>
+        <forward name="userAction" path="/UserAction.do"/>
+        <forward name="taskUdfEditPage" path="/TaskUdfEditAction.do?method=page"/>
+        <forward name="taskUdfViewPage" path="/TaskUdfViewAction.do?method=page"/>
+        <forward name="userUdfEditPage" path="/UserUdfEditAction.do?method=page"/>
+        <forward name="userUdfViewPage" path="/UserUdfViewAction.do?method=page"/>
+        <forward name="workflowUdfEditPage" path="/WorkflowUdfEditAction.do?method=page"/>
+        <forward name="workflowUdfViewPage" path="/WorkflowUdfViewAction.do?method=page"/>
+
+        <forward name="taskUdfListValuesPage" path="/TaskUdfListValuesAction.do?method=page"/>
+        <forward name="userUdfListValuesPage" path="/UserUdfListValuesAction.do?method=page"/>
+        <forward name="workflowUdfListValuesPage" path="/WorkflowUdfListValuesAction.do?method=page"/>
+
+        <forward name="resolutionPage" path="/ResolutionAction.do?method=page"/>
+        <forward name="resolutionEditPage" path="/ResolutionEditAction.do?method=page"/>
+        <forward name="taskFieldSecurityPage" path="/TaskFieldSecurityAction.do?method=page"/>
+        <forward name="taskSecurityPage" path="/TaskSecurityAction.do?method=page"/>
+        <forward name="userFieldSecurityPage" path="/UserFieldSecurityAction.do?method=page"/>
+        <forward name="userSecurityPage" path="/UserSecurityAction.do?method=page"/>
+        <forward name="userCategorySecurityPage" path="/UserCategorySecurityAction.do?method=page"/>
+        <forward name="userMTypeSecurityPage" path="/UserMTypeSecurityAction.do?method=page"/>
+        <forward name="userWorkflowSecurityPage" path="/UserWorkflowSecurityAction.do?method=page"/>
+        <forward name="userWorkflowOverviewPage" path="/UserWorkflowOverviewAction.do?method=page"/>
+        <forward name="userUdfMTypeSecurityPage" path="/UserUdfMTypeSecurityAction.do?method=page"/>
+        <forward name="udfPermissionPage" path="/UdfPermissionAction.do?method=page"/>
+        <forward name="udfPermissionEditPage" path="/WorkflowUdfOperationPermissionAction.do?method=page"/>
+        <forward name="udfPermissionViewPage" path="/UdfPermissionViewAction.do?method=page"/>
+        <forward name="messageCreate" path="/MessageCreateAction.do?method=page"/>
+
+        <forward name="errorClipboardOperationPage" path="/ErrorClipboardOperation.do"/>
+        <forward name="getMstatusByCategoryServlet" path="/GetMstatusByCategoryServlet.do"/>
+        <forward name="attachmentBrowserAction" path="/AttachmentBrowserAction.do"/>
+        <forward name="taskUdfPermissionAction" path="/TaskUdfPermissionAction.do?method=page"/>
+    </global-forwards>
+
+
+    <!-- ========== Action Mapping Definitions ============================== -->
+
+    <action-mappings>
+
+        <action path="/LoginAction"
+                type="com.trackstudio.action.LoginAction"
+                name="userForm"
+                scope="request"
+                parameter="method">
+            <forward name="loginJSP" path="/jsp/login/Login.jsp"/>
+            <forward name="logoutJSP" path="/jsp/login/LogoutAction.jsp"/>
+            <forward name="registerInfoJSP" path="/jsp/login/RegisterInfo.jsp"/>
+            <forward name="forgotPasswordJSP" path="/jsp/login/ForgotPassword.jsp"/>
+            <forward name="registerJSP" path="/jsp/login/Register.jsp"/>
+            <forward name="forceChangePasswordPage" path="/ForceChangePasswordAction.do?method=page"/>
+        </action>
+
+        <action path="/UserFilterAction"
+                type="com.trackstudio.action.user.UserFilterAction"
+                name="filterForm"
+                scope="request"
+                parameter="method"
+                input="/UserFilterAction.do?method=page">
+            <forward name="listUserFilterJSP" path="/jsp/user/filter/ListUserFilter.jsp"/>
+            <forward name="editUserFilterJSP" path="/jsp/user/filter/edit/EditUserFilter.jsp"/>
+        </action>
+        <action path="/UserFilterEditAction"
+                type="com.trackstudio.action.user.UserFilterEditAction"
+                name="filterForm"
+                scope="request"
+                parameter="method"
+                input="/UserFilterEditAction.do?method=page">
+            <forward name="createUserFilterPage" path="/UserFilterAction.do?method=create"/>
+            <forward name="editUserFilterJSP" path="/jsp/user/filter/edit/EditUserFilter.jsp"/>
+        </action>
+        <action path="/UserFilterSettingsAction"
+                type="com.trackstudio.action.user.UserFilterSettingsAction"
+                name="filterForm"
+                scope="request"
+                parameter="method">
+            <forward name="editUserFilterSettingsJSP" path="/jsp/user/filter/edit/UserFilterSettings.jsp"/>
+        </action>
+        <action path="/UserStatusAction"
+                type="com.trackstudio.action.user.UserStatusAction"
+                name="prstatusForm"
+                scope="request"
+                parameter="method"
+                input="/UserStatusAction.do?method=page">
+            <forward name="userStatusListJSP" path="/jsp/user/status/Status.jsp"/>
+        </action>
+        <action path="/UserStatusEditAction"
+                type="com.trackstudio.action.user.UserStatusEditAction"
+                name="prstatusForm"
+                scope="request"
+                parameter="method"
+                input="/UserStatusEditAction.do?method=page">
+            <forward name="userStatusEditJSP" path="/jsp/user/status/edit/Edit.jsp"/>
+        </action>
+
+
+        <action path="/UserStatusViewAction"
+                type="com.trackstudio.action.user.UserStatusViewAction"
+                name="prstatusForm"
+                scope="request"
+                parameter="method"
+                input="/UserStatusViewAction.do?method=page">
+            <forward name="userStatusViewJSP" path="/jsp/user/status/edit/View.jsp"/>
+        </action>
+
+        <action path="/UserViewAction"
+                type="com.trackstudio.action.user.UserViewAction"
+                name="userForm"
+                scope="request"
+                parameter="method"
+                input="/UserViewAction.do?method=page">
+            <forward name="userViewJSP" path="/jsp/user/user/view/UserView.jsp"/>
+        </action>
+
+        <action path="/UserEmegencyNoticeAction"
+                type="com.trackstudio.action.user.UserEmegencyNoticeAction"
+                name="userForm"
+                scope="request"
+                parameter="method"
+                input="/UserEmegencyNoticeAction.do?method=page">
+            <forward name="userEmegencyNoticeViewJSP" path="/jsp/user/user/edit/UserEmegencyNoticeActionView.jsp"/>
+        </action>
+
+        <action path="/UserEditAction"
+                type="com.trackstudio.action.user.UserEditAction"
+                name="userForm"
+                scope="request"
+                parameter="method"
+                input="/UserEditAction.do?method=page">
+            <forward name="userEditJSP" path="/jsp/user/user/edit/UserEdit.jsp"/>
+        </action>
+
+        <action path="/UserListAction"
+                type="com.trackstudio.action.user.UserListAction"
+                name="userListForm"
+                scope="request"
+                parameter="method"
+                input="/UserAction.do">
+            <forward name="userListJSP" path="/jsp/user/list/View.jsp"/>
+        </action>
+
+        <action path="/TaskDispatchAction"
+                type="com.trackstudio.action.task.TaskDispatchAction"
+                name="baseForm"
+                scope="request"
+                parameter="method"
+                input="/TaskDispatchAction.do?method=page">
+            <forward name="taskDispatchTileJSP" path="/jsp/task/tiles/TaskDispatchTile.jsp"/>
+        </action>
+
+        <action path="/SubtaskAction"
+                type="com.trackstudio.action.task.SubtaskAction"
+                name="taskListForm"
+                scope="request"
+                parameter="method"
+                input="/SubtaskAction.do?method=page">
+            <forward name="subtaskJSP" path="/jsp/task/subtasks/Subtasks.jsp"/>
+            <forward name="archiveJSP" path="/jsp/task/subtasks/Archive.jsp"/>
+        </action>
+
+        <action path="/ErrorClipboardOperation" type="com.trackstudio.action.task.ErrorClipboardOperationAction">
+            <forward name="errorClipboardOperationJSP" path="/jsp/task/subtasks/ErrorClipboardOperation.jsp"/>
+        </action>
+
+        <action path="/TaskFilterAction"
+                type="com.trackstudio.action.task.TaskFilterAction"
+                name="filterForm"
+                scope="request"
+                parameter="method"
+                input="/TaskFilterAction.do?method=page">
+            <forward name="taskFilterListJSP" path="/jsp/task/filter/ListFilter.jsp"/>
+            <forward name="editTaskFilterJSP" path="/jsp/task/filter/edit/EditFilter.jsp"/>
+        </action>
+        <action path="/TaskFilterTaskSettingsAction"
+                type="com.trackstudio.action.task.TaskFilterTaskSettingsAction"
+                name="filterForm"
+                scope="request"
+                parameter="method"
+                input="/TaskFilterTaskSettingsAction.do?method=page">
+            <forward name="editTaskFilterTaskSettingsJSP" path="/jsp/task/filter/edit/EditTaskSettings.jsp"/>
+        </action>
+        <action path="/TaskFilterMessageSettingsAction"
+                type="com.trackstudio.action.task.TaskFilterMessageSettingsAction"
+                name="filterForm"
+                scope="request"
+                parameter="method"
+                input="/TaskFilterMessageSettingsAction.do?method=page">
+            <forward name="editTaskFilterMessageSettingsJSP" path="/jsp/task/filter/edit/EditMessageSettings.jsp"/>
+        </action>
+        <action path="/TaskFilterEditAction"
+                type="com.trackstudio.action.task.TaskFilterEditAction"
+                name="filterForm"
+                scope="request"
+                parameter="method"
+                input="/TaskFilterEditAction.do?method=page">
+            <forward name="createFilterPage" path="/TaskFilterAction.do?method=create"/>
+            <forward name="editTaskFilterJSP" path="/jsp/task/filter/edit/EditFilter.jsp"/>
+        </action>
+
+        <action path="/TaskNotifyAction"
+                type="com.trackstudio.action.task.TaskNotifyAction"
+                name="notifySubscribeForm"
+                scope="request"
+                parameter="method"
+                input="/TaskNotifyAction.do?method=page">
+            <forward name="taskNotifyJSP" path="/jsp/task/notify/Notify.jsp"/>
+        </action>
+
+
+        <action path="/TaskNotifyEditAction"
+                type="com.trackstudio.action.task.TaskNotifyEditAction"
+                name="notifySubscribeForm"
+                scope="request"
+                parameter="method"
+                input="/TaskNotifyEditAction.do?method=page">
+            <forward name="taskNotifyEditJSP" path="/jsp/task/notify/EditNotify.jsp"/>
+            <forward name="taskNotifyEditFilterJSP" path="/jsp/task/notify/EditNotifyFilter.jsp"/>
+        </action>
+
+        <action path="/TaskNotifyViewAction"
+                type="com.trackstudio.action.task.TaskNotifyViewAction"
+                name="notifySubscribeForm"
+                scope="request"
+                parameter="method"
+                input="/TaskNotifyViewAction.do?method=page">
+            <forward name="taskNotifyViewJSP" path="/jsp/task/notify/ViewNotify.jsp"/>
+        </action>
+
+        <action path="/TaskSubscribeAction"
+                type="com.trackstudio.action.task.TaskSubscribeAction"
+                name="notifySubscribeForm"
+                scope="request"
+                parameter="method"
+                input="/TaskSubscribeAction.do?method=page">
+            <forward name="taskSubscribeJSP" path="/jsp/task/subscribe/Subscribe.jsp"/>
+        </action>
+
+        <action path="/TaskSubscribeEditAction"
+                type="com.trackstudio.action.task.TaskSubscribeEditAction"
+                name="notifySubscribeForm"
+                scope="request"
+                parameter="method"
+                input="/TaskSubscribeEditAction.do?method=page">
+            <forward name="taskSubscribeEditJSP" path="/jsp/task/subscribe/EditSubscribe.jsp"/>
+            <forward name="taskSubscribeEditFilterJSP" path="/jsp/task/subscribe/EditSubscribeFilter.jsp"/>
+        </action>
+
+        <action path="/TaskSubscribeViewAction"
+                type="com.trackstudio.action.task.TaskSubscribeViewAction"
+                name="notifySubscribeForm"
+                scope="request"
+                parameter="method"
+                input="/TaskSubscribeViewAction.do?method=page">
+            <forward name="taskSubscribeViewJSP" path="/jsp/task/subscribe/ViewSubscribe.jsp"/>
+        </action>
+
+        <action path="/TaskViewAction"
+                type="com.trackstudio.action.task.TaskViewAction"
+                name="taskListForm"
+                scope="request"
+                parameter="method"
+                input="/TaskViewAction.do?method=page">
+            <forward name="archiveTaskJSP" path="/jsp/task/viewtask/TaskArchive.jsp"/>
+            <forward name="viewTaskJSP" path="/jsp/task/viewtask/TaskInfo.jsp"/>
+            <forward name="viewDocumentJSP" path="/jsp/task/viewtask/DocumentInfo.jsp"/>
+            <forward name="viewFileJSP" path="/jsp/task/viewtask/FileInfo.jsp"/>
+        </action>
+
+        <action path="/TaskEditAction"
+                type="com.trackstudio.action.task.TaskEditAction"
+                name="taskForm"
+                scope="request"
+                parameter="method"
+                input="/TaskEditAction.do?method=page">
+            <forward name="editDocumentJSP" path="/jsp/task/viewtask/edit/DocumentEdit.jsp"/>
+            <forward name="editTaskJSP" path="/jsp/task/viewtask/edit/TaskEdit.jsp"/>
+            <forward name="editFileJSP" path="/jsp/task/viewtask/edit/FileEdit.jsp"/>
+        </action>
+
+        <action path="/UserFilterViewAction"
+                type="com.trackstudio.action.user.UserFilterViewAction"
+                name="filterForm"
+                scope="request"
+                parameter="method">
+            <forward name="viewUserFilterJSP" path="/jsp/user/filter/edit/ViewUserFilter.jsp"/>
+        </action>
+
+        <action path="/SimilarAction"
+                type="com.trackstudio.action.task.SimilarAction"
+                name="taskForm"
+                scope="request"
+                parameter="method"
+                input="/SimilarAction.do?method=page">
+            <forward name="similarJSP" path="/jsp/task/similar/Similar.jsp"/>
+        </action>
+
+        <action path="/TaskSearchAction"
+                type="com.trackstudio.action.task.TaskSearchAction"
+                name="taskForm"
+                scope="request"
+                parameter="method"
+                input="/TaskSearchAction.do?method=page">
+            <forward name="taskSearchJSP" path="/jsp/task/TaskSearch.jsp"/>
+        </action>
+
+        <action path="/UserSearchAction"
+                type="com.trackstudio.action.user.UserSearchAction"
+                name="userForm"
+                scope="request"
+                parameter="method"
+                input="/UserSearchAction.do?method=page">
+            <forward name="userSearchJSP" path="/jsp/user/UserSearch.jsp"/>
+        </action>
+
+        <action path="/AttachmentEditAction"
+                type="com.trackstudio.action.AttachmentEditAction"
+                name="uploadForm"
+                scope="request"
+                parameter="method"
+                input="/AttachmentEditAction.do?method=page">
+            <forward name="taskAttachmentEditJSP" path="/jsp/task/viewtask/attachments/TaskAttachmentEdit.jsp"/>
+            <forward name="userAttachmentEditJSP" path="/jsp/user/user/view/attachments/UserAttachmentEdit.jsp"/>
+            <forward name="taskAttachmentCreateJSP" path="/jsp/task/viewtask/attachments/TaskAttachmentCreate.jsp"/>
+            <forward name="userAttachmentCreateJSP" path="/jsp/user/user/view/attachments/UserAttachmentCreate.jsp"/>
+        </action>
+
+        <action path="/AttachmentViewAction"
+                type="com.trackstudio.action.AttachmentViewAction"
+                name="uploadForm"
+                scope="request"
+                parameter="method"
+                input="/AttachmentViewAction.do?method=page">
+            <forward name="taskAttachmentViewJSP" path="/jsp/task/viewtask/attachments/TaskAttachmentViewTile.jsp"/>
+        </action>
+
+        <action path="/TaskCreateAction"
+                type="com.trackstudio.action.task.TaskCreateAction"
+                name="taskForm"
+                scope="request"
+                parameter="method"
+                input="/TaskViewAction.do?method=page"
+                >
+            <forward name="createTaskTileJSP" path="/jsp/task/tiles/CreateTaskTile.jsp"/>
+        </action>
+
+        <action path="/UserCreateAction"
+                type="com.trackstudio.action.user.UserCreateAction"
+                name="userForm"
+                scope="request"
+                parameter="method"
+                >
+            <forward name="createUserTileJSP" path="/jsp/user/tiles/CreateUserTile.jsp"/>
+        </action>
+
+        <action path="/MessageAction"
+                type="com.trackstudio.action.task.MessageAction"
+                name="messageForm"
+                scope="request"
+                parameter="method"
+                input="/MessageAction.do?method=page">
+            <forward name="messageJSP" path="/jsp/task/viewtask/messages/Messages.jsp"/>
+        </action>
+
+        <action path="/MessageCreateAction"
+                type="com.trackstudio.action.task.MessageCreateAction"
+                name="messageForm"
+                scope="request"
+                parameter="method"
+                input="/MessageCreateAction.do?method=page">
+            <forward name="messageCreateJSP" path="/jsp/task/viewtask/messages/MessageCreate.jsp"/>
+        </action>
+
+
+        <action path="/MailImportViewAction"
+                type="com.trackstudio.action.task.MailImportViewAction"
+                name="mailImportForm"
+                scope="request"
+                parameter="method"
+                input="/MailImportViewAction.do?method=page">
+            <forward name="mailImportViewJSP" path="/jsp/task/mailimport/MailImportView.jsp"/>
+        </action>
+        <action path="/TemplateViewAction"
+                type="com.trackstudio.action.task.TemplateViewAction"
+                name="templateForm"
+                scope="request"
+                parameter="method"
+                input="/TemplateViewAction.do?method=page">
+            <forward name="templateViewJSP" path="/jsp/task/template/TemplateView.jsp"/>
+        </action>
+
+        <action path="/MailImportEditAction"
+                type="com.trackstudio.action.task.MailImportEditAction"
+                name="mailImportForm"
+                scope="request"
+                parameter="method"
+                input="/MailImportEditAction.do?method=page">
+            <forward name="mailImportEditJSP" path="/jsp/task/mailimport/MailImport.jsp"/>
+        </action>
+
+        <action path="/TemplateEditAction"
+                type="com.trackstudio.action.task.TemplateEditAction"
+                name="templateForm"
+                scope="request"
+                parameter="method"
+                input="/TemplateEditAction.do?method=page">
+            <forward name="templateEditJSP" path="/jsp/task/template/Template.jsp"/>
+        </action>
+
+        <action path="/MailImportAction"
+                type="com.trackstudio.action.task.MailImportAction"
+                name="mailImportForm"
+                scope="request"
+                parameter="method"
+                input="/MailImportAction.do?method=page">
+            <forward name="mailImportJSP" path="/jsp/task/mailimport/MailImportList.jsp"/>
+        </action>
+
+        <action path="/TemplateAction"
+                type="com.trackstudio.action.task.TemplateAction"
+                name="templateForm"
+                scope="request"
+                parameter="method"
+                input="/TemplateAction.do?method=page">
+            <forward name="templateListJSP" path="/jsp/task/template/TemplateList.jsp"/>
+        </action>
+
+        <action path="/ACLAction"
+                type="com.trackstudio.action.task.ACLAction"
+                name="aclForm"
+                scope="request"
+                parameter="method"
+                input="/ACLAction.do?method=page">
+            <forward name="taskAclJSP" path="/jsp/task/accesscontrol/TaskACL.jsp"/>
+        </action>
+
+        <action path="/EffectivePermissionAction"
+                type="com.trackstudio.action.task.EffectivePermissionAction"
+                name="aclForm"
+                scope="request"
+                parameter="method"
+                input="/EffectivePermissionAction.do?method=page">
+            <forward name="effectivePermissionsJSP" path="/jsp/task/effective/EffectivePermissions.jsp"/>
+        </action>
+
+        <action path="/UserEffectivePermissionAction"
+                type="com.trackstudio.action.user.UserEffectivePermissionAction"
+                name="aclForm"
+                scope="request"
+                parameter="method"
+                input="/UserEffectivePermissionAction.do?method=page">
+            <forward name="userEffectivePermissionsJSP" path="/jsp/user/effective/UserEffectivePermissions.jsp"/>
+        </action>
+
+        <action path="/ReportAction"
+                type="com.trackstudio.action.task.ReportAction"
+                name="reportForm"
+                scope="request"
+                parameter="method"
+                input="/ReportAction.do?method=page">
+            <forward name="reportListJSP" path="/jsp/task/reports/ListReport.jsp"/>
+            <forward name="editReportJSP" path="/jsp/task/reports/EditReport.jsp"/>
+        </action>
+        <action path="/ReportEditAction"
+                type="com.trackstudio.action.task.ReportEditAction"
+                name="reportForm"
+                scope="request"
+                parameter="method"
+                input="/ReportEditAction.do?method=page">
+            <forward name="editReportJSP" path="/jsp/task/reports/EditReport.jsp"/>
+        </action>
+
+        <action path="/ReportViewAction"
+                type="com.trackstudio.action.task.ReportViewAction"
+                name="reportForm"
+                scope="request"
+                parameter="method"
+                input="/ReportViewAction.do?method=page">
+            <forward name="viewReportJSP" path="/jsp/task/reports/ViewReport.jsp"/>
+        </action>
+
+        <action path="/CategoryAction"
+                type="com.trackstudio.action.task.CategoryAction"
+                name="categoryForm"
+                scope="request"
+                parameter="method"
+                input="/CategoryAction.do?method=page">
+            <forward name="categoryListJSP" path="/jsp/task/categories/category/Category.jsp"/>
+        </action>
+        <action path="/CategoryEditAction"
+                type="com.trackstudio.action.task.CategoryEditAction"
+                name="categoryForm"
+                scope="request"
+                parameter="method"
+                input="/CategoryEditAction.do?method=page">
+            <forward name="categoryEditJSP" path="/jsp/task/categories/catedit/Catedit.jsp"/>
+        </action>
+        <action path="/CategoryTemplateAction"
+                type="com.trackstudio.action.task.CategoryTemplateAction"
+                name="categoryTemplateForm"
+                scope="request"
+                parameter="method"
+                input="/CategoryTemplateAction.do?method=page">
+            <forward name="categoryTemplateJSP" path="/jsp/task/categories/cattemplate/Cattemplate.jsp"/>
+        </action>
+        <action path="/CategoryViewAction"
+                name="categoryForm"
+                type="com.trackstudio.action.task.CategoryViewAction"
+                scope="request"
+                parameter="method">
+            <forward name="categoryViewJSP" path="/jsp/task/categories/catedit/CategoryView.jsp"/>
+        </action>
+        <action path="/CategoryRelationAction"
+                type="com.trackstudio.action.task.CategoryRelationAction"
+                name="categoryForm"
+                scope="request"
+                parameter="method"
+                input="/CategoryRelationAction.do?method=page">
+            <forward name="categoryRelationJSP" path="/jsp/task/categories/catrelation/Catrelation.jsp"/>
+        </action>
+        <action path="/CategoryPermissionAction"
+                type="com.trackstudio.action.task.CategoryPermissionAction"
+                name="categoryForm"
+                scope="request"
+                parameter="method"
+                input="/CategoryPermissionAction.do?method=page">
+            <forward name="categoryPermissionJSP" path="/jsp/task/categories/permissions/Catpermission.jsp"/>
+        </action>
+
+        <action path="/ChangePasswordAction"
+                type="com.trackstudio.action.user.ChangePasswordAction"
+                name="changePasswordForm"
+                input="/ChangePasswordAction.do?method=page"
+                scope="request"
+                parameter="method">
+            <forward name="changePasswordJSP" path="/jsp/user/user/changepassword/ChangePassword.jsp"/>
+        </action>
+
+        <action path="/ForceChangePasswordAction"
+                type="com.trackstudio.action.user.ForceChangePasswordAction"
+                name="changePasswordForm"
+                input="/ForceChangePasswordAction.do?method=page"
+                scope="request"
+                parameter="method">
+            <forward name="forceChangePasswordJSP" path="/jsp/user/user/changepassword/ForceChangePassword.jsp"/>
+        </action>
+
+
+        <action path="/WorkflowAction"
+                type="com.trackstudio.action.task.WorkflowAction"
+                name="workflowForm"
+                scope="request"
+                parameter="method"
+                input="/WorkflowAction.do?method=page">
+            <forward name="workflowJSP" path="/jsp/task/workflow/Workflow.jsp"/>
+        </action>
+
+        <action path="/WorkflowEditAction"
+                type="com.trackstudio.action.task.WorkflowEditAction"
+                name="workflowForm"
+                scope="request"
+                parameter="method"
+                input="/WorkflowEditAction.do?method=page">
+            <forward name="workflowEditJSP" path="/jsp/task/workflow/edit/WorkflowEdit.jsp"/>
+        </action>
+        <action path="/TaskFilterParametersAction"
+                type="com.trackstudio.action.task.TaskFilterParametersAction"
+                name="preFilterForm"
+                scope="request"
+                parameter="method"
+                >
+            <forward name="taskFilterParametersTileJSP" path="/jsp/task/tiles/TaskFilterParametersTile.jsp"/>
+        </action>
+        <action path="/TaskSelectFilterParametersAction"
+                type="com.trackstudio.action.task.TaskSelectFilterParametersAction"
+                name="preFilterForm"
+                scope="request"
+                parameter="method"
+                >
+            <forward name="taskFilterParametersTileJSP" path="/jsp/task/tiles/TaskFilterParametersTile.jsp"/>
+        </action>
+        <action path="/UserFilterParametersAction"
+                type="com.trackstudio.action.user.UserFilterParametersAction"
+                name="preFilterForm"
+                scope="request"
+                parameter="method"
+                >
+            <forward name="userFilterParametersTileJSP" path="/jsp/user/tiles/UserFilterParametersTile.jsp"/>
+        </action>
+        <action path="/UserSelectFilterParametersAction"
+                type="com.trackstudio.action.user.UserSelectFilterParametersAction"
+                name="preFilterForm"
+                scope="request"
+                parameter="method"
+                >
+            <forward name="userFilterParametersTileJSP" path="/jsp/user/tiles/UserFilterParametersTile.jsp"/>
+        </action>
+        <action path="/ReportFilterParametersAction"
+                type="com.trackstudio.action.task.ReportFilterParametersAction"
+                name="preFilterForm"
+                scope="request"
+                parameter="method"
+                >
+            <forward name="taskFilterParametersTileJSP" path="/jsp/task/tiles/TaskFilterParametersTile.jsp"/>
+        </action>
+
+        <action path="/WorkflowViewAction"
+                type="com.trackstudio.action.task.WorkflowViewAction"
+                name="workflowForm"
+                scope="request"
+                parameter="method"
+                input="/WorkflowViewAction.do?method=page">
+            <forward name="workflowViewJSP" path="/jsp/task/workflow/edit/WorkflowView.jsp"/>
+        </action>
+
+        <action path="/PriorityAction"
+                type="com.trackstudio.action.task.PriorityAction"
+                name="priorityForm"
+                scope="request"
+                parameter="method"
+                input="/PriorityAction.do?method=page">
+            <forward name="priorityJSP" path="/jsp/task/workflow/priority/Priority.jsp"/>
+        </action>
+
+        <action path="/PriorityEditAction"
+                type="com.trackstudio.action.task.PriorityEditAction"
+                name="priorityForm"
+                scope="request"
+                parameter="method"
+                input="/PriorityEditAction.do?method=page">
+            <forward name="priorityEditJSP" path="/jsp/task/workflow/priority/PriorityEdit.jsp"/>
+        </action>
+
+        <action path="/TaskStatusAction"
+                type="com.trackstudio.action.task.TaskStatusAction"
+                name="taskStatusForm"
+                scope="request"
+                parameter="method"
+                input="/TaskStatusAction.do?method=page">
+            <forward name="taskStatusJSP" path="/jsp/task/workflow/taskstatus/TaskStatus.jsp"/>
+        </action>
+
+        <action path="/TaskStatusEditAction"
+                type="com.trackstudio.action.task.TaskStatusEditAction"
+                name="taskStatusForm"
+                scope="request"
+                parameter="method"
+                input="/TaskStatusEditAction.do?method=page">
+            <forward name="taskStatusEditJSP" path="/jsp/task/workflow/taskstatus/TaskStatusEdit.jsp"/>
+        </action>
+
+        <action path="/MstatusAction"
+                type="com.trackstudio.action.task.MstatusAction"
+                name="mstatusForm"
+                scope="request"
+                parameter="method"
+                input="/MstatusAction.do?method=page">
+            <forward name="mstatusJSP" path="/jsp/task/workflow/mstatus/Mstatus.jsp"/>
+        </action>
+
+        <action path="/MstatusPermissionAction"
+                type="com.trackstudio.action.task.MstatusPermissionAction"
+                name="mstatusPermissionForm"
+                scope="request"
+                parameter="method"
+                input="/MstatusPermissionAction.do?method=page">
+            <forward name="mstatusPermissionJSP" path="/jsp/task/workflow/mstatus/permissions/MstatusPermission.jsp"/>
+        </action>
+
+        <action path="/TransitionAction"
+                type="com.trackstudio.action.task.TransitionAction"
+                name="transitionForm"
+                scope="request"
+                parameter="method"
+                input="/TransitionAction.do?method=page">
+            <forward name="transitionJSP" path="/jsp/task/workflow/mstatus/transition/Transition.jsp"/>
+            <forward name="transitionStatusJSP" path="/jsp/task/workflow/mstatus/transition/StartStatus.jsp"/>
+            <forward name="transitionTableJSP" path="/jsp/task/workflow/mstatus/transition/TableStatus.jsp"/>
+        </action>
+
+        <action path="/MstatusTriggerAction"
+                type="com.trackstudio.action.task.MstatusTriggerAction"
+                name="triggerForm"
+                scope="request"
+                parameter="method"
+                input="/MstatusTriggerAction.do?method=page">
+            <forward name="triggerJSP" path="/jsp/task/workflow/mstatus/trigger/MstatusTrigger.jsp"/>
+        </action>
+
+        <action path="/CategoryTriggerAction"
+                type="com.trackstudio.action.task.CategoryTriggerAction"
+                name="triggerForm"
+                scope="request"
+                parameter="method"
+                input="/CategoryTriggerAction.do?method=page">
+            <forward name="triggerJSP" path="/jsp/task/categories/trigger/CategoryTrigger.jsp"/>
+        </action>
+
+        <action path="/DownloadAction"
+                type="com.trackstudio.action.task.DownloadAction"
+                name="reportForm"
+                scope="request"
+                parameter="method">
+        </action>
+
+        <action path="/DownloadReportAction"
+                type="com.trackstudio.action.task.DownloadReportAction"
+                name="reportForm"
+                scope="request"
+                parameter="method">
+        </action>
+
+        <action path="/TreeLoaderAction"
+                type="com.trackstudio.action.TreeLoaderAction"
+                name="treeLoaderForm"
+                parameter="method"
+                scope="request">
+            <forward name="treeFrameJSP" path="/jsp/TreeFrame.jsp"/>
+        </action>
+
+        <action path="/BookmarkAction"
+                type="com.trackstudio.action.BookmarkAction"
+                name="bookmarkForm"
+                parameter="method"
+                scope="request">
+        </action>
+
+        <action path="/UserCustomizeAction"
+                type="com.trackstudio.action.user.UserCustomizeAction"
+                name="customForm"
+                scope="request">
+            <forward name="userCustomEditJSP" path="/jsp/user/customize/Customize.jsp"/>
+        </action>
+
+        <action path="/UserUDFSaveAction"
+                type="com.trackstudio.action.user.UserUDFSaveAction"
+                name="customForm"
+                input="/jsp/user/customize/Customize.jsp"
+                scope="request">
+            <forward name="userCustomEditPage" path="/UserCustomizeAction.do"/>
+        </action>
+
+        <action path="/RegistrationAction"
+                type="com.trackstudio.action.task.RegistrationAction"
+                name="registrationForm"
+                scope="request"
+                parameter="method"
+                input="/RegistrationAction.do?method=page">
+            <forward name="registrationJSP" path="/jsp/task/registration/Registration.jsp"/>
+        </action>
+
+        <action path="/RegistrationViewAction"
+                type="com.trackstudio.action.task.RegistrationViewAction"
+                name="registrationForm"
+                scope="request"
+                parameter="method"
+                input="/RegistrationViewAction.do?method=page">
+            <forward name="viewRegistrationJSP" path="/jsp/task/registration/edit/ViewRegistration.jsp"/>
+        </action>
+
+        <action path="/RegistrationEditGeneralAction"
+                type="com.trackstudio.action.task.RegistrationEditGeneralAction"
+                name="registrationForm"
+                scope="request"
+                parameter="method"
+                input="/RegistrationEditGeneralAction.do?method=page">
+            <forward name="editGeneralPageJSP" path="/jsp/task/registration/edit/EditGeneralPage.jsp"/>
+        </action>
+
+        <action path="/UserACLAction"
+                type="com.trackstudio.action.user.UserACLAction"
+                name="aclForm"
+                scope="request"
+                parameter="method"
+                input="/UserACLAction.do?method=page">
+            <forward name="userAclJSP" path="/jsp/user/accesscontrol/UserACL.jsp"/>
+        </action>
+
+        <action path="/TaskFilterViewAction"
+                type="com.trackstudio.action.task.TaskFilterViewAction"
+                name="filterForm"
+                scope="request"
+                parameter="method">
+            <forward name="viewTaskFilterJSP" path="/jsp/task/filter/edit/ViewFilter.jsp"/>
+        </action>
+
+        <action path="/TaskCustomizeAction"
+                type="com.trackstudio.action.task.TaskCustomizeAction"
+                name="customForm"
+                scope="request">
+            <forward name="taskCustomEditJSP" path="/jsp/task/customize/TaskCustomize.jsp"/>
+        </action>
+
+        <action path="/TaskUDFSaveAction"
+                type="com.trackstudio.action.task.TaskUDFSaveAction"
+                name="customForm"
+                input="/jsp/task/customize/TaskCustomize.jsp"
+                scope="request">
+            <forward name="taskCustomEditPage" path="/TaskCustomizeAction.do"/>
+        </action>
+
+        <action path="/WorkflowCustomizeAction"
+                type="com.trackstudio.action.task.WorkflowCustomizeAction"
+                name="customForm"
+                scope="request">
+            <forward name="workflowCustomEditJSP" path="/jsp/task/workflow/customize/WorkflowCustomize.jsp"/>
+        </action>
+
+        <action path="/WorkflowUDFSaveAction"
+                type="com.trackstudio.action.task.WorkflowUDFSaveAction"
+                name="customForm"
+                scope="request">
+            <forward name="workflowCustomEditPage" path="/WorkflowCustomizeAction.do"/>
+        </action>
+
+        <action path="/TaskAction"
+                type="com.trackstudio.action.task.TaskAction"
+                name="taskListForm"
+                scope="request">
+        </action>
+
+        <action path="/UserAction"
+                type="com.trackstudio.action.user.UserAction"
+                name="userForm"
+                scope="request">
+        </action>
+
+        <action path="/TaskSelectAction"
+                type="com.trackstudio.action.task.TaskSelectAction"
+                name="taskListForm"
+                parameter="method"
+                scope="request">
+            <forward name="taskSelectJSP" path="/jsp/task/TaskSelect.jsp"/>
+        </action>
+
+        <action path="/IconViewAction"
+                type="com.trackstudio.action.task.IconViewAction"
+                name="categoryForm"
+                parameter="method"
+                scope="request">
+            <forward name="iconViewJSP" path="/jsp/task/categories/catedit/IconView.jsp"/>
+        </action>
+
+        <action path="/TaskSelectFramesetAction"
+                type="com.trackstudio.action.task.TaskSelectFramesetAction"
+                name="selectForm"
+                scope="request">
+            <forward name="taskSelectFramesetJSP" path="/jsp/task/TaskSelect.jsp"/>
+        </action>
+
+        <action path="/UserSelectFramesetAction"
+                type="com.trackstudio.action.user.UserSelectFramesetAction"
+                name="selectForm"
+                scope="request">
+            <forward name="userSelectFramesetJSP" path="/jsp/user/UserSelect.jsp"/>
+        </action>
+
+        <action path="/UserSelectAction"
+                type="com.trackstudio.action.user.UserSelectAction"
+                name="userListForm"
+                parameter="method"
+                scope="request">
+            <forward name="userSelectJSP" path="/jsp/user/UserSelect.jsp"/>
+        </action>
+
+        <action path="/TSFrameAction"
+                type="com.trackstudio.action.TSFrameAction"
+                name="baseForm"
+                scope="request">
+        </action>
+
+        <action path="/TreeFrameAction"
+                type="com.trackstudio.action.TreeFrameAction"
+                name="baseForm"
+                scope="request">
+            <forward name="treeFrameJSP" path="/jsp/TreeFrame.jsp"/>
+        </action>
+        <action path="/TaskUdfEditAction"
+                type="com.trackstudio.action.task.TaskUdfEditAction"
+                name="customForm"
+                scope="request"
+                parameter="method"
+                input="/TaskUdfEditAction.do?method=page">
+            <forward name="taskUdfEditJSP" path="/jsp/task/customize/EditTaskUdf.jsp"/>
+        </action>
+        <action path="/TaskUdfListValuesAction"
+                type="com.trackstudio.action.task.TaskUdfListValuesAction"
+                name="customForm"
+                scope="request"
+                parameter="method"
+                input="/TaskUdfListValuesAction.do?method=page">
+            <forward name="taskUdfListValuesJSP" path="/jsp/task/customize/TaskUdfListValues.jsp"/>
+        </action>
+        <action path="/TaskUdfViewAction"
+                type="com.trackstudio.action.task.TaskUdfViewAction"
+                name="customForm"
+                scope="request"
+                parameter="method"
+                input="/TaskUdfViewAction.do?method=page">
+            <forward name="taskUdfViewJSP" path="/jsp/task/customize/ViewTaskUdf.jsp"/>
+        </action>
+
+        <action path="/UserUdfEditAction"
+                type="com.trackstudio.action.user.UserUdfEditAction"
+                name="customForm"
+                scope="request"
+                parameter="method"
+                input="/UserUdfEditAction.do?method=page">
+            <forward name="userUdfEditJSP" path="/jsp/user/customize/EditUserUdf.jsp"/>
+        </action>
+
+        <action path="/UserUdfListValuesAction"
+                type="com.trackstudio.action.user.UserUdfListValuesAction"
+                name="customForm"
+                scope="request"
+                parameter="method"
+                input="/UserUdfListValuesAction.do?method=page">
+            <forward name="userUdfListValuesJSP" path="/jsp/user/customize/UserUdfListValues.jsp"/>
+        </action>
+
+        <action path="/UserUdfViewAction"
+                type="com.trackstudio.action.user.UserUdfViewAction"
+                name="customForm"
+                scope="request"
+                parameter="method"
+                input="/UserUdfViewAction.do?method=page">
+            <forward name="userUdfViewJSP" path="/jsp/user/customize/ViewUserUdf.jsp"/>
+        </action>
+
+        <action path="/WorkflowUdfEditAction"
+                type="com.trackstudio.action.task.WorkflowUdfEditAction"
+                name="customForm"
+                scope="request"
+                parameter="method"
+                input="/WorkflowUdfEditAction.do?method=page">
+            <forward name="workflowUdfEditJSP" path="/jsp/task/workflow/customize/EditWorkflowUdf.jsp"/>
+        </action>
+
+        <action path="/WorkflowUdfListValuesAction"
+                type="com.trackstudio.action.task.WorkflowUdfListValuesAction"
+                name="customForm"
+                scope="request"
+                parameter="method"
+                input="/WorkflowUdfListValuesAction.do?method=page">
+
+        </action>
+
+        <action path="/WorkflowUdfViewAction"
+                type="com.trackstudio.action.task.WorkflowUdfViewAction"
+                name="customForm"
+                scope="request"
+                parameter="method"
+                input="/WorkflowUdfViewAction.do?method=page">
+            <forward name="workflowUdfViewJSP" path="/jsp/task/workflow/customize/ViewWorkflowUdf.jsp"/>
+        </action>
+
+        <action path="/TaskUdfPermissionAction"
+                type="com.trackstudio.action.task.TaskUdfPermissionAction"
+                name="customForm"
+                scope="request"
+                parameter="method"
+                input="/TaskUdfPermissionAction.do?method=page">
+            <forward name="taskUdfPermissionJSP" path="/jsp/task/customize/permission/TaskCustomizePermission.jsp"/>
+            <forward name="taskUdfPermissionPage" path="/TaskUdfPermissionAction.do?method=page"/>
+        </action>
+
+        <action path="/WorkflowUdfPermissionAction"
+                type="com.trackstudio.action.task.WorkflowUdfPermissionAction"
+                name="customForm"
+                scope="request"
+                parameter="method"
+                input="/WorkflowUdfPermissionAction.do?method=page">
+            <forward name="workflowUdfPermissionJSP"
+                     path="/jsp/task/workflow/customize/permission/WorkflowCustomizePermission.jsp"/>
+            <forward name="workflowUdfPermissionPage" path="/WorkflowUdfPermissionAction.do?method=page"/>
+        </action>
+
+        <action path="/UserUdfPermissionAction"
+                type="com.trackstudio.action.user.UserUdfPermissionAction"
+                name="customForm"
+                scope="request"
+                parameter="method"
+                input="/UserUdfPermissionAction.do?method=page">
+            <forward name="userUdfPermissionJSP" path="/jsp/user/customize/permission/UserCustomizePermission.jsp"/>
+            <forward name="userUdfPermissionPage" path="/UserUdfPermissionAction.do?method=page"/>
+        </action>
+
+        <action path="/MstatusEditAction"
+                type="com.trackstudio.action.task.MstatusEditAction"
+                name="mstatusForm"
+                scope="request"
+                parameter="method"
+                input="/MstatusEditAction.do?method=page">
+            <forward name="mstatusEditJSP" path="/jsp/task/workflow/mstatus/edit/MstatusEdit.jsp"/>
+        </action>
+
+        <action path="/MstatusSchedulerAction"
+                type="com.trackstudio.action.task.MstatusSchedulerAction"
+                name="mstatusForm"
+                scope="request"
+                parameter="method"
+                input="/MstatusSchedulerAction.do?method=page">
+            <forward name="mstatusSchedulerJSP" path="/jsp/task/workflow/mstatus/scheduler/MstatusSchedulerEdit.jsp"/>
+        </action>
+
+        <action path="/MstatusViewAction"
+                type="com.trackstudio.action.task.MstatusViewAction"
+                name="mstatusForm"
+                scope="request"
+                parameter="method"
+                >
+            <forward name="mstatusViewJSP" path="/jsp/task/workflow/mstatus/edit/MstatusView.jsp"/>
+        </action>
+        <action path="/ResolutionAction"
+                type="com.trackstudio.action.task.ResolutionAction"
+                name="resolutionForm"
+                scope="request"
+                parameter="method"
+                input="/ResolutionAction.do?method=page">
+            <forward name="resolutionJSP" path="/jsp/task/workflow/mstatus/resolution/Resolution.jsp"/>
+        </action>
+        <action path="/ResolutionEditAction"
+                type="com.trackstudio.action.task.ResolutionEditAction"
+                name="resolutionForm"
+                scope="request"
+                parameter="method"
+                input="/ResolutionEditAction.do?method=page">
+            <forward name="resolutionEditJSP" path="/jsp/task/workflow/mstatus/resolution/ResolutionEdit.jsp"/>
+        </action>
+
+        <action path="/TaskFieldSecurityAction"
+                type="com.trackstudio.action.user.TaskFieldSecurityAction"
+                name="roleTaskFieldSecurityForm"
+                scope="request"
+                parameter="method"
+                input="/TaskFieldSecurityAction.do?method=page">
+            <forward name="taskFieldSecurityJSP" path="/jsp/user/status/edit/TaskFieldSecurity.jsp"/>
+        </action>
+        <action path="/UserFieldSecurityAction"
+                type="com.trackstudio.action.user.UserFieldSecurityAction"
+                name="roleUserFieldSecurityForm"
+                scope="request"
+                parameter="method"
+                input="/UserFieldSecurityAction.do?method=page">
+            <forward name="userFieldSecurityJSP" path="/jsp/user/status/edit/UserFieldSecurity.jsp"/>
+        </action>
+        <action path="/TaskSecurityAction"
+                type="com.trackstudio.action.user.TaskSecurityAction"
+                name="roleTaskSecurityForm"
+                scope="request"
+                parameter="method"
+                input="/TaskSecurityAction.do?method=page">
+            <forward name="taskSecurityJSP" path="/jsp/user/status/edit/TaskSecurity.jsp"/>
+        </action>
+        <action path="/UserSecurityAction"
+                type="com.trackstudio.action.user.UserSecurityAction"
+                name="roleUserSecurityForm"
+                scope="request"
+                parameter="method"
+                input="/UserSecurityAction.do?method=page">
+            <forward name="userSecurityJSP" path="/jsp/user/status/edit/UserSecurity.jsp"/>
+        </action>
+        <action path="/UserCategorySecurityAction"
+                type="com.trackstudio.action.user.UserCategorySecurityAction"
+                name="prstatusForm"
+                scope="request"
+                parameter="method"
+                input="/UserCategorySecurityAction.do?method=page">
+            <forward name="userCategorySecurityJSP" path="/jsp/user/status/edit/CategorySecurity.jsp"/>
+        </action>
+
+
+        <action path="/RSSAction"
+                type="com.trackstudio.action.task.RSSAction"
+                name="rssForm"
+                scope="request">
+        </action>
+
+        <action path="/RSSDiscoveryAction"
+                type="com.trackstudio.action.task.RSSDiscoveryAction"
+                name="rssForm"
+                scope="request">
+        </action>
+
+        <action path="/UploadAppletAction"
+                type="com.trackstudio.action.task.UploadAppletAction"
+                name="appletForm"
+                scope="request"
+                parameter="method"
+                input="/UploadAppletAction.do?method=page">
+            <forward name="AppletJSP" path="/jsp/attachments/UploadApplet.jsp"/>
+        </action>
+
+        <!-- NOT MODIFY ACTION writeOut !!!  -->
+        <action path="/writeOut"
+                type="com.trackstudio.action.AcceptUploadAction"
+                scope="request"
+                input="/writeOut.do">
+            <forward name="writeOutJSP" path="/jsp/writeOut.jsp"/>
+        </action>
+
+        <action path="/UserMTypeSecurityAction"
+                type="com.trackstudio.action.user.UserMTypeSecurityAction"
+                input="/UserMTypeSecurityAction.do?method=page"
+                name="prstatusForm" parameter="method"
+                scope="request">
+            <forward name="userMTypeSecurityJSP" path="/jsp/user/status/edit/workflow/MTypeSecurity.jsp"/>
+        </action>
+
+        <action path="/UserWorkflowSecurityAction"
+                type="com.trackstudio.action.user.UserWorkflowSecurityAction"
+                input="/UserWorkflowSecurityAction.do?method=page"
+                name="prstatusForm" parameter="method"
+                scope="request">
+            <forward name="userWorkflowSecurityJSP" path="/jsp/user/status/edit/workflow/WorkflowList.jsp"/>
+        </action>
+
+        <action path="/UserWorkflowOverviewAction"
+                type="com.trackstudio.action.user.UserWorkflowOverviewAction"
+                input="/UserWorkflowOverviewAction.do?method=page"
+                name="prstatusForm" parameter="method"
+                scope="request">
+            <forward name="userWorkflowOverviewJSP" path="/jsp/user/status/edit/workflow/WorkflowOverview.jsp"/>
+        </action>
+
+        <action path="/UserUdfMTypeSecurityAction"
+                type="com.trackstudio.action.user.UserUdfMTypeSecurityAction"
+                input="/UserUdfMTypeSecurityAction.do?method=page"
+                name="prstatusForm" parameter="method"
+                scope="request">
+            <forward name="userUdfMTypeSecurityJSP" path="/jsp/user/status/edit/workflow/UdfMTypeSecurity.jsp"/>
+        </action>
+
+
+        <action path="/UdfPermissionAction"
+                type="com.trackstudio.action.task.UdfPermissionAction"
+                input="/UdfPermissionAction.do?method=page"
+                name="mstatusPermissionForm" parameter="method"
+                scope="request">
+            <forward name="udfPermissionJSP" path="/jsp/task/workflow/mstatus/permissions/UdfPermissions.jsp"/>
+        </action>
+        <action path="/WorkflowUdfOperationPermissionAction"
+                type="com.trackstudio.action.task.WorkflowUdfOperationPermissionAction"
+                input="/WorkflowUdfOperationPermissionAction.do?method=page"
+                name="mstatusUdfPermForm" parameter="method"
+                scope="request">
+            <forward name="udfPermissionEditJSP" path="/jsp/task/workflow/mstatus/permissions/UdfPermEdit.jsp"/>
+        </action>
+        <action path="/UdfPermissionViewAction"
+                type="com.trackstudio.action.task.UdfPermissionViewAction"
+                input="/UdfPermissionViewAction.do?method=page"
+                name="mstatusUdfPermForm" parameter="method"
+                scope="request">
+            <forward name="udfPermissionViewJSP" path="/jsp/task/workflow/mstatus/permissions/UdfPermView.jsp"/>
+        </action>
+
+        <action path="/GetMstatusByCategoryServlet"
+                type="com.trackstudio.action.GetMstatusByCategoryServlet"
+                name="mailImportForm"
+                scope="request"
+                parameter="method"
+                input="/GetMstatusByCategoryServlet.do">
+            <forward name="getMstatusByCategoryServletJSP" path="/jsp/task/mailimport/MailImportMessageType.jsp"/>
+        </action>
+
+        <action path="/AttachmentBrowserAction"
+                type="com.trackstudio.action.task.AttachmentBrowserAction"
+                name="uploadForm"
+                scope="request"
+                parameter="method"
+                input="/AttachmentBrowserAction.do?method=page">
+            <forward name="attachmentBrowserJSP" path="/jsp/task/attachments/AttachmentBrowser.jsp"/>
+        </action>
+
+        <action path="/MessageDocumentAction"
+                type="com.trackstudio.action.task.MessageDocumentAction"
+                name="messageForm"
+                scope="request"
+                parameter="method"
+                input="/MessageDocumentAction.do?method=page">
+            <forward name="messageDocumentTileJSP" path="/jsp/task/viewtask/messages/MessagesTileDocument.jsp"/>
+            <forward name="messageDocumentJSP" path="/jsp/task/viewtask/messages/MessagesDocument.jsp"/>
+        </action>
+
+        <action path="/ScriptAction"
+                type="com.trackstudio.action.task.ScriptAction"
+                name="baseForm"
+                scope="request"
+                parameter="method"
+                input="/ScriptAction.do?method=page">
+            <forward name="scriptJSP" path="/jsp/task/script/Script.jsp"/>
+        </action>
+
+        <action path="/TemplatesAction"
+                type="com.trackstudio.action.task.TemplatesAction"
+                name="baseForm"
+                scope="request"
+                parameter="method"
+                input="/TemplatesAction.do?method=page">
+            <forward name="templatesJSP" path="/jsp/task/template/Templates.jsp"/>
+        </action>
+
+    </action-mappings>
+
+
+    <controller maxFileSize="999M" memFileSize="10M" tempDir="."/>
+    <message-resources parameter="language"/>
+
+
+    <plug-in className="com.trackstudio.startup.TSLoader"/>
+
+</struts-config>

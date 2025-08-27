@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Task" proxy="com.trackstudio.model.Task" table="gr_task">
+
+        <id column="task_id" name="id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+        <property column="task_shortname" name="shortname" type="java.lang.String"/>
+        <property column="task_name" name="name" not-null="true" type="java.lang.String"/>
+        <property column="task_submitdate" name="submitdate" type="calendar"/>
+        <property column="task_updatedate" name="updatedate" type="calendar"/>
+        <property column="task_closedate" name="closedate" type="calendar"/>
+        <property column="task_description" name="description" type="java.lang.String"/>
+        <property column="task_abudget" name="abudget" type="java.lang.Long"/>
+        <property column="task_budget" name="budget" type="java.lang.Long"/>
+        <property column="task_deadline" name="deadline" type="java.util.Calendar"/>
+        <property column="task_number" name="number" type="java.lang.String"/>
+
+        <many-to-one name="longtext" column="task_longtext" class="com.trackstudio.model.Longtext" cascade="all"/>
+        <many-to-one name="category" column="task_category" class="com.trackstudio.model.Category" cascade="none"/>
+        <many-to-one name="status" column="task_status" class="com.trackstudio.model.Status" cascade="none"/>
+        <many-to-one name="resolution" column="task_resolution" class="com.trackstudio.model.Resolution"
+                     cascade="none"/>
+        <many-to-one name="submitter" column="task_submitter" class="com.trackstudio.model.User" cascade="none"/>
+        <many-to-one name="handler" column="task_handler" class="com.trackstudio.model.Usersource" cascade="none"/>
+        <many-to-one name="parent" column="task_parent" class="com.trackstudio.model.Task" cascade="none"/>
+        <many-to-one name="priority" column="task_priority" class="com.trackstudio.model.Priority" cascade="none"/>
+
+        <set name="reportSet" lazy="true" inverse="true" cascade="all">
+            <key column="report_task"/>
+            <one-to-many class="com.trackstudio.model.Report"/>
+        </set>
+
+        <set name="filterSet" lazy="true" inverse="true" cascade="all">
+            <key column="filter_task"/>
+            <one-to-many class="com.trackstudio.model.Filter"/>
+        </set>
+        <set name="messageSet" lazy="true" inverse="true" cascade="all">
+            <key column="message_task"/>
+            <one-to-many class="com.trackstudio.model.Message"/>
+        </set>
+
+        <set name="currentFilterSet" lazy="true" inverse="true" cascade="all">
+            <key column="currentfilter_task"/>
+            <one-to-many class="com.trackstudio.model.CurrentFilter"/>
+        </set>
+        <set name="udfValSet" lazy="true" inverse="true" cascade="all">
+            <key column="udfval_task"/>
+            <one-to-many class="com.trackstudio.model.Udfval"/>
+        </set>
+        <set name="aclSet" lazy="true" inverse="true" cascade="all">
+            <key column="acl_task"/>
+            <one-to-many class="com.trackstudio.model.Acl"/>
+        </set>
+
+        <set name="subscriptionSet" lazy="true" inverse="true" cascade="all">
+            <key column="subscription_task"/>
+            <one-to-many class="com.trackstudio.model.Subscription"/>
+        </set>
+        <set name="notificationSet" lazy="true" inverse="true" cascade="all">
+            <key column="notification_task"/>
+            <one-to-many class="com.trackstudio.model.Notification"/>
+        </set>
+
+        <set name="categorySet" lazy="true" inverse="true" cascade="all">
+            <key column="category_task"/>
+            <one-to-many class="com.trackstudio.model.Category"/>
+        </set>
+        <set name="workflowSet" lazy="true" inverse="true" cascade="all">
+            <key column="workflow_task"/>
+            <one-to-many class="com.trackstudio.model.Workflow"/>
+        </set>
+        <set name="udfsourceSet" lazy="true" inverse="true" cascade="all">
+            <key column="udfsource_task"/>
+            <one-to-many class="com.trackstudio.model.Udfsource"/>
+        </set>
+
+        <set name="childSet" lazy="true" inverse="true" cascade="save-update">
+            <key column="task_parent"/>
+            <one-to-many class="com.trackstudio.model.Task"/>
+        </set>
+
+        <set name="mailImportSet" lazy="true" inverse="true" cascade="all">
+            <key column="mailimport_task"/>
+            <one-to-many class="com.trackstudio.model.MailImport"/>
+        </set>
+        <set name="defaultProjectSet" lazy="true" inverse="true" cascade="save-update">
+            <key column="user_default_project"/>
+            <one-to-many class="com.trackstudio.model.User"/>
+        </set>
+        <set name="registrationSet" lazy="true" inverse="true" cascade="all">
+            <key column="registration_task"/>
+            <one-to-many class="com.trackstudio.model.Registration"/>
+        </set>
+
+        <set name="templateSet" lazy="true" inverse="true" cascade="all">
+            <key column="template_task"/>
+            <one-to-many class="com.trackstudio.model.Template"/>
+        </set>
+
+        <set name="bookmarkSet" lazy="true" inverse="true" cascade="all">
+            <key column="bookmark_task"/>
+            <one-to-many class="com.trackstudio.model.Bookmark"/>
+        </set>
+    </class>
+</hibernate-mapping>

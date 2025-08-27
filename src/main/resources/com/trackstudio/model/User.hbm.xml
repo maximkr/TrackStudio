@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <!-- gran.model.gr_user root -->
+    <class name="com.trackstudio.model.User" proxy="com.trackstudio.model.User" table="gr_user">
+
+        <id name="id" column="user_id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="login" column="user_login" type="string" not-null="true"/>
+        <property name="password" column="user_password" type="string"/>
+        <property name="name" column="user_name" type="string" not-null="true"/>
+        <property name="tel" column="user_tel" type="string"/>
+        <property name="email" column="user_email" type="string"/>
+        <property name="active" column="user_active" type="java.lang.Integer"/>
+        <property name="locale" column="user_locale" type="string"/>
+        <property name="timezone" column="user_timezone" type="string"/>
+        <property name="childAllowed" column="user_child_allowed" type="java.lang.Integer"/>
+        <property name="expireDate" column="user_expiredate" type="calendar"/>
+        <property name="lastLogonDate" column="user_lastlogon" type="calendar"/>
+        <property name="passwordChangedDate" column="user_passchanged" type="calendar"/>
+        <property name="company" column="user_company" type="string"/>
+        <property name="template" column="user_template" type="string"/>
+        <property column="user_preferences" name="preferences" type="java.lang.String"/>
+        <many-to-one name="prstatus" column="user_prstatus" class="com.trackstudio.model.Prstatus" cascade="none"/>
+        <many-to-one name="manager" column="user_manager" class="com.trackstudio.model.User" cascade="none"/>
+        <many-to-one name="defaultProject" column="user_default_project" class="com.trackstudio.model.Task"
+                     cascade="none"/>
+
+        <set name="prstatusSet" lazy="true" inverse="true" cascade="all">
+            <key column="prstatus_user"/>
+            <one-to-many class="com.trackstudio.model.Prstatus"/>
+        </set>
+
+        <set name="udfsourceSet" lazy="true" inverse="true" cascade="all">
+            <key column="udfsource_user"/>
+            <one-to-many class="com.trackstudio.model.Udfsource"/>
+        </set>
+
+
+        <set name="usersourceSet" lazy="true" inverse="true" cascade="all">
+            <key column="usersource_user"/>
+            <one-to-many class="com.trackstudio.model.Usersource"/>
+        </set>
+
+
+        <set name="filterOwnerSet" lazy="true" inverse="true" cascade="all">
+            <key column="filter_owner"/>
+            <one-to-many class="com.trackstudio.model.Filter"/>
+        </set>
+
+        <set name="filterUserSet" lazy="true" inverse="true" cascade="all">
+            <key column="filter_user"/>
+            <one-to-many class="com.trackstudio.model.Filter"/>
+        </set>
+
+        <set name="messageSubmitterSet" lazy="true" inverse="true" cascade="save-update">
+            <key column="message_user"/>
+            <one-to-many class="com.trackstudio.model.Message"/>
+        </set>
+
+        <set name="currentFilterUserSet" lazy="true" inverse="true" cascade="all">
+            <key column="currentfilter_user"/>
+            <one-to-many class="com.trackstudio.model.CurrentFilter"/>
+        </set>
+        <set name="udfValSet" lazy="true" inverse="true" cascade="all">
+            <key column="udfval_user"/>
+            <one-to-many class="com.trackstudio.model.Udfval"/>
+        </set>
+        <set name="currentFilterOwnerSet" lazy="true" inverse="true" cascade="all">
+            <key column="currentfilter_owner"/>
+            <one-to-many class="com.trackstudio.model.CurrentFilter"/>
+        </set>
+
+        <set name="taskSubmitterSet" lazy="true" inverse="true" cascade="save-update">
+            <key column="task_submitter"/>
+            <one-to-many class="com.trackstudio.model.Task"/>
+        </set>
+
+        <set name="childSet" lazy="true" inverse="true" cascade="save-update">
+            <key column="user_manager"/>
+            <one-to-many class="com.trackstudio.model.User"/>
+        </set>
+
+        <set name="reportSet" lazy="true" inverse="true" cascade="all">
+            <key column="report_owner"/>
+            <one-to-many class="com.trackstudio.model.Report"/>
+        </set>
+
+        <set name="registrationSet" lazy="true" inverse="true" cascade="all">
+            <key column="registration_user"/>
+            <one-to-many class="com.trackstudio.model.Registration"/>
+        </set>
+
+
+        <set name="aclOwnerSet" lazy="true" inverse="true" cascade="none">
+            <key column="acl_owner"/>
+            <one-to-many class="com.trackstudio.model.Acl"/>
+        </set>
+
+
+        <set name="mailImportSet" lazy="true" inverse="true" cascade="all">
+            <key column="mailimport_owner"/>
+            <one-to-many class="com.trackstudio.model.MailImport"/>
+        </set>
+
+        <set name="aclSet" lazy="true" inverse="true" cascade="all">
+            <key column="acl_to_user"/>
+            <one-to-many class="com.trackstudio.model.Acl"/>
+        </set>
+        <set name="templateOwnerSet" lazy="true" inverse="true" cascade="save-update">
+            <key column="template_owner"/>
+            <one-to-many class="com.trackstudio.model.Template"/>
+        </set>
+
+        <set name="templateUserSet" lazy="true" inverse="true" cascade="save-update">
+            <key column="template_user"/>
+            <one-to-many class="com.trackstudio.model.Template"/>
+        </set>
+
+        <set name="bookmarkUserSet" lazy="true" inverse="true" cascade="all">
+            <key column="bookmark_user"/>
+            <one-to-many class="com.trackstudio.model.Bookmark"/>
+        </set>
+
+        <set name="bookmarkOwnerSet" lazy="true" inverse="true" cascade="all">
+            <key column="bookmark_owner"/>
+            <one-to-many class="com.trackstudio.model.Bookmark"/>
+        </set>
+    </class>
+</hibernate-mapping>
+

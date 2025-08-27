@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Prstatus" proxy="com.trackstudio.model.Prstatus" table="gr_prstatus">
+        <cache usage="nonstrict-read-write"/>
+
+        <id name="id" column="prstatus_id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+
+        <property name="name" column="prstatus_name" not-null="true" type="string"/>
+        <property name="preferences" column="prstatus_preferences" type="string"/>
+        <property name="description" column="prstatus_description" type="string"/>
+
+        <many-to-one name="user" column="prstatus_user" class="com.trackstudio.model.User" cascade="none"/>
+        <set name="rolestatusSet" lazy="true" inverse="true" cascade="all">
+            <key column="rolestatus_prstatus"/>
+            <one-to-many class="com.trackstudio.model.Rolestatus"/>
+        </set>
+        <set name="mprstatusSet" lazy="true" inverse="true" cascade="all">
+            <key column="mprstatus_prstatus"/>
+            <one-to-many class="com.trackstudio.model.Mprstatus"/>
+        </set>
+
+        <set name="userSet" lazy="true" inverse="true" cascade="save-update">
+            <key column="user_prstatus"/>
+            <one-to-many class="com.trackstudio.model.User"/>
+        </set>
+
+        <set name="cprstatusSet" lazy="true" inverse="true" cascade="all">
+            <key column="cprstatus_prstatus"/>
+            <one-to-many class="com.trackstudio.model.Cprstatus"/>
+        </set>
+
+        <set name="uprstatusSet" lazy="true" inverse="true" cascade="all">
+            <key column="uprstatus_prstatus"/>
+            <one-to-many class="com.trackstudio.model.Uprstatus"/>
+        </set>
+
+        <set name="aclSet" lazy="true" inverse="true" cascade="none">
+            <key column="acl_prstatus"/>
+            <one-to-many class="com.trackstudio.model.Acl"/>
+        </set>
+
+        <set name="registrationSet" lazy="true" inverse="true" cascade="all">
+            <key column="registration_prstatus"/>
+            <one-to-many class="com.trackstudio.model.Registration"/>
+        </set>
+
+
+        <set name="usersourceSet" lazy="true" inverse="true" cascade="all">
+            <key column="usersource_prstatus"/>
+            <one-to-many class="com.trackstudio.model.Usersource"/>
+        </set>
+
+
+    </class>
+</hibernate-mapping>

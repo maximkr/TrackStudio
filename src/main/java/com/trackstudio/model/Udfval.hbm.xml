@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Udfval" proxy="com.trackstudio.model.Udfval" table="gr_udfval">
+        <cache usage="nonstrict-read-write"/>
+
+        <id column="udfval_id" name="id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+        <property column="udfval_str" name="str" type="java.lang.String"/>
+        <property column="udfval_num" name="num" type="java.lang.Double"/>
+        <property column="udfval_dat" name="dat" type="calendar"/>
+
+        <many-to-one name="udflist" column="udfval_udflist" class="com.trackstudio.model.Udflist" cascade="none"/>
+        <many-to-one name="udf" column="udfval_udf" class="com.trackstudio.model.Udf" cascade="none"/>
+        <many-to-one name="udfsource" column="udfval_udfsource" class="com.trackstudio.model.Udfsource" cascade="none"/>
+        <many-to-one name="task" column="udfval_task" class="com.trackstudio.model.Task" cascade="none"/>
+        <many-to-one name="user" column="udfval_user" class="com.trackstudio.model.User" cascade="none"/>
+        <many-to-one name="longtext" column="udfval_longtext" class="com.trackstudio.model.Longtext" cascade="all"/>
+    </class>
+</hibernate-mapping>

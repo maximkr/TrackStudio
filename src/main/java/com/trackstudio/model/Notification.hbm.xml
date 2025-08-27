@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Notification" proxy="com.trackstudio.model.Notification" table="gr_notification">
+        <cache usage="nonstrict-read-write"/>
+
+        <id column="notification_id" name="id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+        <property column="notification_name" not-null="false" name="name" type="java.lang.String"/>
+        <property column="notification_condition" not-null="false" name="condition" type="java.lang.String"/>
+        <property column="notification_template" not-null="false" name="template" type="java.lang.String"/>
+        <many-to-one name="user" column="notification_user" class="com.trackstudio.model.Usersource" cascade="none"/>
+        <many-to-one name="filter" column="notification_filter" class="com.trackstudio.model.Filter" cascade="none"/>
+        <many-to-one name="task" column="notification_task" class="com.trackstudio.model.Task" cascade="none"/>
+    </class>
+</hibernate-mapping>

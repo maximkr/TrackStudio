@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Longtext" proxy="com.trackstudio.model.Longtext" table="gr_longtext">
+        <cache usage="nonstrict-read-write"/>
+        <id column="longtext_id" name="id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+
+        <property column="longtext_order" not-null="true" name="order" type="java.lang.Integer"/>
+        <property column="longtext_value" not-null="true" name="value" type="java.lang.String"/>
+
+        <many-to-one name="reference" column="longtext_reference" class="com.trackstudio.model.Longtext"
+                     cascade="none"/>
+
+        <set name="values" lazy="false" inverse="true" cascade="delete" sort="natural">
+            <key column="longtext_reference"/>
+            <one-to-many class="com.trackstudio.model.Longtext"/>
+        </set>
+
+        <set name="taskSet" lazy="true" inverse="true" cascade="none">
+            <key column="task_longtext"/>
+            <one-to-many class="com.trackstudio.model.Task"/>
+        </set>
+
+        <set name="messageSet" lazy="true" inverse="true" cascade="none">
+            <key column="message_longtext"/>
+            <one-to-many class="com.trackstudio.model.Message"/>
+        </set>
+
+        <set name="cattemplateSet" lazy="true" inverse="true" cascade="none">
+            <key column="category_template"/>
+            <one-to-many class="com.trackstudio.model.Category"/>
+        </set>
+
+        <set name="udfvalSet" lazy="true" inverse="true" cascade="none">
+            <key column="udfval_longtext"/>
+            <one-to-many class="com.trackstudio.model.Udfval"/>
+        </set>
+    </class>
+</hibernate-mapping>

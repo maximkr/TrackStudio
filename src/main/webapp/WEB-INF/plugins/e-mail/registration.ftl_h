@@ -1,0 +1,14 @@
+<#assign ContentType="text/html;\n charset=\"${charset}\""/>
+<#assign Headers={"X-TrackStudio":"user registered"}/>
+<#assign Subject="Trackstudio registration"/>
+<@std.I18n key="NEW_ACCOUNT_WELCOME"/> ${user.name}<br>
+<@std.I18n key="NEW_ACCOUNT_CREATE"/>
+<table>
+<tr><td><@std.I18n key="LOGIN"/>:</td><td>${user.login}</td></tr>
+<tr><td><@std.I18n key="PASSWORD"/>:</td><td>${password}</td></tr>
+<tr><td><@std.I18n key="NAME"/>:</td><td>${user.name}</td></tr>
+<tr><td><@std.I18n key="EMAIL"/>:</td><td>${user.email}</td></tr>
+<tr><td><@std.I18n key="COMPANY"/>:</td><td>${company}</td></tr>
+</table>
+<div><@std.I18n key="NEW_ACCOUNT_PRESS"/><a href = "${link}/LoginAction.do?method=loginPage">TrackStudio</a> <@std.I18n key="NEW_ACCOUNT_CHANGE"/><div>
+<div><a href = "${link}"><@std.I18n key="POWERED_BY_TRACKSTUDIO"/></a><div>

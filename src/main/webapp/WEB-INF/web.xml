@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<web-app
+        xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+        version="2.4">
+
+    <filter>
+        <filter-name>CompressResponse</filter-name>
+        <filter-class>com.trackstudio.filters.CompressResponseFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>CompressResponse</filter-name>
+        <url-pattern>/task/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>CompressResponse</filter-name>
+        <url-pattern>/user/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>CompressResponse</filter-name>
+        <url-pattern>/JSServlet/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>CompressResponse</filter-name>
+        <url-pattern>/CSSServlet/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>CompressResponse</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>CompressResponse</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>CompressResponse</filter-name>
+        <url-pattern>*.html</url-pattern>
+    </filter-mapping>
+
+    <jsp-config>
+        <taglib>
+            <taglib-uri>jstl/c</taglib-uri>
+            <taglib-location>/WEB-INF/tlds/c.tld</taglib-location>
+        </taglib>
+
+        <taglib>
+            <taglib-uri>jstl/fmt</taglib-uri>
+            <taglib-location>/WEB-INF/tlds/fmt.tld</taglib-location>
+        </taglib>
+
+        <taglib>
+            <taglib-uri>struts/bean-el</taglib-uri>
+            <taglib-location>/WEB-INF/tlds/struts-bean-el.tld</taglib-location>
+        </taglib>
+
+        <taglib>
+            <taglib-uri>struts/html-el</taglib-uri>
+            <taglib-location>/WEB-INF/tlds/struts-html-el.tld</taglib-location>
+        </taglib>
+
+        <taglib>
+            <taglib-uri>struts/logic-el</taglib-uri>
+            <taglib-location>/WEB-INF/tlds/struts-logic-el.tld</taglib-location>
+        </taglib>
+
+        <taglib>
+            <taglib-uri>struts/tiles-el</taglib-uri>
+            <taglib-location>/WEB-INF/tlds/struts-tiles.tld</taglib-location>
+        </taglib>
+
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <el-ignored>false</el-ignored>
+
+        </jsp-property-group>
+
+    </jsp-config>
+
+    <servlet>
+        <servlet-name>action</servlet-name>
+        <servlet-class>com.trackstudio.action.TSStrutsServlet</servlet-class>
+        <init-param>
+            <param-name>config</param-name>
+            <param-value>/WEB-INF/conf/struts-config.xml</param-value>
+        </init-param>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>2</param-value>
+        </init-param>
+        <init-param>
+            <param-name>detail</param-name>
+            <param-value>2</param-value>
+        </init-param>
+        <init-param>
+            <param-name>validate</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>BirtReports</servlet-name>
+        <servlet-class>
+            com.trackstudio.action.WebReportServlet
+        </servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>VersionCacheServlet</servlet-name>
+        <servlet-class>
+            com.trackstudio.action.VersionCacheServlet
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>VersionCacheServlet</servlet-name>
+        <url-pattern>/cssjs/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>BirtReports</servlet-name>
+        <url-pattern>/birt/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TaskLinkServlet</servlet-name>
+        <servlet-class>com.trackstudio.action.TaskLinkServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TemplateServlet</servlet-name>
+        <servlet-class>com.trackstudio.action.TemplateServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>PredictorServlet</servlet-name>
+        <servlet-class>com.trackstudio.action.PredictorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UnsubscribeServlet</servlet-name>
+        <servlet-class>com.trackstudio.action.UnsubscribeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TransitionCreateServlet</servlet-name>
+        <servlet-class>com.trackstudio.action.TransitionCreateServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>BookmarkServlet</servlet-name>
+        <servlet-class>com.trackstudio.action.BookmarkServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>UserLinkServlet</servlet-name>
+        <servlet-class>com.trackstudio.action.UserLinkServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>TSImageServlet</servlet-name>
+        <servlet-class>com.trackstudio.action.TSImageServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ConcatenateServlet</servlet-name>
+        <servlet-class>com.trackstudio.action.ConcatenateServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ImageCacheServlet</servlet-name>
+        <servlet-class>com.trackstudio.action.ImageCacheServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>DownloadServlet</servlet-name>
+        <servlet-class>com.trackstudio.action.DownloadServlet
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DownloadServlet</servlet-name>
+        <url-pattern>/download/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ImageCacheServlet</servlet-name>
+        <url-pattern>/ImageServlet/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>TaskLinkServlet</servlet-name>
+        <url-pattern>/task/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TemplateServlet</servlet-name>
+        <url-pattern>/template/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PredictorServlet</servlet-name>
+        <url-pattern>/predictor/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UnsubscribeServlet</servlet-name>
+        <url-pattern>/unsubscribe</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TransitionCreateServlet</servlet-name>
+        <url-pattern>/transitionCreate</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>BookmarkServlet</servlet-name>
+        <url-pattern>/bookmark</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>UserLinkServlet</servlet-name>
+        <url-pattern>/user/*</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet-mapping>
+        <servlet-name>TSImageServlet</servlet-name>
+        <url-pattern>/TSImageServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ConcatenateServlet</servlet-name>
+        <url-pattern>/CSSServlet/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ConcatenateServlet</servlet-name>
+        <url-pattern>/JSServlet/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Action Servlet Mapping -->
+    <servlet-mapping>
+        <servlet-name>action</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>10</session-timeout>
+    </session-config>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.html</location>
+    </error-page>
+
+    <error-page>
+        <error-code>400</error-code>
+        <location>/jsp/Error.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/jsp/login/LogoutAction.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/jsp/Error.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>401</error-code>
+        <location>/jsp/login/LogoutAction.jsp</location>
+    </error-page>
+
+    <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>com.trackstudio.action.DragAndDropServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>CORSFilter</filter-name>
+        <filter-class>com.trackstudio.rest.CORSFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>CORSFilter</filter-name>
+        <url-pattern>/rest/*</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>RestDispatcherServlet</servlet-name>
+        <servlet-class>com.trackstudio.rest.RestDispatcherServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RestDispatcherServlet</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
+
+</web-app>

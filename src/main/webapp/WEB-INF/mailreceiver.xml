@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mailboxList>
+    <mailbox name="local">
+        <host name="localhost"/>
+        <user name="ts@trackstudio.com"/>
+        <password name="ts@trackstudio.com"/>
+        <protocol name="pop3"/>
+        <port name="3110"/>
+    </mailbox>
+
+    <!--
+    <mailbox name="mailbox1">
+        <host name="localhost"/>
+        <user name="root@localhost"/>
+        <password name="root"/>
+        <protocol name="pop3"/>
+        <port name="110"/>
+    </mailbox>
+
+    <mailbox name="mailbox2">
+        <host name="localhost"/>
+        <user name="tester@localhost"/>
+        <password name="root"/>
+        <protocol name="pop3"/>
+        <port name="110"/>
+    </mailbox>
+
+    <mailbox name="mailbox3">
+        <host name="pop.gmail.com"/>
+        <user name="account@gmail.com"/>
+        <password name="password"/>
+        <protocol name="pop3s"/>
+        <port name="995"/>
+    </mailbox>
+    -->
+
+</mailboxList>
+
+
+
+

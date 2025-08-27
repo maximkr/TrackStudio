@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Bookmark" proxy="com.trackstudio.model.Bookmark" table="gr_bookmark">
+        <cache usage="nonstrict-read-write"/>
+
+        <id column="bookmark_id" name="id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+
+        <property name="createdate" column="bookmark_createdate" type="java.util.Calendar" not-null="true"/>
+        <property name="name" column="bookmark_name" type="java.lang.String" not-null="true"/>
+
+        <many-to-one name="filter" column="bookmark_filter" class="com.trackstudio.model.Filter" not-null="false"
+                     cascade="none"/>
+        <many-to-one name="task" column="bookmark_task" class="com.trackstudio.model.Task" not-null="false"
+                     cascade="none"/>
+        <many-to-one name="user" column="bookmark_user" class="com.trackstudio.model.User" not-null="false"
+                     cascade="none"/>
+        <many-to-one name="owner" column="bookmark_owner" class="com.trackstudio.model.User" not-null="true"
+                     cascade="none"/>
+    </class>
+</hibernate-mapping>

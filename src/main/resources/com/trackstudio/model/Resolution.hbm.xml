@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Resolution" proxy="com.trackstudio.model.Resolution" table="gr_resolution">
+        <cache usage="nonstrict-read-write"/>
+
+        <id column="resolution_id" name="id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+        <property column="resolution_name" not-null="true" name="name" type="java.lang.String"/>
+        <property column="resolution_isdefault" name="isdefault" type="java.lang.Integer"/>
+
+        <many-to-one name="mstatus" column="resolution_mstatus" class="com.trackstudio.model.Mstatus" cascade="none"/>
+
+        <set name="taskSet" lazy="true" inverse="true" cascade="save-update">
+            <key column="task_resolution"/>
+            <one-to-many class="com.trackstudio.model.Task"/>
+        </set>
+
+        <set name="messageSet" lazy="true" inverse="true" cascade="save-update">
+            <key column="message_resolution"/>
+            <one-to-many class="com.trackstudio.model.Message"/>
+        </set>
+
+    </class>
+</hibernate-mapping>

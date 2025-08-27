@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Attachment" proxy="com.trackstudio.model.Attachment" table="gr_attachment">
+        <cache usage="nonstrict-read-write"/>
+
+        <id column="attachment_id" name="id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+
+        <property column="attachment_description" not-null="false" name="description" type="java.lang.String"/>
+        <property column="attachment_name" not-null="true" name="name" type="java.lang.String"/>
+        <many-to-one name="task" column="attachment_task" class="com.trackstudio.model.Task" cascade="none"/>
+        <many-to-one name="message" column="attachment_message" class="com.trackstudio.model.Message" cascade="none"/>
+        <many-to-one name="user" column="attachment_user" class="com.trackstudio.model.User" cascade="none"/>
+    </class>
+</hibernate-mapping>

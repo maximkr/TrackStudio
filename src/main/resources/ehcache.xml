@@ -1,0 +1,332 @@
+<ehcache>
+
+    <!-- Sets the path to the directory where cache .data files are created.
+
+         If the path is a Java System Property it is replaced by
+         its value in the running VM.
+
+         The following properties are translated:
+         user.home - User's home directory
+         user.dir - User's current working directory
+         java.io.tmpdir - Default temp file path -->
+    <diskStore path="java.io.tmpdir"/>
+
+
+    <!--Default Cache configuration. These will applied to caches programmatically created through
+        the CacheManager.
+
+        The following attributes are required for defaultCache:
+
+        maxInMemory       - Sets the maximum number of objects that will be created in memory
+        eternal           - Sets whether elements are eternal. If eternal,  timeouts are ignored and the element
+                            is never expired.
+        timeToIdleSeconds - Sets the time to idle for an element before it expires. Is only used
+                            if the element is not eternal. Idle time is now - last accessed time
+        timeToLiveSeconds - Sets the time to live for an element before it expires. Is only used
+                            if the element is not eternal. TTL is now - creation time
+        overflowToDisk    - Sets whether elements can overflow to disk when the in-memory cache
+                            has reached the maxInMemory limit.
+
+        -->
+    <defaultCache
+            maxElementsInMemory="200000"
+            eternal="false"
+            timeToIdleSeconds="600"
+            timeToLiveSeconds="600"
+            overflowToDisk="true"
+            />
+
+    <!--Predefined caches.  Add your cache configuration settings here.
+        If you do not have a configuration for your cache a WARNING will be issued when the
+        CacheManager starts
+
+        The following attributes are required for defaultCache:
+
+        name              - Sets the name of the cache. This is used to identify the cache. It must be unique.
+        maxInMemory       - Sets the maximum number of objects that will be created in memory
+        eternal           - Sets whether elements are eternal. If eternal,  timeouts are ignored and the element
+                            is never expired.
+        timeToIdleSeconds - Sets the time to idle for an element before it expires. Is only used
+                            if the element is not eternal. Idle time is now - last accessed time
+        timeToLiveSeconds - Sets the time to live for an element before it expires. Is only used
+                            if the element is not eternal. TTL is now - creation time
+        overflowToDisk    - Sets whether elements can overflow to disk when the in-memory cache
+                            has reached the maxInMemory limit.
+
+        -->
+
+    <!-- Sample cache named sampleCache1
+        This cache contains a maximum in memory of 10000 elements, and will expire
+        an element if it is idle for more than 5 minutes and lives for more than
+        10 minutes.
+
+        If there are more than 10000 elements it will overflow to the
+        disk cache, which in this configuration will go to wherever java.io.tmp is
+        defined on your system. On a standard Linux system this will be /tmp"
+        -->
+    <cache name="sampleCache1"
+           maxElementsInMemory="100000"
+           eternal="false"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="600"
+           overflowToDisk="true"/>
+
+    <!-- Sample cache named sampleCache2
+        This cache contains 1000 elements. Elements will always be held in memory.
+        They are not expired. -->
+    <cache name="sampleCache2"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"
+            />
+
+    <cache name="hibernate.test.com.trackstudio.model.Umstatus"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Trigger"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Transition"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Category"
+           maxElementsInMemory="1000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Acl"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Longtext"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Udfval"
+           maxElementsInMemory="100000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Filter"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Prstatus"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Workflow"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Attachment"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+
+    <cache name="hibernate.test.com.trackstudio.model.Udflist"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+
+    <cache name="hibernate.test.com.trackstudio.model.Cprstatus"
+           maxElementsInMemory="1000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Fvalue"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Bookmark"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Mstatus"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Catrelation"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Mprstatus"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.CurrentFilter"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Status"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Registration"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Udf"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Udfsource"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Subscription"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Usersource"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Priority"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Report"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.MailImport"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Property"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Uprstatus"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Notification"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Rolestatus"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.com.trackstudio.model.Resolution"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.org.hibernate.cache.StandardQueryCache"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+    <cache name="hibernate.test.org.hibernate.cache.UpdateTimestampsCache"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"/>
+
+</ehcache>

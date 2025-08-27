@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Acl" proxy="com.trackstudio.model.Acl" table="gr_acl">
+        <cache usage="nonstrict-read-write"/>
+
+        <id column="acl_id" name="id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+        <property column="acl_override" not-null="false" name="override" type="java.lang.Integer"/>
+        <many-to-one name="task" column="acl_task" class="com.trackstudio.model.Task" cascade="none"/>
+        <many-to-one name="toUser" column="acl_to_user" class="com.trackstudio.model.User" cascade="none"/>
+        <many-to-one name="usersource" column="acl_usersource" class="com.trackstudio.model.Usersource" cascade="none"/>
+        <many-to-one name="owner" column="acl_owner" class="com.trackstudio.model.User" cascade="none"/>
+        <many-to-one name="prstatus" column="acl_prstatus" class="com.trackstudio.model.Prstatus" cascade="none"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Subscription" proxy="com.trackstudio.model.Subscription" table="gr_subscription">
+        <cache usage="nonstrict-read-write"/>
+
+        <id column="subscription_id" name="id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+        <property column="subscription_name" not-null="false" name="name" type="java.lang.String"/>
+        <property column="subscription_startdate" name="startdate" type="calendar"/>
+        <property column="subscription_stopdate" name="stopdate" type="calendar"/>
+        <property column="subscription_nextrun" name="nextrun" type="calendar"/>
+        <property column="subscription_interval" name="interval" type="java.lang.Integer"/>
+        <property column="subscription_template" name="template" type="java.lang.String"/>
+        <many-to-one name="user" column="subscription_user" class="com.trackstudio.model.Usersource" cascade="none"/>
+        <many-to-one name="filter" column="subscription_filter" class="com.trackstudio.model.Filter" cascade="none"/>
+        <many-to-one name="task" column="subscription_task" class="com.trackstudio.model.Task" cascade="none"/>
+    </class>
+</hibernate-mapping>

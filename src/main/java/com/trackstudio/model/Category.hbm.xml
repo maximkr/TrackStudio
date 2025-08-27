@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Category" proxy="com.trackstudio.model.Category" table="gr_category">
+        <cache usage="nonstrict-read-write"/>
+
+        <id column="category_id" name="id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+        <property column="category_name" not-null="true" name="name" type="java.lang.String"/>
+        <property column="category_action" name="action" type="java.lang.String"/>
+        <property column="category_description" name="description" type="java.lang.String"/>
+        <property column="category_budget" name="budget" type="java.lang.String"/>
+        <property column="category_icon" name="icon" type="java.lang.String"/>
+        <property column="category_preferences" name="preferences" type="java.lang.String"/>
+        <property column="category_handler_required" name="handlerRequired" type="java.lang.Integer"/>
+        <property column="category_group_handler" name="groupHandlerAllowed" type="java.lang.Integer"/>
+
+        <many-to-one name="workflow" column="category_workflow" class="com.trackstudio.model.Workflow" cascade="none"/>
+        <many-to-one name="task" column="category_task" class="com.trackstudio.model.Task" cascade="none"/>
+        <many-to-one name="crTrigger" column="category_cr_trigger" class="com.trackstudio.model.Trigger" cascade="all"/>
+        <many-to-one name="updTrigger" column="category_upd_trigger" class="com.trackstudio.model.Trigger"
+                     cascade="all"/>
+        <many-to-one name="template" column="category_template" class="com.trackstudio.model.Longtext" cascade="all"/>
+        <set name="catrelationSet" lazy="true" inverse="true" cascade="all">
+            <key column="catrelation_category"/>
+            <one-to-many class="com.trackstudio.model.Catrelation"/>
+        </set>
+
+        <set name="catrelationchildSet" lazy="true" inverse="true" cascade="all">
+            <key column="catrelation_child"/>
+            <one-to-many class="com.trackstudio.model.Catrelation"/>
+        </set>
+
+        <set name="cprstatusSet" lazy="true" inverse="true" cascade="all">
+            <key column="cprstatus_category"/>
+            <one-to-many class="com.trackstudio.model.Cprstatus"/>
+        </set>
+        <set name="mailImportSet" lazy="true" inverse="true" cascade="all">
+            <key column="mailimport_category"/>
+            <one-to-many class="com.trackstudio.model.MailImport"/>
+        </set>
+
+        <set name="registrationSet" lazy="true" inverse="true" cascade="all">
+            <key column="registration_category"/>
+            <one-to-many class="com.trackstudio.model.Registration"/>
+        </set>
+
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Message" proxy="com.trackstudio.model.Message" table="gr_message">
+
+        <id column="message_id" name="id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+        <property column="message_description" name="description" type="java.lang.String"/>
+        <property column="message_time" name="time" type="calendar"/>
+        <property column="message_hrs" name="hrs" type="java.lang.Long"/>
+        <property column="message_budget" name="budget" type="java.lang.Long"/>
+        <property column="message_deadline" name="deadline" type="calendar"/>
+
+        <many-to-one name="task" column="message_task" class="com.trackstudio.model.Task" cascade="none"/>
+        <many-to-one name="submitter" column="message_submitter" class="com.trackstudio.model.User" cascade="none"/>
+        <many-to-one name="mstatus" column="message_mstatus" class="com.trackstudio.model.Mstatus" cascade="none"/>
+        <many-to-one name="handler" column="message_handler" class="com.trackstudio.model.Usersource" cascade="none"/>
+        <many-to-one name="resolution" column="message_resolution" class="com.trackstudio.model.Resolution"
+                     cascade="none"/>
+        <many-to-one name="longtext" column="message_longtext" class="com.trackstudio.model.Longtext" cascade="all"/>
+        <many-to-one name="priority" column="message_priority" class="com.trackstudio.model.Priority" cascade="none"/>
+    </class>
+</hibernate-mapping>

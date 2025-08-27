@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.trackstudio.model.Report" proxy="com.trackstudio.model.Report" table="gr_report">
+        <cache usage="nonstrict-read-write"/>
+
+        <id column="report_id" name="id" type="java.lang.String" unsaved-value="null">
+            <generator class="uuid.hex"/>
+        </id>
+        <property column="report_name" not-null="true" name="name" type="java.lang.String"/>
+        <property column="report_preferences" name="preferences" type="java.lang.String"/>
+        <property column="report_priv" name="priv" type="java.lang.Integer"/>
+        <property column="report_rtype" name="rtype" type="java.lang.String"/>
+
+        <many-to-one name="task" column="report_task" class="com.trackstudio.model.Task" cascade="none"/>
+        <many-to-one name="owner" column="report_owner" class="com.trackstudio.model.User" cascade="none"/>
+        <many-to-one name="filter" column="report_filter" class="com.trackstudio.model.Filter" cascade="none"/>
+        <property column="report_params" not-null="false" name="params" type="java.lang.String"/>
+
+    </class>
+</hibernate-mapping>

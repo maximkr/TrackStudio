@@ -1,4 +1,4 @@
-# TrackStudio Enterprise (Open Source)
+# TrackStudio Enterprise 6 (Open Source)
 
 TrackStudio — это классический трекер задач уровня Enterprise с иерархией задач и пользователей, настраиваемыми рабочими процессами, ролями и правами, SLA-правилами и мощным механизмом уведомлений. Этот репозиторий содержит открытую версию **TrackStudio Enterprise**.
 
@@ -183,7 +183,7 @@ docker compose logs -f app
     Остановите и удалите тома БД:
     ```
     docker compose down -v
-    docker compose up -d` 
+    docker compose up -d
     ```
     
 

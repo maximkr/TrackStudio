@@ -56,15 +56,15 @@ public class I18n {
         return getString(sc.getLocale(), key);
     }
 
-
     private static class TrackStudioBundle extends PropertyResourceBundle {
-        public TrackStudioBundle(InputStream i) throws IOException {
-            super(i);
+        public TrackStudioBundle(InputStream in) throws IOException {
+           super(new java.io.InputStreamReader(in, java.nio.charset.StandardCharsets.UTF_8));
         }
 
         public void setParent(ResourceBundle b) {
             super.setParent(b);
         }
+
     }
 
     private String getKey(String language) {

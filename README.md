@@ -1,10 +1,10 @@
 # TrackStudio Enterprise 6 (Open Source)
 
-TrackStudio — это классический трекер задач уровня Enterprise с иерархией задач и пользователей, настраиваемыми рабочими процессами, ролями и правами, SLA-правилами и мощным механизмом уведомлений.
+TrackStudio — это классический трекер задач уровня Enterprise с иерархией задач и пользователей, настраиваемыми рабочими процессами, ролями и правами, SLA-правилами и мощным механизмом уведомлений. Поддерживает сотни тысяч задач и десятки тысяч пользователей на одном сервере.
 
 -   **Лицензия:** Apache License 2.0
     
--   **Стек:** Java 17 / Tomcat 9 / PostgreSQL 17 / Hibernate 5.6 / Lucene / Liquibase / Gradle 9 / Docker & Docker Compose
+-   **Стек:** Java 21 / Tomcat 9 / PostgreSQL 17 / Hibernate 5.6 / Lucene / Liquibase / Gradle 9 / Docker & Docker Compose
     
 ## ✓ Обзор функций TrackStudio Enterprise
 
@@ -56,7 +56,7 @@ TrackStudio поддерживает:
 git clone https://github.com/maximkr/TrackStudio.git 
 cd TrackStudio
 ```
-### 2) Отредактируйте файл `.env`
+### 2) Отредактируйте файл `.env` при необходимости
 
 Пароль БД задаётся через переменную окружения:
 ```
@@ -77,11 +77,11 @@ docker compose up -d
 
 Поднимутся:
 
--   `postgres` — база данных PostgreSQL
+-   `postgres` — СУБД PostgreSQL
     
--   `migrator` — миграции схемы (Liquibase)
+-   `migrator` — инициализация базы данных (Liquibase)
     
--   `app` — само приложение TrackStudio (Tomcat)
+-   `app` — само приложение TrackStudio внутри Tomcat
     
 
 ----------
@@ -128,7 +128,7 @@ docker compose logs -f app
 
 -   **PostgreSQL** — основная СУБД
     
--   **Liquibase** — управляет миграциями схемы/данных
+-   **Liquibase** — управляет инициализацией БД
     
 -   **Tomcat** — контейнер сервлетов для веб-приложения
     
@@ -143,8 +143,13 @@ docker compose logs -f app
 
 |Переменная|Назначение|Пример|
 |--|--|--|
+|DB_NAME|Имя БД|trackstudio_db|
+|DB_URL|JDBC URL|jdbc:postgresql://db:5432/trackstudio_db|
+|DB_USER|Имя пользователя|trackstudio|
 |DB_PASS|Пароль пользователя БД|StrongP@ss_2025|
 
+> Изменяйте эти параметры до перового запуска приложения. После первого запуска СУБД будет создана и изменить имя базы/пользователя/пароль можно будет только вручную.
+ 
 
 ----------
 

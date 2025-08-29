@@ -18,6 +18,24 @@ tasks.compileJava {
     options.encoding = "UTF-8"
 }
 
+tasks.compileTestJava {
+    options.encoding = "UTF-8"
+}
+
+tasks.processResources {
+    filteringCharset = "UTF-8"
+    // JSTL читает .properties как ISO-8859-1. Конвертируем language_*.properties
+    // из UTF-8 в ASCII с \uXXXX, как делал Maven (native2ascii),
+    // чтобы на рантайме текст отображался корректно.
+    filesMatching("**/language_*.properties") {
+        filter(org.apache.tools.ant.filters.EscapeUnicode::class.java)
+    }
+}
+
+tasks.processTestResources {
+    filteringCharset = "UTF-8"
+}
+
 repositories {
     mavenCentral()
 }
@@ -84,4 +102,11 @@ tasks.war {
 // Юнит-тесты JUnit4
 tasks.test {
     useJUnit()
+    systemProperty("file.encoding", "UTF-8")
+}
+
+// Настройка Javadoc для UTF-8 (на случай генерации документации)
+tasks.javadoc {
+    options.encoding = "UTF-8"
+    (options as StandardJavadocDocletOptions).charSet = "UTF-8"
 }

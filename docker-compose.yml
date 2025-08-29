@@ -42,7 +42,7 @@ services:
     depends_on:
       - migrator 
     environment:
-      CATALINA_OPTS: -Dhibernate.connection.url=${DB_URL} -Dhibernate.connection.username=${DB_USER} -Dhibernate.connection.password=${DB_PASS}
+      CATALINA_OPTS: -Dfile.encoding=UTF-8 -Dhibernate.connection.url=${DB_URL} -Dhibernate.connection.username=${DB_USER} -Dhibernate.connection.password=${DB_PASS}
     volumes:
       - tsindex:/data/trackstudio/index
       - tsupload:/data/trackstudio/upload

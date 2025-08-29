@@ -95,6 +95,9 @@ RUN mkdir -p /data/trackstudio/upload /data/trackstudio/index \
 # Copy WAR built in the builder stage
 COPY --from=builder --chown=tomcat:tomcat /app/build/libs/TrackStudio.war $CATALINA_HOME/webapps/
 
+# Set JVM encoding for UTF-8 support
+ENV CATALINA_OPTS="-Dfile.encoding=UTF-8"
+
 # Switch to non-root user
 USER tomcat
 

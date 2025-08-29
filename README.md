@@ -4,7 +4,7 @@ TrackStudio — это классический трекер задач уров
 
 -   **Лицензия:** Apache License 2.0
     
--   **Стек:** Java 17 / Tomcat 9 / PostgreSQL 17 / Hibernate 5.6 / Lucene / Liquibase / Gradle 9 / Docker & Docker Compose
+-   **Стек:** Java 21 / Tomcat 9 / PostgreSQL 17 / Hibernate 5.6 / Lucene / Liquibase / Gradle 9 / Docker & Docker Compose
     
 ## ✓ Обзор функций TrackStudio Enterprise
 

@@ -28,7 +28,7 @@ public class IndexManagerTest {
         config.setMergePolicy(mergePolicy);
         IndexWriter writer = new IndexWriter(NIOFSDirectory.open(new File("./index/").toPath()), config);
         List<Document> docs = new ArrayList<>();
-        String text = "Дайтемнеещеэтихмягкихфранцускихбулочек";
+        String text = "ThisIsTest";
         for (int i = 0; i < 100_000_000; i++) {
             Document doc = new Document();
             doc.add(new TextField("name", text, Field.Store.YES));

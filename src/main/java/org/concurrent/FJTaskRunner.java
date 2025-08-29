@@ -681,7 +681,7 @@ public class FJTaskRunner extends Thread {
             setPriority(scanPriority);
           }
           else {           // otherwise we are at low priority; just yield
-            yield();
+            Thread.yield();
           }
         }
       }
@@ -768,7 +768,7 @@ public class FJTaskRunner extends Thread {
             setPriority(scanPriority);
           }
           else {
-            yield();
+            Thread.yield();
           }
         }
       }

@@ -11,11 +11,11 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # --- Install OpenJDK 17.0.2 ---
-RUN wget https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL/openjdk-17.0.2_linux-x64_bin.tar.gz -O /tmp/openjdk.tar.gz \
+RUN wget https://download.oracle.com/java/21/archive/jdk-21.0.7_linux-x64_bin.tar.gz -O /tmp/openjdk.tar.gz \
     && mkdir -p /usr/local/java \
     && tar -xzf /tmp/openjdk.tar.gz -C /usr/local/java \
     && rm /tmp/openjdk.tar.gz
-ENV JAVA_HOME=/usr/local/java/jdk-17.0.2
+ENV JAVA_HOME=/usr/local/java/jdk-21.0.7
 ENV PATH="$JAVA_HOME/bin:${PATH}"
 
 # --- Install Gradle 8.14.3 ---
@@ -58,11 +58,11 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # --- Install OpenJDK 17.0.2 ---
-RUN wget https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL/openjdk-17.0.2_linux-x64_bin.tar.gz -O /tmp/openjdk.tar.gz \
+RUN wget https://download.oracle.com/java/21/archive/jdk-21.0.7_linux-x64_bin.tar.gz -O /tmp/openjdk.tar.gz \
     && mkdir -p /usr/local/java \
     && tar -xzf /tmp/openjdk.tar.gz -C /usr/local/java \
     && rm /tmp/openjdk.tar.gz
-ENV JAVA_HOME=/usr/local/java/jdk-17.0.2
+ENV JAVA_HOME=/usr/local/java/jdk-21.0.7
 ENV PATH="$JAVA_HOME/bin:${PATH}"
 
 # --- Install Tomcat 9.0.108 ---

@@ -19,7 +19,7 @@ ENV JAVA_HOME=/usr/local/java/jdk-17.0.2
 ENV PATH="$JAVA_HOME/bin:${PATH}"
 
 # --- Install Gradle 8.14.3 ---
-ENV GRADLE_VERSION=8.14.3
+ENV GRADLE_VERSION=9.0.0
 RUN wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -O /tmp/gradle.zip \
     && mkdir -p /opt/gradle \
     && unzip -q /tmp/gradle.zip -d /opt/gradle \

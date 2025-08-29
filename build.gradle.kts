@@ -51,7 +51,7 @@ dependencies {
 
     // Остальное как implementation
     implementation("commons-logging:commons-logging:1.2")
-    implementation("org.json:json:20231013")
+    implementation("org.json:json:20240303")
     implementation("com.github.stephenc.jcip:jcip-annotations:1.0-1")
 
     implementation("org.apache.struts:struts-core:1.3.10")
@@ -60,7 +60,7 @@ dependencies {
     implementation("org.apache.struts:struts-el:1.3.10")
     implementation("org.apache.struts:struts-extras:1.3.10")
 
-    implementation("org.freemarker:freemarker:2.3.32")
+    implementation("org.freemarker:freemarker:2.3.33")
 
     implementation("org.apache.lucene:lucene-core:7.6.0")
     implementation("org.apache.lucene:lucene-analyzers-common:7.6.0")
@@ -80,7 +80,7 @@ dependencies {
     implementation("org.htmlparser:htmlparser:2.1")
     implementation("com.github.kevinsawicki:http-request:6.0")
     implementation("net.iharder:base64:2.3.9")
-    implementation("net.sf.ehcache:ehcache-core:2.6.11")
+    implementation("net.sf.ehcache:ehcache:2.10.8")
     implementation("org.codehaus.jackson:jackson-mapper-asl:1.9.13")
     implementation("org.codehaus.jackson:jackson-core-asl:1.9.13")
     implementation("org.codehaus.jackson:jackson-xc:1.9.13")
@@ -88,8 +88,8 @@ dependencies {
     implementation("net.htmlparser.jericho:jericho-html:3.4")
     implementation("com.mchange:c3p0:0.9.5.5")
     implementation("org.postgresql:postgresql:42.7.7")
-    implementation("commons-codec:commons-codec:1.16.1")
-    implementation("commons-fileupload:commons-fileupload:1.5")
+    implementation("commons-codec:commons-codec:1.17.0")
+    implementation("commons-fileupload:commons-fileupload:1.6.0")
 }
 
 tasks.war {

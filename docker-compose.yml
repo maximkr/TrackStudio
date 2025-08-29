@@ -3,8 +3,8 @@ services:
     image: postgres:15
     container_name: trackstudio-db
     environment:
-      POSTGRES_USER: trackstudio
-      POSTGRES_DB: trackstudio
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
       POSTGRES_PASSWORD: ${DB_PASS}
     volumes:
       - pgdata:/var/lib/postgresql/data
@@ -29,8 +29,8 @@ services:
     command:
       [
         "--changelog-file=changelog-master.xml",
-        "--url=jdbc:postgresql://db:5432/trackstudio",
-        "--username=trackstudio",
+        "--url=${DB_URL}",
+        "--username=${DB_USER}",
         "--password=${DB_PASS}",
         "update"
       ]
@@ -42,7 +42,7 @@ services:
     depends_on:
       - migrator 
     environment:
-      CATALINA_OPTS: -Dhibernate.connection.password=${DB_PASS}
+      CATALINA_OPTS: -Dhibernate.connection.url=${DB_URL} -Dhibernate.connection.username=${DB_USER} -Dhibernate.connection.password=${DB_PASS}
     volumes:
       - tsindex:/data/trackstudio/index
       - tsupload:/data/trackstudio/upload

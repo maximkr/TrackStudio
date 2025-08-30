@@ -33,7 +33,7 @@
             eternal="false"
             timeToIdleSeconds="600"
             timeToLiveSeconds="600"
-            overflowToDisk="true"
+            overflowToDisk="false"
             />
 
     <!--Predefined caches.  Add your cache configuration settings here.
@@ -64,23 +64,6 @@
         disk cache, which in this configuration will go to wherever java.io.tmp is
         defined on your system. On a standard Linux system this will be /tmp"
         -->
-    <cache name="sampleCache1"
-           maxElementsInMemory="100000"
-           eternal="false"
-           timeToIdleSeconds="300"
-           timeToLiveSeconds="600"
-           overflowToDisk="true"/>
-
-    <!-- Sample cache named sampleCache2
-        This cache contains 1000 elements. Elements will always be held in memory.
-        They are not expired. -->
-    <cache name="sampleCache2"
-           maxElementsInMemory="10000"
-           eternal="true"
-           timeToIdleSeconds="0"
-           timeToLiveSeconds="0"
-           overflowToDisk="false"
-            />
 
     <cache name="hibernate.test.com.trackstudio.model.Umstatus"
            maxElementsInMemory="10000"

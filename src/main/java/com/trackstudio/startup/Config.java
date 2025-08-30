@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -39,7 +38,6 @@ import org.hibernate.cfg.Configuration;
 import com.trackstudio.app.adapter.AdapterManager;
 import com.trackstudio.exception.GranException;
 import com.trackstudio.exception.UserException;
-import com.trackstudio.kernel.manager.KernelManager;
 import com.trackstudio.kernel.manager.TSPropertyManager;
 import com.trackstudio.model.Acl;
 import com.trackstudio.model.Attachment;
@@ -97,7 +95,8 @@ import org.xml.sax.InputSource;
  */
 @ThreadSafe
 public class Config implements Serializable {
-    public static final String TRACKSTUDIO_VERSION = "TrackStudio Enterprise/OS 6.0.0 Apache License 2.0";
+    private static final String TRACKSTUDIO_VERSION_NUM="6.0.0";
+    public static final String TRACKSTUDIO_VERSION = "TrackStudio Enterprise/OS "+TRACKSTUDIO_VERSION_NUM+" Apache License 2.0";
 
     private static final Logger log = LoggerFactory.getLogger(Config.class);
     private static volatile Config instance;
@@ -777,7 +776,7 @@ public class Config implements Serializable {
      * @throws com.trackstudio.exception.GranException for need
      */
     public static String getVersionPath() throws GranException {
-            return "/cssjs";
+            return "/cssjs/"+TRACKSTUDIO_VERSION_NUM;
     }
 
     /**

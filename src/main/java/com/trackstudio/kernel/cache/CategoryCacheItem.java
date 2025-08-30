@@ -1,5 +1,9 @@
 package com.trackstudio.kernel.cache;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicReference;
@@ -14,19 +18,20 @@ import net.jcip.annotations.Immutable;
  * Вспомогательный класс, используется для кеширования категорий
  */
 @Immutable
-public class CategoryCacheItem {
+public class CategoryCacheItem implements Serializable {
+    private static final long serialVersionUID = 1L;
     private final String id;
     private final String name;
     private final String budget;
     private final String preferences;
     private final String workflowId;
     private final String workflowName;
-    private final AtomicReference<String> template;
+    private final transient AtomicReference<String> template;
     private final String icon;
     private final String taskId;
     private final Integer handlerRequiredInt;
     private final Integer groupHandlerAllowedInt;
-    private final AtomicReference<CopyOnWriteArrayList<String>> subcategories;
+    private final transient AtomicReference<CopyOnWriteArrayList<String>> subcategories;
 
     /**
      * Возвращает ID категории
@@ -143,7 +148,7 @@ public class CategoryCacheItem {
             return current; // value in cache exists, return it
 
         // now load data from db
-        CopyOnWriteArrayList<String> newVal = new  CopyOnWriteArrayList(Intern.process(KernelManager.getCategory().getChildrenCategoryIdList(id)));
+        CopyOnWriteArrayList<String> newVal = new CopyOnWriteArrayList<>(Intern.process(KernelManager.getCategory().getChildrenCategoryIdList(id)));
         if (subcategories.compareAndSet(null, newVal)) // try to update
             return newVal; // we can update - return loaded value
         else
@@ -174,8 +179,8 @@ public class CategoryCacheItem {
         this.budget = budget;
         this.preferences = Intern.process(preferences);
         this.icon = icon;
-        this.template = new AtomicReference(null);
-        this.subcategories = new AtomicReference(null);
+        this.template = new AtomicReference<>(null);
+        this.subcategories = new AtomicReference<>(null);
     }
 
     /**
@@ -207,6 +212,40 @@ public class CategoryCacheItem {
 
     public String getIcon() {
         return icon;
+    }
+
+    /**
+     * Пользовательская сериализация для корректной обработки AtomicReference полей
+     */
+    private void writeObject(ObjectOutputStream oos) throws IOException {
+        oos.defaultWriteObject();
+        // Сериализуем значения AtomicReference полей
+        oos.writeObject(template.get());
+        oos.writeObject(subcategories.get());
+    }
+
+    /**
+     * Пользовательская десериализация для корректной обработки AtomicReference полей
+     */
+    @SuppressWarnings("unchecked")
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+        // Восстанавливаем AtomicReference поля
+        String templateValue = (String) ois.readObject();
+        CopyOnWriteArrayList<String> subcategoriesValue = (CopyOnWriteArrayList<String>) ois.readObject();
+        
+        // Используем рефлексию для установки final полей
+        try {
+            java.lang.reflect.Field templateField = this.getClass().getDeclaredField("template");
+            templateField.setAccessible(true);
+            templateField.set(this, new AtomicReference<>(templateValue));
+            
+            java.lang.reflect.Field subcategoriesField = this.getClass().getDeclaredField("subcategories");
+            subcategoriesField.setAccessible(true);
+            subcategoriesField.set(this, new AtomicReference<>(subcategoriesValue));
+        } catch (Exception e) {
+            throw new IOException("Failed to deserialize AtomicReference fields", e);
+        }
     }
 
 }

@@ -56,13 +56,27 @@ TrackStudio поддерживает:
 git clone https://github.com/maximkr/TrackStudio.git 
 cd TrackStudio
 ```
-### 2) Отредактируйте файл `.env` при необходимости
+### 2) Создайте файл `.env` с настройками
 
-Пароль БД задаётся через переменную окружения:
-```
+Создайте файл `.env` в корне проекта:
+```bash
+# Database configuration
+DB_NAME=trackstudio_db
+DB_URL=jdbc:postgresql://db:5432/trackstudio_db
+DB_USER=trackstudio
 DB_PASS=Secure!P@ssw0rd
+
+# Database language for schema initialization
+# Values: en (English), ru (Russian)
+# Default: en
+DB_LANGUAGE=en
 ```
->⚠️ Замените пример на свой надёжный пароль. Файл `.env` лучше не коммитить в VCS.
+
+**Язык схемы базы данных (`DB_LANGUAGE`):**
+- `en` — английская версия (по умолчанию)
+- `ru` — русская версия
+
+>⚠️ Замените пример пароля на свой надёжный пароль. Файл `.env` лучше не коммитить в VCS.
 
 ### 3) Соберите образ приложения
 ```
@@ -147,6 +161,7 @@ docker compose logs -f app
 |DB_URL|JDBC URL|jdbc:postgresql://db:5432/trackstudio_db|
 |DB_USER|Имя пользователя|trackstudio|
 |DB_PASS|Пароль пользователя БД|StrongP@ss_2025|
+|DB_LANGUAGE|Язык схемы БД (en/ru)|en|
 
 > Изменяйте эти параметры до перового запуска приложения. После первого запуска СУБД будет создана и изменить имя базы/пользователя/пароль можно будет только вручную.
  

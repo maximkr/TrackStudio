@@ -88,7 +88,7 @@ dependencies {
     implementation("org.htmlparser:htmlparser:2.1")
     implementation("com.github.kevinsawicki:http-request:6.0")
     implementation("net.iharder:base64:2.3.9")
-    implementation("net.sf.ehcache:ehcache:2.10.8")
+    implementation("net.sf.ehcache:ehcache-core:2.6.11")
     implementation("org.codehaus.jackson:jackson-mapper-asl:1.9.13")
     implementation("org.codehaus.jackson:jackson-core-asl:1.9.13")
     implementation("org.codehaus.jackson:jackson-xc:1.9.13")

@@ -28,9 +28,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import com.trackstudio.sman.MailReceiver;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.log4j.PropertyConfigurator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.xerces.parsers.DOMParser;
 import org.concurrent.FJTaskRunnerGroup;
 import org.hibernate.HibernateException;
@@ -100,7 +99,7 @@ import org.xml.sax.InputSource;
 public class Config implements Serializable {
     public static final String TRACKSTUDIO_VERSION = "TrackStudio Enterprise/OS 6.0.0 Apache License 2.0";
 
-    private static final Log log = LogFactory.getLog(Config.class);
+    private static final Logger log = LoggerFactory.getLogger(Config.class);
     private static volatile Config instance;
     private static volatile SessionFactory sessions;
     public static final Properties properties = new Properties();
@@ -138,8 +137,6 @@ public class Config implements Serializable {
         if (validateFile("trackstudio.properties")) {
             loadConfigFile("trackstudio.properties");
         }
-        PropertyConfigurator.configure(loadConfigFile("trackstudio.log4j.properties"));
-        loadConfigFile("trackstudio.log4j.properties");
         if (validateFile("trackstudio.default.properties")) {
             loadConfigFile("trackstudio.default.properties");
         }
@@ -194,7 +191,7 @@ public class Config implements Serializable {
      */
     public static synchronized Config getInstance() {
         if (instance == null) {
-            log.fatal("Config must be initialized before use");
+            log.error("Config must be initialized before use");
             throw new RuntimeException("Config must be initialized before use");
         }
         return instance;
@@ -927,7 +924,7 @@ public class Config implements Serializable {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            log.error(e);
+            log.error("Error loading mail receivers", e);
         }
         return mailReceivers;
     }

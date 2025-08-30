@@ -49,8 +49,16 @@ dependencies {
     compileOnly("javax.servlet:javax.servlet-api:4.0.1")
     compileOnly("javax.servlet.jsp:javax.servlet.jsp-api:2.3.3")
 
+
+
     // Остальное как implementation
-    implementation("commons-logging:commons-logging:1.2")
+    // Logging - миграция с Log4j 1.2 на SLF4J + Logback
+    implementation("org.slf4j:slf4j-api:2.0.12")
+    implementation("ch.qos.logback:logback-classic:1.4.14")
+    implementation("ch.qos.logback:logback-core:1.4.14")
+    implementation("org.slf4j:jcl-over-slf4j:2.0.12") // Commons Logging через SLF4J
+    implementation("org.slf4j:log4j-over-slf4j:2.0.12") // Log4j 1.2 через SLF4J (для legacy кода)
+    
     implementation("org.json:json:20240303")
     implementation("com.github.stephenc.jcip:jcip-annotations:1.0-1")
 
@@ -72,7 +80,7 @@ dependencies {
     implementation("antlr:antlr:2.7.6")
 
     implementation("javax.servlet:jstl:1.2")
-    implementation("log4j:log4j:1.2.17")
+    // Удаляем log4j:log4j:1.2.17 - заменяем на SLF4J + Logback выше
     implementation("com.sun.mail:javax.mail:1.6.2")
     implementation("org.apache-extras.beanshell:bsh:2.0b6")
     implementation("org.quartz-scheduler:quartz:2.3.2")
@@ -90,6 +98,14 @@ dependencies {
     implementation("org.postgresql:postgresql:42.7.7")
     implementation("commons-codec:commons-codec:1.17.0")
     implementation("commons-fileupload:commons-fileupload:1.6.0")
+}
+
+// Исключаем старые логирование библиотеки из всех зависимостей
+configurations.all {
+    exclude(group = "commons-logging", module = "commons-logging")
+    exclude(group = "log4j", module = "log4j")
+    exclude(group = "org.slf4j", module = "slf4j-log4j12")
+    exclude(group = "org.slf4j", module = "slf4j-jdk14")
 }
 
 tasks.war {

@@ -155,10 +155,16 @@ public class PredictorServlet extends BaseAjaxServlet {
 					this.searchByUdfUser(request, searchFor, items, sc);
 				} else if (byTask) {
 					for (String number : searchFor.split(";")) {
-						TaskRelatedInfo info = tasks.find(
-								KernelManager.getTask().findByNumber(number)
-						);
-						buildTask(items, path, imageServlet, info);
+						// Убираем символ # если он есть
+						String cleanNumber = number.startsWith("#") ? number.substring(1) : number;
+						try {
+							TaskRelatedInfo info = tasks.find(
+									KernelManager.getTask().findByNumber(cleanNumber)
+							);
+							buildTask(items, path, imageServlet, info);
+						} catch (Exception e) {
+							log.error("PredictorServlet: error finding task by number " + cleanNumber, e);
+						}
 					}
 				} else if (isNotNull(searchFor)) {
 					buildEmptyItem(items, path, imageServlet, searchFor);

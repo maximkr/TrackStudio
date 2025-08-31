@@ -8,9 +8,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Create non-root user for security
 RUN groupadd -r gradle && useradd -r -g gradle gradle
 
-# Install base utilities
+# Install base utilities including git for versioning
 RUN apt-get update && apt-get install -y \
-    wget curl tar unzip zip ca-certificates bash coreutils \
+    wget curl tar unzip zip ca-certificates bash coreutils git \
     && rm -rf /var/lib/apt/lists/*
 
 # --- Install OpenJDK 21.0.7 ---
@@ -41,6 +41,9 @@ RUN chown gradle:gradle /app
 
 # Switch to non-root user
 USER gradle
+
+# Copy git directory for version information
+COPY --chown=gradle:gradle .git ./.git
 
 # Copy only build scripts first (to leverage Docker layer caching)
 COPY --chown=gradle:gradle build.gradle.kts settings.gradle.kts gradle.properties ./

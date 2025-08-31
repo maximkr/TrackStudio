@@ -1,27 +1,14 @@
 ﻿plugins {
     `java`
     war
+    id("com.palantir.git-version") version "3.1.0"
 }
 
-// Автоматическая версия по git коммиту
-fun getGitHash(): String {
-    return try {
-        val process = ProcessBuilder("git", "rev-parse", "--short", "HEAD")
-            .directory(projectDir)
-            .start()
-        process.waitFor()
-        if (process.exitValue() == 0) {
-            process.inputStream.bufferedReader().readText().trim()
-        } else {
-            System.currentTimeMillis().toString().takeLast(8)
-        }
-    } catch (e: Exception) {
-        System.currentTimeMillis().toString().takeLast(8)
-    }
-}
+// Автоматическое версионирование на основе git тегов
+val gitVersion: groovy.lang.Closure<String> by extra
 
 group = "com.trackstudio"
-version = "6.0.${getGitHash()}"
+version = gitVersion()
 description = "TrackStudio Webapp"
 
 java {

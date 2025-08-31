@@ -95,10 +95,27 @@ import org.xml.sax.InputSource;
  */
 @ThreadSafe
 public class Config implements Serializable {
-    private static final String TRACKSTUDIO_VERSION_NUM="6.0.1";
+    private static final String TRACKSTUDIO_VERSION_NUM = loadVersionFromProperties();
     public static final String TRACKSTUDIO_VERSION = "TrackStudio Enterprise/OS "+TRACKSTUDIO_VERSION_NUM+" Apache License 2.0";
 
     private static final Logger log = LoggerFactory.getLogger(Config.class);
+    
+    /**
+     * Загружает версию из version.properties файла
+     * @return версию приложения
+     */
+    private static String loadVersionFromProperties() {
+        try {
+            Properties versionProps = new Properties();
+            versionProps.load(Config.class.getClassLoader().getResourceAsStream("version.properties"));
+            String version = versionProps.getProperty("trackstudio.version");
+            return version != null ? version : "6.0.0-unknown";
+        } catch (Exception e) {
+            System.err.println("Warning: Could not load version from version.properties, using fallback: " + e.getMessage());
+            return "6.0.0-unknown";
+        }
+    }
+    
     private static volatile Config instance;
     private static volatile SessionFactory sessions;
     public static final Properties properties = new Properties();

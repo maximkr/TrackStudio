@@ -2020,6 +2020,10 @@ function insertParentTaskUdf(content, popup, sourceId) {
 				}
 				target = window.opener.document.getElementById(targetId);
 				console.log("insertParentTaskUdf: target from opener =", target);
+				// Логируем в родительское окно тоже
+				if (window.opener.console) {
+					window.opener.console.log("insertParentTaskUdf: processing item", i, "in popup, target =", target);
+				}
 			} else {
 				target = document.getElementById(targetId);
 				console.log("insertParentTaskUdf: target from current document =", target);
@@ -2063,7 +2067,14 @@ function insertParentTaskUdf(content, popup, sourceId) {
 		if (popup) {
 			console.log("insertParentTaskUdf: closing popup");
 			closeServicePanel(document.forms['taskListForm'].elements['SELTASK']);
-			window.close();
+			// Логируем результат в родительское окно
+			if (window.opener && window.opener.console) {
+				window.opener.console.log("insertParentTaskUdf: COMPLETED! Added", content.length, "tasks to parent window");
+				window.opener.console.log("insertParentTaskUdf: sourceId was", sourceId);
+			}
+			// Временно отключаем закрытие окна для отладки
+			// window.close();
+			alert("DEBUG: Обработано " + content.length + " задач. Проверьте консоль родительского окна и закройте это окно вручную.");
 		}
 		
 		console.log("insertParentTaskUdf: completed successfully");

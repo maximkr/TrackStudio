@@ -1673,22 +1673,30 @@ function forrobots(Sender) {
 }
 
 function forhuman() {
+	console.log("forhuman: called");
 	var _panel = document.getElementById("servicePanel");
+	console.log("forhuman: _panel =", _panel);
 	var numbers = "";
 	if (_panel != null) {
 		var elements = _panel.childNodes;
+		console.log("forhuman: elements =", elements, "length =", elements ? elements.length : 0);
 		if (elements != null && elements.length > 0) {
 			for (var k = 0; k < elements.length; k++) {
 				var em = elements[k];
+				console.log("forhuman: element[" + k + "] =", em, "tagName =", em.tagName);
 				if (em.tagName == "LABEL") {
-					if (em.getAttribute("htmlFor") != null)
-						numbers += em.getAttribute("htmlFor") + ";";
+					var htmlFor = em.getAttribute("htmlFor");
+					var forAttr = em.getAttribute("for");
+					console.log("forhuman: label htmlFor =", htmlFor, "for =", forAttr);
+					if (htmlFor != null)
+						numbers += htmlFor + ";";
 					else
-						numbers += em.getAttribute("for") + ";";
+						numbers += forAttr + ";";
 				}
 			}
 		}
 	}
+	console.log("forhuman: returning numbers =", numbers);
 	return numbers;
 }
 
@@ -1990,53 +1998,105 @@ function __localsearch(Val) {
 
 function insertParentTaskUdf(content, popup, sourceId) {
 	try {
-		console.log(content.length);
+		console.log("insertParentTaskUdf: content.length =", content.length);
+		console.log("insertParentTaskUdf: popup =", popup);
+		console.log("insertParentTaskUdf: sourceId =", sourceId);
+		console.log("insertParentTaskUdf: content =", content);
+		
 		for (var i = 0; i < content.length; i++) {
 			var item = content[i];
+			console.log("insertParentTaskUdf: processing item", i, "=", item);
+			
 			var target;
+			var targetId = "_" + sourceId;
+			console.log("insertParentTaskUdf: looking for element with id =", targetId);
+			
 			if (popup) {
-				target = window.opener.document.getElementById("_" + sourceId);
+				console.log("insertParentTaskUdf: window.opener =", window.opener);
+				if (!window.opener) {
+					console.error("insertParentTaskUdf: window.opener is null!");
+					alert("ERROR: window.opener is null! Cannot access parent window.");
+					return;
+				}
+				target = window.opener.document.getElementById(targetId);
+				console.log("insertParentTaskUdf: target from opener =", target);
 			} else {
-				target = document.getElementById("_" + sourceId);
+				target = document.getElementById(targetId);
+				console.log("insertParentTaskUdf: target from current document =", target);
 			}
+			
+			if (!target) {
+				console.error("insertParentTaskUdf: target element not found! ID =", targetId);
+				alert("ERROR: Target element not found! ID = " + targetId);
+				return;
+			}
+			
 			target.style.display = 'block';
 			var label = document.createElement("label");
 			var value = item.value;
 			var udfId = sourceId.substring("searchudflist(".length, sourceId.length-1);
-			label.innerHTML = "<input type='checkbox' name='udflist("+udfId+")' value='"+value.substr(1, value.indexOf('_')-1)+"' checked/>&nbsp;" + item.label;
+			console.log("insertParentTaskUdf: udfId =", udfId);
+			console.log("insertParentTaskUdf: value =", value);
+			
+			var taskNumber = value.substr(1, value.indexOf('_')-1);
+			console.log("insertParentTaskUdf: taskNumber =", taskNumber);
+			
+			label.innerHTML = "<input type='checkbox' name='udflist("+udfId+")' value='"+taskNumber+"' checked/>&nbsp;" + item.label;
+			console.log("insertParentTaskUdf: created label.innerHTML =", label.innerHTML);
+			
 			var inputs = target.getElementsByTagName("input");
 			var duplicate = false;
 			for (var j=0;j!=inputs.length;++j) {
-				if (!duplicate && value.substr(1, value.indexOf('_')-1) == inputs[j].value) {
+				if (!duplicate && taskNumber == inputs[j].value) {
 					duplicate = true;
+					console.log("insertParentTaskUdf: duplicate found for task", taskNumber);
 					break;
 				}
 			}
+			
 			if (!duplicate) {
+				console.log("insertParentTaskUdf: appending label to target");
 				target.appendChild(label);
 			}
 		}
+		
 		if (popup) {
+			console.log("insertParentTaskUdf: closing popup");
 			closeServicePanel(document.forms['taskListForm'].elements['SELTASK']);
 			window.close();
 		}
+		
+		console.log("insertParentTaskUdf: completed successfully");
 	} catch(err) {
+		console.error("insertParentTaskUdf: caught error =", err);
 		showError("insertParentTaskUdf", err);
+		alert("ERROR in insertParentTaskUdf: " + err.message);
 	}
 }
 
 
 function __operate(url, udffield) {
 	try {
+		console.log("__operate: called with url =", url, "udffield =", udffield);
+		var humanData = forhuman();
+		console.log("__operate: forhuman() returned =", humanData);
+		
 		$.ajax(url, {
 			dataType: "json",
-			data: {key: forhuman(), source: udffield, byTask: true},
+			data: {key: humanData, source: udffield, byTask: true},
 			success: function (data) {
+				console.log("__operate: AJAX success, received data =", data);
 				insertParentTaskUdf(data, true, udffield);
+			},
+			error: function(xhr, status, error) {
+				console.error("__operate: AJAX error, status =", status, "error =", error);
+				console.error("__operate: xhr =", xhr);
+				alert("AJAX Error in __operate: " + status + " - " + error);
 			}
 		});
 	} catch(err) {
-		alert(err);
+		console.error("__operate: caught error =", err);
+		alert("ERROR in __operate: " + err.message);
 	}
 	return false;
 }

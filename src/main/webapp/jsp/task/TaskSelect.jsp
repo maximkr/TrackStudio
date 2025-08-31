@@ -870,8 +870,12 @@
 
     function chooseTask() {
         try {
+            console.log("chooseTask: called");
+            console.log("chooseTask: contextPath =", '${contextPath}');
+            console.log("chooseTask: udffield =", '${udffield}');
             __operate('${contextPath}/predictor', '${udffield}');
         } catch(err) {
+            console.error("chooseTask: caught error =", err);
             showError("chooseTask", err);
         }
         return false;

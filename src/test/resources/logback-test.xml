@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    
+    <!-- Консольный аппендер для тестов -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <encoder>
+            <pattern>%d{ABSOLUTE} %-5level %logger{36}:%M:%L - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Отключаем лишние логи в тестах -->
+    <logger name="org.jboss.resteasy.plugins.server.servlet" level="ERROR"/>
+
+    <!-- Корневой логгер для тестов -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>

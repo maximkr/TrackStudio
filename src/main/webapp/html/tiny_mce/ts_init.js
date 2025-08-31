@@ -6,15 +6,15 @@ tinymce.init({
     content_css: contextPath + "/tinymce.css",
     convert_urls: false,
     
-    // Плагины (обновленный список для TinyMCE 8)
-    plugins: 'autolink lists table save link anchor image preview media searchreplace fullscreen insertdatetime nonbreaking charmap directionality visualchars code advlist visualblocks emoticons pagebreak autoresize quickbars wordcount codesample importcss autosave',
+    // Плагины (совместимые с TinyMCE 5)
+    plugins: 'autolink lists table save link anchor image preview media searchreplace fullscreen insertdatetime nonbreaking charmap directionality visualchars code visualblocks emoticons autoresize wordcount template paste',
     
-    // Панель инструментов (объединенная из старых theme_advanced_buttons)
+    // Панель инструментов (упрощенная для TinyMCE 8)
     toolbar: [
-        'undo redo | bold italic underline strikethrough | copy cut paste | searchreplace',
+        'undo redo | bold italic underline strikethrough | searchreplace',
         'alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent',
-        'link unlink anchor image | forecolor backcolor | fontfamily fontsize',
-        'table | charmap emoticons | insertdatetime | templates | preview fullscreen | code btnCode'
+        'link unlink anchor image | forecolor backcolor | fontsize',
+        'table | charmap | customTemplates | preview fullscreen | code btnCode'
     ],
     
     // Настройки меню
@@ -26,8 +26,6 @@ tinymce.init({
     
     // Блоки и новые строки
     forced_root_block: false,
-    force_br_newlines: false,
-    force_p_newlines: false,
     
     // Проверка орфографии
     browser_spellcheck: true,
@@ -38,16 +36,12 @@ tinymce.init({
     // Настройки ссылок
     link_assume_external_targets: false,
     
-    // Автосохранение 
-    autosave_ask_before_unload: true,
+    // Автосохранение (упрощенная конфигурация)
     autosave_interval: '30s',
-    autosave_prefix: 'tinymce-autosave-{path}{query}-{id}',
-    autosave_restore_when_empty: false,
-    autosave_retention: '2m',
     
     // Настройка пользовательских кнопок и функций
     setup: function(editor) {
-        // Добавляем кастомную кнопку Code
+        // Добавляем кастомную кнопку Code для TinyMCE 5 (правильный API)
         editor.ui.registry.addButton('btnCode', {
             text: 'Code',
             icon: 'sourcecode',
@@ -60,9 +54,9 @@ tinymce.init({
         });
 
         // Добавляем кнопку для шаблонов (замена template плагина)
-        editor.ui.registry.addMenuButton('templates', {
+        editor.ui.registry.addMenuButton('customTemplates', {
             text: 'Templates',
-            icon: 'template',
+            icon: 'new-document',
             tooltip: 'Insert Template',
             fetch: function(callback) {
                 var items = [

@@ -3,8 +3,25 @@
     war
 }
 
+// Автоматическая версия по git коммиту
+fun getGitHash(): String {
+    return try {
+        val process = ProcessBuilder("git", "rev-parse", "--short", "HEAD")
+            .directory(projectDir)
+            .start()
+        process.waitFor()
+        if (process.exitValue() == 0) {
+            process.inputStream.bufferedReader().readText().trim()
+        } else {
+            System.currentTimeMillis().toString().takeLast(8)
+        }
+    } catch (e: Exception) {
+        System.currentTimeMillis().toString().takeLast(8)
+    }
+}
+
 group = "com.trackstudio"
-version = "6.0-SNAPSHOT"
+version = "6.0.${getGitHash()}"
 description = "TrackStudio Webapp"
 
 java {
@@ -24,6 +41,14 @@ tasks.compileTestJava {
 
 tasks.processResources {
     filteringCharset = "UTF-8"
+    
+    // Генерируем файл с версией для Java кода
+    doFirst {
+        val versionPropsFile = File(sourceSets.main.get().output.resourcesDir, "version.properties")
+        versionPropsFile.parentFile.mkdirs()
+        versionPropsFile.writeText("trackstudio.version=${version}\n")
+    }
+    
     // JSTL читает .properties как ISO-8859-1. Конвертируем language_*.properties
     // из UTF-8 в ASCII с \uXXXX, как делал Maven (native2ascii),
     // чтобы на рантайме текст отображался корректно.

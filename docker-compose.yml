@@ -36,9 +36,9 @@ services:
       ]
     restart: "no"
 
-  app:
-    image: trackstudio/app
-    container_name: trackstudio-app
+  trackstudio:
+    image: maximkr/trackstudio
+    container_name: trackstudio
     depends_on:
       - migrator 
     environment:

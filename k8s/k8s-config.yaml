@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: trackstudio-config
+data:
+  DB_HOST: "db"
+  DB_PORT: "5432"
+  DB_NAME: "trackstudio"
+  DB_USER: "trackstudio"
+  JDBC_URL: "jdbc:postgresql://postgresql:5432/trackstudio"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: trackstudio-secret
+type: Opaque
+stringData:                    # удобно для ручного ввода; в etcd сохранится как base64
+  DB_PASS: "SuperSecret123"

@@ -82,7 +82,7 @@ DB_LANGUAGE=en
 
 ### 3) Соберите образ приложения
 ```
-docker build -t trackstudio/app -f Dockerfile .
+docker build -t maximkr/trackstudio:6.0.0 -f Dockerfile .
 ```
 
 ### 4) Запустите инфраструктуру
@@ -93,11 +93,11 @@ docker compose up -d
 
 Поднимутся:
 
--   `postgres` — СУБД PostgreSQL
+-   `trackstudio-db` — СУБД PostgreSQL
     
 -   `migrator` — инициализация базы данных (Liquibase)
     
--   `app` — само приложение TrackStudio внутри Tomcat
+-   `trackstudio` — само приложение TrackStudio внутри Tomcat
     
 
 ----------
@@ -135,7 +135,7 @@ docker compose logs -f migrator
 
 Просмотр логов приложения:
 ```
-docker compose logs -f app
+docker compose logs -f trackstudio
 ```
 
 ----------
@@ -193,11 +193,11 @@ docker compose logs -f app
      `docker compose logs -f migrator`
 
     
-    Убедитесь, что пароль БД корректен (`DB_PASS`), контейнер `postgres` стартовал, а сеть между контейнерами доступна.
+    Убедитесь, что пароль БД корректен (`DB_PASS`), контейнер `trackstudio-db` стартовал, а сеть между контейнерами доступна.
     
 -   **Не удаётся войти под root/root.**  
     Проверьте логи приложения:
-    `docker compose logs -f app` 
+    `docker compose logs -f trackstudio` 
     
     Убедитесь, что миграции прошли успешно и приложение доступно по правильному URL.
     
@@ -222,6 +222,8 @@ docker compose logs -f app
 3.  Коммиты с понятными сообщениями.
     
 4.  PR в `main` с описанием изменений и шагами для проверки.
+
+По всем вопросам пишите: Максим Крамаренко <maximkr@gmail.com>
     
 
 ----------

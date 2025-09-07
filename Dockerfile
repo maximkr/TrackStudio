@@ -82,8 +82,7 @@ ENV JAVA_HOME=/usr/local/java/jdk-21.0.7
 ENV PATH="$JAVA_HOME/bin:${PATH}"
 
 # --- Install Tomcat 9.0.108 ---
-ENV TOMCAT_VERSION=9.0.108
-RUN wget https://dlcdn.apache.org/tomcat/tomcat-9/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/tomcat.tar.gz \
+RUN wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.109/bin/apache-tomcat-9.0.109.tar.gz -O /tmp/tomcat.tar.gz \
     && mkdir -p /usr/local/tomcat \
     && tar -xzf /tmp/tomcat.tar.gz -C /usr/local/tomcat --strip-components=1 \
     && rm /tmp/tomcat.tar.gz \

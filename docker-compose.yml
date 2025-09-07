@@ -18,14 +18,14 @@ services:
       retries: 20
 
   migrator:
-    image: liquibase/liquibase:4.30
+    build:
+      context: .
+      dockerfile: Dockerfile.migrator
     container_name: trackstudio-migrator
     depends_on:
       db:
         condition: service_healthy
     working_dir: /workspace
-    volumes:
-      - ./liquibase:/workspace:ro
     command:
       [
         "--changelog-file=changelog-master-${DB_LANGUAGE:-en}.xml",
@@ -37,7 +37,9 @@ services:
     restart: "no"
 
   trackstudio:
-    image: maximkr/trackstudio
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: trackstudio
     depends_on:
       - migrator 

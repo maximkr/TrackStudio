@@ -1417,7 +1417,7 @@
     </action-mappings>
 
 
-    <controller maxFileSize="999M" memFileSize="10M" tempDir="."/>
+    <controller maxFileSize="999M" memFileSize="10M"/>
     <message-resources parameter="language"/>
 
 

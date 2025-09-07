@@ -1,0 +1,3 @@
+﻿FROM liquibase/liquibase:4.30
+WORKDIR /workspace
+COPY liquibase/ ./    

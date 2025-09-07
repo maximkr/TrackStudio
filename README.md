@@ -83,7 +83,7 @@ DB_LANGUAGE=en
 ### 3) Запустите инфраструктуру
 
 ```
-docker compose up -d
+docker compose up -d --build
 ```
 
 Поднимутся:

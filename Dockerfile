@@ -1,107 +1,56 @@
-﻿# =========================
+﻿#############################
 # Stage 1: Build with Gradle
-# =========================
-FROM ubuntu:24.04 AS builder
+#############################
+FROM gradle:9.0.0-jdk21 AS builder
+WORKDIR /src
 
-ENV DEBIAN_FRONTEND=noninteractive
+COPY .git ./.git
 
-# Create non-root user for security
-RUN groupadd -r gradle && useradd -r -g gradle gradle
+# Копируем только файлы сборки для кеша
+COPY settings.gradle.kts build.gradle.kts gradle.properties ./
 
-# Install base utilities including git for versioning
-RUN apt-get update && apt-get install -y \
-    wget curl tar unzip zip ca-certificates bash coreutils git \
-    && rm -rf /var/lib/apt/lists/*
+# Прогрев зависимостей
+RUN --mount=type=cache,target=/home/gradle/.gradle \
+    gradle --no-daemon --stacktrace dependencies
 
-# --- Install OpenJDK 21.0.7 ---
-RUN wget https://download.oracle.com/java/21/archive/jdk-21.0.7_linux-x64_bin.tar.gz -O /tmp/openjdk.tar.gz \
-    && mkdir -p /usr/local/java \
-    && tar -xzf /tmp/openjdk.tar.gz -C /usr/local/java \
-    && rm /tmp/openjdk.tar.gz \
-    && chown -R gradle:gradle /usr/local/java
-ENV JAVA_HOME=/usr/local/java/jdk-21.0.7
-ENV PATH="$JAVA_HOME/bin:${PATH}"
+# Исходники и сборка WAR (без тестов)
+COPY src ./src
+RUN --mount=type=cache,target=/home/gradle/.gradle \
+    gradle --no-daemon clean war -x test
 
-# --- Install Gradle 9.0.0 ---
-ENV GRADLE_VERSION=9.0.0
-RUN wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -O /tmp/gradle.zip \
-    && mkdir -p /opt/gradle \
-    && unzip -q /tmp/gradle.zip -d /opt/gradle \
-    && rm /tmp/gradle.zip \
-    && chown -R gradle:gradle /opt/gradle
-ENV GRADLE_HOME=/opt/gradle/gradle-${GRADLE_VERSION}
-ENV PATH="${GRADLE_HOME}/bin:${PATH}"
+#############################
+# Stage 2: Runtime (Tomcat+JDK Temurin)
+#############################
+FROM tomcat:9.0-jdk21-temurin
 
-# Gradle local cache
-ENV GRADLE_USER_HOME=/home/gradle/.gradle
-RUN mkdir -p ${GRADLE_USER_HOME} && chown -R gradle:gradle /home/gradle
+# Очистить дефолтные webapps
+RUN rm -rf "$CATALINA_HOME/webapps/*"
 
-WORKDIR /app
-RUN chown gradle:gradle /app
+# Разворачиваем наш WAR как ROOT
+COPY --from=builder /src/build/libs/TrackStudio.war "$CATALINA_HOME/webapps/ROOT.war"
 
-# Switch to non-root user
-USER gradle
+# Директории данных TrackStudio
+RUN mkdir -p /data/trackstudio/upload /data/trackstudio/index
 
-# Copy git directory for version information
-COPY --chown=gradle:gradle .git ./.git
+# --- создать пользователя и выдать права на каталоги, где Tomcat пишет ---
+RUN set -eux; \
+  groupadd -r tomcat || true; \
+  useradd  -r -g tomcat -d "$CATALINA_HOME" -s /usr/sbin/nologin tomcat || true; \
+  mkdir -p /logs "$CATALINA_HOME/logs" "$CATALINA_HOME/work" "$CATALINA_HOME/temp"; \
+  chown -R tomcat:tomcat \
+    "$CATALINA_HOME/webapps" \
+    "$CATALINA_HOME/logs" \
+    "$CATALINA_HOME/work" \
+    "$CATALINA_HOME/temp" \
+    /data/trackstudio /logs
 
-# Copy only build scripts first (to leverage Docker layer caching)
-COPY --chown=gradle:gradle build.gradle.kts settings.gradle.kts gradle.properties ./
+# JVM/Tomcat настройки
+ENV CATALINA_OPTS="\
+ -Dfile.encoding=UTF-8 \
+ -Dtrackstudio.upload.dir=/data/trackstudio/upload \
+ -Dtrackstudio.index.dir=/data/trackstudio/index"
 
-# Pre-download dependencies
-RUN gradle --no-daemon --stacktrace dependencies
-
-# Copy application sources
-COPY --chown=gradle:gradle src ./src
-
-# Build WAR file (skip tests for faster build)
-RUN gradle --no-daemon clean war -x test
-
-# =======================
-# Stage 2: Runtime (Tomcat)
-# =======================
-FROM ubuntu:24.04
-
-ENV DEBIAN_FRONTEND=noninteractive
-
-# Create tomcat user for security
-RUN groupadd -r tomcat && useradd -r -g tomcat tomcat
-
-# Install basic tools
-RUN apt-get update && apt-get install -y \
-    wget tar ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
-
-# --- Install OpenJDK 21.0.7 ---
-RUN wget https://download.oracle.com/java/21/archive/jdk-21.0.7_linux-x64_bin.tar.gz -O /tmp/openjdk.tar.gz \
-    && mkdir -p /usr/local/java \
-    && tar -xzf /tmp/openjdk.tar.gz -C /usr/local/java \
-    && rm /tmp/openjdk.tar.gz \
-    && chown -R tomcat:tomcat /usr/local/java
-ENV JAVA_HOME=/usr/local/java/jdk-21.0.7
-ENV PATH="$JAVA_HOME/bin:${PATH}"
-
-# --- Install Tomcat 9.0.108 ---
-RUN wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.109/bin/apache-tomcat-9.0.109.tar.gz -O /tmp/tomcat.tar.gz \
-    && mkdir -p /usr/local/tomcat \
-    && tar -xzf /tmp/tomcat.tar.gz -C /usr/local/tomcat --strip-components=1 \
-    && rm /tmp/tomcat.tar.gz \
-    && chown -R tomcat:tomcat /usr/local/tomcat
-ENV CATALINA_HOME=/usr/local/tomcat
-ENV PATH="$CATALINA_HOME/bin:${PATH}"
-
-# Create TrackStudio data directories with proper permissions
-RUN mkdir -p /data/trackstudio/upload /data/trackstudio/index \
-    && chown -R tomcat:tomcat /data/trackstudio
-
-# Copy WAR built in the builder stage
-COPY --from=builder --chown=tomcat:tomcat /app/build/libs/TrackStudio.war $CATALINA_HOME/webapps/
-
-# Set JVM encoding for UTF-8 support
-ENV CATALINA_OPTS="-Dfile.encoding=UTF-8"
-
-# Switch to non-root user
+WORKDIR $CATALINA_HOME
 USER tomcat
-
 EXPOSE 8080
 CMD ["catalina.sh", "run"]

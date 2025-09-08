@@ -99,7 +99,7 @@ docker compose up -d --build
 
 ## 🚀 Открыть приложение
 
--   URL: [http://localhost:8080/TrackStudio](http://localhost:8080/TrackStudio)
+-   URL: [http://localhost:8080](http://localhost:8080)
     
 -   Логин по умолчанию: **root**
     

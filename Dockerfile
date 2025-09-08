@@ -1,4 +1,6 @@
-﻿#############################
+﻿# syntax=docker/dockerfile:1.7-labs
+
+#############################
 # Stage 1: Build with Gradle
 #############################
 FROM gradle:9.0.0-jdk21 AS builder

@@ -143,7 +143,7 @@ docker compose logs -f trackstudio
     
 -   **Tomcat** — контейнер сервлетов для веб-приложения
     
--   **TrackStudio WAR** — разворачивается в Tomcat и доступен по пути `/TrackStudio`
+-   **TrackStudio WAR** — разворачивается в Tomcat
     
 
 ----------
@@ -173,7 +173,7 @@ docker compose logs -f trackstudio
 2.  Проверьте, что `migrator` завершил выполнение без ошибок:
     
 	 `docker compose logs -f migrator`
-3.  Откройте в браузере: [http://localhost:8080/TrackStudio](http://localhost:8080/TrackStudio)
+3.  Откройте в браузере: [http://localhost:8080](http://localhost:8080)
     
 
 ----------
@@ -181,7 +181,7 @@ docker compose logs -f trackstudio
 ## 🩺 Траблшутинг
 
 -   **Порт 8080 занят.**  
-    Измените публикацию порта в `docker-compose.yml` (например, `8081:8080`) и откройте `http://localhost:8081/TrackStudio`.
+    Измените публикацию порта в `docker-compose.yml` (например, `8081:8080`) и откройте `http://localhost:8081`.
     
 -   **Не проходят миграции (Liquibase).**  
      Проверьте логи `migrator`:
@@ -200,7 +200,7 @@ docker compose logs -f trackstudio
     Остановите и удалите тома БД:
     ```
     docker compose down -v
-    docker compose up -d
+    docker compose up -d --build
     ```
     
 

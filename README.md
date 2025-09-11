@@ -1,6 +1,7 @@
 # TrackStudio Enterprise 6 (Open Source)
 
 TrackStudio — это классический трекер задач уровня Enterprise с иерархией задач и пользователей, настраиваемыми рабочими процессами, ролями и правами, SLA-правилами и мощным механизмом уведомлений. Поддерживает сотни тысяч задач и десятки тысяч пользователей на одном сервере.
+<br>
 <img alt="image" src="https://github.com/user-attachments/assets/afc4dd7a-5656-42c0-9ca1-d9352c04e57b" />
 
 
@@ -8,7 +9,7 @@ TrackStudio — это классический трекер задач уров
     
 -   **Стек:** Java 21 / Tomcat 9 / PostgreSQL 17 / Hibernate 5.6 / Lucene / Liquibase / Gradle 9 / Docker & Docker Compose
 
-Подробная документация и руководства будут выкладываться в [вики](https://github.com/maximkr/TrackStudio/wiki)
+Подробная документация и руководства будут выкладываться в [вики](https://github.com/maximkr/TrackStudio/wiki). Документация (устаревшая) по TrackStudio 5.5 (коммерческой) находится в папке legacyManual/index.html. 
 
 ## ✓ Обзор функций TrackStudio Enterprise
 
@@ -107,8 +108,6 @@ docker compose up -d --build
     
 -   Пароль по умолчанию: **root**
     
-Документация (устаревшая) по TrackStudio 5.5 (коммерческой) находится в папке legacyManual/index.html. 
-
 > После первого входа **настоятельно рекомендуется** сменить пароль администратора.
 
 ----------

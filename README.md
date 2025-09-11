@@ -2,7 +2,8 @@
 
 TrackStudio — это классический трекер задач уровня Enterprise с иерархией задач и пользователей, настраиваемыми рабочими процессами, ролями и правами, SLA-правилами и мощным механизмом уведомлений. Поддерживает сотни тысяч задач и десятки тысяч пользователей на одном сервере.
 
-<img alt="image" src="https://github.com/user-attachments/assets/afc4dd7a-5656-42c0-9ca1-d9352c04e57b" />
+<img alt="image" src="https://github.com/user-attachments/assets/dd0be622-0923-4c37-b643-fbf9a22a0084" />
+
 
 -   **Лицензия:** Apache License 2.0
     

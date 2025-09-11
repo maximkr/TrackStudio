@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>Rus &gt; Руководство администратора &gt; Как импортировать в TrackStudio ваши данные</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="" />
+   <meta name="description" content="Есть много способов перенести ваши данные в TrackStudio. Самый простой из них - импортировать их в формате CSV. Как правило, в развитых системах управления задачами есть..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        height:auto; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { background: #2C5D88; min-height: 59px }             
+      #idheader h1 { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; font-size: 80%; text-decoration: none }      
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em }	  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "howto_import_csv.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1"><span class="f_Heading1">Как импортировать в TrackStudio ваши данные</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:bottom">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?howto_import_csv.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="rus.html">Rus</a> &gt; <a href="administraton_guide.html">Руководство администратора</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1"><span class="f_Heading1">Как импортировать в TrackStudio ваши данные</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="user_logon_restriction.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="administraton_guide.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="josso.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Есть много способов перенести ваши данные в TrackStudio. Самый простой из них - импортировать их в формате </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; text-decoration: underline;"><a href="http://ru.wikipedia.org/wiki/CSV" class="weblink">CSV</a></span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">. Как правило, в развитых системах управления задачами есть возможность выгрузить данные в этом формате. Тем более она есть в MS Excel (если по какой-то причине вы вели учет задач в нем).</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Мы постарались максимально упростить и облегчить для вас процесс переноса данных. По сути, главное и самое сложное, что вам предстоит сделать - это указать, какому полю в ваших данных соответствует какое поле или параметр в TrackStudio. Для этого у нас есть файл csvdefault.properties.</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Допустим, вы хотите импортировать задачи у вас есть файл mytasks.csv с данными:</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Code"><span class="f_Code">&quot;Состояние&quot;;&quot;Отправитель&quot;;&quot;Исполнитель&quot;;&quot;Срок&quot;;&quot;Дата создания&quot;;&quot;Важность&quot;;&quot;Заголовок&quot;;&quot;Описание&quot;;&quot;Категория&quot;</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Создайте файл mytasks.properties и в нем опишите соответствия ваших полей полям TrackStudio:</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Code"><span class="f_Code">CATEGORY=Категория</span></p>
+<p class="p_Code"><span class="f_Code">TASK_STATE=Состояние</span></p>
+<p class="p_Code"><span class="f_Code">SUBMITTER=Отправитель</span></p>
+<p class="p_Code"><span class="f_Code">HANDLER=Исполнитель</span></p>
+<p class="p_Code"><span class="f_Code">DEADLINE=Срок</span></p>
+<p class="p_Code"><span class="f_Code">SUBMIT_DATE=Дата создания</span></p>
+<p class="p_Code"><span class="f_Code">PRIORITY=Важность</span></p>
+<p class="p_Code"><span class="f_Code">NAME=Заголовок</span></p>
+<p class="p_Code"><span class="f_Code">DESCRIPTION=Описание</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">В вашем экземпляре TrackStudio уже должны быть настроены соответствующие процессы и категории, заведены нужные пользователи и т.п. Пользователей, впрочем, можно так же импортировать из CSV, но доступ к проекту им придется задавать вручную.</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Включите интеграцию с SOAP в Server Manager, либо укажите в файле trackstudio.properties </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">trackstudio.soap=true</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">. Запустите ваш экземпляр TrackStudio (если он еще не запущен). Затем запустите утилиту для импорта CSVImportManager (csvimport.exe для системы Windows). Эту программу можно </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; text-decoration: underline;"><a href="http://ec2host.trackstudio.com:8080/DownloadManager/UserAction.do?method=loginPage" class="weblink">скачать с нашего сайта</a></span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> после регистрации.</span></p>
+<p style="background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p style="background: #ffffff;"><img alt="csvimport1" width="700" height="500" style="margin:0;width:700px;height:500px;border:none" src="csvimport1.png"/></p>
+<p style="background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">После запуска программа предложит вам ввести URL службы SOAP вашего экземпляра TrackStudio. К обычному URL TrackStudio, нужно добавить </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">/services/</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">. Введите также данные учетной записи пользователя, от которого будет осуществляться импорт. Не обязательно, чтобы это был root. Затем нажмите кнопку &quot;Тестировать соединение&quot;. Программа проверит, доступен ли SOAP и правильно ли указаны данные учетной записи. Если все правильно, можно нажать кнопку &quot;</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Далее</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&quot;</span></p>
+<p style="background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p style="background: #ffffff;"><img alt="csvimport2" width="700" height="500" style="margin:0;width:700px;height:500px;border:none" src="csvimport2.png"/></p>
+<p style="background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Выберите файл с заголовками (тот самый .properties) и файл с данными. Выберите нужную кодировку и разделитель. Обратите внимание на формат указанных </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">в файле</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> дат. После нажатия на кнопку </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">&quot;Далее&quot;</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> вы перейдете к предварительному просмотру данных</span></p>
+<p style="background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p style="background: #ffffff;"><img alt="csvimport5" width="700" height="500" style="margin:0;width:700px;height:500px;border:none" src="csvimport5.png"/></p>
+<p style="background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">В таблице предпросмотра вы можете оценить, насколько утилита верно поняла, что, в каком виде и куда вы хотите импортировать. Если в этих данных что-то не так - можно вернуться на шаг назад. Например, поменять формат даты или кодировку. Или исправить файл мэппинга, или файл с данными.</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Если все правильно - нажмите кнопку &quot;</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Далее</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&quot;</span></p>
+<p style="background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p style="background: #ffffff;"><img alt="csvimport6" width="700" height="500" style="margin:0;width:700px;height:500px;border:none" src="csvimport6.png"/></p>
+<p style="background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Так как задачи в TrackStudio построены в иерархию, у каждой из них должна быть указана родительская задача. Это можно сделать в самом файле с данными, указав TASK_PARENT в виде номера родительской задачи, либо в файле мэппинга, указав TASK_PARENT=&quot;#23&quot;, например. Также можно выбрать &quot;точку привязки в диалоговом окне, представленном на снимке выше. В строке поиска нужно указать название задачи, которая станет родительской для импортируемых. Если в файле данных указаны номера задач, соответствующие полю TASK_NUMBER, и такие задачи уже есть в системе, утилита может вместо создания новых задач обновить параметры существующих.</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Затем, после выбора &quot;точки привязки&quot;, нажмите кнопку &quot;</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Далее</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&quot; и начнется импорт данных.</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Некоторые поля в TrackStudio являются обязательными. Например, очевидно, что нельзя создать задачау без категории или без названия. Однако если вы хотите создать все задачи с одной категорией - не обязательно добавлять соответствующую колонку в файл csv. В нашей утилите импорта работают подстановки - если колонки в файле с данными нет, но в мэппинге указано соответствие типа</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Code"><span class="f_Code">CATEGORY=&quot;Задача&quot;</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">То утилита подставит всем импортируемым задачам категорию &quot;Задача&quot;, если, конечно, такая есть в настройках TrackStudio. Аналогичным образом работают подстановки для других полей. Обязательно заключите значение подстановки в кавычки.</span></p>
+<p style="background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+  
+
+  $(document).ready(function(){
+    $(window).bind('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+	$('.hmanchor').css('padding-top', y+20);
+      }
+    });
+    
+    $(window).resize(); //trigger event for initially small displays
+  });
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,712 @@
+﻿<!DOCTYPE html>
+<html><head>
+   <title>TrackStudio</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="robots" content="noindex,follow" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+ 
+   <!-- This line includes the general project style sheet (not required) -->
+   <link type="text/css" href="default.css" rel="stylesheet" />
+
+   <!-- This block defines the styles of the TOC headings, change them as needed -->
+   <style type="text/css">
+       body { font-size: 1em }
+       .heading1 { color: #000; text-decoration: none; }
+       .heading2 { color: #000; text-decoration: none; }
+       .heading3 { color: #000; text-decoration: none; }
+       .heading4 { color: #000; text-decoration: none; }
+       .heading5 { color: #000; text-decoration: none; }
+       .heading6 { color: #000; text-decoration: none; }
+
+       .hilight1 { color: #FFFFFF; background: #2C5D88; text-decoration: none; }
+       .hilight2 { color: #FFFFFF; background: #2C5D88; text-decoration: none; }
+       .hilight3 { color: #FFFFFF; background: #2C5D88; text-decoration: none; }
+       .hilight4 { color: #FFFFFF; background: #2C5D88; text-decoration: none; }
+       .hilight5 { color: #FFFFFF; background: #2C5D88; text-decoration: none; }
+       .hilight6 { color: #FFFFFF; background: #2C5D88; text-decoration: none; }
+
+       /* TOC LIST CSS */
+       #toc    { padding:0; margin:0 }
+       #toc li { margin-top:2px; margin-left:0; padding:1px }
+       #toc ul { padding-left:0; margin-left:0px }       
+       /* TOC LIST CSS */
+   </style>
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript">
+   $(document).ready(function(){
+   	   var hiTest = /^hilight/im,
+			parentScope = (parent.hmNavigationFrame);
+		if (parentScope) parent.currentNav("toc");
+		$("a[class^='heading']").on("click",function(event){
+			var doSwipe = (hiTest.test($(this).children("span").first().attr("class")) || false || (parentScope && !parent.hmBrowser.nonDeskTouch));
+			if (doSwipe && parentScope) {
+			window.parent.showNav("toggle");
+			}
+			});
+     });
+   </script>
+      <script type="text/javascript">
+     var parentScope = (parent.hmNavigationFrame);
+     if (!parentScope) {
+		      var s = document.createElement("script");
+		      s.setAttribute("type","text/javascript");
+		      s.setAttribute("src", "helpman_navigation.js");
+		      document.getElementsByTagName("head")[0].appendChild(s);
+	    }
+     else {
+       if (initialtocstate != "expandall") parent.hmAddCss(document, "#toc li ul { display: none }");
+     }
+     function loadicons() { var icons = new Array(); for (i=0; i<arguments.length; i++) { icons[i] = new Image(); icons[i].src = arguments[i]; } }
+     function loadtoc() { if (parentScope) parent.loadstate(document.getElementById("toc")); else loadstate(document.getElementById("toc")); }
+     function savetoc() { if (parentScope) parent.savestate(document.getElementById("toc")); else savestate(document.getElementById("toc")); }
+     function clicked(node, event) { deselect(); if (parentScope) parent.hmNodeClicked(node, event); else hmNodeClicked(node, event); }
+     function dblclicked(node) { if (parentScope) parent.hmNodeDblclicked(node); else hmNodeDblclicked(node); }
+     function deselect() { if (window.getSelection) window.getSelection().removeAllRanges(); else if (document.selection) document.selection.empty(); }
+     $(document).ready(function(){
+       loadtoc();
+       $(window).onunload = savetoc;
+     });
+   </script>
+</head>
+<body>
+<ul id="toc" style="list-style-type:none;display:block;padding-left:0">
+<li class="heading1" id="i1" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading1" id="a1" href="documentationeng.html" target="hmcontent"><span class="heading1" id="s1" ondblclick="return dblclicked(this)">DocumentationEng</span></a>
+<ul id="ul1" style="list-style-type:none">
+<li class="heading2" id="i1.1" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading2" id="a1.1" href="installation-guide.html" target="hmcontent"><span class="heading2" id="s1.1" ondblclick="return dblclicked(this)">Installation Guide</span></a>
+<ul id="ul1.1" style="list-style-type:none">
+<li class="heading3" id="i1.1.1" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.1.1" href="updating-trackstudio.html" target="hmcontent"><span class="heading3" id="s1.1.1" ondblclick="return dblclicked(this)">Updating TrackStudio</span></a>
+<ul id="ul1.1.1" style="list-style-type:none">
+<li class="heading4" id="i1.1.1.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.1.1.1" href="upgrade-from-version-4_0_x-to-.html" target="hmcontent"><span class="heading4" id="s1.1.1.1">Upgrade from version 4.0.x to 5.0.x</span></a>
+</li>
+<li class="heading4" id="i1.1.1.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.1.1.2" href="upgrading-the-minor-versions-(.html" target="hmcontent"><span class="heading4" id="s1.1.1.2">Upgrading the minor versions (4.0.x)</span></a>
+</li>
+<li class="heading4" id="i1.1.1.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.1.1.3" href="upgrade-from-version-3_5.html" target="hmcontent"><span class="heading4" id="s1.1.1.3">Upgrade from version 3.5</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i1.1.2" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.1.2" href="installing-on-windows.html" target="hmcontent"><span class="heading3" id="s1.1.2" ondblclick="return dblclicked(this)">Installing on Windows</span></a>
+<ul id="ul1.1.2" style="list-style-type:none">
+<li class="heading4" id="i1.1.2.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.1.2.1" href="installing-trackstudio-standal.html" target="hmcontent"><span class="heading4" id="s1.1.2.1">Installing TrackStudio Standalone in Windows</span></a>
+</li>
+<li class="heading4" id="i1.1.2.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.1.2.2" href="installing-trackstudio-war-in-.html" target="hmcontent"><span class="heading4" id="s1.1.2.2">Installing TrackStudio War in Windows</span></a>
+</li>
+<li class="heading4" id="i1.1.2.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.1.2.3" href="starting-trackstudio-as-a-wind.html" target="hmcontent"><span class="heading4" id="s1.1.2.3">Starting TrackStudio as a Windows service</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i1.1.3" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.1.3" href="installing-on-linux.html" target="hmcontent"><span class="heading3" id="s1.1.3" ondblclick="return dblclicked(this)">Installing on Linux</span></a>
+<ul id="ul1.1.3" style="list-style-type:none">
+<li class="heading4" id="i1.1.3.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.1.3.1" href="installing-trackstudio-standa2.html" target="hmcontent"><span class="heading4" id="s1.1.3.1">Installing TrackStudio Standalone in Linux</span></a>
+</li>
+<li class="heading4" id="i1.1.3.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.1.3.2" href="installing-trackstudio-war-in2.html" target="hmcontent"><span class="heading4" id="s1.1.3.2">Installing TrackStudio WAR in Linux</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i1.1.4" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.1.4" href="connecting-to-a-database.html" target="hmcontent"><span class="heading3" id="s1.1.4" ondblclick="return dblclicked(this)">Connecting to a Database</span></a>
+<ul id="ul1.1.4" style="list-style-type:none">
+<li class="heading4" id="i1.1.4.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.1.4.1" href="connecting-to-hsql.html" target="hmcontent"><span class="heading4" id="s1.1.4.1">Connecting to HSQL</span></a>
+</li>
+<li class="heading4" id="i1.1.4.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.1.4.2" href="connecting-to-postgresql.html" target="hmcontent"><span class="heading4" id="s1.1.4.2">Connecting to PostgreSQL</span></a>
+</li>
+<li class="heading4" id="i1.1.4.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.1.4.3" href="connecting-to-ms-sql-server.html" target="hmcontent"><span class="heading4" id="s1.1.4.3">Connecting to MS SQL Server</span></a>
+</li>
+<li class="heading4" id="i1.1.4.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.1.4.4" href="connecting-to-oracle.html" target="hmcontent"><span class="heading4" id="s1.1.4.4">Connecting to Oracle</span></a>
+</li>
+<li class="heading4" id="i1.1.4.5" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.1.4.5" href="connecting-to-db2.html" target="hmcontent"><span class="heading4" id="s1.1.4.5">Connecting to DB2</span></a>
+</li>
+<li class="heading4" id="i1.1.4.6" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.1.4.6" href="connecting-to-firebird.html" target="hmcontent"><span class="heading4" id="s1.1.4.6">Connecting to Firebird</span></a>
+</li>
+<li class="heading4" id="i1.1.4.7" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.1.4.7" href="using-a-console-app-dbtool-for.html" target="hmcontent"><span class="heading4" id="s1.1.4.7">Using a console app dbtool for exporting and importing a database</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i1.1.5" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.1.5" href="installing-ssl-certificate.html" target="hmcontent"><span class="heading3" id="s1.1.5">Installing SSL Certificate</span></a>
+</li>
+<li class="heading3" id="i1.1.6" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.1.6" href="configuring-ntlm-authenticatio.html" target="hmcontent"><span class="heading3" id="s1.1.6">Configuring NTLM Authentication</span></a>
+</li>
+<li class="heading3" id="i1.1.7" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.1.7" href="creation-and-initialization-of.html" target="hmcontent"><span class="heading3" id="s1.1.7">Creation and initialization of database in PostgreSQL</span></a>
+</li>
+</ul>
+</li>
+<li class="heading2" id="i1.2" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading2" id="a1.2" href="administrators-guide.html" target="hmcontent"><span class="heading2" id="s1.2" ondblclick="return dblclicked(this)">Administrator's Guide</span></a>
+<ul id="ul1.2" style="list-style-type:none">
+<li class="heading3" id="i1.2.1" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.2.1" href="how-to-define-and-configure-th.html" target="hmcontent"><span class="heading3" id="s1.2.1" ondblclick="return dblclicked(this)">How to define and configure the categories of tasks?</span></a>
+<ul id="ul1.2.1" style="list-style-type:none">
+<li class="heading4" id="i1.2.1.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.2.1.1" href="how-to-configure-properties-of.html" target="hmcontent"><span class="heading4" id="s1.2.1.1">How to configure properties of the task with a particular category</span></a>
+</li>
+<li class="heading4" id="i1.2.1.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.2.1.2" href="how-to-configure-relations-bet.html" target="hmcontent"><span class="heading4" id="s1.2.1.2">How to configure relations between categories</span></a>
+</li>
+<li class="heading4" id="i1.2.1.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.2.1.3" href="how-to-configure-user-rules-fo.html" target="hmcontent"><span class="heading4" id="s1.2.1.3">How to configure user rules for tasks with a particular category</span></a>
+</li>
+<li class="heading4" id="i1.2.1.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.2.1.4" href="how-to-assign-triggers-for-cre.html" target="hmcontent"><span class="heading4" id="s1.2.1.4">How to assign triggers for creating and editing the tasks</span></a>
+</li>
+<li class="heading4" id="i1.2.1.5" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.2.1.5" href="how-to-set-the-specimen-for-fo.html" target="hmcontent"><span class="heading4" id="s1.2.1.5">How to set the specimen for formatting of Task</span></a>
+</li>
+<li class="heading4" id="i1.2.1.6" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.2.1.6" href="how-to-temporarily-disable-unu.html" target="hmcontent"><span class="heading4" id="s1.2.1.6">How to temporarily disable unused categories</span></a>
+</li>
+<li class="heading4" id="i1.2.1.7" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.2.1.7" href="how-to-copy-a-category.html" target="hmcontent"><span class="heading4" id="s1.2.1.7">How to Copy a Category</span></a>
+</li>
+<li class="heading4" id="i1.2.1.8" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.2.1.8" href="how-to-delete-an-unused-catego.html" target="hmcontent"><span class="heading4" id="s1.2.1.8">How to delete an unused category</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i1.2.2" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.2.2" href="how-to-define-and-configure-t2.html" target="hmcontent"><span class="heading3" id="s1.2.2" ondblclick="return dblclicked(this)">How to define and configure the workflows</span></a>
+<ul id="ul1.2.2" style="list-style-type:none">
+<li class="heading4" id="i1.2.2.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.2.2.1" href="how-to-configure-states-set-fo.html" target="hmcontent"><span class="heading4" id="s1.2.2.1">How to configure states set for the workflow</span></a>
+</li>
+<li class="heading4" id="i1.2.2.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.2.2.2" href="how-to-configure-the-set-of-pr.html" target="hmcontent"><span class="heading4" id="s1.2.2.2">How to configure the set of priorities for a workflow</span></a>
+</li>
+<li class="heading4" id="i1.2.2.3" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.2.2.3" href="how-to-configure-the-list-of-o.html" target="hmcontent"><span class="heading4" id="s1.2.2.3" ondblclick="return dblclicked(this)">How to configure the list of operations with task</span></a>
+<ul id="ul1.2.2.3" style="list-style-type:none">
+<li class="heading5" id="i1.2.2.3.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a1.2.2.3.1" href="how-to-configure-permissions-f.html" target="hmcontent"><span class="heading5" id="s1.2.2.3.1">How to configure permissions for users in operations</span></a>
+</li>
+<li class="heading5" id="i1.2.2.3.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a1.2.2.3.2" href="configuring-udf-permissions-fo.html" target="hmcontent"><span class="heading5" id="s1.2.2.3.2">Configuring UDF Permissions for custom fields in operations</span></a>
+</li>
+<li class="heading5" id="i1.2.2.3.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a1.2.2.3.3" href="how-to-configure-triggers-for-.html" target="hmcontent"><span class="heading5" id="s1.2.2.3.3">How to configure triggers for operations</span></a>
+</li>
+<li class="heading5" id="i1.2.2.3.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a1.2.2.3.4" href="how-to-define-resolutions-set.html" target="hmcontent"><span class="heading5" id="s1.2.2.3.4">How to define resolutions set</span></a>
+</li>
+</ul>
+</li>
+<li class="heading4" id="i1.2.2.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.2.2.4" href="how-to-configure-custom-fields.html" target="hmcontent"><span class="heading4" id="s1.2.2.4">How to configure custom fields for the workflow</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i1.2.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.2.3" href="who-is-assignee-and-why-is-he-.html" target="hmcontent"><span class="heading3" id="s1.2.3">Who is assignee and why is he required?</span></a>
+</li>
+<li class="heading3" id="i1.2.4" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.2.4" href="how-to-manage-roles-of-users.html" target="hmcontent"><span class="heading3" id="s1.2.4" ondblclick="return dblclicked(this)">How to Manage Roles of Users</span></a>
+<ul id="ul1.2.4" style="list-style-type:none">
+<li class="heading4" id="i1.2.4.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.2.4.1" href="how-to-create-a-new-role.html" target="hmcontent"><span class="heading4" id="s1.2.4.1">How to create a new role</span></a>
+</li>
+<li class="heading4" id="i1.2.4.2" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.2.4.2" href="how-to-define-the-roles-and-or.html" target="hmcontent"><span class="heading4" id="s1.2.4.2" ondblclick="return dblclicked(this)">How to define the roles and organize the users into groups</span></a>
+<ul id="ul1.2.4.2" style="list-style-type:none">
+<li class="heading5" id="i1.2.4.2.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a1.2.4.2.1" href="extending-and-overriding-the-r.html" target="hmcontent"><span class="heading5" id="s1.2.4.2.1">Extending and Overriding the Roles</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i1.2.5" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.2.5" href="how-to-track-the-history-of-ch.html" target="hmcontent"><span class="heading3" id="s1.2.5">How to Track the History of Changes in Task Parameters</span></a>
+</li>
+<li class="heading3" id="i1.2.6" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.2.6" href="how-to-change-trackstudio-url.html" target="hmcontent"><span class="heading3" id="s1.2.6">How to change TrackStudio URL</span></a>
+</li>
+<li class="heading3" id="i1.2.7" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.2.7" href="how-to-import-tasks-from-e-mai.html" target="hmcontent"><span class="heading3" id="s1.2.7">How to import tasks from e-mails sent by unregistered users</span></a>
+</li>
+<li class="heading3" id="i1.2.8" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.2.8" href="security-settings.html" target="hmcontent"><span class="heading3" id="s1.2.8">Security Settings</span></a>
+</li>
+<li class="heading3" id="i1.2.9" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.2.9" href="time-tracking-in-trackstudio.html" target="hmcontent"><span class="heading3" id="s1.2.9">Time Tracking in TrackStudio</span></a>
+</li>
+</ul>
+</li>
+<li class="heading2" id="i1.3" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading2" id="a1.3" href="users-guide.html" target="hmcontent"><span class="heading2" id="s1.3" ondblclick="return dblclicked(this)">User's Guide</span></a>
+<ul id="ul1.3" style="list-style-type:none">
+<li class="heading3" id="i1.3.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.3.1" href="project-overview.html" target="hmcontent"><span class="heading3" id="s1.3.1">Project Overview</span></a>
+</li>
+<li class="heading3" id="i1.3.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.3.2" href="basic-definitions-in-trackstud.html" target="hmcontent"><span class="heading3" id="s1.3.2">Basic Definitions in TrackStudio</span></a>
+</li>
+<li class="heading3" id="i1.3.3" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.3.3" href="administrators-manual.html" target="hmcontent"><span class="heading3" id="s1.3.3" ondblclick="return dblclicked(this)">Administrator's Manual</span></a>
+<ul id="ul1.3.3" style="list-style-type:none">
+<li class="heading4" id="i1.3.3.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.3.3.1" href="how-to-allow-independent-regis.html" target="hmcontent"><span class="heading4" id="s1.3.3.1">How to Allow Independent Registration of Users</span></a>
+</li>
+<li class="heading4" id="i1.3.3.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.3.3.2" href="how-to-create-new-category.html" target="hmcontent"><span class="heading4" id="s1.3.3.2">How to Create New Category</span></a>
+</li>
+<li class="heading4" id="i1.3.3.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.3.3.3" href="how-to-divide-users-into-group.html" target="hmcontent"><span class="heading4" id="s1.3.3.3">How to Divide Users into Groups</span></a>
+</li>
+<li class="heading4" id="i1.3.3.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.3.3.4" href="how-to-change-the-states-list-.html" target="hmcontent"><span class="heading4" id="s1.3.3.4">How to change the States List in a Task</span></a>
+</li>
+<li class="heading4" id="i1.3.3.5" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.3.3.5" href="how-to-filter-the-tasks.html" target="hmcontent"><span class="heading4" id="s1.3.3.5">How to Filter the Tasks</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i1.3.4" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.3.4" href="user-manual.html" target="hmcontent"><span class="heading3" id="s1.3.4" ondblclick="return dblclicked(this)">User Manual</span></a>
+<ul id="ul1.3.4" style="list-style-type:none">
+<li class="heading4" id="i1.3.4.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.3.4.1" href="how-to-create-new-user.html" target="hmcontent"><span class="heading4" id="s1.3.4.1">How to Create New User</span></a>
+</li>
+<li class="heading4" id="i1.3.4.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.3.4.2" href="how-to-filter-the-tasks-list.html" target="hmcontent"><span class="heading4" id="s1.3.4.2">How to Filter the Tasks List</span></a>
+</li>
+<li class="heading4" id="i1.3.4.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.3.4.3" href="how-to-create-project-or-versi.html" target="hmcontent"><span class="heading4" id="s1.3.4.3">How to Create Project or Version</span></a>
+</li>
+<li class="heading4" id="i1.3.4.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.3.4.4" href="how-to-create-list-of-requirem.html" target="hmcontent"><span class="heading4" id="s1.3.4.4">How to Create List of Requirements/ Bugs (Errors)/ Test Documentation/ Completions</span></a>
+</li>
+<li class="heading4" id="i1.3.4.5" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.3.4.5" href="how-to-create-requirement.html" target="hmcontent"><span class="heading4" id="s1.3.4.5">How to Create Requirement</span></a>
+</li>
+<li class="heading4" id="i1.3.4.6" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.3.4.6" href="how-to-change-the-state-of-tas.html" target="hmcontent"><span class="heading4" id="s1.3.4.6">How to Change the State of Task, Assignee, and Deadlines etc</span></a>
+</li>
+<li class="heading4" id="i1.3.4.7" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.3.4.7" href="how-to-indicate-for-testing-wh.html" target="hmcontent"><span class="heading4" id="s1.3.4.7">How to indicate for testing which Requirement the Test Case is meant</span></a>
+</li>
+<li class="heading4" id="i1.3.4.8" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.3.4.8" href="how-to-indicate-which-test-cas.html" target="hmcontent"><span class="heading4" id="s1.3.4.8">How to indicate which Test Case is to be used for Testing the Requirement</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="heading2" id="i1.4" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading2" id="a1.4" href="developers-guide.html" target="hmcontent"><span class="heading2" id="s1.4" ondblclick="return dblclicked(this)">Developer's Guide</span></a>
+<ul id="ul1.4" style="list-style-type:none">
+<li class="heading3" id="i1.4.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.4.1" href="how-to-build-project-from-mave.html" target="hmcontent"><span class="heading3" id="s1.4.1">How to build project from maven template</span></a>
+</li>
+<li class="heading3" id="i1.4.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.4.2" href="how-to-write-and-debug-scripts.html" target="hmcontent"><span class="heading3" id="s1.4.2">How to write and debug scripts in IntelliJ IDEA</span></a>
+</li>
+<li class="heading3" id="i1.4.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.4.3" href="how-to-use-soap-integration-in.html" target="hmcontent"><span class="heading3" id="s1.4.3">How to use SOAP integration in TrackStudio</span></a>
+</li>
+<li class="heading3" id="i1.4.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.4.4" href="compiling-trackstudio-from-sou.html" target="hmcontent"><span class="heading3" id="s1.4.4">Compiling TrackStudio from source code</span></a>
+</li>
+<li class="heading3" id="i1.4.5" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.4.5" href="how-to-make-dynamic-list-of-po.html" target="hmcontent"><span class="heading3" id="s1.4.5">How to Make Dynamic List of Possible Values of Custom Field</span></a>
+</li>
+<li class="heading3" id="i1.4.6" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.4.6" href="how-to-make-the-value-of-custo.html" target="hmcontent"><span class="heading3" id="s1.4.6" ondblclick="return dblclicked(this)">How to Make the Value of Custom Field Computable</span></a>
+<ul id="ul1.4.6" style="list-style-type:none">
+<li class="heading4" id="i1.4.6.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.4.6.1" href="date-(calendar).html" target="hmcontent"><span class="heading4" id="s1.4.6.1">Date (Calendar)</span></a>
+</li>
+<li class="heading4" id="i1.4.6.2" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a1.4.6.2" href="integer.html" target="hmcontent"><span class="heading4" id="s1.4.6.2" ondblclick="return dblclicked(this)">Integer</span></a>
+<ul id="ul1.4.6.2" style="list-style-type:none">
+<li class="heading5" id="i1.4.6.2.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a1.4.6.2.1" href="number-of-days-since-task-upda.html" target="hmcontent"><span class="heading5" id="s1.4.6.2.1">Number of days since task update</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i1.4.7" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.4.7" href="how-to-perform-automatic-task-.html" target="hmcontent"><span class="heading3" id="s1.4.7">How to Perform Automatic Task Escalation</span></a>
+</li>
+<li class="heading3" id="i1.4.8" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.4.8" href="how-to-save-the-history-of-cha.html" target="hmcontent"><span class="heading3" id="s1.4.8">How to Save the History of Changes in Task Parameters</span></a>
+</li>
+<li class="heading3" id="i1.4.9" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.4.9" href="how-to-check-data-before-savin.html" target="hmcontent"><span class="heading3" id="s1.4.9">How to check data before saving the task (Before Task Edit Trigger)</span></a>
+</li>
+<li class="heading3" id="i1.4.10" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.4.10" href="how-to-copy-access-control-rul.html" target="hmcontent"><span class="heading3" id="s1.4.10">How to copy access control rules into other project using single button</span></a>
+</li>
+<li class="heading3" id="i1.4.11" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.4.11" href="how-to-import-emails-from-user.html" target="hmcontent"><span class="heading3" id="s1.4.11">How to import emails from users to tasks</span></a>
+</li>
+<li class="heading3" id="i1.4.12" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.4.12" href="how-to-perform-actions-on-mult.html" target="hmcontent"><span class="heading3" id="s1.4.12">How to perform actions on multiple tasks</span></a>
+</li>
+<li class="heading3" id="i1.4.13" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.4.13" href="how-to-use-rest-api.html" target="hmcontent"><span class="heading3" id="s1.4.13">How to use REST API</span></a>
+</li>
+<li class="heading3" id="i1.4.14" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a1.4.14" href="list-of-similar-tasks.html" target="hmcontent"><span class="heading3" id="s1.4.14">List of Similar Tasks</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="heading1" id="i2" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading1" id="a2" href="rus.html" target="hmcontent"><span class="heading1" id="s2" ondblclick="return dblclicked(this)">Rus</span></a>
+<ul id="ul2" style="list-style-type:none">
+<li class="heading2" id="i2.1" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading2" id="a2.1" href="installation_guide.html" target="hmcontent"><span class="heading2" id="s2.1" ondblclick="return dblclicked(this)">Руководство по установке</span></a>
+<ul id="ul2.1" style="list-style-type:none">
+<li class="heading3" id="i2.1.1" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.1.1" href="update_trackstudio.html" target="hmcontent"><span class="heading3" id="s2.1.1" ondblclick="return dblclicked(this)">Обновление TrackStudio</span></a>
+<ul id="ul2.1.1" style="list-style-type:none">
+<li class="heading4" id="i2.1.1.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.1.1" href="update_5_0_x.html" target="hmcontent"><span class="heading4" id="s2.1.1.1">Обновление минорных версий (5.0.x)</span></a>
+</li>
+<li class="heading4" id="i2.1.1.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.1.2" href="update_to_5_0_x.html" target="hmcontent"><span class="heading4" id="s2.1.1.2">Обновление c версии 4.0.x до 5.0.x</span></a>
+</li>
+<li class="heading4" id="i2.1.1.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.1.3" href="update_minor_4_0_x.html" target="hmcontent"><span class="heading4" id="s2.1.1.3">Обновление минорных версий (4.0.x)</span></a>
+</li>
+<li class="heading4" id="i2.1.1.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.1.4" href="update_to_4_0_x.html" target="hmcontent"><span class="heading4" id="s2.1.1.4">Обновление c версии 3.5.x до 4.0.x</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i2.1.2" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.1.2" href="windows_setup.html" target="hmcontent"><span class="heading3" id="s2.1.2" ondblclick="return dblclicked(this)">Установка под Windows</span></a>
+<ul id="ul2.1.2" style="list-style-type:none">
+<li class="heading4" id="i2.1.2.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.2.1" href="windows_setup_sa.html" target="hmcontent"><span class="heading4" id="s2.1.2.1">Установка TrackStudio Standalone под Windows</span></a>
+</li>
+<li class="heading4" id="i2.1.2.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.2.2" href="windows_setup_war.html" target="hmcontent"><span class="heading4" id="s2.1.2.2">Установка WAR-версии TrackStudio под Windows</span></a>
+</li>
+<li class="heading4" id="i2.1.2.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.2.3" href="starting_windows_service.html" target="hmcontent"><span class="heading4" id="s2.1.2.3">Запуск TrackStudio как сервиса Windows</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i2.1.3" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.1.3" href="linux_setup.html" target="hmcontent"><span class="heading3" id="s2.1.3" ondblclick="return dblclicked(this)">Установка под Linux</span></a>
+<ul id="ul2.1.3" style="list-style-type:none">
+<li class="heading4" id="i2.1.3.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.3.1" href="linux_x-window.html" target="hmcontent"><span class="heading4" id="s2.1.3.1">Настройка X Window</span></a>
+</li>
+<li class="heading4" id="i2.1.3.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.3.2" href="linux_setup_sa.html" target="hmcontent"><span class="heading4" id="s2.1.3.2">Установка TrackStudio Standalone</span></a>
+</li>
+<li class="heading4" id="i2.1.3.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.3.3" href="linux_setup_console.html" target="hmcontent"><span class="heading4" id="s2.1.3.3">Установка TrackStudio Standalone из консоли</span></a>
+</li>
+<li class="heading4" id="i2.1.3.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.3.4" href="linux_setup_war.html" target="hmcontent"><span class="heading4" id="s2.1.3.4">Установка TrackStudio WAR</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i2.1.4" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.1.4" href="initializing_database.html" target="hmcontent"><span class="heading3" id="s2.1.4" ondblclick="return dblclicked(this)">Создание и настройка базы данных</span></a>
+<ul id="ul2.1.4" style="list-style-type:none">
+<li class="heading4" id="i2.1.4.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.4.1" href="database_postgres.html" target="hmcontent"><span class="heading4" id="s2.1.4.1">Создание и инициализация базы данных под PostgreSQL</span></a>
+</li>
+<li class="heading4" id="i2.1.4.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.4.2" href="database_hsql.html" target="hmcontent"><span class="heading4" id="s2.1.4.2">Создание и инициализация базы данных под HSQL</span></a>
+</li>
+<li class="heading4" id="i2.1.4.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.4.3" href="database_oracle.html" target="hmcontent"><span class="heading4" id="s2.1.4.3">Создание и инициализация базы данных под ORACLE</span></a>
+</li>
+<li class="heading4" id="i2.1.4.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.4.4" href="database_ms-sql-server.html" target="hmcontent"><span class="heading4" id="s2.1.4.4">Создание и инициализация базы данных под MS SQL Server</span></a>
+</li>
+<li class="heading4" id="i2.1.4.5" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.4.5" href="database_mysql.html" target="hmcontent"><span class="heading4" id="s2.1.4.5">Создание и инициализация базы данных под MySQL</span></a>
+</li>
+<li class="heading4" id="i2.1.4.6" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.4.6" href="database_db2.html" target="hmcontent"><span class="heading4" id="s2.1.4.6">Создание и инициализация базы данных под DB2</span></a>
+</li>
+<li class="heading4" id="i2.1.4.7" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.4.7" href="database_firebird.html" target="hmcontent"><span class="heading4" id="s2.1.4.7">Создание и инициализация базы данных под Firebird</span></a>
+</li>
+<li class="heading4" id="i2.1.4.8" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.4.8" href="dbtool.html" target="hmcontent"><span class="heading4" id="s2.1.4.8">Использование консольной утилиты для экспорта, импорта и инициализации данных</span></a>
+</li>
+<li class="heading4" id="i2.1.4.9" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.4.9" href="backup_restore.html" target="hmcontent"><span class="heading4" id="s2.1.4.9">Резервное копирование и восстановление данных</span></a>
+</li>
+<li class="heading4" id="i2.1.4.10" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.1.4.10" href="database_export-import-migration.html" target="hmcontent"><span class="heading4" id="s2.1.4.10">Экспорт и импорт базы данных. Миграция</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i2.1.5" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.1.5" href="configuring_ssl.html" target="hmcontent"><span class="heading3" id="s2.1.5">Установка сертификата SSL</span></a>
+</li>
+<li class="heading3" id="i2.1.6" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.1.6" href="ldap_windows.html" target="hmcontent"><span class="heading3" id="s2.1.6">Настройка авторизации пользователей через MS Active Directory</span></a>
+</li>
+<li class="heading3" id="i2.1.7" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.1.7" href="ntlm_auth.html" target="hmcontent"><span class="heading3" id="s2.1.7">Настройка авторизации через NTLM</span></a>
+</li>
+<li class="heading3" id="i2.1.8" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.1.8" href="x_509_cert.html" target="hmcontent"><span class="heading3" id="s2.1.8">Настройка авторизации по X.509</span></a>
+</li>
+<li class="heading3" id="i2.1.9" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.1.9" href="ldap_linux.html" target="hmcontent"><span class="heading3" id="s2.1.9">Установка OpenLDAP и настройка авторизации пользователей TrackStudio</span></a>
+</li>
+<li class="heading3" id="i2.1.10" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.1.10" href="trackstudio_url.html" target="hmcontent"><span class="heading3" id="s2.1.10">Как сменить URL TrackStudio</span></a>
+</li>
+</ul>
+</li>
+<li class="heading2" id="i2.2" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading2" id="a2.2" href="administraton_guide.html" target="hmcontent"><span class="heading2" id="s2.2" ondblclick="return dblclicked(this)">Руководство администратора</span></a>
+<ul id="ul2.2" style="list-style-type:none">
+<li class="heading3" id="i2.2.1" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.1" href="categories.html" target="hmcontent"><span class="heading3" id="s2.2.1" ondblclick="return dblclicked(this)">Как определить и настроить категории задач</span></a>
+<ul id="ul2.2.1" style="list-style-type:none">
+<li class="heading4" id="i2.2.1.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.1.1" href="manage_categories.html" target="hmcontent"><span class="heading4" id="s2.2.1.1">Как настроить свойства задач с определенной категорией</span></a>
+</li>
+<li class="heading4" id="i2.2.1.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.1.2" href="categories_ralations.html" target="hmcontent"><span class="heading4" id="s2.2.1.2">Как настроить связи между категориями</span></a>
+</li>
+<li class="heading4" id="i2.2.1.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.1.3" href="categories_permissions.html" target="hmcontent"><span class="heading4" id="s2.2.1.3">Как настроить права для пользователей на задачи с определенной категорией</span></a>
+</li>
+<li class="heading4" id="i2.2.1.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.1.4" href="categories_triggers.html" target="hmcontent"><span class="heading4" id="s2.2.1.4">Как привязать триггеры на создание и редактирование задач</span></a>
+</li>
+<li class="heading4" id="i2.2.1.5" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.1.5" href="categories_templates.html" target="hmcontent"><span class="heading4" id="s2.2.1.5">Как задать образец для оформления задачи</span></a>
+</li>
+<li class="heading4" id="i2.2.1.6" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.1.6" href="categories_deactivate.html" target="hmcontent"><span class="heading4" id="s2.2.1.6">Как временно отключить неиспользуемые категории</span></a>
+</li>
+<li class="heading4" id="i2.2.1.7" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.1.7" href="categories_copy.html" target="hmcontent"><span class="heading4" id="s2.2.1.7">Как копировать категорию</span></a>
+</li>
+<li class="heading4" id="i2.2.1.8" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.1.8" href="categories_delete.html" target="hmcontent"><span class="heading4" id="s2.2.1.8">Как удалить неиспользуемую категорию</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i2.2.2" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.2" href="workflow.html" target="hmcontent"><span class="heading3" id="s2.2.2" ondblclick="return dblclicked(this)">Как определить и настроить процессы</span></a>
+<ul id="ul2.2.2" style="list-style-type:none">
+<li class="heading4" id="i2.2.2.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.2.1" href="workflow_states.html" target="hmcontent"><span class="heading4" id="s2.2.2.1">Как настроить набор состояний для процесса</span></a>
+</li>
+<li class="heading4" id="i2.2.2.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.2.2" href="workflow_priorities.html" target="hmcontent"><span class="heading4" id="s2.2.2.2">Как настроить набор приоритетов для процесса</span></a>
+</li>
+<li class="heading4" id="i2.2.2.3" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.2.3" href="workflow_operations.html" target="hmcontent"><span class="heading4" id="s2.2.2.3" ondblclick="return dblclicked(this)">Как настроить список операций с задачей</span></a>
+<ul id="ul2.2.2.3" style="list-style-type:none">
+<li class="heading5" id="i2.2.2.3.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.2.2.3.1" href="workflow_operation_transitions.html" target="hmcontent"><span class="heading5" id="s2.2.2.3.1">Как настроить переходы из одного состояния в другое</span></a>
+</li>
+<li class="heading5" id="i2.2.2.3.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.2.2.3.2" href="workflow_operation_permissions.html" target="hmcontent"><span class="heading5" id="s2.2.2.3.2">Как настроить разрешения для пользователей в операциях</span></a>
+</li>
+<li class="heading5" id="i2.2.2.3.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.2.2.3.3" href="workflow_operation_udf_permissions.html" target="hmcontent"><span class="heading5" id="s2.2.2.3.3">Как настроить разрешения для дополнительных полей в операциях</span></a>
+</li>
+<li class="heading5" id="i2.2.2.3.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.2.2.3.4" href="workflow_operation_triggers.html" target="hmcontent"><span class="heading5" id="s2.2.2.3.4">Как настроить триггеры для операций</span></a>
+</li>
+<li class="heading5" id="i2.2.2.3.5" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.2.2.3.5" href="workflow_operation_resolutions.html" target="hmcontent"><span class="heading5" id="s2.2.2.3.5">Как задать набор резолюций</span></a>
+</li>
+</ul>
+</li>
+<li class="heading4" id="i2.2.2.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.2.4" href="workflow_udf.html" target="hmcontent"><span class="heading4" id="s2.2.2.4">Как настроить дополнительные поля для процесса</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i2.2.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.3" href="howto_use_webdav.html" target="hmcontent"><span class="heading3" id="s2.2.3">Как редактировать приложенные файлы через WebDav.</span></a>
+</li>
+<li class="heading3" id="i2.2.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.4" href="assignee_or_handler.html" target="hmcontent"><span class="heading3" id="s2.2.4">Кто такой ответственный, зачем он нужен и что с ним делать?</span></a>
+</li>
+<li class="heading3" id="i2.2.5" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.5" href="roles.html" target="hmcontent"><span class="heading3" id="s2.2.5" ondblclick="return dblclicked(this)">Как управлять ролями пользователей</span></a>
+<ul id="ul2.2.5" style="list-style-type:none">
+<li class="heading4" id="i2.2.5.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.5.1" href="roles_create.html" target="hmcontent"><span class="heading4" id="s2.2.5.1">Как создать новую роль</span></a>
+</li>
+<li class="heading4" id="i2.2.5.2" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.5.2" href="howto_define_roles_and_groups.html" target="hmcontent"><span class="heading4" id="s2.2.5.2" ondblclick="return dblclicked(this)">Как определить роли в системе и организовать пользователей в группы</span></a>
+<ul id="ul2.2.5.2" style="list-style-type:none">
+<li class="heading5" id="i2.2.5.2.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.2.5.2.1" href="extending_and_overriding_roles.html" target="hmcontent"><span class="heading5" id="s2.2.5.2.1">Расширение и переопределение ролей</span></a>
+</li>
+</ul>
+</li>
+<li class="heading4" id="i2.2.5.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.5.3" href="roles_task_fields.html" target="hmcontent"><span class="heading4" id="s2.2.5.3">Как запретить просмотр или редактирование полей в задачах</span></a>
+</li>
+<li class="heading4" id="i2.2.5.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.5.4" href="roles_rules_user_filds.html" target="hmcontent"><span class="heading4" id="s2.2.5.4">Как запретить просмотр или редактирование полей пользователей</span></a>
+</li>
+<li class="heading4" id="i2.2.5.5" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.5.5" href="roles_actions.html" target="hmcontent"><span class="heading4" id="s2.2.5.5">Как разрешить или запретить пользователю выполнять определенные действия</span></a>
+</li>
+<li class="heading4" id="i2.2.5.6" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.5.6" href="roles_categories_actions.html" target="hmcontent"><span class="heading4" id="s2.2.5.6">Настройка прав на задачи с определенной категорией</span></a>
+</li>
+<li class="heading4" id="i2.2.5.7" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.5.7" href="roles_processes.html" target="hmcontent"><span class="heading4" id="s2.2.5.7">Как настроить права для пользователей на операции и дополнительные поля в процессах</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i2.2.6" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.6" href="howto_make_reports.html" target="hmcontent"><span class="heading3" id="s2.2.6" ondblclick="return dblclicked(this)">Как построить отчеты в TrackStudio</span></a>
+<ul id="ul2.2.6" style="list-style-type:none">
+<li class="heading4" id="i2.2.6.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.6.1" href="list_report.html" target="hmcontent"><span class="heading4" id="s2.2.6.1">Список</span></a>
+</li>
+<li class="heading4" id="i2.2.6.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.6.2" href="timesheet_report.html" target="hmcontent"><span class="heading4" id="s2.2.6.2">Табель</span></a>
+</li>
+<li class="heading4" id="i2.2.6.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.6.3" href="detailed_report.html" target="hmcontent"><span class="heading4" id="s2.2.6.3">Детальный</span></a>
+</li>
+<li class="heading4" id="i2.2.6.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.6.4" href="time_report.html" target="hmcontent"><span class="heading4" id="s2.2.6.4">Отчет о затраченном времени</span></a>
+</li>
+<li class="heading4" id="i2.2.6.5" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.6.5" href="tree_report.html" target="hmcontent"><span class="heading4" id="s2.2.6.5">Отчет о структуре задач</span></a>
+</li>
+<li class="heading4" id="i2.2.6.6" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.6.6" href="distribution_report.html" target="hmcontent"><span class="heading4" id="s2.2.6.6">Распределение</span></a>
+</li>
+<li class="heading4" id="i2.2.6.7" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.6.7" href="gantt_chart.html" target="hmcontent"><span class="heading4" id="s2.2.6.7">Диаграмма Ганта</span></a>
+</li>
+<li class="heading4" id="i2.2.6.8" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.6.8" href="trend_report.html" target="hmcontent"><span class="heading4" id="s2.2.6.8">Тренд</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i2.2.7" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.7" href="custom_fields.html" target="hmcontent"><span class="heading3" id="s2.2.7" ondblclick="return dblclicked(this)">Как добавить свои поля в задачи</span></a>
+<ul id="ul2.2.7" style="list-style-type:none">
+<li class="heading4" id="i2.2.7.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.7.1" href="custom_field_date.html" target="hmcontent"><span class="heading4" id="s2.2.7.1">Дополнительное поле типа Дата</span></a>
+</li>
+<li class="heading4" id="i2.2.7.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.7.2" href="custom_field_string.html" target="hmcontent"><span class="heading4" id="s2.2.7.2">Дополнительное поле типа Строка</span></a>
+</li>
+<li class="heading4" id="i2.2.7.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.7.3" href="custom_field_text.html" target="hmcontent"><span class="heading4" id="s2.2.7.3">Дополнительное поле типа Текст</span></a>
+</li>
+<li class="heading4" id="i2.2.7.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.7.4" href="custom_field_integer.html" target="hmcontent"><span class="heading4" id="s2.2.7.4">Дополнительное поле типа Целое</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i2.2.8" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.8" href="howto_manage_password_settings.html" target="hmcontent"><span class="heading3" id="s2.2.8">Как управлять настройками безопасности</span></a>
+</li>
+<li class="heading3" id="i2.2.9" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.9" href="jes.html" target="hmcontent"><span class="heading3" id="s2.2.9">Как настроить почтовый сервер JES</span></a>
+</li>
+<li class="heading3" id="i2.2.10" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.10" href="howto_notify_users.html" target="hmcontent"><span class="heading3" id="s2.2.10">Как оповещать пользователей об изменениях по e-mail</span></a>
+</li>
+<li class="heading3" id="i2.2.11" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.11" href="howto_import_email.html" target="hmcontent"><span class="heading3" id="s2.2.11">Как импортировать письма от пользователей в задачи</span></a>
+</li>
+<li class="heading3" id="i2.2.12" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.12" href="howto_get_public_access.html" target="hmcontent"><span class="heading3" id="s2.2.12">Как организовать доступ к TrackStudio без регистрации</span></a>
+</li>
+<li class="heading3" id="i2.2.13" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.13" href="howto_disable_users.html" target="hmcontent"><span class="heading3" id="s2.2.13">Как отключить ненужных пользователей</span></a>
+</li>
+<li class="heading3" id="i2.2.14" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.14" href="user_logon_restriction.html" target="hmcontent"><span class="heading3" id="s2.2.14">Как запретить вход в систему определенным группам пользователей</span></a>
+</li>
+<li class="heading3" id="i2.2.15" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.15" href="howto_import_csv.html" target="hmcontent"><span class="heading3" id="s2.2.15">Как импортировать в TrackStudio ваши данные</span></a>
+</li>
+<li class="heading3" id="i2.2.16" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.16" href="josso.html" target="hmcontent"><span class="heading3" id="s2.2.16">Как интегрировать TrackStudio c JOSSO</span></a>
+</li>
+<li class="heading3" id="i2.2.17" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.17" href="crowd.html" target="hmcontent"><span class="heading3" id="s2.2.17">Как интегрировать TrackStudio с Atlassian Crowd</span></a>
+</li>
+<li class="heading3" id="i2.2.18" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.18" href="xmpp.html" target="hmcontent"><span class="heading3" id="s2.2.18">Как настроить уведомления через Jabber/XMPP</span></a>
+</li>
+<li class="heading3" id="i2.2.19" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.19" href="howto_notify_unregistered_users.html" target="hmcontent"><span class="heading3" id="s2.2.19">Как оповещать об изменениях по e-mail незарегистрированных пользователей</span></a>
+</li>
+<li class="heading3" id="i2.2.20" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.20" href="howto_hide_blocks.html" target="hmcontent"><span class="heading3" id="s2.2.20">Как скрыть ненужные блоки со страницы отображения задачи</span></a>
+</li>
+<li class="heading3" id="i2.2.21" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.21" href="jconsole.html" target="hmcontent"><span class="heading3" id="s2.2.21">Мониторинг работы TrackStudio с помощью jconsole</span></a>
+</li>
+<li class="heading3" id="i2.2.22" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.22" href="google_calendar.html" target="hmcontent"><span class="heading3" id="s2.2.22">Как интегрировать TrackStudio c Google Calendar</span></a>
+</li>
+<li class="heading3" id="i2.2.23" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.23" href="localize.html" target="hmcontent"><span class="heading3" id="s2.2.23">Как локализовать интерфейс TrackStudio</span></a>
+</li>
+<li class="heading3" id="i2.2.24" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.24" href="scm.html" target="hmcontent"><span class="heading3" id="s2.2.24" ondblclick="return dblclicked(this)">Как настроить интеграцию с системами управления исходным кодом (SCM)</span></a>
+<ul id="ul2.2.24" style="list-style-type:none">
+<li class="heading4" id="i2.2.24.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.24.1" href="bazaar.html" target="hmcontent"><span class="heading4" id="s2.2.24.1">Как настроить интеграцию с Bazaar</span></a>
+</li>
+<li class="heading4" id="i2.2.24.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.24.2" href="git.html" target="hmcontent"><span class="heading4" id="s2.2.24.2">Как настроить интеграцию с Git</span></a>
+</li>
+<li class="heading4" id="i2.2.24.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.24.3" href="mercurial.html" target="hmcontent"><span class="heading4" id="s2.2.24.3">Как настроить интеграцию с Mercurial</span></a>
+</li>
+<li class="heading4" id="i2.2.24.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.24.4" href="perforce.html" target="hmcontent"><span class="heading4" id="s2.2.24.4">Как настроить интеграцию с Perforce</span></a>
+</li>
+<li class="heading4" id="i2.2.24.5" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.2.24.5" href="svn.html" target="hmcontent"><span class="heading4" id="s2.2.24.5">Как настроить интеграцию с SVN</span></a>
+</li>
+</ul>
+</li>
+<li class="heading3" id="i2.2.25" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.25" href="audit_trail.html" target="hmcontent"><span class="heading3" id="s2.2.25">Как отследить историю изменения параметров задачи</span></a>
+</li>
+<li class="heading3" id="i2.2.26" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.26" href="time_tracking.html" target="hmcontent"><span class="heading3" id="s2.2.26">Как с помощью TrackStudio учитывать рабочее время</span></a>
+</li>
+<li class="heading3" id="i2.2.27" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.27" href="yourkit.html" target="hmcontent"><span class="heading3" id="s2.2.27">Как оценить быстродействие и использование памяти с помощью YourKit</span></a>
+</li>
+<li class="heading3" id="i2.2.28" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.2.28" href="howto_hide_frame.html" target="hmcontent"><span class="heading3" id="s2.2.28">Как скрыть фрейм с деревом задач</span></a>
+</li>
+</ul>
+</li>
+<li class="heading2" id="i2.3" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading2" id="a2.3" href="user_guide.html" target="hmcontent"><span class="heading2" id="s2.3" ondblclick="return dblclicked(this)">Руководство пользователя</span></a>
+<ul id="ul2.3" style="list-style-type:none">
+<li class="heading3" id="i2.3.1" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.3.1" href="requirements-management-overview.html" target="hmcontent"><span class="heading3" id="s2.3.1" ondblclick="return dblclicked(this)">Пример конфигурации &quot;Управление требованиями&quot;</span></a>
+<ul id="ul2.3.1" style="list-style-type:none">
+<li class="heading4" id="i2.3.1.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.3.1.1" href="requirements_managment_config_overview.html" target="hmcontent"><span class="heading4" id="s2.3.1.1">Обзор проекта</span></a>
+</li>
+<li class="heading4" id="i2.3.1.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.3.1.2" href="requirements_managment_definitions.html" target="hmcontent"><span class="heading4" id="s2.3.1.2">Основные понятия TrackStudio</span></a>
+</li>
+<li class="heading4" id="i2.3.1.3" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.3.1.3" href="admin_guide.html" target="hmcontent"><span class="heading4" id="s2.3.1.3" ondblclick="return dblclicked(this)">Руководство администратора</span></a>
+<ul id="ul2.3.1.3" style="list-style-type:none">
+<li class="heading5" id="i2.3.1.3.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.3.1.3.1" href="admin_guide_howto_change_status_list.html" target="hmcontent"><span class="heading5" id="s2.3.1.3.1">Как изменить список состояний у задачи</span></a>
+</li>
+<li class="heading5" id="i2.3.1.3.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.3.1.3.2" href="admin_guide_howto_create_roles.html" target="hmcontent"><span class="heading5" id="s2.3.1.3.2">Как разделить пользователей на группы</span></a>
+</li>
+<li class="heading5" id="i2.3.1.3.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.3.1.3.3" href="admin_guide_howto_allow_self_registration.html" target="hmcontent"><span class="heading5" id="s2.3.1.3.3">Как разрешить пользователям регистрироваться самостоятельно</span></a>
+</li>
+<li class="heading5" id="i2.3.1.3.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.3.1.3.4" href="admin_guide_howto_create_category.html" target="hmcontent"><span class="heading5" id="s2.3.1.3.4">Как создать новую категорию</span></a>
+</li>
+<li class="heading5" id="i2.3.1.3.5" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.3.1.3.5" href="admin_guide_howto_filter_tasks.html" target="hmcontent"><span class="heading5" id="s2.3.1.3.5">Как фильтровать задачи</span></a>
+</li>
+</ul>
+</li>
+<li class="heading4" id="i2.3.1.4" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.3.1.4" href="users_guide.html" target="hmcontent"><span class="heading4" id="s2.3.1.4" ondblclick="return dblclicked(this)">Руководство пользователя</span></a>
+<ul id="ul2.3.1.4" style="list-style-type:none">
+<li class="heading5" id="i2.3.1.4.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.3.1.4.1" href="howto_change_task.html" target="hmcontent"><span class="heading5" id="s2.3.1.4.1">Как изменить состояние задачи, ответственного, сроки выполнения и т.п.</span></a>
+</li>
+<li class="heading5" id="i2.3.1.4.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.3.1.4.2" href="how_to_filter_tasks.html" target="hmcontent"><span class="heading5" id="s2.3.1.4.2">Как отфильтровать список задач</span></a>
+</li>
+<li class="heading5" id="i2.3.1.4.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.3.1.4.3" href="howto_create_user.html" target="hmcontent"><span class="heading5" id="s2.3.1.4.3">Как создать нового пользователя</span></a>
+</li>
+<li class="heading5" id="i2.3.1.4.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.3.1.4.4" href="howto_create_project.html" target="hmcontent"><span class="heading5" id="s2.3.1.4.4">Как создать проект или версию</span></a>
+</li>
+<li class="heading5" id="i2.3.1.4.5" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.3.1.4.5" href="howto_create_bug.html" target="hmcontent"><span class="heading5" id="s2.3.1.4.5">Как создать список требований/ошибок/тестовой документации/доработок</span></a>
+</li>
+<li class="heading5" id="i2.3.1.4.6" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.3.1.4.6" href="howto_create_requirement.html" target="hmcontent"><span class="heading5" id="s2.3.1.4.6">Как создать требование</span></a>
+</li>
+<li class="heading5" id="i2.3.1.4.7" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.3.1.4.7" href="chose_test_case.html" target="hmcontent"><span class="heading5" id="s2.3.1.4.7">Как указать какой набор тестовых данных использовать для проверки требования</span></a>
+</li>
+<li class="heading5" id="i2.3.1.4.8" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.3.1.4.8" href="howto_specify_requirement.html" target="hmcontent"><span class="heading5" id="s2.3.1.4.8">Как указать, для проверки какого требования предназначен набор тестовых данных</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="heading2" id="i2.4" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading2" id="a2.4" href="developer_guide.html" target="hmcontent"><span class="heading2" id="s2.4" ondblclick="return dblclicked(this)">Руководство разработчика</span></a>
+<ul id="ul2.4" style="list-style-type:none">
+<li class="heading3" id="i2.4.1" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.4.1" href="scripts_howto.html" target="hmcontent"><span class="heading3" id="s2.4.1" ondblclick="return dblclicked(this)">Как писать скрипты и триггеры в TrackStudio</span></a>
+<ul id="ul2.4.1" style="list-style-type:none">
+<li class="heading4" id="i2.4.1.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.1" href="howto_build_maven_project.html" target="hmcontent"><span class="heading4" id="s2.4.1.1">Как собрать проект из maven шаблона.</span></a>
+</li>
+<li class="heading4" id="i2.4.1.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.2" href="scripts_debug_eclipse.html" target="hmcontent"><span class="heading4" id="s2.4.1.2">Как писать и отлаживать скрипты и триггеры под Eclipse</span></a>
+</li>
+<li class="heading4" id="i2.4.1.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.3" href="scripts_debug_idea.html" target="hmcontent"><span class="heading4" id="s2.4.1.3">Как писать и отлаживать скрипты и триггеры под IntelliJ IDEA</span></a>
+</li>
+<li class="heading4" id="i2.4.1.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.4" href="howto_get_udfvalue.html" target="hmcontent"><span class="heading4" id="s2.4.1.4">Как получить значения дополнительных полей</span></a>
+</li>
+<li class="heading4" id="i2.4.1.5" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.5" href="calculated_custom_field.html" target="hmcontent"><span class="heading4" id="s2.4.1.5" ondblclick="return dblclicked(this)">Как сделать значение дополнительного поля вычисляемым</span></a>
+<ul id="ul2.4.1.5" style="list-style-type:none">
+<li class="heading5" id="i2.4.1.5.1" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.4.1.5.1" href="date.html" target="hmcontent"><span class="heading5" id="s2.4.1.5.1" ondblclick="return dblclicked(this)">Дата (Calendar)</span></a>
+<ul id="ul2.4.1.5.1" style="list-style-type:none">
+<li class="heading6" id="i2.4.1.5.1.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading6" id="a2.4.1.5.1.1" href="start_date.html" target="hmcontent"><span class="heading6" id="s2.4.1.5.1.1">Вычисляем дату и время начала работ по задаче</span></a>
+</li>
+</ul>
+</li>
+<li class="heading5" id="i2.4.1.5.2" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.4.1.5.2" href="multilist.html" target="hmcontent"><span class="heading5" id="s2.4.1.5.2" ondblclick="return dblclicked(this)">Множественный список (Multilist)</span></a>
+<ul id="ul2.4.1.5.2" style="list-style-type:none">
+<li class="heading6" id="i2.4.1.5.2.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading6" id="a2.4.1.5.2.1" href="emails_for_cc_udf.html" target="hmcontent"><span class="heading6" id="s2.4.1.5.2.1">E-mail адреса пользователей для оповещений через CC</span></a>
+</li>
+</ul>
+</li>
+<li class="heading5" id="i2.4.1.5.3" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.4.1.5.3" href="userudf.html" target="hmcontent"><span class="heading5" id="s2.4.1.5.3" ondblclick="return dblclicked(this)">Список Пользователей</span></a>
+<ul id="ul2.4.1.5.3" style="list-style-type:none">
+<li class="heading6" id="i2.4.1.5.3.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading6" id="a2.4.1.5.3.1" href="participants_list.html" target="hmcontent"><span class="heading6" id="s2.4.1.5.3.1">Список участников для задачи</span></a>
+</li>
+</ul>
+</li>
+<li class="heading5" id="i2.4.1.5.4" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.4.1.5.4" href="taskudf.html" target="hmcontent"><span class="heading5" id="s2.4.1.5.4" ondblclick="return dblclicked(this)">Список задач (Task)</span></a>
+<ul id="ul2.4.1.5.4" style="list-style-type:none">
+<li class="heading6" id="i2.4.1.5.4.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading6" id="a2.4.1.5.4.1" href="children_list.html" target="hmcontent"><span class="heading6" id="s2.4.1.5.4.1">Список новых подзадач</span></a>
+</li>
+<li class="heading6" id="i2.4.1.5.4.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading6" id="a2.4.1.5.4.2" href="similar_tasks.html" target="hmcontent"><span class="heading6" id="s2.4.1.5.4.2">Список похожих задач</span></a>
+</li>
+</ul>
+</li>
+<li class="heading5" id="i2.4.1.5.5" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.4.1.5.5" href="linkudf.html" target="hmcontent"><span class="heading5" id="s2.4.1.5.5" ondblclick="return dblclicked(this)">Ссылка (URL)</span></a>
+<ul id="ul2.4.1.5.5" style="list-style-type:none">
+<li class="heading6" id="i2.4.1.5.5.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading6" id="a2.4.1.5.5.1" href="tasks_list_for_user.html" target="hmcontent"><span class="heading6" id="s2.4.1.5.5.1">Список задач пользователя в проекте.</span></a>
+</li>
+</ul>
+</li>
+<li class="heading5" id="i2.4.1.5.6" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.4.1.5.6" href="memoudf.html" target="hmcontent"><span class="heading5" id="s2.4.1.5.6" ondblclick="return dblclicked(this)">Текст (Text)</span></a>
+<ul id="ul2.4.1.5.6" style="list-style-type:none">
+<li class="heading6" id="i2.4.1.5.6.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading6" id="a2.4.1.5.6.1" href="time_spent_for_task.html" target="hmcontent"><span class="heading6" id="s2.4.1.5.6.1">Время, затраченное пользователями на задачу.</span></a>
+</li>
+</ul>
+</li>
+<li class="heading5" id="i2.4.1.5.7" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.4.1.5.7" href="integerudf.html" target="hmcontent"><span class="heading5" id="s2.4.1.5.7" ondblclick="return dblclicked(this)">Целое (Integer)</span></a>
+<ul id="ul2.4.1.5.7" style="list-style-type:none">
+<li class="heading6" id="i2.4.1.5.7.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading6" id="a2.4.1.5.7.1" href="days_since_update.html" target="hmcontent"><span class="heading6" id="s2.4.1.5.7.1">Число дней, прошедших с обновления задачи</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="heading4" id="i2.4.1.6" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.6" href="howto_use_lookup.html" target="hmcontent"><span class="heading4" id="s2.4.1.6" ondblclick="return dblclicked(this)">Как использовать подстановочные (Lookup) скрипты</span></a>
+<ul id="ul2.4.1.6" style="list-style-type:none">
+<li class="heading5" id="i2.4.1.6.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.4.1.6.1" href="script_sprinlist.html" target="hmcontent"><span class="heading5" id="s2.4.1.6.1">Как сделать динамический список возможных значений дополнительного поля</span></a>
+</li>
+</ul>
+</li>
+<li class="heading4" id="i2.4.1.7" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.7" href="subscriptions_schedule.html" target="hmcontent"><span class="heading4" id="s2.4.1.7">Альтернативная реализация механизма рассылки</span></a>
+</li>
+<li class="heading4" id="i2.4.1.8" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.8" href="task_escalation.html" target="hmcontent"><span class="heading4" id="s2.4.1.8">Как сделать автоматическую эскалацию задачи</span></a>
+</li>
+<li class="heading4" id="i2.4.1.9" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.9" href="process_note_operations.html" target="hmcontent"><span class="heading4" id="s2.4.1.9">Как выполнить действия над несколькими задачами</span></a>
+</li>
+<li class="heading4" id="i2.4.1.10" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.10" href="before_trigger_check.html" target="hmcontent"><span class="heading4" id="s2.4.1.10">Как проверить данные перед сохранением задачи (Before Task Edit Trigger)</span></a>
+</li>
+<li class="heading4" id="i2.4.1.11" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.11" href="howto_create_report.html" target="hmcontent"><span class="heading4" id="s2.4.1.11">Как создать свой отчет в TrackStudio.</span></a>
+</li>
+<li class="heading4" id="i2.4.1.12" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.12" href="script_coping_access_rules.html" target="hmcontent"><span class="heading4" id="s2.4.1.12">Копируем права доступа в другой проект одной кнопкой</span></a>
+</li>
+<li class="heading4" id="i2.4.1.13" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.13" href="howto_create_interface.html" target="hmcontent"><span class="heading4" id="s2.4.1.13" ondblclick="return dblclicked(this)">Как быстро и просто сделать свой интерфейс для TrackStudio</span></a>
+<ul id="ul2.4.1.13" style="list-style-type:none">
+<li class="heading5" id="i2.4.1.13.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.4.1.13.1" href="interface_links.html" target="hmcontent"><span class="heading5" id="s2.4.1.13.1">Как организовать переход по ссылкам внутри шаблона</span></a>
+</li>
+<li class="heading5" id="i2.4.1.13.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.4.1.13.2" href="interface_task.html" target="hmcontent"><span class="heading5" id="s2.4.1.13.2">Как вывести на страницу текущую задачу</span></a>
+</li>
+<li class="heading5" id="i2.4.1.13.3" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.4.1.13.3" href="interface_audit.html" target="hmcontent"><span class="heading5" id="s2.4.1.13.3">Как вывести историю операций с задачей</span></a>
+</li>
+<li class="heading5" id="i2.4.1.13.4" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.4.1.13.4" href="interface_create_task.html" target="hmcontent"><span class="heading5" id="s2.4.1.13.4">Как создать новую задачу</span></a>
+</li>
+<li class="heading5" id="i2.4.1.13.5" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.4.1.13.5" href="interface_operation.html" target="hmcontent"><span class="heading5" id="s2.4.1.13.5">Как добавить комментарий</span></a>
+</li>
+</ul>
+</li>
+<li class="heading4" id="i2.4.1.14" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.14" href="howto_change_udf.html" target="hmcontent"><span class="heading4" id="s2.4.1.14">Как изменить значение дополнительного поля в задаче</span></a>
+</li>
+<li class="heading4" id="i2.4.1.15" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.15" href="rest_api.html" target="hmcontent"><span class="heading4" id="s2.4.1.15">Как использовать REST API</span></a>
+</li>
+<li class="heading4" id="i2.4.1.16" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.16" href="soap.html" target="hmcontent"><span class="heading4" id="s2.4.1.16">Как использовать интерфейс SOAP для TrackStudio</span></a>
+</li>
+<li class="heading4" id="i2.4.1.17" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.17" href="scheduler.html" target="hmcontent"><span class="heading4" id="s2.4.1.17" ondblclick="return dblclicked(this)">Как использовать настройки операций по расписанию</span></a>
+<ul id="ul2.4.1.17" style="list-style-type:none">
+<li class="heading5" id="i2.4.1.17.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.4.1.17.1" href="dynamic-scheduler.html" target="hmcontent"><span class="heading5" id="s2.4.1.17.1">Как сделать динамический интервал для операций по расписанию</span></a>
+</li>
+</ul>
+</li>
+<li class="heading4" id="i2.4.1.18" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.18" href="charts.html" target="hmcontent"><span class="heading4" id="s2.4.1.18">Как построить графики в TrackStudio по вашим данным</span></a>
+</li>
+<li class="heading4" id="i2.4.1.19" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.19" href="bulk_user_change.html" target="hmcontent"><span class="heading4" id="s2.4.1.19">Как изменить проект по умолчанию для нескольких пользователей</span></a>
+</li>
+<li class="heading4" id="i2.4.1.20" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.20" href="howto_change_email_templates.html" target="hmcontent"><span class="heading4" id="s2.4.1.20">Как сделать свои шаблоны для почтовых уведомлений</span></a>
+</li>
+<li class="heading4" id="i2.4.1.21" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.21" href="notification_trigger.html" target="hmcontent"><span class="heading4" id="s2.4.1.21">Как уведомить нескольких пользователей о задаче</span></a>
+</li>
+<li class="heading4" id="i2.4.1.22" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.22" href="howto_make_own_dashboard.html" target="hmcontent"><span class="heading4" id="s2.4.1.22" ondblclick="return dblclicked(this)">Как сделать свой Dashboard</span></a>
+<ul id="ul2.4.1.22" style="list-style-type:none">
+<li class="heading5" id="i2.4.1.22.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading5" id="a2.4.1.22.1" href="dashboard_charts.html" target="hmcontent"><span class="heading5" id="s2.4.1.22.1">Как построить графики на Dashboard</span></a>
+</li>
+</ul>
+</li>
+<li class="heading4" id="i2.4.1.23" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.23" href="compile.html" target="hmcontent"><span class="heading4" id="s2.4.1.23">Как собрать TrackStudio из исходного кода</span></a>
+</li>
+<li class="heading4" id="i2.4.1.24" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.24" href="scripts_deadline_by_priority.html" target="hmcontent"><span class="heading4" id="s2.4.1.24">Как установить Deadline создаваемой задачи в зависимости от приоритета</span></a>
+</li>
+<li class="heading4" id="i2.4.1.25" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading4" id="a2.4.1.25" href="import_from_unregistered.html" target="hmcontent"><span class="heading4" id="s2.4.1.25">Как импортировать задачи из email от незарегистрированых пользователей</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="heading2" id="i2.5" data-bg="icon-book.png;icon-bookopen.png" style="background:url(icon-bookopen.png) no-repeat;cursor:pointer;padding-left:24px" onclick="return clicked(this,event)"><a class="heading2" id="a2.5" href="configurations.html" target="hmcontent"><span class="heading2" id="s2.5" ondblclick="return dblclicked(this)">Примеры конфигураций для TrackStudio 4.0</span></a>
+<ul id="ul2.5" style="list-style-type:none">
+<li class="heading3" id="i2.5.1" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.5.1" href="configuration_scrum.html" target="hmcontent"><span class="heading3" id="s2.5.1">БД TrackStudio для управления проектами по SCRUM</span></a>
+</li>
+<li class="heading3" id="i2.5.2" style="background:url(icon-page.png) no-repeat;padding-left:24px" onclick="return clicked(this,event)"><a class="heading3" id="a2.5.2" href="configuration_itil.html" target="hmcontent"><span class="heading3" id="s2.5.2">Конфигурация TrackStudio для IT Service Management / Helpdesk.</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<script type="text/javascript">loadicons('icon-bookopen.png','icon-book.png','icon-page.png');</script>
+</body>
+</html>

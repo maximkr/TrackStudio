@@ -1,0 +1,341 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>Rus &gt; Руководство разработчика &gt; Как писать скрипты и триггеры в TrackStudio &gt; Как сделать свой Dashboard &gt; Как построить графики на Dashboard</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="" />
+   <meta name="description" content="Начиная с версии 4.0.15 вы можете использовать макросы для построения графиков и диаграмм в описании задач, операциях и дополнительных полях типа Текст." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        height:auto; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { background: #2C5D88; min-height: 59px }             
+      #idheader h1 { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; font-size: 80%; text-decoration: none }      
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em }	  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "dashboard_charts.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1"><span class="f_Heading1">Как построить графики на Dashboard</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:bottom">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?dashboard_charts.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="rus.html">Rus</a> &gt; <a href="developer_guide.html">Руководство разработчика</a> &gt; <a href="scripts_howto.html">Как писать скрипты и триггеры в TrackStudio</a> &gt; <a href="howto_make_own_dashboard.html">Как сделать свой Dashboard</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1"><span class="f_Heading1">Как построить графики на Dashboard</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="howto_make_own_dashboard.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="howto_make_own_dashboard.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="compile.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Начиная с версии 4.0.15 вы можете использовать макросы для построения графиков и диаграмм в описании задач, операциях и дополнительных полях типа Текст.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Графики строятся с помощью</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; text-decoration: underline;"><a href="http://code.google.com/apis/chart/" class="weblink">Google Visualization API</a></span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">. Для их тонкой настройки вы можете использовать все параметры графиков, описанные в документации к этому API.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">К сожалению, для работы графиков требуется соединение с Интернет на клиентских машинах. Также в файле </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">trackstudio.default.properties</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">необходимо прописать</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Code"><span class="f_Code">trackstudio.nogoogle=false</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Впрочем, библиотеки кешируются браузером на 1 час и грузятся только по мере необходимости.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Вы можете построить 8 типов графиков, при этом вам не нужно подготавливать для них данные: просто укажите номер задачи, с которой будет вестись отсчет, название макроса, название фильтра для задач (таким образом вы можете включать в график только требуемые данные) и, при желании, параметры отображения.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Структура макроса: #&lt;номер задачи&gt;{&lt;название макроса&gt;:&lt;Название фильтра&gt;&lt;, (опции)&gt;}</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Опции указываются в</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">круглых</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">скобках.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Burn Down Chart</span></h2>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<p class="p_Normal" style="text-indent: 37px;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">burndownchart</span></p>
+<p class="p_Normal" style="text-indent: 37px;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Графическое представление оставшейся работы по проекту с течением времени. Для проекта должен быть установлен бюджет и дедлайн. График показывает оставшуюся работу в часах. Если для задачи указывается бюджет, то учитывается его значение, если только потраченное время - учитывается оно. Бюджет и потраченное время пересчитываются в часы в соответствии с настройками TrackStudio.</span></p>
+<p class="p_Normal" style="text-indent: 37px;">&nbsp;</p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Код макроса:</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_CodeExample" style="page-break-inside: avoid;"><span class="f_CodeExample">#20323{burndownchart:All,('title':'Все&nbsp;задачи',</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">'width':</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">900,</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">'height':</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">600,</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">'backgroundColor':</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">'transparent')}</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Style"><img alt="burndownchart" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="burndownchart.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">График интенсивности работ по месяцам</span></h2>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<p class="p_Normal" style="text-indent: 37px;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">personalactivitychart</span></p>
+<p class="p_Normal" style="text-indent: 37px;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Диаграмма интенсивности работы команды над проектом. Для диаграммы подсчитывается количество часов, затраченных каждым участником в месяц.</span></p>
+<p class="p_Normal" style="text-indent: 37px;">&nbsp;</p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Код макроса:</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_CodeExample" style="white-space: normal; page-break-inside: avoid;"><span class="f_CodeExample">#20323{personalactivitychart:All,('title':'Активность',</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'width':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">900,</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'height':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">600,</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'backgroundColor':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'transparent',</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'seriesType':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'bars',</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'isStacked':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample" style="font-weight: bold;">true</span><span class="f_CodeExample">)}</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Style"><img alt="activity" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="activity.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Интегральный график работ</span></h2>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<p class="p_Normal" style="text-indent: 37px;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">teamactivitychart</span></p>
+<p class="p_Normal" style="text-indent: 37px;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">График отображает рост потраченного на проект времени.</span></p>
+<p class="p_Normal" style="text-indent: 37px;">&nbsp;</p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Код макроса:</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_CodeExample" style="white-space: normal; page-break-inside: avoid;"><span class="f_CodeExample">#20323{teamactivitychart:All,('title':'Активность',</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'width':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">900,</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'height':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">600,</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'backgroundColor':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'transparent',</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'seriesType':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'bars',</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'isStacked':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample" style="font-weight: bold;">true</span><span class="f_CodeExample">)}</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Style"><img alt="teamactivity" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="teamactivity.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Тренд</span></h2>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<p class="p_Normal" style="text-indent: 37px;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">trendchart</span></p>
+<p class="p_Normal" style="text-indent: 37px;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Тренд позволяет оценить, как изменялось количество новых, открытых, закрытых задач за последнее время. В отчете подсчитывается количество задач в разных состояниях за период времени.</span></p>
+<p class="p_Normal" style="text-indent: 37px;">&nbsp;</p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Код макроса:</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_CodeExample" style="white-space: normal; page-break-inside: avoid;"><span class="f_CodeExample">#20323{trendchart:Last</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">Year,('title':'Тренд',</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'width':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">900,</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'height':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">600,</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'backgroundColor':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'transparent')}</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Style"><img alt="trend_last_year" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="trend_last_year.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Отчет о проделанной работе</span></h2>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<p class="p_Normal" style="text-indent: 37px;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">spenttimechart</span></p>
+<p class="p_Normal" style="text-indent: 37px;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">На диаграмме отчета о затраченном времени вы можете увидеть, сколько часов проработал конкретный участник проекта за время, указанное в используемом фильтре.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Код макроса:</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_CodeExample" style="white-space: normal; page-break-inside: avoid;"><span class="f_CodeExample">#20323{spenttimechart:Last</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">Year,('title':'Потрачено времени',</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'width':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">900,</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'height':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">600,</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'backgroundColor':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'transparent')}</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Style"><img alt="sperttime" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="sperttime.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Распределение нагрузки</span></h2>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<p class="p_Normal" style="text-indent: 37px;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">workloadchart</span></p>
+<p class="p_Normal" style="text-indent: 37px;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Диаграмма показывает распределение задач по команде с учетом планируемых затрат. В задачах проекта должно быть заполнено поле &quot;Бюджет&quot;.</span></p>
+<p class="p_Normal" style="text-indent: 37px;">&nbsp;</p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Код макроса:</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_CodeExample" style="white-space: normal; page-break-inside: avoid;"><span class="f_CodeExample">#20323{workloadchart:All,('title':'Распределение работ',</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'width':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">900,</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'height':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">600,</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'backgroundColor':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'transparent')}</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Style"><img alt="workload" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="workload.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Текущее состояние проекта</span></h2>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<p class="p_Normal" style="text-indent: 37px;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">statechart</span></p>
+<p class="p_Normal" style="text-indent: 37px;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Диаграмма показывает распределение задач проекта по состояниям.</span></p>
+<p class="p_Normal" style="text-indent: 37px;">&nbsp;</p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Код макроса:</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_CodeExample" style="white-space: normal; page-break-inside: avoid;"><span class="f_CodeExample">#20323{statechart:Last</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">Year,('title':'Состояние проекта',</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'width':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">400,</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'height':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">400,</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'backgroundColor':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'transparent')}</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Style"><img alt="statechart" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="statechart.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Итоги работы над задачами</span></h2>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<p class="p_Normal" style="text-indent: 37px;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">resolutionchart</span></p>
+<p class="p_Normal" style="text-indent: 37px;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Диаграмма показывает распределение задач проекта по резолюциям.</span></p>
+<p class="p_Normal" style="text-indent: 37px;">&nbsp;</p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Код макроса:</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_CodeExample" style="white-space: normal; page-break-inside: avoid;"><span class="f_CodeExample">#20323{resolutionchart:Last</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">Year,('title':'Итоги работы',</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'width':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">400,</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'height':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">400,</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'backgroundColor':</span><span class="f_CodeExample" style="color: #ffffff;"> </span><span class="f_CodeExample">'transparent')}</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Style"><img alt="resolutionchart" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="resolutionchart.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Параметры диаграмм</span></h2>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Параметры диаграмм, указываемые в макросах, полностью соответствуют синтаксису опций графиков в Google Visualisation API. Названия параметров следует указывать в одинарных кавычках, а значения - в зависимости от типа параметра. Параметры обязательно указываются в круглых скобках (внутри которых могут быть фигурные скобки).</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Некоторые важные параметры:</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<div style="text-align: left; text-indent: 37px; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="width:100%; background-color:#ffffff; border:none; border-spacing:0; border-collapse:collapse;">
+<tr>
+<td style="vertical-align:middle; width:166px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Параметр</span></p>
+</td>
+<td style="vertical-align:middle; width:180px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">тип</span></p>
+</td>
+<td style="vertical-align:middle; width:253px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">значение по умолчанию</span></p>
+</td>
+<td style="vertical-align:middle; width:347px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Описание</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; width:166px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">title</span></p>
+</td>
+<td style="vertical-align:middle; width:180px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">строковое</span></p>
+</td>
+<td style="vertical-align:middle; width:253px; padding:1px; border:solid thin #808080;"><p class="p_Normal">&nbsp;</p>
+</td>
+<td style="vertical-align:middle; width:347px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Заголовок графика</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; width:166px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">height</span></p>
+</td>
+<td style="vertical-align:middle; width:180px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">число</span></p>
+</td>
+<td style="vertical-align:middle; width:253px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">высота элемента-контейнера</span></p>
+</td>
+<td style="vertical-align:middle; width:347px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Высота диаграммы</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; width:166px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">width</span></p>
+</td>
+<td style="vertical-align:middle; width:180px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">число</span></p>
+</td>
+<td style="vertical-align:middle; width:253px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">ширина элемента-контейнера</span></p>
+</td>
+<td style="vertical-align:middle; width:347px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Ширина диаграммы</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; width:166px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">backgroundColor</span></p>
+</td>
+<td style="vertical-align:middle; width:180px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">строка</span></p>
+</td>
+<td style="vertical-align:middle; width:253px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">'white'</span></p>
+</td>
+<td style="vertical-align:middle; width:347px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Цвет фона диаграммы. Можно указывать цвета в формате HTML: 'red' или '#FF0000', например</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; width:166px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">backgroundColor</span></p>
+</td>
+<td style="vertical-align:middle; width:180px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">строка</span></p>
+</td>
+<td style="vertical-align:middle; width:253px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">'white'</span></p>
+</td>
+<td style="vertical-align:middle; width:347px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Цвет фона диаграммы. Можно указывать цвета в формате HTML: 'red' или '#FF0000', например</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Подробнее о параметрах графиков можно прочитать</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; text-decoration: underline;"><a href="http://code.google.com/apis/chart/interactive/docs/gallery.html" class="weblink">в документации к Google Visualization API</a></span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Burn Down Chart —</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; text-decoration: underline;"><a href="http://code.google.com/apis/chart/interactive/docs/gallery/linechart.html" class="weblink">LineChart</a></span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">График интенсивности работ по месяцам, Интегральный график работ —</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; text-decoration: underline;"><a href="http://code.google.com/apis/chart/interactive/docs/gallery/combochart.html" class="weblink">ComboChart</a></span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Тренд —</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; text-decoration: underline;"><a href="http://code.google.com/apis/chart/interactive/docs/gallery/columnchart.html" class="weblink">ColumnChart</a></span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Отчет о проделанной работе, Распределение нагрузки —</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; text-decoration: underline;"><a href="http://code.google.com/apis/chart/interactive/docs/gallery/barchart.html" class="weblink">BarChart</a></span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Текущее состояние проекта, Итоги работы над задачами —</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; text-decoration: underline;"><a href="http://code.google.com/apis/chart/interactive/docs/gallery/piechart.html" class="weblink">PieChart</a></span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+  
+
+  $(document).ready(function(){
+    $(window).bind('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+	$('.hmanchor').css('padding-top', y+20);
+      }
+    });
+    
+    $(window).resize(); //trigger event for initially small displays
+  });
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

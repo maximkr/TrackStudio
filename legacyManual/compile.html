@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>Rus &gt; Руководство разработчика &gt; Как писать скрипты и триггеры в TrackStudio &gt; Как собрать TrackStudio из исходного кода</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="" />
+   <meta name="description" content="Для того, чтобы собрать TrackStudio, вам понадобятся: Java SDK и Apache Ant. Лучше, если у вас будет какая-нибудь IDE, но для небольших изменений можно обойтись и простым..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        height:auto; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { background: #2C5D88; min-height: 59px }             
+      #idheader h1 { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; font-size: 80%; text-decoration: none }      
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em }	  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "compile.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1"><span class="f_Heading1">Как собрать TrackStudio из исходного кода</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:bottom">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?compile.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="rus.html">Rus</a> &gt; <a href="developer_guide.html">Руководство разработчика</a> &gt; <a href="scripts_howto.html">Как писать скрипты и триггеры в TrackStudio</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1"><span class="f_Heading1">Как собрать TrackStudio из исходного кода</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="dashboard_charts.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="scripts_howto.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="scripts_deadline_by_priority.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Для того, чтобы собрать TrackStudio, вам понадобятся:</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; text-decoration: underline;"><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" class="weblink">Java SDK</a></span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">и</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; text-decoration: underline;"><a href="http://ant.apache.org/bindownload.cgi" class="weblink">Apache Ant</a></span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">. Лучше, если у вас будет</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; text-decoration: underline;"><a href="http://www.jetbrains.com/idea/download/" class="weblink">какая-нибудь IDE</a></span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">, но для небольших изменений можно обойтись и простым</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">текстовым</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">редактором.</span></p>
+<h2 style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<h2 style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Как скомпилировать проект без использования IDE</span></h2>
+<h2 style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Убедитесь, что Ant установлен правильно. Для этого наберите в командной строке</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Code"><span class="f_Code">ant</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Ответ должен быть таким:</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Code"><span class="f_Code">Buildfile: build.xml does not exist!</span></p>
+<p class="p_Code"><span class="f_Code">Build failed</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">В случае, если Ant установлен неправильно,</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; text-decoration: underline;"><a href="http://ant.apache.org/manual/index.html" class="weblink">обратитесь к документации</a></span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">.</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">1.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Скачайте исходный код TrackStudio.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">2.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Разверните исходный код TrackStudio в любую пустую папку.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">3.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">В командной строке наберите ant war.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">4.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Дождитесь завершения сборки.</span></p><p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p class="p_Style"><img alt="compilation_9" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_9.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">5.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">В случае удачной компиляции в папке</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">dist</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">должен появиться файл</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">TrackStudio.war</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">. Этот файл можно развернуть в директорию </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">webapps/TrackStudio</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">вашего</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">резервного экземпляра</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">TrackStudio.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">6.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">После этого резервный экземпляр можно запустить и посмотреть, что получилось.</span></p><h2 style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<h2 style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Как создать и скомпилировать проект в IntelliJ IDEA.</span></h2>
+<h2 style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">1.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Скачайте исходный код TrackStudio.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">2.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Разверните исходный код TrackStudio в любую пустую папку.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">3.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Запустите IDEA.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">4.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Создайте новый проект, укажите в качестве его корня папку, в которую вы развернули архив с исходниками.</span></p><p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p class="p_Style"><img alt="compilation_1" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_1.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p class="p_Style"><img alt="compilation_2" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_2.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p class="p_Style"><img alt="compilation_3" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_3.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p class="p_Style"><img alt="compilation_4" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_4.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p class="p_Style"><img alt="compilation_5" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_5.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">5.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Перейдите в меню</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">File-&gt;Project Structure</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">6.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Выберите вкладку</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Libraries</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">7.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Создайте библиотеку</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">TrackStudio</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">8.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Добавьте туда все классы из папки</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">webapps/TrackStudio/WEB-INF/lib</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">.</span></p><p style="text-indent: 37px; line-height: 1.43;"><span style="color: #000000;">&nbsp;</span></p>
+<p class="p_Style"><img alt="compilation_6" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_6.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">9.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Затем откройте вкладку Ant Build (обычно она расположена справа на окне IDEA)</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">10.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Выберите файл build.xml из папки, куда вы развернули исходные коды TrackStudio</span></p><p style="text-indent: 37px; line-height: 1.43;"><span style="color: #000000;">&nbsp;</span></p>
+<p class="p_Style"><img alt="compilation_7" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_7.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">11.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Запустите задачу war из списка заданий Ant Build</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">12.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">В случае удачной компиляции в папке</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">dist</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">должен появиться файл</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">TrackStudio.war</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">. Этот файл можно развернуть в директорию </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">webapps/TrackStudio</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">вашего</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">резервного экземпляра</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">TrackStudio.</span></p><p style="text-indent: 37px; line-height: 1.43;"><span style="color: #000000;">&nbsp;</span></p>
+<p class="p_Style"><img alt="compilation_8" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_8.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">13.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">После этого резервный экземпляр можно запустить и посмотреть, что получилось.</span></p><p style="text-indent: 37px; line-height: 1.43;"><span style="color: #000000;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Таким образом вы можете менять в TrackStudio практически всё, либо дорабатывать свои части.</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<h2 style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Как убрать индикацию синтаксических ошибок</span></h2>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Style"><img alt="compilation_10" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_10.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Style"><img alt="compilation_11" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_11.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Для того, чтобы в IDEA было удобно редактировать наш код, нужно ее познакомить поближе с особенностями нашего проекта.</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Для начала нужно подключить библиотеку javax.servlet.jar. Она находится в папке</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">jetty/lib</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">развернутых исходников.</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">1.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">В IDEA перейдите в меню</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">File-&gt;Project Structure</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">2.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Выберите пункт</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Modules</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">3.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Выберите модуль</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">TrackStudio</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">4.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Выберите вкладку Dependencies.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">5.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Нажмите кнопку Add и выберите Single Module Library</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">6.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Отыщите javax.servlet.jar и добавьте ее в проект</span></p><p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p class="p_Style"><img alt="compilation_12" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_12.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">После этого исходный код будет выглядеть так:</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Style"><img alt="compilation_13" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_13.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Настала очередь библиотек с тегами.</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Нам нужно создать Facet для нашего проекта. Для этого:</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">1.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">В IDEA перейдите в меню</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">File-&gt;Project Structure</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">2.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Выберите пункт</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Facets</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">3.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Выберите</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Web</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">4.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Добавьте новый facet к модулю TrackStudio</span></p><p style="text-indent: 37px; line-height: 1.43;"><span style="color: #000000;">&nbsp;</span></p>
+<p class="p_Style"><img alt="compilation_15" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_15.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">5.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Укажите путь до файла</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">web.xml</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">:</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">webapps/TrackStudio/WEB-INF/web.xml</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">либо</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">etc/webxml/web.jspc20.xml</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">6.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Укажите путь до ресурсов (Web Resource Directory Path):</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">webapps/TrackStudio/</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">7.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Укажите там же Relative Path как</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">/</span></p><p style="text-indent: 37px; line-height: 1.43;"><span style="color: #000000;">&nbsp;</span></p>
+<p class="p_Style"><img alt="compilation_17" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_17.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p class="p_Style"><img alt="compilation_18" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_18.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<h2 style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Отладка</span></h2>
+<h2 style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Для отладки кода можно настроить Remote Debug. Для этого:</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">1.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">В IDEA перейдите в меню</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Run-&gt;Edit Configuration</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">2.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Создайте новую конфигурацию. Выберите пункт</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Remote</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">3.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Подключите там же файлы исходного кода из модуля TrackStudio.</span></p><p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p class="p_Style"><img alt="compilation_19" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_19.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">4.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Скопируйте строчку в файл startJetty.vmoptions в корне вашего резервного экземпляра TrackStudio</span></p><p style="text-indent: 37px; line-height: 1.43;"><span style="color: #000000;">&nbsp;</span></p>
+<p class="p_Code"><span class="f_Code">-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p class="p_Style"><img alt="compilation_20" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_20.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">5.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Запустите jetty</span></p><p style="text-indent: 37px; line-height: 1.43;"><span style="color: #000000;">&nbsp;</span></p>
+<p class="p_Code"><span class="f_Code">sh startJetty</span></p>
+<p style="text-indent: 37px; line-height: 1.43;"><span style="color: #000000;">&nbsp;</span></p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">6.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">В терминале должна появиться строчка</span></p><p style="text-indent: 37px; line-height: 1.43;"><span style="color: #000000;">&nbsp;</span></p>
+<p class="p_Code"><span class="f_Code">Listening for transport dt_socket at address: 5005</span></p>
+<p style="text-indent: 37px; line-height: 1.43;"><span style="color: #000000;">&nbsp;</span></p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">7.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Перейдите в IDEA.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">8.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Выберите ранее созданную конфигурацию 'TrackStudio и нажмите кнопку отладки.</span></p><p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p class="p_Style"><img alt="compilation_21" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_21.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">9.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Поставьте в нужных вам местах точки останова.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">10.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Через браузер зайдите в TrackStudio и выполните действия, которые должны привести к останову отладчика в нужных вам точках.</span></p><p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p class="p_Style"><img alt="compilation_22" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="compilation_22.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43;">&nbsp;</p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">11.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Найдите место, где происходит ошибка.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">12.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Исправьте ошибку.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">13.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Остановите резервный экземпляр TrackStudio.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">14.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Перекомпилируйте ваш исходный код по инструкции выше.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">15.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Снова приступите к отладке.</span></p><p style="text-indent: 37px; line-height: 1.43;"><span style="color: #000000;">&nbsp;</span></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+  
+
+  $(document).ready(function(){
+    $(window).bind('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+	$('.hmanchor').css('padding-top', y+20);
+      }
+    });
+    
+    $(window).resize(); //trigger event for initially small displays
+  });
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

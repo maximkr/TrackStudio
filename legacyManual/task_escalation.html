@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>Rus &gt; Руководство разработчика &gt; Как писать скрипты и триггеры в TrackStudio &gt; Как сделать автоматическую эскалацию задачи</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="" />
+   <meta name="description" content="В общем смысле эскалация задачи - это перевод ее в другое состояние, другому исполнителю или повышение ее приоритета в зависимости от условий. Например, по прошествии дедлайна,..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        height:auto; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { background: #2C5D88; min-height: 59px }             
+      #idheader h1 { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; font-size: 80%; text-decoration: none }      
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em }	  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "task_escalation.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1"><span class="f_Heading1">Как сделать автоматическую эскалацию задачи</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:bottom">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?task_escalation.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="rus.html">Rus</a> &gt; <a href="developer_guide.html">Руководство разработчика</a> &gt; <a href="scripts_howto.html">Как писать скрипты и триггеры в TrackStudio</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1"><span class="f_Heading1">Как сделать автоматическую эскалацию задачи</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="subscriptions_schedule.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="scripts_howto.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="process_note_operations.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">В общем смысле эскалация задачи - это перевод ее в другое состояние, другому исполнителю или повышение ее приоритета в зависимости от условий. Например, по прошествии дедлайна, или спустя какое-то время с момента последнего обновления. Чаще всего эскалация делается автоматически.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Для примера мы будем</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; text-decoration: underline;"><a href="scheduler.html" class="topiclink">автоматически переводить задачи</a></span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">, находящиеся в состоянии &quot;Новая&quot; или &quot;В процессе&quot; или &quot;Приостановлена&quot; в состояние &quot;Просрочена&quot;. Идея метода состоит в том, что мы будем выполнять операцию, переводящую задачу в нужное состояние при помощи schedule скрипта.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Зайдем как root в базу данных по-умолчанию (</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; text-decoration: underline;"><a href="requirements_managment_config_overview.html" class="topiclink">&quot;Управление требованиями&quot;</a></span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">). Перейдем к &quot;Управлению пользователями&quot; и создадим роль &quot;Бот&quot;. Права на нее настраивать пока не будем.</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<div class="p_Style"><img alt="clip0044" style="width:100%;height:auto;border:none" src="clip0044.png"/></div>
+<p style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Перейдем на &quot;Управление пользователями&quot; и создадим пользователя. Можно дать ему роль &quot;Бот&quot;, но не обязательно, мы можем назначить ее через доступ к задачам позднее.</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<div class="p_Style"><img alt="clip0045" style="width:100%;height:auto;border:none" src="clip0045.png"/></div>
+<p style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Вернемся к &quot;Управлению задачами&quot;. Мы будем делать скрипт для эскалации Ошибок, так что перейдем к этому процессу.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Создадим новое состояние &quot;Просрочена&quot;. Затем создадим тип операции &quot;escalate&quot; с переходами:</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<div class="p_Style"><img alt="clip0046" style="width:100%;height:auto;border:none" src="clip0046.png"/></div>
+<p style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Настроим разрешения так, чтобы выполнять эту операцию могли только Боты.</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<div class="p_Style"><img alt="clip0047" style="width:100%;height:auto;border:none" src="clip0047.png"/></div>
+<p style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Также нам понадобится операция, которая переводит задачу из состояния &quot;Просрочено&quot; в другое. Выполнять ее смогут, например, только менеджеры.</span></p>
+<p style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<div class="p_Style"><img alt="clip0048" style="width:100%;height:auto;border:none" src="clip0048.png"/></div>
+<p style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Настала очередь скрипта:</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_CodeExample" style="page-break-inside: avoid;"><span class="f_CodeExample" style="font-weight: bold;">package</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">scripts.scheduler.example;</span><br />
+<span class="f_CodeExample">&nbsp;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.app.csv.CSVImport;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.app.session.SessionContext;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.app.session.SessionManager;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.external.ICategoryScheduler;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.kernel.cache.TaskRelatedInfo;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.kernel.cache.UserRelatedInfo;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.kernel.cache.UserRelatedManager;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.kernel.lock.LockManager;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.secured.SecuredMessageTriggerBean;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.secured.SecuredTaskBean;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">java.util.ArrayList;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">java.util.Calendar;</span><br />
+<span class="f_CodeExample">&nbsp;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">public</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">class</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">Escalate</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">implements</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">ICategoryScheduler{</span><br />
+<span class="f_CodeExample">&nbsp;</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">@Override</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">public</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">String</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">getCategoryId()</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">return</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">&quot;4028808a1951e21b01195245ff4200c1&quot;;</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample">&nbsp;</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">@Override</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">public</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">String</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">getCronTime()</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">return</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">&quot;0&nbsp;0&nbsp;22&nbsp;*&nbsp;*&nbsp;?&quot;;</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample">&nbsp;</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">@Override</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">public</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">String</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">getName()</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">return</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">&quot;escalate&quot;;</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample">&nbsp;</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">public</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">void</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">execute(TaskRelatedInfo</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">task)</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">final</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">LockManager</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">lockManager</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">LockManager.getInstance();</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">boolean</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">r</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">lockManager.acquireConnection();</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">try</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">String</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">botId</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">&quot;8a80828f4c08f430014c0929609f006a&quot;;</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*&nbsp;id&nbsp;бота*/</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">UserRelatedInfo</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">bot</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">UserRelatedManager.getInstance().find(botId);</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">Calendar</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">deadline</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">task.getDeadline();</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">Calendar</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">now</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">Calendar.getInstance();</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">ArrayList&lt;String&gt;</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">statuslist</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">new</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">ArrayList&lt;String&gt;();</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*список&nbsp;состояний&nbsp;задачи*/</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">String</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">sessionId</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">SessionManager.getInstance().create(bot);</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">SessionContext</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">sc</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">SessionManager.getInstance().getSessionContext(sessionId);</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">SecuredTaskBean</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">tsk</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">new</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">SecuredTaskBean(task,</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">sc);</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">String</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">status</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">tsk.getStatus().getName();</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">String</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">mstatusId</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">CSVImport.findMessageTypeIdByName(&quot;escalate&quot;,</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">tsk.getCategory().getName());</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">statuslist.add(&quot;В&nbsp;процессе&quot;);</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">statuslist.add(&quot;Новая&quot;);</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">statuslist.add(&quot;Приостановлена&quot;);</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">if</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">(deadline!=</span><span class="f_CodeExample" style="font-weight: bold;">null</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">&amp;&amp;</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">statuslist.contains(status)</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">&amp;&amp;</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">deadline.getTimeInMillis()</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">&lt;</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">now.getTimeInMillis())</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">SecuredMessageTriggerBean</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">message</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">new</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">SecuredMessageTriggerBean(</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">null</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*&nbsp;идентификатор&nbsp;*/</span><span class="f_CodeExample">,</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">&quot;задача&nbsp;была&nbsp;просрочена&quot;</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*&nbsp;текст&nbsp;комментария&nbsp;*/</span><span class="f_CodeExample">,</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">Calendar.getInstance()</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*&nbsp;время&nbsp;выполнения&nbsp;операции&nbsp;*/</span><span class="f_CodeExample">,</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">null</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*&nbsp;потраченное&nbsp;время&nbsp;*/</span><span class="f_CodeExample">,</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">tsk.getDeadline()</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*&nbsp;Сроки&nbsp;выполнения&nbsp;задачи&nbsp;(deadline)&nbsp;*/</span><span class="f_CodeExample">,</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">tsk.getBudget()</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*&nbsp;бюджет&nbsp;*/</span><span class="f_CodeExample">,</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">tsk.getId()</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*&nbsp;задача&nbsp;*/</span><span class="f_CodeExample">,</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">sc.getUserId()</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*&nbsp;автор&nbsp;операции&nbsp;*/</span><span class="f_CodeExample">,</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">null</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*&nbsp;резолюция&nbsp;*/</span><span class="f_CodeExample">,</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">tsk.getPriorityId()</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*&nbsp;приоритет&nbsp;*/</span><span class="f_CodeExample">,</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">tsk.getHandlerId()</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*&nbsp;ответственные&nbsp;*/</span><span class="f_CodeExample">,</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">tsk.getHandlerUserId()</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*&nbsp;ответственный&nbsp;*/</span><span class="f_CodeExample">,</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">tsk.getHandlerGroupId()</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*группа&nbsp;в&nbsp;качестве&nbsp;ответственного&nbsp;*/</span><span class="f_CodeExample">,</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">mstatusId</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*&nbsp;тип&nbsp;операции&nbsp;*/</span><span class="f_CodeExample">,</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">null</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*&nbsp;Map&nbsp;с&nbsp;дополнительными&nbsp;полями&nbsp;*/</span><span class="f_CodeExample">,</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">sc</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*&nbsp;SessionContext&nbsp;*/</span><span class="f_CodeExample">,</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">null</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*&nbsp;вложения&nbsp;*/</span><span class="f_CodeExample">);</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">message.create(</span><span class="f_CodeExample" style="font-weight: bold;">true</span><span class="f_CodeExample">);</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">}</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">catch</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">(Exception</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">e)</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">e.printStackTrace();</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">finally</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">if</span><span class="f_CodeExample">(r)</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">lockManager.releaseConnection();</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample">}</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Скомпилированный класс</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; text-decoration: underline;"><a href="http://www.trackstudio.ru/sites/default/files/ru/187/Escalate.class" class="weblink">Escalate.class</a></span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">нужно поместить в</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">\etc\plugins\scripts\scheduler\example</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">и в веб-интерфейсе подключить к операции &quot;Начать работу&quot;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<div class="p_Style"><div style="margin:1px 0 1px 0"><img alt="scheduleon" style="width:100%;height:auto;border:none" src="scheduleon.png"/></div></div>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Теперь все задачи, над которыми была проведена операция &quot;Начать работу&quot;, будут отслеживаться schedule скриптом и, в случае превышения дедлайна, переводиться в состояние &quot;Просрочена&quot;.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+  
+
+  $(document).ready(function(){
+    $(window).bind('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+	$('.hmanchor').css('padding-top', y+20);
+      }
+    });
+    
+    $(window).resize(); //trigger event for initially small displays
+  });
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

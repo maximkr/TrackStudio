@@ -1,0 +1,436 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>TrackStudio</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">   
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,follow" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="-1">
+  <meta http-equiv="cache-control" content="no-cache" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="helpman_settings.js"></script>
+  <script type="text/javascript" src="helpman_navigation.js"></script>
+  <script type="text/javascript" src="hmcontextids.js"></script>
+  <link type="text/css" href="default.css" rel="stylesheet" />
+  <link type="text/css" href="style_header.css" rel="stylesheet" />
+
+  <style type="text/css">
+    html {
+      overflow: hidden;
+    }
+    body { 
+      margin:0;
+      padding:0;
+      height:100%;
+      overflow:hidden; 
+      background: #fff;
+    }
+    #hmheadbox {
+      position: absolute;
+      left: 0px;
+      right: 0px;
+      top: 0px;
+      height: 130px;
+      background: #2C5D88;  /* Header blue background */
+      }
+    #hmheadbox .mobilemenu {
+      width: 32px;
+      height: 32px;
+      /* Mobile menu color: change the background-url to switch */
+      background:url('hm_webhelp_buttons_white.png') top left no-repeat;
+      background-position: 0 0;
+      margin-right: 20px;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+      display: none;
+    }
+    #hmheadbox .mobilemenu:hover {
+      /* Mobile menu highlight color: change the background-url to switch */
+      background:url('hm_webhelp_buttons_orange.png') top left no-repeat;
+      opacity: 1;
+    }
+    #hmcontentslider {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      top: 70px;
+      bottom: 0;     
+      border-top: thin solid #95B3CA; 
+    }
+	#hmcontentwrapper {
+	  position: absolute;
+	  top: 0; left: 0; bottom: 0; right: 0;
+	 }
+    #hmsplitter { 
+      display: block; 
+    }
+    #navbar {    /* This is the small bar above TOC/index with 3 icons: TOC|Index|Search */
+      height: 60px;	
+    }
+    #navbar a {  /* Navigation buttons: change background-url to switch color */
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      margin: 10px 14px 0 10px;
+      background:url('hm_webhelp_buttons_white.png') top left no-repeat;
+	  opacity: 0.7;
+    } 
+	#navbar a.current {
+		opacity: 1.0;
+		cursor: default;
+	}
+    #navbar a:hover {
+      background:url('hm_webhelp_buttons_orange.png') top left no-repeat;
+      opacity: 1;
+    }
+	#navbar a.current:hover {
+	 background:url('hm_webhelp_buttons_white.png');
+	}
+    #navbar a.hmbtntoc    { background-position: -32px 0 !important}
+    #navbar a.hmbtnindex  { background-position: -64px 0 !important}
+    #navbar a.hmbtnsearch { background-position: -96px 0 !important}
+    a.mobilemenu { cursor: pointer; }
+    #hmnavbox {
+      position: absolute;
+      left: 0;
+      width: 29.7%;
+      min-width: 100px;
+      height: 100%;
+      }
+    #hmnavframe {
+      position: absolute;
+      left: 0;
+      top: 60px;
+      right: 0;
+      bottom: 0;
+      }
+    #hmcontentbox {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 30%;      
+      background: #FFF;
+      border-left: 1px dashed #ccc;
+    }
+
+    nav #menu-wrapper { max-width: 100% }
+
+    iframe { left:0;top:0;width:100%;height:100%;border:none;background:#ffffff; }
+    #hmcontentbox iframe { position: absolute }
+	
+    /* This media query hides the navigation panel when window width <= 760px */
+    @media only screen and (max-width: 760px) {
+      #hmheadbox {
+         font-size: 70%;	   
+      }
+      #hmheadbox a.logo {  /* Your logo in the top-left corner  */
+         display: none;
+      }
+      #hmcontentslider { 
+        /*top: 35px;      /* when you change the header height, changes this as well */ 
+        right: 0;
+	  overflow-y: hidden;
+	  overflow-x: hidden;
+	  -webkit-overflow-scrolling: touch;
+	  }
+	  #hmcontentwrapper {
+	  overflow-y:hidden;
+	  width: 200%;
+	  }
+      #hmsplitter { 
+        display: none;
+      }
+      #hmnavbox { 
+	width: 50% !important;
+	left: 0;
+	bottom: 0;
+	overflow: auto;
+	}
+      #hmcontentbox { 
+	width: 50% !important;
+	left: 50% !important;
+	right: 0;
+	bottom: 0;
+	overflow: auto;
+	border: none;
+      }
+      #hmheadbox .fullmenu {
+	display: none;
+      }
+      #hmheadbox .mobilemenu {
+	display: inline-block;
+      }
+    }
+  </style>
+
+  <script type="text/javascript">
+  var oldWwidth = $(window).width(), 
+      newWwidth = oldWwidth,
+      narrower = true; 
+  hmBrowser.iOS = !!(/iphone|ipad/i.test(navigator.platform));
+  
+  var currentNav = function(navPane) {
+	if (typeof navPane == "undefined") return;
+	
+	var $toc = $("a.hmbtntoc").first(),
+		$index = $("a.hmbtnindex").first(),
+		$search = $("a.hmbtnsearch").first();
+		
+	switch(navPane) {
+		case "toc":
+			$toc.addClass("current");
+			$index.removeClass("current");
+			$search.removeClass("current");
+		break;
+		case "index":
+			$toc.removeClass("current");
+			$index.addClass("current");
+			$search.removeClass("current");
+		break;
+		case "search":
+			$toc.removeClass("current");
+			$index.removeClass("current");
+			$search.addClass("current");
+		break;
+	} 
+  }
+   function showNav(value) {
+		var doShow = false,
+			shiftWidth = $("#hmcontentslider").width();
+	switch (value) {
+	case "toggle": 
+	    var navPos = $("#hmcontentslider").scrollLeft();
+	    doShow = (navPos > shiftWidth/2);
+	    break;
+	case "show":
+	    doShow = true;
+	    break;
+	case "hide":
+		doShow = false;
+		break;
+	}	    
+	if (doShow) { 
+	  $("#hmcontentslider").animate(
+		{scrollLeft: 0}, 500); 
+	}
+	else { 
+	  $("#hmcontentslider").animate(
+		{scrollLeft: shiftWidth}, 500);
+		}
+    }
+	
+  var manageScrollbar = function() {
+  var agent = navigator.userAgent;
+  if (/iphone|ipad/i.test(navigator.platform)) {
+	$("div#hmcontentslider").css("overflow-x","visible");
+	return;
+	} else {
+	$("div#hmnavbox").css("overflow","hidden");
+	}
+    if (isReduced && ((hmBrowser.touch && !/trident/i.test(agent) && !/edge/i.test(agent)) || (hmBrowser.touch && (/trident/i.test(agent) || /edge/i.test(agent)) && /mobile/i.test(agent)))) {
+		$("div#hmcontentslider").css("overflow-x","visible");
+		// alert("visible");
+		} else {
+		$("div#hmcontentslider").css("overflow","hidden");
+		//alert("hidden");
+		}
+  }
+  $(document).ready(function(){
+	$splitBar = $("#hmsplitter");
+	$navboxes = $("#hmcontentwrapper, #hmcontentslider, #hmnavbox, #hmcontentbox ");
+	isReduced = ($("#hmcontentslider").width() < $("#hmcontentwrapper").width());
+	$(window).on("resize", function() {
+	isReduced = ($("#hmcontentslider").width() < $("#hmcontentwrapper").width());
+        if (!hmSupportsAbspos()) {
+      	  hmNoAbsposResize($("#hmheadbox"), true, false);
+      	  hmNoAbsposResize($("#hmnavbox"), false, true);
+      	  hmNoAbsposResize($("#hmcontentbox"), true, true);
+          $(window).trigger("resize");
+	}
+	newWwidth = $(window).width();
+	narrower = newWwidth < oldWwidth;
+	oldWwidth = newWwidth;
+	if (isReduced) { 
+	  // Prevent endless multiple bindings... 
+	  // $("#hmcontent").off("load").on("load", function (){ showNav('hide');});
+		$splitBar.hide();
+		if ($("#hmcontentslider").scrollLeft() > 0 || narrower) {
+		if (!hmBrowser.iOS) 
+			$("div#hmcontentslider").css("overflow-x","visible");
+		$("#hmcontentslider").scrollLeft($("#hmcontentslider").width());
+		if (!hmBrowser.iOS) 
+			$("div#hmcontentslider").css("overflow-x","hidden");
+		}
+	}
+	else {
+	  $splitBar.show();
+	  // $("#hmcontent").off("load");
+	}
+      });
+	 hmCreateVSplitter($("#hmnavbox"),$("#hmcontentbox")); 
+	$("a.mobilemenu").first().on(hmBrowser.touchstart, function(){
+		showNav('toggle');
+		});	
+    $("div#navbar a[target='hmnavigation']").on("click",function(event){event.preventDefault()}).on(hmBrowser.touchstart,function(event){
+		event.preventDefault();
+		$("iframe#hmnavigation").attr("src",$(this).attr("href"));
+		});	
+	if (isReduced && (true || document.location.search !== "")) {
+		setTimeout(function(){
+		showNav('hide');
+		},300);
+		}
+		
+	manageScrollbar();
+	});
+	
+  </script>
+
+</head>
+<body>
+<!-- Begin of header  --> 
+<div id="hmheadbox">
+<!-- Begin of EC Software Menu --> 
+  <nav id="main-nav">
+    <div id="menu-wrapper">
+      <ul>
+        <li id="homebutton"><a href="https://www.helpandmanual.com/index.html">&nbsp;</a></li>
+	<li class="fullmenu"><a href="https://www.helpandmanual.com/products_hm_overview.html">Products</a>
+	<ul>
+          <div class="mega-menu" id="menu-hm">
+	    <div class="mega-left">
+	         <span class="mmh1">Online help made easy</span>
+                 <li><a href="https://www.helpandmanual.com/products_hm_overview.html"><span class="mmicon" id="h-multi"></span><span class="mmh2">Multi-Channel Publishing</span></a></li>
+	         <li><a href="https://www.helpandmanual.com/products_hm_features.html"><span class="mmicon" id="h-team"></span><span class="mmh2">Teamwork Features</span></a></li>
+	    </div>
+	    <div class="mega-middle">
+	         <span class="mmh1">Power features</span>
+		 <li><a href="https://www.helpandmanual.com/products_hm_templates.html"><span class="mmicon" id="h-skins"></span><span class="mmh2">Templates + Skins</span></a></li>
+		 <li><a href="https://www.helpandmanual.com/products_hm_pluspack.html"><span class="mmicon" id="h-star"></span><span class="mmh2">H+M Premium Pack</span></a></li>
+	    </div>
+	    <div class="mega-right">
+	         <li><a href="https://www.helpandmanual.com/products_hm_screenshots.html"><span class="mmsmall">Screenshots</span></a></li>
+		 <li><a href="https://www.helpandmanual.com/products_hm_new.html"><span class="mmsmall">New in H+M 7</span></a></li>
+		 <li><a href="https://www.helpandmanual.com/products_hm_case.html"><span class="mmsmall">Customer Case Studies</span></a></li>
+		 <li><a href="https://www.helpandmanual.com/products_hm_quotes.html"><span class="mmsmall">User Quotes</span></a></li>
+		 <li><a href="https://www.helpandmanual.com/products_hm_matrix.html"><span class="mmsmall">Compare Versions</span></a></li>
+	    </div>
+	  </div>
+	</ul>
+        </li>
+        <li class="fullmenu"><a href="https://www.helpandmanual.com/downloads.html">Free Trial</a>
+	<ul>
+          <div class="mega-menu" id="menu-download">
+            <div class="mega-left">
+	         <li><a href="https://www.helpandmanual.com/downloads.html"><span class="mmicon" id="d-hm"></span><span class="mmh1">Help+Manual</span><span class="mmh2">Free Trial Version</span><span class="mmsmall">30 days fully functional</span></a></li>
+            </div>
+	    <div class="mega-right">
+		 <span class="mmh2">More Downloads</span>
+		 <div class="mega-right-sub">
+		      <li><a href="https://www.helpandmanual.com/downloads_mscomp.html"><span class="mmsmall">HTML Help Compiler</span></a></li>
+		      <li><a href="https://www.helpandmanual.com/downloads.html#spell"><span class="mmsmall">Spell Checker Dictionarites</span></a></li>
+		      <li><a href="https://www.helpandmanual.com/downloads.html#oldver"><span class="mmsmall">Older Versions of H+M</span></a></li>
+		      <li><a href="https://www.helpandmanual.com/hm2go.html"><span class="mmsmall">HM2Go Webserver</span></a></li>
+		      <li><a href="https://www.helpandmanual.com/downloads_delphi.html"><span class="mmsmall">Delphi Components</span></a></li>
+		 </div>
+	    </div>
+	  </div>
+        </ul>
+	</li>
+	<li class="fullmenu"><a href="https://www.helpandmanual.com/order.html">Buy</a>
+	<ul>
+	  <div class="mega-menu" id="menu-shop">
+	    <div class="mega-left">
+	         <li><a href="https://www.helpandmanual.com/order.html"><span class="mmicon" id="b-cart"></span><span class="mmh1">Buy Online</span><span class="mmsmall">Get started with Help+Manual now and unlock your trial version within minutes!</a></li>
+            </div>
+	    <div class="mega-right">
+	         <li><a href="https://www.helpandmanual.com/order.html?promotion=upgrade"><span class="mmicon" id="b-upgrade"></span><span class="mmh2">Upgrade from older versions</span></a></li>
+		 <li><a href="https://www.helpandmanual.com/partner_resellers.html"><span class="mmicon" id="b-reseller"></span><span class="mmh2">Purchase from a reseller</span></a></li>
+		 <li><a href="https://www.helpandmanual.com/partner_training.html"><span class="mmicon" id="b-training"></span><span class="mmh2">Training on Help+Manual</span></a></li>
+	    </div>
+ 	  </div>
+	</ul>
+	</li>
+        <li class="fullmenu"><a class="selected" href="https://www.helpandmanual.com/support_help.html">Support</a>
+	<ul>
+	  <div class="mega-menu" id="menu-support">
+            <div class="mega-left">
+	         <li><a href="https://www.helpandmanual.com/help/"><span class="mmicon" id="s-doc"></span><span class="mmh1">Documentation</span><span class="mmsmall">The complete guide to Help+Manual online</span></a></li>
+            </div>
+	    <div class="mega-middle">
+		 <li><a href="https://www.helpandmanual.com/support_help.html"><span class="mmicon" id="s-help"></span><span class="mmh2">Help &amp; Support</span></a></li>
+		 <li><a href="https://www.helpandmanual.com/support_forum.html"><span class="mmicon" id="s-forum"></span><span class="mmh2">Community &amp; Forums</span></a></li>
+            </div>
+	    <div class="mega-right">
+	         <li><a href="https://www.helpandmanual.com/support_tutorials.html"><span class="mmh2">Programming Tutorials</span></a></li>
+		 <li><a href="https://www.helpandmanual.com/partner_training.html"><span class="mmh2">Training</span></a></li>
+		 <li><a href="https://www.helpandmanual.com/partner_translation.html"><span class="mmh2">Translation Services</span></a></li>
+	    </div>
+	  </div>
+	</ul>
+	</li>
+	<li class="fullmenu"><a href="https://www.helpandmanual.com/company_about.html">Company</a>
+	<ul>
+	  <div class="mega-menu" id="menu-company">
+	       <li><a href="https://www.helpandmanual.com/company_about.html"><span id="c-about"></span><span>About us</span></a></li>
+	       <li><a href="https://www.helpandmanual.com/company_contact.html"><span id="c-contact"></span><span>Contact</span></a></li>
+	       <li><a href="https://www.helpandmanual.com/news/"><span id="c-news"></span><span>News Blog</span></a></li>
+	  </div>
+	</ul>
+        </li>
+
+        <!-- this is the lonely burger menu that switches the navigation panel -->
+        <li class="mobilemenu"><a href="javascript:showNav('toggle')" title="Show navigation"></a></li>
+      </ul>
+    </div>
+  </nav>
+<!-- End of EC Software Menu --> 
+</div>
+<!-- end of header  --> 
+
+<div id="hmcontentslider">
+  <div id="hmcontentwrapper"> 
+  <div id="hmnavbox">
+    <!-- buttons to switch navigation panel --> 
+    <div id="navbar">
+         <a class="hmbtntoc" href="hmcontent.html" title="Table of Contents" target="hmnavigation"></a>
+	 <a class="hmbtnindex" href="hmkwindex.html" title="Keyword Index" target="hmnavigation"></a>
+	 <a class="hmbtnsearch" href="hmftsearch.html" title="Search" target="hmnavigation"></a>
+    </div>
+    <!-- the navigation panel -->
+    <div id="hmnavframe"> 
+      <iframe name="hmnavigation" id="hmnavigation" src="hmcontent.html" seamless="seamless" title="Navigation Pane" frameborder="0"></iframe>
+    </div>
+  </div>
+
+  <div id="hmcontentbox" >
+    <script type="text/javascript">
+      var defaulttopic="documentationeng.html";
+      var query = window.location.search.substring(1).split('&')[0], hash = window.location.hash, xssTest=/^[a-z0-9$._~-]{3,}$/i, cntxRX = /contextid=\d{3,10}/, cntxMatch = cntxRX.exec(query), cntxSrc = "";
+      if (query != "") {
+        if (typeof(hmGetContextId) != "undefined") {
+          if (cntxMatch != null) {
+	    cntxSrc = hmGetContextId(cntxMatch[0]);
+          };
+          if (cntxSrc != "") {
+            defaulttopic = cntxSrc;
+          } else {
+            if (xssTest.test(query+hash.substr(1)))
+               defaulttopic = query + hash;
+          }
+        }
+      }
+      document.write('<iframe name="hmcontent" id="hmcontent" src="'+defaulttopic+'" seamless="seamless" title="Content Page" frameborder="0"></iframe>');
+    </script>
+    <noscript>
+      <iframe name="hmcontent" id="hmcontent" src="documentationeng.html" seamless="seamless" title="Content Page" frameborder="0"></iframe>
+    </noscript>
+  </div>
+  </div>
+</div>
+</body>
+</html>
+

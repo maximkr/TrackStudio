@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>DocumentationEng &gt; Installation Guide &gt; Installing on Linux &gt; Installing TrackStudio WAR in Linux</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="" />
+   <meta name="description" content="Note. Beginning version TrackStudio 4.0.10, the system comes with uninitialized database. The method for initializing the database has been described here." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        height:auto; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { background: #2C5D88; min-height: 59px }             
+      #idheader h1 { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; font-size: 80%; text-decoration: none }      
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em }	  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "installing-trackstudio-war-in2.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1"><span class="f_Heading1">Installing TrackStudio WAR in Linux</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:bottom">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?installing-trackstudio-war-in2.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="documentationeng.html">DocumentationEng</a> &gt; <a href="installation-guide.html">Installation Guide</a> &gt; <a href="installing-on-linux.html">Installing on Linux</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1"><span class="f_Heading1">Installing TrackStudio WAR in Linux</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="installing-trackstudio-standa2.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="installing-on-linux.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="connecting-to-a-database.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p style="background: #ffffff;"><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Note. Beginning version TrackStudio 4.0.10, the system comes with uninitialized database. The method for initializing the database has been described here.</span></p>
+<p class="p_Normal" style="background: #ffffff; margin: 16px 0 0 0;"><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">For installing and configuring TrackStudio WAR:</span></p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="font-family: 'Verdana';color:#666666;display:inline-block;width:20px;margin-left:-20px">1.</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Download the package TrackStudio WAR</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="font-family: 'Verdana';color:#666666;display:inline-block;width:20px;margin-left:-20px">2.</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Unpack the archive to a new folder.</span></p><p class="p_Normal" style="margin: 16px 0 0 0;"><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">This folder contains:</span></p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 40px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';color:#666666;display:inline-block;width:20px;margin-left:-20px">&#8226;</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Folder</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">javadoc</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">with TrackStudio API documentation</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 40px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';color:#666666;display:inline-block;width:20px;margin-left:-20px">&#8226;</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Folder</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">etc</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">containing configuration files. In future, this folder will be used as a root for TrackStudio. This folder also contains the folder</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">plugins</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">with scripts, triggers and email templates.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 40px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';color:#666666;display:inline-block;width:20px;margin-left:-20px">&#8226;</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Folder</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">sql</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">with scripts for data base initialization.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 40px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';color:#666666;display:inline-block;width:20px;margin-left:-20px">&#8226;</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">File</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">TrackStudio.war</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 24px 0 0 0;"><span class="f_Normal" style="font-family: 'Verdana';color:#666666;display:inline-block;width:20px;margin-left:-20px">3.</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Copy the file</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">TrackStudio.war</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">to the folder, where web-applications Tomcat are located. For example,</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-size: 11px; font-family: 'Courier New',Courier,monospace; color: #666666;">/var/lib/tomcat6/webapps/</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="font-family: 'Verdana';color:#666666;display:inline-block;width:20px;margin-left:-20px">4.</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666; text-decoration: underline;"><a href="http://www.trackstudio.com/connecting-database.html" class="weblink">Create a new database</a></span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666; text-decoration: underline;"><a href="http://www.trackstudio.com/connecting-database.html" class="weblink"> </a></span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">. Indicate the parameters for connecting the database in the file</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">trackstudio.hibernate.properties</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="font-family: 'Verdana';color:#666666;display:inline-block;width:20px;margin-left:-20px">5.</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Indicate the variable</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">TS_CONFIG</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">in the file</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">setenv.sh</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">in the folder</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">bin</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">of Tomcat6. This variable must point to the folder</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">etc</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">of your copy of TrackStudio:</span></p><p class="p_CodeExample" style="page-break-inside: avoid; border-color: #606060; border-style: solid; border-width: thin; background: #ffffcc; padding: 8px 8px 8px 8px; margin: 0 0 0 0;"><span style="font-family: 'Courier New',Courier,monospace; color: #666666;">TS_CONFIG=&quot;/home/winzard/TS_WAR/etc&quot;</span><br />
+<span style="font-family: 'Courier New',Courier,monospace; color: #666666;">export&nbsp;TS_CONFIG</span></p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="font-family: 'Verdana';color:#666666;display:inline-block;width:20px;margin-left:-20px">6.</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Define the location, where indices and files uploaded to TrackStudio will be saved. For example, these can be the folders</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">index</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">and</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">upload</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">, respectively.</span></p><p style="line-height: 1.43; margin: 0 0 0 13px;"><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Indicate these folders in the file trackstudio.properties:</span></p>
+<p class="p_CodeExample" style="page-break-inside: avoid; border-color: #606060; border-style: solid; border-width: thin; background: #ffffcc; padding: 8px 8px 8px 8px; margin: 0 0 0 0;"><span style="font-family: 'Courier New',Courier,monospace; color: #666666;">trackstudio.uploadDir&nbsp;/home/winzard/TS_WAR/upload</span><br />
+<span style="font-family: 'Courier New',Courier,monospace; color: #666666;">trackstudio.indexDir&nbsp;/home/winzard/TS_WAR/index</span></p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="font-family: 'Verdana';color:#666666;display:inline-block;width:20px;margin-left:-20px">7.</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">It is important</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">who starts Tomcat, had permission to make entries in these folders. This can be done by changing their owner. Execute the following commands in the terminal:</span></p><p class="p_CodeExample" style="page-break-inside: avoid; border-color: #cccccc; border-style: solid; border-width: 2px; background: #000000; padding: 8px 8px 8px 8px; margin: 0 0 0 0;"><span style="font-family: 'Courier New',Courier,monospace; color: #ffffff;">sudo&nbsp;chown&nbsp;-R&nbsp;tomcat6:tomcat6&nbsp;/home/winzard/TS_WAR/upload</span><br />
+<span style="font-family: 'Courier New',Courier,monospace; color: #ffffff;">sudo&nbsp;chown&nbsp;-R&nbsp;tomcat6:tomcat6&nbsp;/home/winzard/TS_WAR/index</span></p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="font-family: 'Verdana';color:#666666;display:inline-block;width:20px;margin-left:-20px">8.</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">In the same file trackstudio.properties, indicate the URL, where TrackStudio will open (in accordance with Tomcat settings)</span></p><p class="p_CodeExample" style="page-break-inside: avoid; border-color: #606060; border-style: solid; border-width: thin; background: #ffffcc; padding: 8px 8px 8px 8px; margin: 0 0 0 0;"><span style="font-family: 'Courier New',Courier,monospace; color: #666666;">trackstudio.siteURL&nbsp;</span><span style="font-family: 'Courier New',Courier,monospace; color: #666666; text-decoration: underline;"><a href="http://localhost:8080/TrackStudio" class="weblink">http://localhost:8080/TrackStudio</a></span></p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="font-family: 'Verdana';color:#666666;display:inline-block;width:20px;margin-left:-20px">9.</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Start the applications server Tomcat using command</span></p><p class="p_CodeExample" style="page-break-inside: avoid; border-color: #cccccc; border-style: solid; border-width: 2px; background: #000000; padding: 8px 8px 8px 8px; margin: 0 0 0 0;"><span style="font-family: 'Courier New',Courier,monospace; color: #ffffff;">sudo&nbsp;service&nbsp;tomcat6&nbsp;start</span></p>
+<p class="p_Normal" style="margin: 16px 0 0 0;"><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">OR</span></p>
+<p class="p_CodeExample" style="page-break-inside: avoid; border-color: #cccccc; border-style: solid; border-width: 2px; background: #000000; padding: 8px 8px 8px 8px; margin: 8px 0 0 0;"><span style="font-family: 'Courier New',Courier,monospace; color: #ffffff;">sudo&nbsp;service&nbsp;tomcat6&nbsp;restart</span></p>
+<p class="p_Normal" style="margin: 16px 0 0 0;"><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">or, if you start Tomcat not as a service, execute the file</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">startup.sh</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">from the folder</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">bin</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">of Tomcat 6</span></p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 16px 0 0 0;"><span class="f_Normal" style="font-family: 'Verdana';color:#666666;display:inline-block;width:20px;margin-left:-20px">10.</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">After starting Tomcat in the browser at the address</span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;"> </span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666; text-decoration: underline;"><a href="http://localhost:8080/TrackStudio/" class="weblink">http://localhost:8080/TrackStudio/</a></span><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">, a page looking like the following one must open:</span></p><p class="p_Normal" style="margin: 16px 0 16px 0;"><img alt="login" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="login.png"/></p>
+<p class="p_Normal" style="background: #ffffff; margin: 24px 0 0 0;"><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">Use the following user account details::</span></p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="width:960px; background-color:#ffffff; border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:middle; background-color:#FFFFFF; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">User</span></p>
+</th>
+<th style="vertical-align:middle; background-color:#FFFFFF; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">Group</span></p>
+</th>
+<th style="vertical-align:middle; background-color:#FFFFFF; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">Login</span></p>
+</th>
+<th style="vertical-align:middle; background-color:#FFFFFF; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">Password</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Administrator</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Administrator</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">root</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">root</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Sergei Managerov</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Managers</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">manager</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">123</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Ivan Analytikov</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Analysts</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">analitik</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">123</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Dmitry Pisatelev</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Technical Writers</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">writer</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">123</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Stepan Razrabotchikov</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Developers</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">developer</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">123</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Maxim Testerov</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">Testers</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">tester</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">123</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 style="background: #ffffff; margin: 8px 0 0 0;"><span style="font-size: 19px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold; color: #666666;">Note</span></h2>
+<p class="p_Normal" style="background: #ffffff; margin: 16px 0 16px 0;"><span style="font-family: Verdana,Geneva,Arial,sans-serif; color: #666666;">You can’t run several instances of TrackStudio in one applications server.</span></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+  
+
+  $(document).ready(function(){
+    $(window).bind('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+	$('.hmanchor').css('padding-top', y+20);
+      }
+    });
+    
+    $(window).resize(); //trigger event for initially small displays
+  });
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

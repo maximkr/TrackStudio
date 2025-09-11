@@ -7,7 +7,6 @@
 <%@ page import="com.trackstudio.exception.UserException"%>
 <%@ page import="com.trackstudio.exception.DuplicateUserLoginException"%>
 <%@ page import="com.trackstudio.exception.InvalidParameterException"%>
-<%@ page import="com.trackstudio.exception.LicenseException"%>
 <%@ page import="com.trackstudio.exception.TriggerException"%>
 <%@ page import="com.trackstudio.startup.Config"%>
 <%@ page import="org.apache.commons.logging.Log"%>
@@ -21,20 +20,12 @@
 <%
     String encoding = Config.getEncoding();
     String contextPath = Config.getContextPath(request);
-
     String versionPath = Config.getVersionPath();
-
-
     response.setContentType("text/html; charset="+encoding);
     response.setHeader("Cache-Control","public"); //HTTP 1.1
     response.setHeader("Pragma","public"); //HTTP 1.0
     response.setDateHeader ("Expires", 0L); //prevents caching at the proxy server
     Log log = LogFactory.getLog("TrackStudio Error");
-    String expireHote = "";
-    try {
-        long support_date = AdapterManager.getInstance().getSecuredTSInfoAdapterManager().getSupportExpireDate();
-        expireHote = new DateFormatter(TimeZone.getDefault(), Locale.ENGLISH).parse(new Timestamp(support_date));
-    } catch (Exception e) { /*Empty*/}
 %>
 <html>
 <head>
@@ -54,7 +45,7 @@
                     session.removeAttribute("r_login");
 
     %>
-    <div class="helptopic"><%=exception.getMessage() != null ? (exception instanceof LicenseException || exception instanceof TriggerException ? exception.getMessage() : HTMLEncoder.encode(exception.getMessage())) : "error"
+    <div class="helptopic"><%=exception.getMessage() != null ? (exception instanceof TriggerException ? exception.getMessage() : HTMLEncoder.encode(exception.getMessage())) : "error"
     %>
     </div>
     <div class="help">Please press the <b>Back</b> button and try again.
@@ -74,7 +65,7 @@
     <div class="help">
         A system error has occurred.
         <br>
-        Please send an email to <a class="internal" href="mailto:support@trackstudio.com?subject=An%20error%20<%=exception != null && exception.getMessage() != null ? URLEncoder.encode(exception.getMessage(), "UTF-8") : ""%>%20has%20occured">support@trackstudio.com</a> <% if (!Config.isTurnItOn("trackstudio.disable.show.stack.trace")) { %> with the following information:
+        You can report the problem here: <a class="internal">https://github.com/maximkr/TrackStudio/issues</a>GitHub issue tracker</a> <% if (!Config.isTurnItOn("trackstudio.disable.show.stack.trace")) { %> with the following information:
         <ul>
             <li>description of your problem</li>
             <li>the information found below</li>
@@ -107,8 +98,6 @@
                         "Free Memory: " + jre.freeMemory() + "\n"+
                         "Product Information:\n"+
                         "Version: " + com.trackstudio.app.adapter.AdapterManager.getInstance().getSecuredTSInfoAdapterManager().getTSVersion(null) + "\n"+
-                        "Licensee: " + Config.getInstance().getProperty("trackstudio.license.licensee") + "\n"+
-                        "License Type: " + Config.getInstance().getProperty("trackstudio.license.type") + "\n"+
                         "Database Information:\n"+
                         "Database: " + Config.getInstance().getDatabaseMetadata().getDatabaseProductName() + "\n" +
                         "Database version:" + Config.getInstance().getDatabaseMetadata().getDatabaseProductVersion() + "\n"+
@@ -120,7 +109,6 @@
                         "Database driver minor version:" + Config.getInstance().getDatabaseMetadata().getDriverMinorVersion() + "\n"+
                         "Hibernate Dialect: " + Config.getProperty("hibernate.dialect") + "\n"+
                         "Hibernate Driver: " + Config.getProperty("hibernate.connection.driver_class") + "\n"+
-                        "Expire Date: " + expireHote + "\n"+
                         "Stack Trace:";
             %>
             <%=info%>

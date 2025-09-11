@@ -54,4 +54,8 @@ WORKDIR $CATALINA_HOME
 USER tomcat
 EXPOSE 8080
 
+# Healthcheck: проверяем доступность корневой страницы
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+  CMD curl -f http://localhost:8080/ || exit 1
+
 CMD ["catalina.sh", "run"]

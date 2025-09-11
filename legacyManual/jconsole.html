@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>Rus &gt; Руководство администратора &gt; Мониторинг работы TrackStudio с помощью jconsole</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="" />
+   <meta name="description" content="В Java встроено расширение для управления (JMX), через которое с помощью графической утилиты jconsole вы можете посмотреть, как ведет себя TrackStudio в работе, на что..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        height:auto; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { background: #2C5D88; min-height: 59px }             
+      #idheader h1 { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; font-size: 80%; text-decoration: none }      
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em }	  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "jconsole.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1"><span class="f_Heading1">Мониторинг работы TrackStudio с помощью jconsole</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:bottom">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?jconsole.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="rus.html">Rus</a> &gt; <a href="administraton_guide.html">Руководство администратора</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1"><span class="f_Heading1">Мониторинг работы TrackStudio с помощью jconsole</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="howto_hide_blocks.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="administraton_guide.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="google_calendar.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">В Java встроено расширение для управления (JMX), через которое с помощью графической утилиты jconsole вы можете посмотреть, как ведет себя TrackStudio в работе, на что расходуется память, как работает кэш задач и пользователей, импорт электронной почты, рассылка уведомлений и интеграция с SCM.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Никакого дополнительного программного обеспечения для мониторинга не потребуется.</span></p>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Локальное подключение</span></h2>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Запустите TrackStudio. После этого в консоли выполните команду jconsole. Откроется окно с вариантами соединения:</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="background: #ffffff;"><img alt="jconsole_connection" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="jconsole_connection.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Выберите соединение</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">com.install4j.runtime.Launcher.launch.org.mortbay.start.Main</span></p>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Мониторинг</span></h2>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">После соединения вы увидите вкладку Overview, на которой отображены: расходование памяти, количество тредов, количество классов и использование процессорного времени.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="background: #ffffff;"><img alt="jconsole_overview" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="jconsole_overview.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">На вкладке &quot;Memory&quot; показано использование памяти приложением. Здесь же вы можете освободить часть памяти, нажав на кнопку &quot;Perform GC&quot;.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="background: #ffffff;"><img alt="jconsole_memory" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="jconsole_memory.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">На вкладке &quot;Threads&quot; показано количество потоков, выполняемых в настоящее время</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="background: #ffffff;"><img alt="jconsole_threads" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="jconsole_threads.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">На вкладке &quot;Classes&quot; показано количество классов, загруженных в виртуальную машину.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="background: #ffffff;"><img alt="jconsole_classes" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="jconsole_classes.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Перейдя на вкладку MBeans, вы можете получить информацию о состоянии различных компонентов TrackStudio. Для этого выберите классы, относящиеся к &quot;com.trackstudio.jmx&quot;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">В CacheMXBeanImpl вы увидите, сколько в системе зарегистрировано задач и пользователей. Какой размер информация о них занимает в памяти.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="background: #ffffff;"><img alt="jconsole_cache" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="jconsole_cache.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">UserSessionMXBeanImpl показывает, сколько в системе в настоящее время открыто сессий.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="background: #ffffff;"><img alt="jconsole_session" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="jconsole_session.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Если кликнуть на строку в колонке</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Value</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">, можно посмотреть конкретные параметры этих сессий</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="background: #ffffff;"><img alt="jconsole_session_id" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="jconsole_session_id.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">В данном случае в системе открыто 6 сессий пользователей: mvasenkov и maximkr зашли через веб-интерфейс, а остальные сессии созданы системой для рассылки уведомлений.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">MailImportMXBeanImpl показывает, сколько в данный момент происходит процессов импорта задач из электронной почты</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="background: #ffffff;"><img alt="jconsole_mailimport" width="800" height="600" style="margin:1px 0 1px 0;width:800px;height:600px;border:none" src="jconsole_mailimport.png"/></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+  
+
+  $(document).ready(function(){
+    $(window).bind('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+	$('.hmanchor').css('padding-top', y+20);
+      }
+    });
+    
+    $(window).resize(); //trigger event for initially small displays
+  });
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

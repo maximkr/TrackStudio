@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>Rus &gt; Руководство разработчика &gt; Как писать скрипты и триггеры в TrackStudio &gt; Как создать свой отчет в TrackStudio.</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="" />
+   <meta name="description" content="В ТС появилась возможность создавать свои отчеты. Рассмотрим пример реализации нового отчета типа список. &nbsp;В папке /etc/developement/scripts/scr/main/java/scripts/report/info ес" />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        height:auto; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { background: #2C5D88; min-height: 59px }             
+      #idheader h1 { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; font-size: 80%; text-decoration: none }      
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em }	  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "howto_create_report.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1"><span class="f_Heading1">Как создать свой отчет в TrackStudio.</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:bottom">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?howto_create_report.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="rus.html">Rus</a> &gt; <a href="developer_guide.html">Руководство разработчика</a> &gt; <a href="scripts_howto.html">Как писать скрипты и триггеры в TrackStudio</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1"><span class="f_Heading1">Как создать свой отчет в TrackStudio.</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="before_trigger_check.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="scripts_howto.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="script_coping_access_rules.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff; margin: 0 0 0 12px;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">В ТС появилась возможность создавать свои отчеты.</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff; margin: 0 0 0 12px;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Рассмотрим пример реализации нового отчета типа список.</span></p>
+<p class="p_Normal" style="text-indent: 37px; line-height: 1.43; background: #ffffff; margin: 0 0 0 12px;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 49px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">1.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">В папке /etc/developement/scripts/scr/main/java/scripts/report/info есть класс ListTaskInfoBuilder.java</span></p><p style="text-indent: 37px; line-height: 1.43; margin: 0 0 0 12px;"><span style="color: #000000;">&nbsp;</span></p>
+<p class="p_CodeExample" style="page-break-inside: avoid;"><span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.app.filter.TaskFValue;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.app.report.birt.IBuildReport;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.app.report.birt.Report;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.app.session.SessionContext;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.exception.GranException;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.secured.SecuredReportBean;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.secured.SecuredTaskBean;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">java.util.HashMap;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">java.util.List;</span><br />
+<span class="f_CodeExample">&nbsp;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">public</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">class</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">ListTaskInfoBuilder</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">implements</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">IBuildReport,</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">IBuildReport.IList</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample">&nbsp;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">private</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">Report</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">report;</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">private</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">Parameters</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">parameters;</span><br />
+<span class="f_CodeExample">&nbsp;</span><br />
+<span class="f_CodeExample">@Override</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">public</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">void</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">init()</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">throws</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">GranException</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">this</span><span class="f_CodeExample">.report</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">new</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">ListTask(</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;</span><span class="f_CodeExample">parameters.getContext(),</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;</span><span class="f_CodeExample">parameters.getSc(),</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;</span><span class="f_CodeExample">parameters.getSrb(),</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;</span><span class="f_CodeExample">parameters.getFv(),</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;</span><span class="f_CodeExample">parameters.getTaskId(),</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;</span><span class="f_CodeExample">parameters.getReportType());</span><br />
+<span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample">@Override</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">public</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">void</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">setParameters(Parameters</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">parameters)</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">this</span><span class="f_CodeExample">.parameters</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">parameters;</span><br />
+<span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample">@Override</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">public</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">Report</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">getReport()</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">return</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">this</span><span class="f_CodeExample">.report;</span><br />
+<span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample">@Override</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">public</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">String</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">getTemplate()</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">return</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">&quot;taskInfo.rptdesign&quot;;</span><br />
+<span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample">@Override</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">public</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">HashMap&lt;String,</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">String&gt;</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">getReportParams()</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">throws</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">GranException</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">return</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">this</span><span class="f_CodeExample">.report.initReportParameters(</span><span class="f_CodeExample" style="font-weight: bold;">this</span><span class="f_CodeExample">.parameters);</span><br />
+<span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">public</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">static</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">class</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">ListTask</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">extends</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">Report</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">public</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">ListTask(String</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">contextPath,</span><br />
+<span class="f_CodeExample">SessionContext</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">sc,</span><br />
+<span class="f_CodeExample">SecuredReportBean</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">report,</span><br />
+<span class="f_CodeExample">TaskFValue</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">fv,</span><br />
+<span class="f_CodeExample">String</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">taskId,</span><br />
+<span class="f_CodeExample">String</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">format)</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">throws</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">GranException</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">super</span><span class="f_CodeExample">(contextPath,</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">sc,</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">report,</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">fv,</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">taskId,</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">format);</span><br />
+<span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">public</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">List&lt;SecuredTaskBean&gt;</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">getList()</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">return</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">this</span><span class="f_CodeExample">.list;</span><br />
+<span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample">}</span></p>
+<p style="text-indent: 37px; line-height: 1.43; margin: 0 0 0 12px;"><span style="color: #000000;">&nbsp;</span></p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 49px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">2.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Класс должен реализовывать интерфейсы implements IBuildReport, IBuildReport.IList</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 49px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">3.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Создаем внутренний класс ListTask extends Report - объект этого класса будет доступен в шаблоне. На основании объекта этого класса будет заполняться шаблон.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 49px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">4.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Класс ListTask имеет один метод getList() - возвращает список отфильтрованных задач.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 49px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">5.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Создаем шаблон taskInfo.rptdesign. Его нужно положить в папку webapps/TrackStudio/reports</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 49px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">6.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Указываем что этот шаблон используется для этого отчета</span></p><p style="text-indent: 37px; line-height: 1.43; margin: 0 0 0 12px;"><span style="color: #000000;">&nbsp;</span></p>
+<p class="p_CodeExample" style="page-break-inside: avoid;"><span class="f_CodeExample">@Override</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">public</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">String</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">getTemplate()</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">return</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">&quot;taskInfo.rptdesign&quot;;</span><br />
+<span class="f_CodeExample">}</span></p>
+<p style="text-indent: 37px; line-height: 1.43; margin: 0 0 0 12px;"><span style="color: #000000;">&nbsp;</span></p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 49px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">7.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Дизайн отчета настраивается через Eclipse.</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 49px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">8.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Реализация заполнения производиться через скрипт шаблона.</span></p><p style="text-indent: 37px; line-height: 1.43; margin: 0 0 0 12px;"><span style="color: #000000;">&nbsp;</span></p>
+<p class="p_CodeExample" style="page-break-inside: avoid;"><span class="f_CodeExample">Packages.org.eclipse.birt.report.model.api);</span><br />
+<span class="f_CodeExample">importPackage(Packages.com.trackstudio.app.report.birt);</span><br />
+<span class="f_CodeExample">importPackage(Packages.java.util);</span><br />
+<span class="f_CodeExample">importPackage(Packages.com.trackstudio.app.report.birt.list);</span><br />
+<span class="f_CodeExample">var</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">elementFactory</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">reportContext.getReportRunnable().designHandle.getElementFactory();</span><br />
+<span class="f_CodeExample">var</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">store</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">reportContext.getHttpServletRequest().getAttribute(&quot;report&quot;);</span><br />
+<span class="f_CodeExample">buildHtmlLabel(elementFactory,</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">&quot;This&nbsp;is&nbsp;an&nbsp;example&nbsp;of&nbsp;report,&nbsp;which&nbsp;build&nbsp;a&nbsp;list&nbsp;of&nbsp;tasks!&quot;)</span><br />
+<span class="f_CodeExample">reportContext.getReportRunnable().designHandle.getBody().add(buildTableTasks(store));</span><br />
+<span class="f_CodeExample">function</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">buildTableTasks(store)</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample">var</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">data</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">store.getList();</span><br />
+<span class="f_CodeExample">var</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">rows</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">data.size();</span><br />
+<span class="f_CodeExample">var</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">dt</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">elementFactory.newTableItem(</span><span class="f_CodeExample" style="font-weight: bold;">null</span><span class="f_CodeExample">,</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">3,</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">0,</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">rows,</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">0);</span><br />
+<span class="f_CodeExample">dt.setWidth(&quot;95%&quot;);</span><br />
+<span class="f_CodeExample">dt.setStyleName(&quot;tableCSS&quot;);</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">for</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">(var</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">j=0;j!=rows;++j)</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample">var</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">task</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">data.get(j);</span><br />
+<span class="f_CodeExample">var</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">row</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">dt.getDetail().get(j);</span><br />
+<span class="f_CodeExample">buildCell(row.getCells().get(0),</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">task.getName());</span><br />
+<span class="f_CodeExample">buildCell(row.getCells().get(1),</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">task.getNumber());</span><br />
+<span class="f_CodeExample">buildCell(row.getCells().get(2),</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">task.getCategory().getName());</span><br />
+<span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">return</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">dt;</span><br />
+<span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample">function</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">buildCell(cell,</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">value)</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample">label</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">elementFactory.newTextItem(</span><span class="f_CodeExample" style="font-weight: bold;">null</span><span class="f_CodeExample">);</span><br />
+<span class="f_CodeExample">label.setContentType(&quot;html&quot;);</span><br />
+<span class="f_CodeExample">label.setContent(value);</span><br />
+<span class="f_CodeExample">cell.getContent().add(label);</span><br />
+<span class="f_CodeExample">cell.setStyleName(&quot;boxCSS&quot;)</span><br />
+<span class="f_CodeExample" style="font-weight: bold;">return</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">cell;</span><br />
+<span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample">function</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">buildHtmlLabel(elementFactory,</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">text)</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample">var</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">labelCountTask</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">elementFactory.newTextItem(</span><span class="f_CodeExample" style="font-weight: bold;">null</span><span class="f_CodeExample">);</span><br />
+<span class="f_CodeExample">labelCountTask.setStyleName(&quot;paddLeft&quot;);</span><br />
+<span class="f_CodeExample">labelCountTask.setContentType(&quot;html&quot;);</span><br />
+<span class="f_CodeExample">labelCountTask.setContent(text);</span><br />
+<span class="f_CodeExample">reportContext.getReportRunnable().designHandle.getBody().add(labelCountTask);</span><br />
+<span class="f_CodeExample">}</span></p>
+<p style="text-indent: 37px; line-height: 1.43; margin: 0 0 0 12px;"><span style="color: #000000;">&nbsp;</span></p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 49px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">9.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Далее собираем скрипты mvn clean package - выходной ts-scritps.jar нужно положить в etc/plugins/scripts/</span></p><p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 49px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">10.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Нужно прописать новый обработчик trackstudio.adapter.properties</span></p><p style="text-indent: 37px; line-height: 1.43; margin: 0 0 0 12px;"><span style="color: #000000;">&nbsp;</span></p>
+<p class="p_Code"><span class="f_Code">handler.report info.ListTaskInfoBuilder.class;</span></p>
+<p style="text-indent: 37px; line-height: 1.43; margin: 0 0 0 12px;"><span style="color: #000000;">&nbsp;</span></p>
+<p style="text-indent: 0; line-height: 1.43; padding-left: 20px; margin: 0 0 0 49px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">11.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Создаем отчет типа список и указываем обработчик класс info.ListTaskInfoBuilder.class</span></p><p style="text-indent: 37px; line-height: 1.43; margin: 0 0 0 12px;"><span style="color: #000000;">&nbsp;</span></p>
+<div class="p_Style"><div style="margin:1px 0 1px 0"><img alt="handler-report" style="width:100%;height:auto;border:none" src="handler-report.png"/></div></div>
+<p style="text-indent: 37px; line-height: 1.43; margin: 0 0 0 12px;"><span style="color: #000000;">&nbsp;</span></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+  
+
+  $(document).ready(function(){
+    $(window).bind('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+	$('.hmanchor').css('padding-top', y+20);
+      }
+    });
+    
+    $(window).resize(); //trigger event for initially small displays
+  });
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>Rus &gt; Руководство администратора &gt; Как настроить почтовый сервер JES</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="" />
+   <meta name="description" content="Для того, чтобы использовать систему уведомлений и возможность импортировать письма электронной почты как задачи, TrackStudio нужен POP3/SMTP сервер. Вы можете использовать для..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        height:auto; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { background: #2C5D88; min-height: 59px }             
+      #idheader h1 { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; font-size: 80%; text-decoration: none }      
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em }	  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "jes.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1"><span class="f_Heading1">Как настроить почтовый сервер JES</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:bottom">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?jes.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="rus.html">Rus</a> &gt; <a href="administraton_guide.html">Руководство администратора</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1"><span class="f_Heading1">Как настроить почтовый сервер JES</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="howto_manage_password_settings.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="administraton_guide.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="howto_notify_users.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Для того, чтобы использовать систему уведомлений и возможность импортировать письма электронной почты как задачи, TrackStudio нужен POP3/SMTP сервер. Вы можете использовать для этих целей любой известный вам сервер (или даже почтовый сервис, такой как Gmail или Яндекс.Почта). Для настройки и тестирования вы также можете использовать поставляемый вместе с TrackStudio Standalone преднастроенный</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Java E-mail Server</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">(JES).</span></p>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Чтобы использовать JES для отправки уведомлений:</span></h2>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">1.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Откройте файл</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">jes/etc/mail.conf</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">в текстовом редакторе. Раскомментируйте параметр</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">defaultsmtpservers</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">и укажите адрес SMTP-сервера вашей организации.</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">2.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Запустите Java E-mail Server (</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">jes/jes</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">). (Для запуска под ОС GNU/Linux используйте команду</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">sudo sh jes</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">3.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Запустите приложение для управления сервером TrackStudio (SMAN).</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">4.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Перейдите на вкладку &quot;</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Электронная почта</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&quot;, а затем на &quot;</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Оповещения по электронной почте</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&quot;.</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">5.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Включите опцию &quot;</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Разрешить оповещения по электронной почте</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&quot;. Остальные параметры не меняйте.</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">6.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Укажите порт для SMTP-сервера. Обычно это порт 25 (в таком случае поле можно оставить пустым), но если такой порт уже занят, вы можете указать другой в файле</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">jes/etc/mail.conf</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">7.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Нажмите кнопку &quot;</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Старт</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&quot; и дождитесь окончания запуска TrackStudio.</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">8.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Войдите в систему через ваш браузер под вашей учетной записью.</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">9.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Укажите ваш адрес электронной почты в настройках пользователя (Чтобы перейти к настройкам своей учетной записи, кликните на вашем имени в приветствии вверху страницы в TrackStudio и затем нажмите кнопку &quot;</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Редактировать</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&quot;).</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">10.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Перейдите к проекту, для которого вы хотите создать уведомление.</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">11.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">В меню выберите пункт &quot;</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Оповещения о событиях</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&quot; (если такого пункта меню нет, значит вы не включили в Server Manager возможность отправлять оповещения.</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">12.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Создайте оповещение о событиях, как это описано в статье документации &quot;</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; text-decoration: underline;"><a href="howto_notify_users.html" class="topiclink">Как оповещать пользователей об изменениях по e-mail</a></span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&quot;</span></p><p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Как это работает:</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">1.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Кто-то из пользователей изменяет или добавляет задачу, выполняет над задачей операцию или оставляет комментарий.</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">2.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Если указанная задача удовлетворяет условиям фильтра, заданного для оповещения, TrackStudio создает сообщение электронной почты и отправляет его через указанный SMTP-сервер (в данном случае JES) подписчикам, для которых создано это оповещение.</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">3.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">JES перенаправляет это сообщение на сервер, указанный в параметре</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">defaultsmtpservers</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">в файле</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">mail.conf</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">.</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">4.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Почтовый сервер отправляет сообщения в ящики электронной почты пользователей.</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">5.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Затем пользователи получают это сообщение с помощью своих почтовых клиентов.</span></p><h2 style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Чтобы использовать JES для приема сообщений электронной почты:</span></h2>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">1.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Настройте JES для отправки уведомлений, как описано выше и убедитесь, что оповещения доходят до адресатов.</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">2.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Запустите Java E-mail Server (</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">jes/jes</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">). (Для запуска под ОС GNU/Linux используйте команду</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">sudo sh jes</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">3.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Запустите приложение для управления сервером TrackStudio (SMAN).</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">4.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Перейдите на вкладку &quot;</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Электронная почта</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&quot;, а затем на &quot;</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Регистрация задач и сообщений по электронной почте</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&quot;.</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">5.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Включите опцию &quot;Разрешить импорт e-mail&quot;</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">6.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Укажите периодичность импорта в минутах. При тестировании лучше указать минимальную периодичность в 1 минуту, чтобы не приходилось долго ждать обработки писем в очереди.</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">7.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Укажите адрес почтового сервера (для целей тестирования можно оставить 127.0.0.1)</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">8.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Укажите порт для POP3-сервера. Обычно это порт 110 (в таком случае поле можно оставить пустым), но если такой порт уже занят, вы можете указать другой в файле</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">jes/etc/mail.conf</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">9.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Нажмите кнопку &quot;</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Старт</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&quot; и дождитесь окончания запуска TrackStudio.</span></p><p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Как это работает:</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">1.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Пользователь отправляет письмо на адрес trackstudio@127.0.0.1.</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">2.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">JES определяет, что адрес получателя находится в локальном домене и пересылает его в соответствующий внутренний ящик, который используется TrackStudio</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">3.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Когда TrackStudio определяет наличие сообщения в ящике, она обрабатывает его и, в зависимости от результатов обработки, создает задачу или комментарий к задаче.</span></p><p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Для тестирования вы можете создать почтовые ящики для существующих пользователей TrackStudio на сервере JES. Для этого:</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">1.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Остановите сервер JES</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">2.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Откройте файл</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">jes/etc/user.conf</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">3.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Создайте в нем записи вида</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">user.username@localhost=&lt;password&gt;</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">4.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Запустите сервер JES.</span></p><p style="text-indent: 0; padding-left: 20px; margin-left: 37px;"><span class="f_Normal" style="font-size:16px; font-family: 'Verdana';display:inline-block;width:20px;margin-left:-20px">5.</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">В почтовом клиенте укажите логин username@localhost и заданный пароль.</span></p><p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Подробнее о настройке импорта задач из электронной почты читайте в статье &quot;</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; text-decoration: underline;"><a href="howto_import_email.html" class="topiclink">Как импортировать письма от пользователей в задачи</a></span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&quot;</span></p>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="color: #000000; background-color: #ffffff;">&nbsp;</span></h2>
+<h2 style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Отладка работы системы почтовых уведомлений</span></h2>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Логи работы почтового сервера Java Email Server находятся в файле</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">jes/log/jes.log</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">. Вы можете настроить вывод этих логов в файле</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">jes/etc/log.conf</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">(это обычный конфигурационный файл логгера log4j). Для отладки лучше использовать уровень</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">debug</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Очередь отправки сообщений можно посмотреть в папке</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">jes/etc/smtp</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">вашего экземпляра TrackStudio. Если в этой папке есть файлы с расширением</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">.ser</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">и они из нее не исчезают, значит какие-то сообщения сервер</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">jes</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">не может отправить. Вы можете открыть файл с расширением</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">.ser</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">в любом текстовом редакторе и посмотреть, от кого и кому это письмо.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">После приема почты сервером JES сообщения раскладываются в папки, соответствующие ящикам учетных записей. Так, например, сообщения для</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">analyst@localhost</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">будут складироваться в папку</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">jes/etc/users/analyst@localhost</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">в виде текстовых файлов, пока не будут удалены самим получателем из почтового клиента.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Для того, чтобы посмотреть логи отправки почтовых сообщений системой TrackStudio, либо посмотреть логи импорта сообщений, в файле</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">trackstudio.mail.properties</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">установите параметр</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">mail.debug=true</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">После запуска TrackStudio в файл</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">trackstudio.log</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">будут писаться сообщения логгера.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+  
+
+  $(document).ready(function(){
+    $(window).bind('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+	$('.hmanchor').css('padding-top', y+20);
+      }
+    });
+    
+    $(window).resize(); //trigger event for initially small displays
+  });
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

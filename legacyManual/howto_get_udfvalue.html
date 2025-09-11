@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>Rus &gt; Руководство разработчика &gt; Как писать скрипты и триггеры в TrackStudio &gt; Как получить значения дополнительных полей</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="" />
+   <meta name="description" content="Получить значение дополнительного поля, если известен id поля, можно через HashMap" />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        height:auto; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { background: #2C5D88; min-height: 59px }             
+      #idheader h1 { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; font-size: 80%; text-decoration: none }      
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em }	  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "howto_get_udfvalue.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1"><span class="f_Heading1">Как получить значения дополнительных полей</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:bottom">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?howto_get_udfvalue.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="rus.html">Rus</a> &gt; <a href="developer_guide.html">Руководство разработчика</a> &gt; <a href="scripts_howto.html">Как писать скрипты и триггеры в TrackStudio</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1"><span class="f_Heading1">Как получить значения дополнительных полей</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="scripts_debug_idea.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="scripts_howto.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="calculated_custom_field.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Получить значение дополнительного поля,</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">если известен id поля</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">, можно через HashMap</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_CodeExample" style="page-break-inside: avoid;"><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">Object</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">result</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">task.getUDFValues().get(&quot;udfid&quot;).getValue();</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">Object</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">result</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">message.getUDFValues().get(&quot;udfid&quot;).getValue();</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Если</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;"> </span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">id поля нет</span><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">, можно получить значение через список</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_CodeExample" style="page-break-inside: avoid;"><span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;</span><span class="f_CodeExample">Object</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">result;</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">for</span><span class="f_CodeExample">(SecuredUDFValueBean</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">valueBean:task.getUdfValuesList())</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">if</span><span class="f_CodeExample">(valueBean.getCaption().equals(&quot;udf&nbsp;name&quot;))</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">result</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">valueBean.getValue();</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;</span><span class="f_CodeExample">Object</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">result;</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">for</span><span class="f_CodeExample">(SecuredUDFValueBean</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">valueBean:message.getUdfValuesList())</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">if</span><span class="f_CodeExample">(valueBean.getCaption().equals(&quot;udf&nbsp;name&quot;))</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">result</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">valueBean.getValue();</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">}</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Чтобы использовать такой результат в скрипте, его необходимо привести к нужному типу данных.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<div style="text-align: left; text-indent: 37px; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="width:100%; background-color:#ffffff; border:none; border-spacing:0; border-collapse:collapse;">
+<tr>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Тип поля</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Тип результата</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif; font-weight: bold;">Примечание</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Строка</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">String</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Целое</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Integer</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Дата</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Calendar</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; height:23px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Список</span></p>
+</td>
+<td style="vertical-align:middle; height:23px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">com.trackstudio.tools.Pair</span></p>
+</td>
+<td style="vertical-align:middle; height:23px; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Содержится в trackstudio.jar. Конструктор Pair(String key, String value)</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Дробное</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Double</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Текст</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">String</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Множественный список</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">List&lt;Pair&gt;</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Задача</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">ArrayList&lt;SecuredTaskBean&gt;</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Пользователь</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">ArrayList&lt;SecuredUserBean&gt;</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">URL</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">com.trackstudio.containers.Link</span></p>
+</td>
+<td style="vertical-align:middle; padding:1px; border:solid thin #808080;"><p><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Содержится в trackstudio.jar. Конструктор Link(String link, String description)</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="font-size: 16px; font-family: Verdana,Geneva,Arial,sans-serif;">Ниже приведен пример скрипта, который возвращает список имен задач, которые являются значениями поля типа задача.</span></p>
+<p class="p_Normal" style="text-indent: 37px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_CodeExample" style="page-break-inside: avoid;"><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">package</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">scripts.task_custom_field_value;</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.exception.GranException;</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.external.TaskUDFValueScript;</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.secured.SecuredTaskBean;</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">com.trackstudio.secured.SecuredUDFValueBean;</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">import</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">java.util.ArrayList;</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">class</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">Example</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">implements</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">TaskUDFValueScript</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">public</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">Object</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">calculate(SecuredTaskBean</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">task)</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">throws</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">GranException</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">String</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">udfid</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">&quot;4028808a1947f52201194818b51900ad&quot;;</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-style: italic;">/*ID&nbsp;поля,&nbsp;из&nbsp;которого&nbsp;нужно&nbsp;получить&nbsp;значение*/</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">ArrayList&lt;String&gt;</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">names</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">new</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">ArrayList&lt;String&gt;();</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">SecuredUDFValueBean</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">result</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">task.getUDFValues().get(udfid);</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">if</span><span class="f_CodeExample">(result!=</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">null</span><span class="f_CodeExample">)</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">for</span><span class="f_CodeExample">(SecuredTaskBean</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">securedTaskBean:(ArrayList&lt;SecuredTaskBean&gt;)result.getValue())</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;</span><span class="f_CodeExample">{</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">names.add(securedTaskBean.getName());</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">}</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample" style="font-weight: bold;">return</span><span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">names;</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample">}</span><br />
+<span class="f_CodeExample" style="color: #ffffff;">&nbsp;</span><span class="f_CodeExample">}</span></p>
+<p class="p_Code"><span class="f_Code">&nbsp;</span></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+  
+
+  $(document).ready(function(){
+    $(window).bind('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+	$('.hmanchor').css('padding-top', y+20);
+      }
+    });
+    
+    $(window).resize(); //trigger event for initially small displays
+  });
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

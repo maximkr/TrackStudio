@@ -1,9 +1,8 @@
 # TrackStudio Enterprise 6 (Open Source)
 
 TrackStudio — это классический трекер задач уровня Enterprise с иерархией задач и пользователей, настраиваемыми рабочими процессами, ролями и правами, SLA-правилами и мощным механизмом уведомлений. Поддерживает сотни тысяч задач и десятки тысяч пользователей на одном сервере.
-<br>
-<img alt="image" src="https://github.com/user-attachments/assets/afc4dd7a-5656-42c0-9ca1-d9352c04e57b" />
 
+<img alt="image" src="https://github.com/user-attachments/assets/afc4dd7a-5656-42c0-9ca1-d9352c04e57b" />
 
 -   **Лицензия:** Apache License 2.0
     

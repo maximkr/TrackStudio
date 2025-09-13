@@ -55,7 +55,7 @@ repositories {
 dependencies {
     // Тесты
     testImplementation("junit:junit:4.13.2")
-    testImplementation("org.hamcrest:hamcrest-all:2.2")
+    testImplementation("org.hamcrest:hamcrest:2.2")
 
     // Provided (только на контейнере приложений)
     compileOnly("javax.servlet:javax.servlet-api:4.0.1")

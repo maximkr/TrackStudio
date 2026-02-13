@@ -13,4 +13,8 @@
         <sqlFile path="update-2025-08-27.sql"/>
     </changeSet>
 
+    <changeSet id="update-2026-02-14" author="maximkr@gmail.com" runOnChange="false">
+        <sqlFile path="update-2026-02-14.sql"/>
+    </changeSet>
+
 </databaseChangeLog>

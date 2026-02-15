@@ -18,7 +18,9 @@
     <meta http-equiv="content-type" content="text/html; charset=<c:out value="${charSet}"/>">
     <c:set var="urlHtml" value="html"/>
     <ts:css request="${request}">
+        <ts:cssLink link="style_tokens.css"/>
         <ts:cssLink link="style_src.css"/>
+        <ts:cssLink link="style_components.css"/>
     </ts:css>
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />

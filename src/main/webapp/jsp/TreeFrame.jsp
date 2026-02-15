@@ -229,8 +229,10 @@
 	<link rel="icon" href="${contextPath}/${ImageServlet}/favicon.png" type="image/png"/>
 
 	<ts:css request="${request}">
+		<ts:cssLink link="style_tokens.css"/>
 		<ts:cssLink link="style_src.css"/>
 		<ts:cssLink link="style-panel.css"/>
+		<ts:cssLink link="style_components.css"/>
 	</ts:css>
 </head>
 

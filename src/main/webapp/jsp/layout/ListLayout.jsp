@@ -31,10 +31,6 @@
         .link {display: none;}
         .navigation {display: none;}
     }
-    #ui-id-1 {
-        font-family: Verdana, Sans, sans-serif;
-        font-size: 11px;
-    }
 </style>
 
 <script type="text/javascript">
@@ -94,6 +90,7 @@
 </script>
 <c:set var="urlHtml" value="html"/>
 <ts:css request="${request}">
+    <ts:cssLink link="style_tokens.css"/>
     <ts:cssLink link="style_sort.css"/>
     <ts:cssLink link="style_src.css"/>
     <ts:cssLink link="${urlHtml}/calendar-blue.css"/>
@@ -107,6 +104,7 @@
 	<ts:cssLink link="${urlHtml}/jquery/jquery-ui.structure.min.css"/>
 	<ts:cssLink link="${urlHtml}/jquery/jquery-ui.theme.min.css"/>
 	<ts:cssLink link="${urlHtml}/lightbox/css/lightbox.css"/>
+    <ts:cssLink link="style_components.css"/>
 </ts:css>
 
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>

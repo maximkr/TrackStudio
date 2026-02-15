@@ -101,31 +101,33 @@ span.number {
     vertical-align: middle;
 }
 
-/* TrackStudio frame navigation refresh */
+/* TrackStudio frame navigation refresh — uses tokens from style_tokens.css */
 body.ts-tree-body {
-    background: #edf4fa;
+    background: var(--ts-bg);
 }
 
 body.ts-tree-body div.content {
-    background: #ffffff;
+    background: var(--ts-surface);
     border-left: 0;
-    border-right: 1px solid #d7e2eb;
+    border-right: 1px solid var(--ts-border);
 }
 
 body.ts-tree-body div.head,
 body.ts-tree-body div.foot {
-    background: #2f7396;
+    background: var(--ts-primary);
 }
 
 body.ts-tree-body label.header {
     display: block;
     color: #ffffff;
-    background-color: #2f7396 !important;
-    font-family: "Segoe UI", Arial, sans-serif;
-    font-size: 12px;
+    background-color: var(--ts-primary) !important;
+    font-family: var(--ts-font-family);
+    font-size: var(--ts-font-sm);
     font-weight: 600;
-    padding: 4px 8px;
+    padding: var(--ts-space-1) var(--ts-space-2);
     text-shadow: none;
+    border: none;
+    height: auto;
 }
 
 body.ts-tree-body label.header img {
@@ -134,13 +136,22 @@ body.ts-tree-body label.header img {
 
 body.ts-tree-body ul.fancytree-container {
     border: 0;
-    background: #ffffff;
-    font-family: "Segoe UI", Arial, sans-serif;
-    font-size: 12px;
+    background: var(--ts-surface);
+    font-family: var(--ts-font-family);
+    font-size: var(--ts-font-sm);
 }
 
 body.ts-tree-body .fancytree-title {
-    color: #1d2b36;
+    color: var(--ts-text);
+}
+
+body.ts-tree-body .fancytree-node:hover .fancytree-title {
+    color: var(--ts-primary);
+}
+
+body.ts-tree-body .fancytree-active .fancytree-title {
+    color: var(--ts-primary-strong);
+    font-weight: 600;
 }
 
 body.ts-tree-body .fancytree-icon,

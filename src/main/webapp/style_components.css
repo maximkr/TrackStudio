@@ -1,0 +1,1093 @@
+/* ============================================================
+   TrackStudio Component Styles
+   Modern overrides for every UI component.
+   Load LAST so these rules win over legacy selectors.
+   ============================================================ */
+
+
+/* ── App shell ────────────────────────────────────────────── */
+
+BODY.ts-app {
+    background-color: var(--ts-bg);
+    margin: 0;
+    padding: var(--ts-space-4);
+}
+
+.ts-app-shell {
+    max-width: 1680px;
+    margin: 0 auto;
+}
+
+
+/* ── Login page ───────────────────────────────────────────── */
+
+BODY.ts-login-page {
+    background: linear-gradient(180deg, #f7fbff 0%, #edf4fa 100%);
+    margin: 0;
+    padding: var(--ts-space-4);
+}
+
+.ts-login-shell {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--ts-space-4);
+    box-sizing: border-box;
+}
+
+.ts-login-card {
+    background-color: var(--ts-surface);
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-md);
+    box-shadow: var(--ts-shadow-lg);
+    padding: 8px 8px 0 8px;
+}
+
+.ts-login-brand {
+    text-align: center;
+    padding: 16px 12px 8px 12px;
+}
+
+.ts-login-card .blueborder {
+    border: none;
+    border-top: 1px solid var(--ts-border);
+}
+
+.ts-login-footer {
+    margin-top: var(--ts-space-4);
+    text-align: center;
+    color: var(--ts-text-muted);
+    font-size: var(--ts-font-xs);
+}
+.ts-login-footer a {
+    color: var(--ts-text-muted);
+    font-size: var(--ts-font-xs);
+}
+
+.ts-login-error {
+    display: block;
+    margin-bottom: var(--ts-space-2);
+    color: var(--ts-danger);
+    font-weight: 500;
+}
+
+TABLE.login TH {
+    text-align: left;
+}
+TABLE.login LABEL {
+    color: var(--ts-text-muted);
+    font-weight: 600;
+    font-size: var(--ts-font-base);
+}
+TABLE.login TD {
+    padding: var(--ts-space-2) var(--ts-space-1);
+}
+TABLE.login TD.controls {
+    text-align: left;
+    padding-top: var(--ts-space-3);
+}
+TABLE.login LABEL.secondary {
+    color: var(--ts-text);
+    font-weight: 500;
+}
+
+INPUT.reallyBig {
+    font-size: var(--ts-font-lg);
+    font-weight: normal;
+    height: 42px;
+    width: 100%;
+    border-radius: var(--ts-radius-sm);
+    border: 1px solid var(--ts-border-strong);
+    padding: var(--ts-space-2) var(--ts-space-3);
+}
+INPUT.reallyBig:focus {
+    border-color: var(--ts-primary);
+    box-shadow: 0 0 0 3px rgba(47, 115, 150, 0.15);
+}
+
+
+/* ── Brand ────────────────────────────────────────────────── */
+
+.ts-brand-logo,
+.ts-brand-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--ts-font-family);
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.ts-brand-mark {
+    display: inline-block;
+    min-width: 30px;
+    line-height: 24px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 800;
+    color: #ffffff;
+    background-color: var(--ts-primary);
+    border-radius: 6px;
+}
+
+.ts-brand-name {
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--ts-text);
+}
+
+.ts-brand-subtitle {
+    margin-top: 4px;
+    font-size: var(--ts-font-xs);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--ts-text-muted);
+}
+
+.ts-brand-inline {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.ts-brand-inline .ts-brand-name {
+    font-size: 18px;
+    line-height: 22px;
+}
+
+
+/* ── Header bar (div.login in TaskHeader/UserHeader) ──────── */
+
+div.login {
+    font-size: var(--ts-font-sm);
+    color: var(--ts-text);
+    background-color: var(--ts-surface);
+    padding: var(--ts-space-2) var(--ts-space-3);
+    border-bottom: 1px solid var(--ts-border);
+}
+div.login A {
+    font-size: var(--ts-font-sm);
+    color: var(--ts-primary);
+    text-decoration: none;
+}
+div.login A:hover {
+    color: var(--ts-primary-strong);
+}
+
+/* Search box in header */
+input.form-autocomplete {
+    background: var(--ts-surface) url(cssimages/ico.search.gif) no-repeat calc(100% - 8px) center;
+    border: 1px solid var(--ts-border-strong);
+    border-radius: var(--ts-radius-sm);
+    padding-right: 28px;
+    height: var(--ts-input-height);
+    font-size: var(--ts-font-base);
+    font-weight: normal;
+    transition: border-color var(--ts-transition), box-shadow var(--ts-transition);
+}
+input.form-autocomplete:focus {
+    border-color: var(--ts-primary);
+    box-shadow: 0 0 0 3px rgba(47, 115, 150, 0.15);
+    outline: none;
+}
+
+/* jQuery UI autocomplete dropdown */
+#ui-id-1,
+.ui-autocomplete {
+    font-family: var(--ts-font-family);
+    font-size: var(--ts-font-base);
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-sm);
+    box-shadow: var(--ts-shadow-lg);
+}
+
+
+/* ── Control panel / toolbar ──────────────────────────────── */
+
+div.controlPanel {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--ts-space-1);
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-md);
+    background-color: var(--ts-surface);
+    padding: var(--ts-space-2) var(--ts-space-3);
+    margin-bottom: var(--ts-space-3);
+    box-shadow: var(--ts-shadow);
+    line-height: normal;
+}
+
+div.controlPanel A {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--ts-font-sm);
+    font-weight: 500;
+    color: var(--ts-text-muted);
+    text-decoration: none;
+    padding: var(--ts-space-1) var(--ts-space-2);
+    border: 1px solid transparent;
+    border-radius: var(--ts-radius-sm);
+    transition: all var(--ts-transition);
+    white-space: nowrap;
+    background-image: none;
+    margin: 1px 2px;
+}
+div.controlPanel A:hover,
+div.controlPanel A.selected,
+div.controlPanel A#selected {
+    color: var(--ts-text);
+    background-color: var(--ts-surface-muted);
+    border-color: var(--ts-border);
+}
+
+div.controlPanel label.expandable .closed A,
+div.controlPanel label.expandable .opened A {
+    background-image: none;
+}
+
+div.controlPanel select {
+    font-size: var(--ts-font-sm);
+}
+
+div.controlPanel INPUT {
+    border: 1px solid var(--ts-border-strong);
+    background-color: var(--ts-surface);
+    cursor: pointer;
+}
+div.controlPanel INPUT:hover {
+    border-color: var(--ts-primary);
+    background-color: var(--ts-surface);
+}
+
+div.controlPanel IMG {
+    border: 0;
+    padding-right: 2px;
+    vertical-align: middle;
+    background-color: transparent;
+}
+
+div.controlPanel span.separator {
+    display: inline-block;
+    width: 1px;
+    height: 16px;
+    background-color: var(--ts-border);
+    margin: 0 var(--ts-space-2);
+    vertical-align: middle;
+    font-size: 0;
+}
+
+/* Tree toggle */
+.tree-toggle-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    color: var(--ts-text-muted);
+    cursor: pointer;
+    border-radius: var(--ts-radius-sm);
+    transition: background-color var(--ts-transition);
+    user-select: none;
+}
+.tree-toggle-button:hover {
+    background-color: var(--ts-surface-muted);
+}
+
+
+/* ── Breadcrumb path ──────────────────────────────────────── */
+
+DIV.logopath {
+    font-size: var(--ts-font-sm);
+    color: var(--ts-text-muted);
+    padding: var(--ts-space-2) 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2px;
+}
+DIV.logopath A {
+    font-size: var(--ts-font-sm);
+    font-weight: 500;
+    color: var(--ts-text-muted);
+    text-decoration: none;
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: background-color var(--ts-transition-fast), color var(--ts-transition-fast);
+}
+DIV.logopath A:hover {
+    color: var(--ts-primary);
+    background-color: var(--ts-primary-soft);
+}
+DIV.logopath A.internal:after,
+span.separated:after {
+    color: var(--ts-border-strong);
+    font-weight: normal;
+    padding: 0 2px;
+}
+DIV.logopath IMG {
+    vertical-align: middle;
+}
+
+
+/* ── Task title ───────────────────────────────────────────── */
+
+DIV.taskTitle {
+    margin: 0 0 var(--ts-space-3) 0;
+    padding: var(--ts-space-2) 0;
+    border-bottom: 1px solid var(--ts-border);
+}
+DIV.taskTitle A {
+    font-size: var(--ts-font-xl);
+    font-weight: 600;
+    color: var(--ts-text);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+DIV.taskTitle A:hover {
+    color: var(--ts-primary);
+}
+DIV.taskTitle A IMG,
+DIV.taskTitle IMG {
+    vertical-align: middle;
+}
+DIV.taskTitle SPAN {
+    font-size: var(--ts-font-xl);
+    font-weight: 600;
+    color: var(--ts-text);
+}
+DIV.taskTitle em.number {
+    font-style: normal;
+    font-size: var(--ts-font-base);
+    font-weight: 400;
+    color: var(--ts-text-muted);
+    margin-left: 4px;
+}
+
+
+/* ── TABLE.general — main data table ──────────────────────── */
+
+TABLE.general {
+    width: 100%;
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-md);
+    background-color: var(--ts-surface);
+    overflow: hidden;
+    box-shadow: var(--ts-shadow);
+    margin-bottom: var(--ts-space-4);
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+TABLE.general CAPTION {
+    background-color: var(--ts-surface-muted);
+    border-bottom: 1px solid var(--ts-border);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: var(--ts-text);
+    font-size: var(--ts-font-base);
+    font-weight: 600;
+    padding: var(--ts-space-2) var(--ts-space-3);
+    text-align: left;
+    letter-spacing: 0;
+}
+
+TABLE.general TH {
+    background-color: var(--ts-surface-muted);
+    color: var(--ts-text-muted);
+    font-weight: 600;
+    font-size: var(--ts-font-sm);
+    padding: var(--ts-space-2) var(--ts-space-3);
+    border-bottom: 1px solid var(--ts-border);
+}
+
+TABLE.general TD {
+    padding: var(--ts-space-2) var(--ts-space-3);
+    color: var(--ts-text);
+    font-size: var(--ts-font-base);
+    border-bottom: 1px solid var(--ts-border);
+}
+
+TABLE.general TR:last-child TD,
+TABLE.general TR:last-child TH {
+    border-bottom: none;
+}
+
+TABLE.general TR.wide TH {
+    background-color: var(--ts-primary-soft);
+    color: var(--ts-text);
+    font-weight: 600;
+    font-size: var(--ts-font-base);
+}
+
+TABLE.general TR.wide TH.secondary {
+    background-color: var(--ts-surface-muted);
+}
+
+/* Alternating rows */
+TABLE.general TR.line0 TD,
+TABLE.general TR.line0 TD div.line0,
+TABLE.general TR.line0 TD div.line0 TABLE.general TD,
+TABLE.general TR.line0 TD div.line0 TABLE.general TH,
+TABLE.general TR.line0 TD div.line1,
+TABLE.general TR.line0 TD div.line1 TABLE.general TD,
+TABLE.general TR.line0 TD div.line1 TABLE.general TH {
+    background-color: var(--ts-surface) !important;
+}
+
+TABLE.general TR.line1 TD,
+TABLE.general TR.line1 TD div.line0,
+TABLE.general TR.line1 TD div.line0 TABLE.general TD,
+TABLE.general TR.line1 TD div.line0 TABLE.general TH,
+TABLE.general TR.line1 TD div.line1,
+TABLE.general TR.line1 TD div.line1 TABLE.general TD,
+TABLE.general TR.line1 TD div.line1 TABLE.general TH {
+    background-color: var(--ts-surface-muted) !important;
+}
+
+div.line0, div.line0 TABLE.general TD, div.line0 TABLE.general TH {
+    background-color: var(--ts-surface);
+}
+div.line1, div.line1 TABLE.general TD, div.line1 TABLE.general TH {
+    background-color: var(--ts-surface-muted);
+}
+
+/* Row hover */
+TABLE.general TR.line0:hover TD,
+TABLE.general TR.line1:hover TD,
+TABLE.general TR.one:hover TD,
+TABLE.general TR.two:hover TD {
+    background-color: var(--ts-primary-soft) !important;
+}
+
+TABLE.general TR.one TD {
+    background-color: var(--ts-surface-muted);
+}
+TABLE.general TR.two TD {
+    background-color: var(--ts-surface);
+}
+
+/* Overdue rows keep their red tint */
+tr.overdue.line0 TD, tr.overdue.line0 TH {
+    background-color: var(--ts-danger-soft) !important;
+}
+tr.overdue.line1 TD, tr.overdue.line1 TH {
+    background-color: #f9d4d4 !important;
+}
+
+TABLE.general TD.selected,
+TABLE.general TR.selected TD {
+    background-color: var(--ts-primary-soft);
+    font-weight: 600;
+}
+
+TABLE.general TD.message {
+    background-color: var(--ts-surface);
+    padding: var(--ts-space-2) var(--ts-space-3);
+}
+
+TABLE.general IMG {
+    vertical-align: middle;
+}
+
+
+/* ── DIV.caption / DIV.ncaption ───────────────────────────── */
+
+DIV.caption {
+    font-size: var(--ts-font-md);
+    font-weight: 600;
+    color: var(--ts-text);
+    background-color: var(--ts-surface-muted);
+    border-bottom: 1px solid var(--ts-border);
+    border-top: none;
+    padding: var(--ts-space-2) var(--ts-space-3);
+    letter-spacing: 0;
+}
+DIV.caption A {
+    font-size: var(--ts-font-base);
+    font-weight: 600;
+    color: var(--ts-primary);
+    letter-spacing: 0;
+}
+
+DIV.ncaption {
+    font-size: var(--ts-font-base);
+    font-weight: 600;
+    color: var(--ts-text);
+    background-color: var(--ts-surface-muted);
+    border-bottom: 1px solid var(--ts-border);
+    padding: var(--ts-space-2) var(--ts-space-3);
+}
+
+
+/* ── Tabs (TABLE.tabbedpane) — CSS-only, no images ────────── */
+
+TABLE.tabbedpane {
+    margin-top: var(--ts-space-4);
+    margin-bottom: 0;
+}
+
+TABLE.tabbedpane TD LI A {
+    float: left;
+    background: none !important;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    padding: var(--ts-space-2) var(--ts-space-3);
+    margin-right: var(--ts-space-1);
+    color: var(--ts-text-muted);
+    font-weight: 500;
+    font-size: var(--ts-font-base);
+    transition: all var(--ts-transition);
+    text-decoration: none;
+}
+
+TABLE.tabbedpane TD LI A SPAN {
+    float: none;
+    display: inline;
+    background: none !important;
+    padding: 0;
+}
+
+TABLE.tabbedpane TD A:link,
+TABLE.tabbedpane TD A:visited,
+TABLE.tabbedpane TD A:active {
+    color: var(--ts-text-muted);
+    font-size: var(--ts-font-base);
+    font-weight: 500;
+}
+
+TABLE.tabbedpane TD LI A:hover {
+    color: var(--ts-primary);
+    border-bottom-color: var(--ts-primary-soft);
+    background: none !important;
+}
+TABLE.tabbedpane TD LI A:hover SPAN {
+    background: none !important;
+}
+
+TABLE.tabbedpane TD LI#selectedtab A,
+TABLE.tabbedpane TD LI#selectedtab A:hover {
+    color: var(--ts-primary);
+    border-bottom-color: var(--ts-primary);
+    font-weight: 600;
+    background: none !important;
+}
+TABLE.tabbedpane TD LI#selectedtab A SPAN {
+    background: none !important;
+    padding: 0;
+}
+
+DIV.tabcontent {
+    border: 1px solid var(--ts-border);
+    border-radius: 0 0 var(--ts-radius-md) var(--ts-radius-md);
+    background-color: var(--ts-surface);
+    padding: var(--ts-space-3);
+    box-shadow: var(--ts-shadow);
+}
+
+
+/* ── Pagination (DIV.slider) ──────────────────────────────── */
+
+DIV.slider {
+    font-size: var(--ts-font-base);
+    font-weight: 500;
+    padding: var(--ts-space-3) 0;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ts-space-1);
+}
+DIV.slider A {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    font-size: var(--ts-font-base);
+    font-weight: 500;
+    color: var(--ts-text);
+    text-decoration: none;
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-sm);
+    padding: 0 var(--ts-space-2);
+    transition: all var(--ts-transition);
+}
+DIV.slider A:hover {
+    background-color: var(--ts-primary-soft);
+    border-color: var(--ts-primary);
+    color: var(--ts-primary);
+}
+DIV.slider SPAN {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    font-size: var(--ts-font-base);
+    font-weight: 600;
+    color: #ffffff;
+    background-color: var(--ts-primary);
+    border: 1px solid var(--ts-primary);
+    border-radius: var(--ts-radius-sm);
+    padding: 0 var(--ts-space-2);
+}
+
+
+/* ── Labels / expandable sections ─────────────────────────── */
+
+LABEL.expandable,
+LABEL.loadable {
+    font-weight: 600;
+    font-size: var(--ts-font-base);
+    color: var(--ts-text);
+}
+LABEL.expandable A {
+    font-weight: 600;
+    font-size: var(--ts-font-base);
+}
+
+A.history-closed,
+A.history-opened {
+    font-size: var(--ts-font-base);
+    font-weight: 600;
+    color: var(--ts-text);
+}
+
+.fx LABEL.opened {
+    background-color: var(--ts-primary-soft);
+    border-top: 3px solid var(--ts-primary);
+    border-left: 1px solid var(--ts-border);
+    border-right: 1px solid var(--ts-border);
+    border-bottom: 1px solid var(--ts-border);
+}
+.fx LABEL.closed {
+    border: 1px solid var(--ts-border);
+}
+
+
+/* ── Message boxes ────────────────────────────────────────── */
+
+div.msgbox-closed,
+div.msgbox-opened {
+    font-size: var(--ts-font-base);
+    color: var(--ts-text);
+}
+
+div.msgbox-opened div.description {
+    padding-left: 58px;
+}
+
+
+/* ── Yellowbox / Bluebox / Dropdown ───────────────────────── */
+
+DIV#yellowbox, DIV.yellowbox {
+    border: 1px solid var(--ts-warning);
+    border-radius: var(--ts-radius-sm);
+    padding: var(--ts-space-2);
+}
+DIV#bluebox, DIV.bluebox {
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-sm);
+    padding: var(--ts-space-2);
+    background-color: var(--ts-surface-muted);
+}
+DIV.dropdown {
+    border: 1px solid var(--ts-warning);
+    border-radius: var(--ts-radius-sm);
+    padding: var(--ts-space-2);
+}
+
+
+/* ── Error / Notice tables ────────────────────────────────── */
+
+TABLE.error,
+TABLE.error.ts-message-error {
+    border: 1px solid var(--ts-danger);
+    border-radius: var(--ts-radius-md);
+    background-color: var(--ts-danger-soft);
+    overflow: hidden;
+}
+TABLE.error CAPTION {
+    background-color: #e8b4b4;
+    border-color: var(--ts-danger);
+    color: var(--ts-text);
+    font-weight: 600;
+}
+TABLE.error TD {
+    font-size: var(--ts-font-base);
+}
+
+TABLE.notice {
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-md);
+    background-color: var(--ts-surface-muted);
+    overflow: hidden;
+}
+TABLE.notice CAPTION {
+    background-color: var(--ts-surface-muted);
+    border-color: var(--ts-border);
+    font-weight: 600;
+}
+TABLE.notice TD {
+    font-size: var(--ts-font-base);
+}
+
+
+/* ── TSMenu dropdown ──────────────────────────────────────── */
+
+.ts-menu {
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-sm);
+    background: var(--ts-surface);
+    box-shadow: var(--ts-shadow-lg);
+    padding: var(--ts-space-1);
+}
+.ts-menu a {
+    font-size: var(--ts-font-sm);
+    color: var(--ts-text);
+    padding: var(--ts-space-1) var(--ts-space-2);
+    border-radius: 4px;
+    white-space: normal;
+    line-height: var(--ts-line-height);
+    transition: background-color var(--ts-transition-fast);
+}
+.ts-menu a:hover {
+    color: var(--ts-text);
+    background-color: var(--ts-primary-soft);
+}
+.ts-menu a.sep {
+    background-color: var(--ts-border);
+    margin: var(--ts-space-1) 0;
+    height: 1px;
+    padding: 0;
+}
+.ts-menu-empty {
+    font-size: var(--ts-font-sm);
+    color: var(--ts-text-muted);
+    border-color: transparent;
+}
+.ts-menu-item-first-td,
+.ts-menu-item-second-td {
+    font-size: var(--ts-font-sm);
+}
+
+
+/* ── TSMenu bar ───────────────────────────────────────────── */
+
+.ts-menu-bar {
+    background-color: var(--ts-surface);
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-sm);
+    font-size: var(--ts-font-sm);
+    padding: var(--ts-space-1) var(--ts-space-2);
+}
+.ts-menu-bar a,
+.ts-menu-bar a:visited {
+    font-size: var(--ts-font-sm);
+    color: var(--ts-text-muted);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: var(--ts-space-1) var(--ts-space-2);
+    margin-left: 2px;
+    background-image: none;
+    text-decoration: none;
+    font-weight: 500;
+}
+.ts-menu-bar a:hover {
+    color: var(--ts-text);
+    background: var(--ts-primary-soft);
+    background-image: none;
+    border-color: var(--ts-border);
+}
+.ts-menu-bar a:active,
+.ts-menu-bar a:focus {
+    border-color: var(--ts-primary);
+    outline: none;
+}
+.ts-menu-bar a .arrow {
+    border: 0;
+    float: none;
+}
+
+
+/* ── Icons ────────────────────────────────────────────────── */
+
+img.icon,
+html\:img.icon {
+    height: 16px;
+    width: 16px;
+    object-fit: contain;
+    vertical-align: middle;
+    image-rendering: auto;
+}
+
+img[src*="/cssimages/ico."] {
+    border-radius: 0;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+img.state {
+    height: 12px;
+    width: 12px;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+
+/* ── Sort/filter header ───────────────────────────────────── */
+
+TABLE.sortfilter {
+    font-size: var(--ts-font-sm);
+}
+TABLE.sortfilter TD {
+    padding: var(--ts-space-1) var(--ts-space-2);
+}
+TABLE.sortfilter A {
+    color: var(--ts-text-muted);
+    text-decoration: none;
+    font-weight: 600;
+}
+TABLE.sortfilter A:hover {
+    color: var(--ts-primary);
+}
+
+
+/* ── Post-filtering area ──────────────────────────────────── */
+
+#postFiltering {
+    margin-top: var(--ts-space-2);
+}
+#postFiltering table.general {
+    width: 100%;
+    border-collapse: collapse;
+}
+#postFiltering table.general CAPTION {
+    text-align: left;
+}
+#postFiltering table.general TH {
+    font-size: var(--ts-font-sm);
+    font-weight: 600;
+    color: var(--ts-text-muted);
+    white-space: nowrap;
+    padding: var(--ts-space-2) var(--ts-space-3);
+}
+#postFiltering table.general TD {
+    font-size: var(--ts-font-sm);
+    padding: var(--ts-space-2) var(--ts-space-3);
+}
+#postFiltering table.general TR + TR {
+    border-top: 1px solid var(--ts-border);
+}
+#postFiltering SELECT {
+    min-width: 180px;
+}
+#postFiltering .controls {
+    text-align: right;
+    padding: var(--ts-space-3) 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--ts-space-2);
+}
+
+
+/* ── Footer ───────────────────────────────────────────────── */
+
+TABLE.allrights,
+TABLE.allrights TD,
+.ts-footer {
+    font-size: var(--ts-font-xs);
+    color: var(--ts-text-muted);
+}
+TABLE.allrights A {
+    color: var(--ts-text-muted);
+    font-size: var(--ts-font-xs);
+}
+TABLE.allrights {
+    margin-top: var(--ts-space-6);
+    background: transparent;
+}
+
+span.expired {
+    background-color: var(--ts-danger);
+    border-radius: var(--ts-radius-sm);
+    font-size: var(--ts-font-sm);
+}
+
+
+/* ── Task info helpers ────────────────────────────────────── */
+
+.taskinfo-right, .taskinfo-left {
+    background-color: var(--ts-surface-muted) !important;
+    font-weight: 600;
+    font-size: var(--ts-font-base);
+    border-bottom: 1px solid var(--ts-border);
+}
+
+div.taskDescription {
+    margin-left: var(--ts-space-12);
+    width: auto;
+    max-width: 900px;
+}
+div.taskDescription.descclosed div.content {
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-sm);
+}
+
+
+/* ── User links ───────────────────────────────────────────── */
+
+A.user {
+    font-size: var(--ts-font-base);
+    font-weight: 600;
+    color: var(--ts-text);
+}
+SPAN.user {
+    font-size: var(--ts-font-base);
+    color: var(--ts-primary);
+}
+SPAN.user#loggedUser {
+    color: var(--ts-success);
+}
+
+
+/* ── Internal links in lists ──────────────────────────────── */
+
+a.internal {
+    font-size: var(--ts-font-base);
+    font-weight: 600;
+    color: var(--ts-text);
+    text-decoration: none;
+}
+a.internal:hover {
+    color: var(--ts-primary);
+}
+
+a.copy_in_list       { color: #9b59b6; }
+a.copy_recursively_in_list { color: #e67e22; }
+a.cut_in_list        { color: #95a5a6; }
+
+a.underline {
+    font-size: var(--ts-font-base);
+    text-decoration: underline;
+}
+
+
+/* ── Bookmarks panel ──────────────────────────────────────── */
+
+div.bookmarkCaption {
+    background-color: var(--ts-surface-muted);
+    font-size: var(--ts-font-sm);
+    color: var(--ts-text);
+    font-weight: 600;
+    border-bottom: 1px solid var(--ts-border);
+    padding: var(--ts-space-1) var(--ts-space-2);
+}
+
+span.bookmarkName {
+    font-size: var(--ts-font-sm);
+    font-weight: 600;
+}
+
+div.bookmarkPanel {
+    background-color: var(--ts-surface);
+}
+
+
+/* ── Allow/deny table ─────────────────────────────────────── */
+
+TABLE.allowdeny CAPTION {
+    color: var(--ts-primary);
+    border-bottom: 1px solid var(--ts-border);
+    font-weight: 600;
+    font-size: var(--ts-font-base);
+}
+TABLE.allowdeny TH.allowed {
+    background-color: var(--ts-success-soft);
+}
+TABLE.allowdeny TH.denied {
+    background-color: var(--ts-danger-soft);
+}
+
+
+/* ── Miscellaneous overrides ──────────────────────────────── */
+
+div.indent {
+    padding: var(--ts-space-3) var(--ts-space-2);
+}
+
+div.blueborder {
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-sm);
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--ts-border);
+}
+
+div.error {
+    border: 1px solid var(--ts-danger);
+    border-radius: var(--ts-radius-sm);
+    color: var(--ts-text);
+    padding: var(--ts-space-3);
+}
+div.errorTitle {
+    color: var(--ts-danger);
+    font-weight: 600;
+}
+
+cite {
+    background-color: var(--ts-warning-soft);
+}
+
+/* Service panel (bulk selection bar) */
+div#servicePanel, div.norm#servicePanel {
+    background-color: var(--ts-warning-soft);
+    border-top: 1px solid var(--ts-warning);
+    border-bottom: 1px solid var(--ts-warning);
+    font-size: var(--ts-font-base);
+}
+
+/* Search results */
+div.xfound, div.empty {
+    background-color: var(--ts-warning-soft);
+    border-radius: var(--ts-radius-sm);
+    padding: var(--ts-space-3);
+}
+
+/* Generic controls area */
+.controls {
+    padding: var(--ts-space-2) 0;
+}
+
+/* Fullpath (alt breadcrumb) */
+DIV.fullpath {
+    font-size: var(--ts-font-sm);
+    color: var(--ts-text-muted);
+}
+DIV.fullpath A {
+    font-size: var(--ts-font-sm);
+    color: var(--ts-text-muted);
+    font-weight: 500;
+}
+
+
+/* ── Tree panel header (inside TreeFrame) ─────────────────── */
+
+label.header {
+    font-size: var(--ts-font-sm);
+    font-weight: 600;
+    padding: var(--ts-space-1) var(--ts-space-2);
+    height: auto;
+}

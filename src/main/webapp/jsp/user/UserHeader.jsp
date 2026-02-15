@@ -135,7 +135,10 @@
     <table width="100%" style="height:25px;" cellpadding="0" cellspacing="0">
         <tr>
             <td>
-                <img id="logoHeader" style="text-align:left;padding-top:5px;padding-bottom: 5px;" src="${contextPath}${ImageServlet}/cssimages/TrackStudio-Logo.png" alt="TrackStudio">
+                <div id="logoHeader" class="ts-brand-inline">
+                    <span class="ts-brand-mark">TS</span>
+                    <span class="ts-brand-name">TrackStudio</span>
+                </div>
             </td>
             <td>
                 <form method="post" style="display:inline;float:right;" action="<c:out value="${contextPath}"/>/TaskDispatchAction.do" id="searchForm" onsubmit="return !forbidEmptyLineSearch(this);">
@@ -184,11 +187,9 @@
 <div>
     <div class="controlPanel">
         <span id="topleft" onclick="showTree();">
-            <img id="closepanel" alt="<I18n:message key="CLOSE"/>" title="<I18n:message key="CLOSE"/>"
-                 src="${contextPath}${ImageServlet}/cssimages/ico.close.png" hspace="0" vspace="0" border="0" align="top"/>
-            <img alt="<I18n:message key="OPEN"/>" title="<I18n:message key="OPEN"/>"
-                 src="${contextPath}${ImageServlet}/cssimages/ico.open.png" id="openpanel" hspace="0" vspace="0" border="0" align="top"
-                 style="display: none"/>
+            <span id="closepanel" class="tree-toggle-button" aria-label="<I18n:message key="CLOSE"/>" title="<I18n:message key="CLOSE"/>">&#x276E;</span>
+            <span id="openpanel" class="tree-toggle-button" aria-label="<I18n:message key="OPEN"/>" title="<I18n:message key="OPEN"/>"
+                  style="display: none">&#x276F;</span>
             <script type="text/javascript">
                 try {
                     if (parent.document.getElementsByTagName("frameset")[0] && typeof parent.document.getElementsByTagName("frameset")[0].attributes['border'] != "undefined" && parent.document.getElementsByTagName("frameset")[0].attributes['border'].value == '0') {

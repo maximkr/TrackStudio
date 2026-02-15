@@ -250,27 +250,33 @@
 </script>
 </head>
 
-<body class="yui-skin-sam" id="dropbox">
+<body class="yui-skin-sam ts-app" id="dropbox">
 <!-- class "yui-skin-sam" set for Yahoo! Color Picker. It determines the scope. -->
-<tiles:get name="header"/>
-<tiles:get name="customHeader"/>
+<div class="ts-app-shell">
+    <tiles:get name="header"/>
+    <tiles:get name="customHeader"/>
 
-<html:messages id="error" message="true" property="msg">
-    <table class="error" cellpadding="0" cellspacing="0">
-        <caption>
-            <I18n:message key="ERROR_OCCURRED"/>
-        </caption>
-        <tr class="line0">
-            <td>
-                <c:out value="${error}" escapeXml="false"/>
-            </td>
-        </tr>
-    </table>
+    <html:messages id="error" message="true" property="msg">
+        <table class="error ts-message-error" cellpadding="0" cellspacing="0">
+            <caption>
+                <I18n:message key="ERROR_OCCURRED"/>
+            </caption>
+            <tr class="line0">
+                <td>
+                    <c:out value="${error}" escapeXml="false"/>
+                </td>
+            </tr>
+        </table>
+    </html:messages>
 
-</html:messages>
-<tiles:get name="tabs"/>
-<tiles:get name="main"/>
-<table class="allrights">
+    <div class="ts-main-tabs">
+        <tiles:get name="tabs"/>
+    </div>
+    <div class="ts-main-content">
+        <tiles:get name="main"/>
+    </div>
+</div>
+<table class="allrights ts-footer">
     <tr>
         <td>
             <c:out value="${tsVersionDescription}" escapeXml="false"/>&nbsp;<c:out value="${tsBuildDate}" escapeXml="false"/>&nbsp;<I18n:message key="COPYRIGHT"/>

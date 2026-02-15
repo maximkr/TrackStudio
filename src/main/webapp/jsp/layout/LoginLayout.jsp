@@ -55,83 +55,55 @@
         var ERRROR_CORRECT_FIELDS = "<I18n:message key="ERRROR_CORRECT_FIELDS"/>";
     </script>
     <style>
-        body {
-            margin: 0px 0px 0px 0px;
-            padding: 0px 0px 0px 0px;
-            text-align: center;
-
-        /* part 1 of 2 centering hack */
-
-        }
         #content {
-            width: 400px;
-            padding: 10px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            margin-right: auto;
-            margin-left: auto;
-        /* opera does not like 'margin:20px auto' */
-            text-align:left;
-        /* part 2 of 2 centering hack */
-            width: 400px; /* ie5win fudge begins */
-            voice-family: "\"}\"";
-            voice-family:inherit;
-            width: 410px;
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 24px;
+            text-align: left;
         }
-        html>body #content {
-            width: 410px; /* ie5win fudge ends */
-        }
-
-
-
     </style>
 
 </head>
 
-<body>
-<div id="content">
-    <table class="centered">
-        <tr>
-            <td>
-                <div class="box">
-
-                    <html:img hspace="0" vspace="0" src="${contextPath}${ImageServlet}/cssimages/TrackStudio-Logo.png"/>
-
-                    <div class="blueborder">
-                        <div class="indent">
-                            <html:messages id="error" message="true" property="msg">
-                            <span style="color: red;">
-                                <c:out value="${error}" escapeXml="false"/>
-                            </span>
-                            </html:messages>
-                            <tiles:get name="form"/>
-                        </div>
-                    </div>
+<body class="ts-login-page">
+<div class="ts-login-shell">
+    <div id="content">
+        <div class="box ts-login-card">
+            <div class="ts-login-brand">
+                <div class="ts-brand-logo">
+                    <span class="ts-brand-mark">TS</span>
+                    <span class="ts-brand-name">TrackStudio</span>
                 </div>
-            </td>
-        </tr>
-    </table>
-</div>
-<table class="allrights" style="bottom: 0">
-    <tr>
-        <td>
+                <div class="ts-brand-subtitle">Enterprise</div>
+            </div>
+            <div class="blueborder">
+                <div class="indent">
+                    <html:messages id="error" message="true" property="msg">
+                        <span class="ts-login-error">
+                            <c:out value="${error}" escapeXml="false"/>
+                        </span>
+                    </html:messages>
+                    <tiles:get name="form"/>
+                </div>
+            </div>
+        </div>
+        <div class="ts-login-footer">
             <c:out value="${tsVersionDescription}" escapeXml="false"/>&nbsp;<c:out value="${tsBuildDate}" escapeXml="false"/>&nbsp;<I18n:message key="COPYRIGHT"/>
-            <br/>
             <c:if test="${!empty tsSupportExpired}">
-                    <span class="expired">
-                        <c:out value="${tsSupportExpired}" escapeXml="false"/>
-                    </span>
+                <br/><span class="expired">
+                    <c:out value="${tsSupportExpired}" escapeXml="false"/>
+                </span>
             </c:if>
             <c:if test="${!empty tsSupportExpires}">
-                    <span class="expired">
-                        <I18n:message key="SUPPORT_EXPIRATION_DATE">
-                            <I18n:param value="${tsSupportExpires}"/>
-                        </I18n:message>
-                    </span>
+                <br/><span class="expired">
+                    <I18n:message key="SUPPORT_EXPIRATION_DATE">
+                        <I18n:param value="${tsSupportExpires}"/>
+                    </I18n:message>
+                </span>
             </c:if>
-        </td>
-
-    </tr>
-</table>
+        </div>
+    </div>
+</div>
 </body>
 </html>

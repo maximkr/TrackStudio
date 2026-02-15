@@ -100,3 +100,84 @@ span.number {
     font-size: 100%;
     vertical-align: middle;
 }
+
+/* TrackStudio frame navigation refresh */
+body.ts-tree-body {
+    background: #edf4fa;
+}
+
+body.ts-tree-body div.content {
+    background: #ffffff;
+    border-left: 0;
+    border-right: 1px solid #d7e2eb;
+}
+
+body.ts-tree-body div.head,
+body.ts-tree-body div.foot {
+    background: #2f7396;
+}
+
+body.ts-tree-body label.header {
+    display: block;
+    color: #ffffff;
+    background-color: #2f7396 !important;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 8px;
+    text-shadow: none;
+}
+
+body.ts-tree-body label.header img {
+    margin-right: 6px;
+}
+
+body.ts-tree-body ul.fancytree-container {
+    border: 0;
+    background: #ffffff;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 12px;
+}
+
+body.ts-tree-body .fancytree-title {
+    color: #1d2b36;
+}
+
+body.ts-tree-body .fancytree-icon,
+body.ts-tree-body .fancytree-expander {
+    filter: saturate(1.05) contrast(1.05);
+}
+
+body.ts-tree-body #panel_1 div.head {
+    height: 24px;
+}
+
+body.ts-tree-body #panel_2 div.head {
+    height: 48px;
+}
+
+body.ts-tree-body #panel_3 div.head {
+    height: 72px;
+}
+
+body.ts-tree-body #panel_1 div.content {
+    top: 24px;
+    bottom: 48px;
+}
+
+body.ts-tree-body #panel_2 div.content {
+    top: 48px;
+    bottom: 24px;
+}
+
+body.ts-tree-body #panel_3 div.content {
+    top: 72px;
+}
+
+body.ts-tree-body #panel_1 div.foot {
+    height: 48px;
+}
+
+body.ts-tree-body #panel_2 div.foot {
+    height: 24px;
+}

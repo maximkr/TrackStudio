@@ -234,7 +234,7 @@
 	</ts:css>
 </head>
 
-<body bgcolor="black">
+<body class="ts-tree-body">
 <script type="text/javascript">
 </script>
 

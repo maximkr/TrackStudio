@@ -357,7 +357,7 @@ function TSMenuItem(sText, sHref, osMenu, sblank, oimage, oactionChar, sTitle) {
 ;
 TSMenuItem.prototype.height = tsMenuItemDefaultHeight;
 TSMenuItem.prototype.toString = function () {
-    var common = (this.subMenu ? "<img class='arrow' src=\"" + tsMenuImagePath + "ico.expand.gif\">" : "") +
+    var common = (this.subMenu ? "<span class='arrow' style='float:right;font-size:10px;line-height:" + this.height + "px'>&#x25B8;</span>" : "") +
         (this.image != null ? "<img  hspace='0' vspace='0' border='0' align='middle' src=\"" + this.image + "\">&nbsp;" : "") +
         (this.text != null ? this.text : "");
     return    "<a " +
@@ -429,7 +429,7 @@ TSMenuBut.prototype.toString = function () {
         ">" +
         (this.image != null ? "<img alt='" + (this.text != null ? this.text : "") + "' hspace='0' vspace='0' border='0' align='middle' src=\"" + this.image + "\">&nbsp;" : "") +
         (this.text != null ? this.text : "") +
-        (this.subMenu ? "<img vspace='0' hspace='0' border='0' src='"+tsMenuImagePath + "collapse.gif'>" : "") +
+        (this.subMenu ? "<span style='font-size:9px;margin-left:2px'>&#x25BE;</span>" : "") +
         "<\/a>";
 };
 

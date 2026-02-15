@@ -51,12 +51,12 @@
                         &nbsp;
                     </th>
                     <td>
-                        <html:checkbox property="rememberMe"/><I18n:message key="REMEMBER_ME"/>
+                        <label class="secondary"><html:checkbox property="rememberMe"/><I18n:message key="REMEMBER_ME"/></label>
                     </td>
                 </tr>
                 <tr>
                     <th></th>
-                    <td><input type="submit" class="iconized" value="<I18n:message key="LOG_IN"/>"/>
+                    <td class="controls"><input type="submit" class="iconized" value="<I18n:message key="LOG_IN"/>"/>
                         <c:if test="${showRegister}">
                             <input type="button" name="register"
                                    onclick="document.location='${contextPath}/LoginAction.do?method=registerPage'; return true;"

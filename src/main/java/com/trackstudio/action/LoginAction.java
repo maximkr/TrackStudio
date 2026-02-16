@@ -84,7 +84,7 @@ public class LoginAction extends DispatchAction {
             request.setAttribute("showForgotPassword", !Config.getInstance().isLDAP() && Config.getInstance().isSendMail());
             request.setAttribute("tsHost", Config.getInstance().isTSHost() ? "true" : null);
             if (Config.getProperty("trackstudio.josso.auth.app") != null) {
-                response.sendRedirect(request.getContextPath() + "/staticframeset.html");
+                response.sendRedirect(request.getContextPath() + "/app-shell.html");
                 return null;
             }
 
@@ -108,7 +108,7 @@ public class LoginAction extends DispatchAction {
                     return null;
                 }
                 log.debug("TRY TO REDIRECT");
-                response.sendRedirect(request.getContextPath() + "/staticframeset.html");
+                response.sendRedirect(request.getContextPath() + "/app-shell.html");
                 return null;
             }
 
@@ -200,7 +200,7 @@ public class LoginAction extends DispatchAction {
                 }
             }
 
-            if (lastPath != null && lastPath.length() > 0 && lastPath.indexOf("staticframeset.html") == -1 && (lastPath.indexOf("/task/") != -1 || lastPath.indexOf("/user/") != -1 || lastPath.indexOf("id=") != -1)) {
+            if (lastPath != null && lastPath.length() > 0 && lastPath.indexOf("app-shell.html") == -1 && (lastPath.indexOf("/task/") != -1 || lastPath.indexOf("/user/") != -1 || lastPath.indexOf("id=") != -1)) {
                 HTMLEncoder en = new HTMLEncoder(lastPath);
                 StringBuffer sb = en.getResult();
                 if (sb.indexOf("?") > -1) {
@@ -224,7 +224,7 @@ public class LoginAction extends DispatchAction {
                 return null;
             }
             AdapterManager.getInstance().getSecuredUserAdapterManager().updateLastLogonDate(sc, sc.getUserId());
-            response.sendRedirect(request.getContextPath() + "/staticframeset.html");
+            response.sendRedirect(request.getContextPath() + "/app-shell.html");
 
             return null;
         } catch (UserException ue) {
@@ -333,7 +333,7 @@ public class LoginAction extends DispatchAction {
                 String userScId = SessionManager.getInstance().create(adapter.getUser());
                 SessionContext sc = SessionManager.getInstance().getSessionContext(userScId);
                 AdapterManager.getInstance().getSecuredUserAdapterManager().updateLastLogonDate(sc, sc.getUserId());
-                response.sendRedirect(request.getContextPath() + "/staticframeset.html");
+                response.sendRedirect(request.getContextPath() + "/app-shell.html");
                 return null;
             } else {
                 saveMessages(request, new AuthException().getActionMessages());

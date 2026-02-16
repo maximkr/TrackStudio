@@ -1,10 +1,11 @@
-var gInnerFrameset = parent.document.getElementsByTagName("frameset")[0];
-var gBodyFrameNode = parent.document.getElementsByTagName("frame")[1];
+var gInnerFrameset = parent.document.getElementsByTagName("frameset")[0] || null;
+var gBodyFrameNode = parent.document.getElementsByTagName("frame")[1] || null;
 var gNavigationState = -30;
 var gSlide = true;
 var gNavigationWidth = 240;
 
 function slideTree() {
+    if (!gInnerFrameset) return;
     var cols = gInnerFrameset.cols;
     var _localWidth = parseInt(cols);
     if (_localWidth == 0) gNavigationState = 30;
@@ -638,6 +639,12 @@ function showUserPanel() {
 }
 
 function showTree() {
+    // New app-shell layout: use TS.sidebar API
+    if (window.top.TS && window.top.TS.sidebar) {
+        window.top.TS.sidebar.toggle();
+        return;
+    }
+    // Legacy frameset fallback
     slideTree();
     if (document.getElementById('openpanel').style.display == 'none') {
         document.getElementById('closepanel').style.display = 'none';
@@ -651,6 +658,13 @@ function showTree() {
 }
 
 function closeTree() {
+    // New app-shell layout: use TS.sidebar API
+    if (window.top.TS && window.top.TS.sidebar) {
+        window.top.TS.sidebar.close();
+        return;
+    }
+    // Legacy frameset fallback
+    if (!gInnerFrameset) return;
     var cols = gInnerFrameset.cols;
     var _localWidth = parseInt(cols);
     if (_localWidth > 0) {

@@ -59,33 +59,10 @@
         }
         return null;
     }
-    if (parent == self || parent.location.pathname.indexOf('staticframeset.html') == -1) {
-        var urlId = Math.floor(Math.random() * 100000) + 1;
-        var expires = new Date();
-        expires.setTime(expires.getTime() + (1000 * 86400 * 365));
-        document.cookie = urlId + "=" + escape(self.location.href) + "; path=/; expires=" + expires.toGMTString();
-        var framesetURL = '${contextPath}/staticframeset.html?urlId=' + urlId;
-        if (typeof(location.replace) != 'undefined') {
-            self.location.replace(framesetURL);
-        } else {
-            self.location = framesetURL;
-        }
-    } else {
-        var pos = parent.document.location.search.indexOf('urlId=');
-        if (pos > 0) {
-            var urlId = parent.document.location.search.substring(pos + 6, parent.document.location.search.length);
-            urlId = unescape(urlId);
-            var url = readCookie(urlId);
-            if (url != null && url.length > 0) {
-                url = unescape(url);
-                if (typeof(location.replace) != 'undefined') {
-                    document.location.replace(url);
-                } else {
-                    document.location.href = url;
-                }
-                document.cookie = urlId + "=; path=/; expires=Thu, 01-Jan-70 00:00:01 GMT";
-            }
-        }
+    if (parent === self || !window.top.TS) {
+        // Page opened directly (not inside app-shell) — redirect into shell
+        var currentUrl = encodeURIComponent(self.location.pathname + self.location.search);
+        self.location.replace('${contextPath}/app-shell.html?url=' + currentUrl);
     }
 </script>
 <c:set var="urlHtml" value="html"/>

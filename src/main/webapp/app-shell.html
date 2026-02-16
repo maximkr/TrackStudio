@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>TrackStudio</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="favicon.png" type="image/png"/>
+    <link rel="stylesheet" href="style_tokens.css"/>
+    <link rel="stylesheet" href="style_shell.css"/>
+</head>
+<body>
+    <div class="ts-shell" id="tsShell">
+        <aside class="ts-sidebar" id="tsSidebar">
+            <iframe id="tsSidebarFrame" src="TreeLoaderAction.do?method=init"
+                    class="ts-sidebar__frame"></iframe>
+        </aside>
+        <div class="ts-sidebar-toggle" id="tsSidebarToggle" title="Toggle sidebar">
+            <span class="ts-sidebar-toggle__icon">&#x276E;</span>
+        </div>
+        <main class="ts-main" id="tsMain">
+            <iframe id="tsContent" name="mainFrame" src="TaskAction.do"
+                    class="ts-main__frame"></iframe>
+        </main>
+    </div>
+    <script src="app-shell.js"></script>
+</body>
+</html>

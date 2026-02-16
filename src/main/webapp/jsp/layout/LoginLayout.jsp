@@ -30,7 +30,7 @@
         <ts:jsLink link="${urlHtml}/validate.js"/>
     </ts:js>
     <script type="text/javascript">
-        if (top.location.pathname.indexOf('staticframeset.html') != -1)
+        if (top.location.pathname.indexOf('app-shell.html') != -1 || top.location.pathname.indexOf('staticframeset.html') != -1)
             top.location.href = "${contextPath}/LoginAction.do?method=loginPage";
 
         var ERROR_PROBLEM_WITH_REQUEST = "<I18n:message key="ERROR_PROBLEM_WITH_REQUEST"/>";

@@ -1,0 +1,89 @@
+(function () {
+    'use strict';
+
+    // === Global namespace for cross-component communication ===
+    window.TS = window.TS || {};
+
+    var shell = document.getElementById('tsShell');
+    var sidebarFrame = document.getElementById('tsSidebarFrame');
+    var contentFrame = document.getElementById('tsContent');
+    var toggle = document.getElementById('tsSidebarToggle');
+
+    // --- Deep link: ?url= parameter ---
+    var params = new URLSearchParams(window.location.search);
+    var initialUrl = params.get('url');
+    if (initialUrl) {
+        contentFrame.src = decodeURIComponent(initialUrl);
+    }
+
+    // --- Sidebar toggle ---
+    var sidebarOpen = localStorage.getItem('ts-sidebar') !== 'closed';
+    if (!sidebarOpen) shell.classList.add('sidebar-collapsed');
+
+    toggle.addEventListener('click', function () {
+        shell.classList.toggle('sidebar-collapsed');
+        sidebarOpen = !shell.classList.contains('sidebar-collapsed');
+        localStorage.setItem('ts-sidebar', sidebarOpen ? 'open' : 'closed');
+    });
+
+    window.TS.sidebar = {
+        toggle: function () { toggle.click(); },
+        isOpen: function () { return sidebarOpen; },
+        open: function () { if (!sidebarOpen) toggle.click(); },
+        close: function () { if (sidebarOpen) toggle.click(); }
+    };
+
+    // --- Navigation ---
+    window.TS.navigate = function (url) {
+        contentFrame.src = url;
+    };
+
+    // --- Tree API bridge ---
+    // Proxies calls into the TreeFrame iframe
+    window.TS.tree = {
+        _call: function (fnName, args) {
+            try {
+                var win = sidebarFrame.contentWindow;
+                if (win && typeof win[fnName] === 'function') {
+                    return win[fnName].apply(win, args);
+                }
+            } catch (e) {
+                console.warn('TS.tree.' + fnName + ' failed:', e);
+            }
+        },
+        reload: function (hint) { this._call('reloadTsTree', [hint]); },
+        reloadUser: function (hint, nodes) { this._call('reloadTsUserTree', [hint, nodes]); },
+        expand: function (path) { this._call('expandTsTree', [path]); },
+        selectNodes: function (nodes) { this._call('selectNodesTsTree', [nodes]); },
+        selectUsers: function (nodes) { this._call('selectUsersTsTree', [nodes]); },
+        updateBookmarks: function (url) { this._call('updateBookmarks', [url]); },
+        isLoaded: function () {
+            try {
+                return sidebarFrame.contentWindow.TREE_LOADED === true;
+            } catch (e) { return false; }
+        }
+    };
+
+    // --- URL sync: update browser URL when navigating inside iframe ---
+    contentFrame.addEventListener('load', function () {
+        try {
+            var path = contentFrame.contentWindow.location.pathname +
+                       contentFrame.contentWindow.location.search;
+            // Update title
+            var innerTitle = contentFrame.contentDocument.title;
+            if (innerTitle) document.title = innerTitle;
+            // Update URL in address bar (without reload)
+            if (path && path !== '/app-shell.html') {
+                history.replaceState({path: path}, innerTitle || '', path);
+            }
+        } catch (e) {
+            // cross-origin or security error — ignore
+        }
+    });
+
+    // --- Backward compatibility ---
+    // self.top.frames[0] = sidebar iframe (automatic, iframes register in DOM order)
+    // self.top.frames[1] = content iframe (automatic)
+    // No additional bridging needed for existing self.top.frames[0/1] code.
+
+})();

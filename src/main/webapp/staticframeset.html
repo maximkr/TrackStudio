@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>TrackStudio</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="icon" href="favicon.png" type="image/png" />
+    <title>Redirecting...</title>
 </head>
-<frameset id="fsid" cols="240,*">
-    <frame  id="treeFrame" src="TreeLoaderAction.do?method=init" name="treeFrame">
-    <frame  id="mainFrame" src="TaskAction.do" name="mainFrame">
-</frameset>
+<body>
+<script>
+    // Legacy frameset replaced by app-shell (Phase 2).
+    // Preserve any query string (e.g. ?urlId=...) for backward compat.
+    window.location.replace('app-shell.html' + window.location.search);
+</script>
+</body>
 </html>

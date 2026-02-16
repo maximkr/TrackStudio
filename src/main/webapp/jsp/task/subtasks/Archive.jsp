@@ -14,9 +14,11 @@
     <tiles:put name="main" type="string">
         <script>
             function deleteArchive(id, name, number) {
-                if (confirm('<I18n:message key="DELETE_ARCHIVE"/> ' + name + " [#" + number + "]")) {
-                    document.location.href = '<c:out value="${contextPath}"/>/SubtaskAction.do?method=deleteArchive&id=${tci.id}&archiveId=' + id;
-                }
+                TSDialog.confirm('<I18n:message key="DELETE_ARCHIVE"/> ' + name + " [#" + number + "]", function(ok) {
+                    if (ok) {
+                        document.location.href = '<c:out value="${contextPath}"/>/SubtaskAction.do?method=deleteArchive&id=${tci.id}&archiveId=' + id;
+                    }
+                });
             }
         </script>
         <div class="searchtasks">

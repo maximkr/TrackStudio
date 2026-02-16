@@ -11,11 +11,15 @@
     }
 
     function deleteUser() {
-        if (confirm("<I18n:message key="DELETE_USER_REQ"><I18n:param value="${currentUser.name}"/></I18n:message>") == true)location.replace("<c:out value="${contextPath}/UserListAction.do?deleteButton=true&amp;method=deleteUsers&amp;id=${currentUser.id}&amp;SELUSER=${currentUser.id}" escapeXml='false'/>");
+        TSDialog.confirm("<I18n:message key="DELETE_USER_REQ"><I18n:param value="${currentUser.name}"/></I18n:message>", function(ok) {
+            if (ok) location.replace("<c:out value="${contextPath}/UserListAction.do?deleteButton=true&amp;method=deleteUsers&amp;id=${currentUser.id}&amp;SELUSER=${currentUser.id}" escapeXml='false'/>");
+        });
     }
 
     function deleteTaskFromMenu() {
-        if (confirm("<c:if test="${tci.childrenCount != null &&  tci.childrenCount > 0}"><I18n:message key="CONTAINS_SUBTASKS"/></c:if> <I18n:message key="DELETE_TASK"><I18n:param value="\#${tci.number}"/></I18n:message>") == true)document.location = "<c:out value="${contextPath}/SubtaskAction.do?method=delete&amp;DELETE=TRUE&amp;SELTASK=${tci.id}&amp;id=${tci.parentId}" escapeXml='false'/>";
+        TSDialog.confirm("<c:if test="${tci.childrenCount != null &&  tci.childrenCount > 0}"><I18n:message key="CONTAINS_SUBTASKS"/></c:if> <I18n:message key="DELETE_TASK"><I18n:param value="\#${tci.number}"/></I18n:message>", function(ok) {
+            if (ok) document.location = "<c:out value="${contextPath}/SubtaskAction.do?method=delete&amp;DELETE=TRUE&amp;SELTASK=${tci.id}&amp;id=${tci.parentId}" escapeXml='false'/>";
+        });
     }
 
     var tsMenuDefImagePath = '<c:out value="${contextPath}"/>/cssimages/';

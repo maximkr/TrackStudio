@@ -188,8 +188,8 @@
     <ts:jsLink link="${urlHtml}/validate.js"/>
     <ts:jsLink link="${urlHtml}/quickSelect.js"/>
     <ts:jsLink link="${urlHtml}/slidingframe.js"/>
+    <ts:jsLink link="${urlHtml}/ts-dialog.js"/>
     <ts:jsLink link="${urlHtml}/colorpicker/js/utilities.js"/>
-    <ts:jsLink link="${urlHtml}/colorpicker/js/container-min.js"/>
     <ts:jsLink link="${urlHtml}/colorpicker/js/slider-min.js"/>
     <ts:jsLink link="${urlHtml}/colorpicker/js/colorpicker-min.js"/>
     <ts:jsLink link="${urlHtml}/color/js/colorpicker.js"/>
@@ -308,9 +308,9 @@
 
 <script type="text/javascript">
     <c:if test="${farManagerNotification ne null}">
-    if (confirm("<I18n:message key="MOVE_TO_FAR_MANAGER"/>")) {
-        document.location = "<c:out value="${contextPath}"/>/UserListAction.do?method=paste&amp;farManagerAgree=true&amp;id=${currentUser.id}";
-    }
+    TSDialog.confirm("<I18n:message key="MOVE_TO_FAR_MANAGER"/>", function(ok) {
+        if (ok) document.location = "<c:out value="${contextPath}"/>/UserListAction.do?method=paste&amp;farManagerAgree=true&amp;id=${currentUser.id}";
+    });
     </c:if>
     var frameLoaded = "loaded";
 </script>
@@ -318,9 +318,15 @@
 <script type="text/javascript">
     SyntaxHighlighter.all();
 
-    YAHOO.namespace("trackstudio.bookmark");
+    // Backward-compat namespace (other JSPs reference YAHOO.trackstudio.bookmark.*)
+    if (typeof YAHOO === "undefined") { window.YAHOO = {}; }
+    if (!YAHOO.trackstudio) { YAHOO.trackstudio = {}; }
+    if (!YAHOO.trackstudio.bookmark) { YAHOO.trackstudio.bookmark = {}; }
 
-    function init() {
+    // Set localized labels for TSDialog.confirm / TSDialog.alert
+    TSDialog.labels.cancel = "<I18n:message key="CANCEL"/>";
+
+    $(function () {
 
         var handleSubmit = function() {
             if ($('#bookmark_name').val() != null) {
@@ -347,7 +353,7 @@
 		            }
 	            });
             } else {
-                alert("<I18n:message key="ENTER_BOOKMARK_NAME"/>");
+                TSDialog.alert("<I18n:message key="ENTER_BOOKMARK_NAME"/>");
             }
         };
 
@@ -388,63 +394,49 @@
             this.hide();
         };
 
-        // Instantiate the Dialog
-        YAHOO.trackstudio.bookmark.bookmark_dialog = new YAHOO.widget.Dialog("bookmark_dialog",
+        // Instantiate the Dialogs (TSDialog — drop-in for YAHOO.widget.Dialog)
+        YAHOO.trackstudio.bookmark.bookmark_dialog = new TSDialog("bookmark_dialog",
                 { width : "600px",
-                    fixedcenter : true,
                     visible : false,
-                    constraintoviewport : true,
                     buttons : [
                         { text:"OK", handler:handleSubmit, isDefault:true },
                         { text:"<I18n:message key="CANCEL"/>", handler:handleCancel }
                     ]
                 });
 
-        YAHOO.trackstudio.bookmark.view_dialog = new YAHOO.widget.Dialog("view_dialog",
+        YAHOO.trackstudio.bookmark.view_dialog = new TSDialog("view_dialog",
                 { width : "400px",
-                    fixedcenter : true,
                     visible : false,
-                    constraintoviewport : true,
                     buttons : [
                         { text:"OK", handler:handleSubmit, isDefault:true },
                         { text:"<I18n:message key="CANCEL"/>", handler:handleCancel }
                     ]
                 });
 
-        YAHOO.trackstudio.bookmark.dialog_test_reg_exp = new YAHOO.widget.Dialog("dialog_test_reg_exp",
+        YAHOO.trackstudio.bookmark.dialog_test_reg_exp = new TSDialog("dialog_test_reg_exp",
                 { width : "400px",
-                    fixedcenter : true,
                     visible : false,
-                    constraintoviewport : true,
                     buttons : [
                         { text:"<I18n:message key="TEST"/>", handler:checkRegExp, isDefault:true },
                         { text:"<I18n:message key="CLOSE"/>", handler:mailRegExpClose }
                     ]
                 });
 
-        YAHOO.trackstudio.bookmark.post_filter_save_as = new YAHOO.widget.Dialog("post_filter_save_as",
+        YAHOO.trackstudio.bookmark.post_filter_save_as = new TSDialog("post_filter_save_as",
                 { width : "400px",
-                    fixedcenter : true,
                     visible : false,
-                    constraintoviewport : true,
                     buttons : [
                         { text:"OK", handler:submitPostFilterForm, isDefault:true },
                         { text:"<I18n:message key="CANCEL"/>", handler:handleCancel }
                     ]
                 });
 
-
-        // Render the Dialog
+        // Render all dialogs
         YAHOO.trackstudio.bookmark.bookmark_dialog.render();
-
         YAHOO.trackstudio.bookmark.view_dialog.render();
-
         YAHOO.trackstudio.bookmark.dialog_test_reg_exp.render();
-
         YAHOO.trackstudio.bookmark.post_filter_save_as.render();
-    }
-
-    YAHOO.util.Event.onDOMReady(init);
+    });
 </script>
 
 </body>

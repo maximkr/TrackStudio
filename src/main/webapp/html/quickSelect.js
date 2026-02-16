@@ -548,21 +548,29 @@ function isChecked(frm) {
 }
 
 function deleteConfirm(msg, formName) {
+    var needConfirm = false;
     try {
         var col = document.forms[formName].elements;
         for (var i = 0; i < col.length; i++) {
             if ((col[i].type == "checkbox") && (col[i].getAttribute("alt") == "delete1") && !col[i].disabled && col[i].checked) {
-                return confirm(msg);
+                needConfirm = true;
+                break;
             }
         }
     } catch(ex) {
-        return confirm(msg);
+        needConfirm = true;
+    }
+    if (needConfirm) {
+        TSDialog.confirm(msg, function(ok) {
+            if (ok) document.forms[formName].submit();
+        });
     }
     return false;
 }
 
 function deleteCheck(parentId, attachmentId, method, msg, taskOrUser, attaDiv) {
-    if (confirm(msg)) {
+    TSDialog.confirm(msg, function(ok) {
+        if (!ok) return;
         var link = contextPath + "/AttachmentViewAction.do";
         var params;
         if (taskOrUser) {
@@ -570,29 +578,36 @@ function deleteCheck(parentId, attachmentId, method, msg, taskOrUser, attaDiv) {
         } else {
             params = {userId : parentId, method : method, "delete" : attachmentId};
         }
-	    $.ajax(link, {
-		    data : params,
-		    method: "post"
-	    });
+        $.ajax(link, {
+            data : params,
+            method: "post"
+        });
         var tr = document.getElementById(attachmentId);
         tr.remove();
         --countAtt;
         if (countAtt <= 0) {
             document.getElementById(attaDiv).remove();
         }
-    }
+    });
 }
 
 function deleteConfirmForCurrentForm(msg, form) {
+    var needConfirm = false;
     try {
         var col = form.elements;
         for (var i = 0; i < col.length; i++) {
             if ((col[i].type == "checkbox") && (col[i].getAttribute("alt") == "delete1") && !col[i].disabled && col[i].checked) {
-                return confirm(msg);
+                needConfirm = true;
+                break;
             }
         }
     } catch(ex) {
-        return confirm(msg);
+        needConfirm = true;
+    }
+    if (needConfirm) {
+        TSDialog.confirm(msg, function(ok) {
+            if (ok) form.submit();
+        });
     }
     return false;
 }
@@ -613,8 +628,8 @@ function deleteDefaultAlertForCurrentForm(msg, form, defaultResolutionId) {
         if (allCheckedCheckboxCount == allCheckboxCount) return false;
         for (var i = 0; i < col.length; i++) {
             if ((col[i].value == defaultResolutionId) && (col[i].type == "checkbox") && (col[i].getAttribute("alt") == "delete1") && !col[i].disabled && col[i].checked) {
-                alert(msg);
-                return true;
+                TSDialog.alert(msg, function() { form.submit(); });
+                return false;
             }
         }
     } catch(ex) {
@@ -639,8 +654,8 @@ function deleteDefaultAlert(msg, formName, defaultPriorityId) {
         if (allCheckedCheckboxCount == allCheckboxCount) return false;
         for (var i = 0; i < col.length; i++) {
             if ((col[i].value == defaultPriorityId) && (col[i].type == "checkbox") && (col[i].getAttribute("alt") == "delete1") && !col[i].disabled && col[i].checked) {
-                alert(msg);
-                return true;
+                TSDialog.alert(msg, function() { document.forms[formName].submit(); });
+                return false;
             }
         }
     } catch(ex) {
@@ -654,8 +669,8 @@ function startStateAlert(msg, formName, startStateId) {
         var col = document.forms[formName].elements;
         for (var i = 0; i < col.length; i++) {
             if ((col[i].value == startStateId) && (col[i].type == "checkbox") && (col[i].getAttribute("alt") == "delete1") && !col[i].disabled && col[i].checked) {
-                alert(msg);
-                return true;
+                TSDialog.alert(msg, function() { document.forms[formName].submit(); });
+                return false;
             }
         }
     } catch(ex) {
@@ -733,15 +748,22 @@ function changeFormat(sender) {
 }
 
 function clonConfirm(msg, formName) {
+    var needConfirm = false;
     try {
         var col = document.forms[formName].elements;
         for (var i = 0; i < col.length; i++) {
             if ((col[i].type == "checkbox") && (col[i].getAttribute("alt") == "delete1") && !col[i].disabled && col[i].checked) {
-                return confirm(msg);
+                needConfirm = true;
+                break;
             }
         }
     } catch(ex) {
-        return confirm(msg);
+        needConfirm = true;
+    }
+    if (needConfirm) {
+        TSDialog.confirm(msg, function(ok) {
+            if (ok) document.forms[formName].submit();
+        });
     }
     return false;
 }

@@ -20,10 +20,11 @@
     var taskUpload = true;
 
     function deleteAttachs(attachId) {
-        var result = confirm('<I18n:message key="DELETE_ATTACHMENTS_REQ"/>');
-        if (result) {
-            document.location.href = '${contextPath}/AttachmentViewAction.do?taskId=${tci.id}&method=deleteTaskUpload&delete=' + attachId;
-        }
+        TSDialog.confirm('<I18n:message key="DELETE_ATTACHMENTS_REQ"/>', function(ok) {
+            if (ok) {
+                document.location.href = '${contextPath}/AttachmentViewAction.do?taskId=${tci.id}&method=deleteTaskUpload&delete=' + attachId;
+            }
+        });
     }
 
     function showBookmarkDialog(bookmarkName, taskId) {

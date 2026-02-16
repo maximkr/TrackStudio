@@ -1091,3 +1091,131 @@ label.header {
     padding: var(--ts-space-1) var(--ts-space-2);
     height: auto;
 }
+
+
+/* ── TSDialog — modal dialogs (replaces YUI Dialog) ───────── */
+
+.ts-dialog-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: var(--ts-z-modal-backdrop);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--ts-transition);
+}
+.ts-dialog-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.ts-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    background: var(--ts-surface);
+    border-radius: var(--ts-radius-md);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    z-index: var(--ts-z-modal);
+    opacity: 0;
+    pointer-events: none;
+    transition: all var(--ts-transition);
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: auto;
+}
+.ts-dialog.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* YUI-compat: .hd = header, .bd = body, .ft = footer */
+.ts-dialog .hd {
+    padding: var(--ts-space-4) var(--ts-space-5) var(--ts-space-2);
+    font-size: var(--ts-font-lg);
+    font-weight: 600;
+    color: var(--ts-text);
+    border-bottom: none;
+}
+
+.ts-dialog .bd {
+    padding: var(--ts-space-2) var(--ts-space-5) var(--ts-space-4);
+    font-size: var(--ts-font-base);
+    color: var(--ts-text);
+    line-height: var(--ts-line-height);
+}
+
+.ts-dialog .bd table {
+    width: 100%;
+}
+.ts-dialog .bd table td {
+    padding: var(--ts-space-1) var(--ts-space-2) var(--ts-space-1) 0;
+    vertical-align: middle;
+}
+.ts-dialog .bd table label {
+    font-weight: 600;
+    color: var(--ts-text-muted);
+    white-space: nowrap;
+}
+
+/* Button footer */
+.ts-dialog-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--ts-space-2);
+    padding: var(--ts-space-3) var(--ts-space-5) var(--ts-space-4);
+    border-top: 1px solid var(--ts-border);
+}
+
+.ts-dialog-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--ts-input-height);
+    padding: var(--ts-space-1) var(--ts-space-5);
+    border: 1px solid var(--ts-border-strong);
+    border-radius: var(--ts-radius-sm);
+    background-color: var(--ts-surface);
+    color: var(--ts-text);
+    font-family: var(--ts-font-family);
+    font-size: var(--ts-font-base);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--ts-transition);
+    white-space: nowrap;
+}
+.ts-dialog-btn:hover {
+    background-color: var(--ts-surface-muted);
+    border-color: var(--ts-primary);
+}
+
+.ts-dialog-btn-primary {
+    background-color: var(--ts-primary);
+    border-color: var(--ts-primary);
+    color: #ffffff;
+    font-weight: 600;
+}
+.ts-dialog-btn-primary:hover {
+    background-color: var(--ts-primary-strong);
+    border-color: var(--ts-primary-strong);
+}
+
+/* Quick dialogs (confirm/alert) */
+.ts-dialog-quick {
+    width: 420px;
+    min-width: 280px;
+}
+.ts-dialog-quick-body {
+    padding: var(--ts-space-5);
+    font-size: var(--ts-font-md);
+    color: var(--ts-text);
+    line-height: var(--ts-line-height);
+}
+
+/* Hide YUI-generated markup that may linger */
+.yui-skin-sam .yui-panel-container,
+.yui-skin-sam .mask {
+    display: none !important;
+}

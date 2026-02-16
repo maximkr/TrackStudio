@@ -1,4 +1,4 @@
-﻿plugins {
+plugins {
     `java`
     war
     id("com.palantir.git-version") version "4.0.0"
@@ -124,6 +124,9 @@ tasks.war {
     // Аналог <finalName>TrackStudio</finalName>
     archiveBaseName.set("TrackStudio")
     archiveFileName.set("TrackStudio.war")
+    // Сохраняем реальные timestamp файлов — иначе Tomcat не перекомпилирует JSP
+    // при редеплое (Gradle reproducible builds ставят дату 1980)
+    isPreserveFileTimestamps = true
 }
 
 

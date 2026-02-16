@@ -208,13 +208,35 @@ div.controlPanel {
     align-items: center;
     flex-wrap: wrap;
     gap: var(--ts-space-1);
-    border: 1px solid var(--ts-border);
-    border-radius: var(--ts-radius-md);
-    background-color: var(--ts-surface);
-    padding: var(--ts-space-2) var(--ts-space-3);
-    margin-bottom: var(--ts-space-3);
-    box-shadow: var(--ts-shadow);
+    border-top: 1px solid var(--ts-border);
+    border-bottom: 1px solid var(--ts-border);
+    background-color: var(--ts-surface-muted);
+    padding: var(--ts-space-1) var(--ts-space-3);
     line-height: normal;
+}
+
+/* controlPanel inside blueborder: lighter style, visible buttons */
+div.blueborder > div.controlPanel {
+    border-top: none;
+    background-color: var(--ts-surface-muted);
+    padding: var(--ts-space-1) var(--ts-space-3);
+    gap: var(--ts-space-1);
+}
+div.blueborder > div.controlPanel A {
+    color: var(--ts-text);
+    border: 1px solid var(--ts-border);
+    background-color: var(--ts-surface);
+    font-weight: 500;
+}
+div.blueborder > div.controlPanel A:hover {
+    color: var(--ts-primary);
+    background-color: var(--ts-primary-soft);
+    border-color: var(--ts-primary);
+}
+
+/* Hide controlPanel when it has no visible interactive content */
+div.controlPanel:not(:has(a, input, select, button, .ts-menu-bar)) {
+    display: none;
 }
 
 div.controlPanel A {
@@ -385,10 +407,9 @@ TABLE.general {
 
 TABLE.general CAPTION {
     background-color: var(--ts-surface-muted);
+    border: 1px solid var(--ts-border);
     border-bottom: 1px solid var(--ts-border);
-    border-top: none;
-    border-left: none;
-    border-right: none;
+    border-radius: var(--ts-radius-md) var(--ts-radius-md) 0 0;
     color: var(--ts-text);
     font-size: var(--ts-font-base);
     font-weight: 600;
@@ -404,6 +425,7 @@ TABLE.general TH {
     font-size: var(--ts-font-sm);
     padding: var(--ts-space-2) var(--ts-space-3);
     border-bottom: 1px solid var(--ts-border);
+    text-align: right;
 }
 
 TABLE.general TD {
@@ -423,6 +445,7 @@ TABLE.general TR.wide TH {
     color: var(--ts-text);
     font-weight: 600;
     font-size: var(--ts-font-base);
+    text-align: left;
 }
 
 TABLE.general TR.wide TH.secondary {
@@ -480,6 +503,16 @@ tr.overdue.line1 TD, tr.overdue.line1 TH {
     background-color: #f9d4d4 !important;
 }
 
+/* Strut separator between two-column sections */
+TABLE.general TD.strut {
+    width: 2px;
+    padding: 0;
+    background-color: transparent !important;
+    border-left: 1px solid var(--ts-border);
+    border-right: 1px solid var(--ts-border);
+    border-bottom-color: transparent;
+}
+
 TABLE.general TD.selected,
 TABLE.general TR.selected TD {
     background-color: var(--ts-primary-soft);
@@ -508,11 +541,70 @@ DIV.caption {
     padding: var(--ts-space-2) var(--ts-space-3);
     letter-spacing: 0;
 }
+
+/* Caption inside blueborder: clean header */
+div.blueborder > DIV.caption {
+    background: transparent;
+    border-bottom: 1px solid var(--ts-border);
+    padding: var(--ts-space-2) var(--ts-space-3);
+    overflow: hidden; /* contain floats */
+    line-height: 28px;
+}
+
 DIV.caption A {
     font-size: var(--ts-font-base);
     font-weight: 600;
     color: var(--ts-primary);
     letter-spacing: 0;
+}
+
+/* Action links in blueborder caption: chip-buttons
+   Uses !important to override inline style="float:right; font-weight:normal; padding-right:20px" */
+div.blueborder > DIV.caption A.link {
+    font-size: var(--ts-font-sm) !important;
+    font-weight: 500 !important;
+    color: var(--ts-text-muted) !important;
+    text-decoration: none !important;
+    padding: 3px var(--ts-space-2) !important;
+    border: 1px solid var(--ts-border) !important;
+    border-radius: var(--ts-radius-sm) !important;
+    background-color: var(--ts-surface) !important;
+    margin-left: var(--ts-space-1) !important;
+    transition: all var(--ts-transition);
+    white-space: nowrap;
+    line-height: normal;
+}
+div.blueborder > DIV.caption A.link:hover {
+    color: var(--ts-primary) !important;
+    background-color: var(--ts-primary-soft) !important;
+    border-color: var(--ts-primary) !important;
+}
+div.blueborder > DIV.caption A.link IMG,
+div.blueborder > DIV.caption IMG {
+    vertical-align: middle;
+    border: 0 !important;
+    margin-right: 2px;
+}
+
+/* Title link in caption */
+div.blueborder > DIV.caption A.internal_properties {
+    font-size: var(--ts-font-md) !important;
+    font-weight: 600 !important;
+    color: var(--ts-text) !important;
+    text-decoration: none;
+}
+
+/* Navigation block in caption */
+div.blueborder > DIV.caption DIV.navigation {
+    display: inline;
+    font-size: var(--ts-font-sm);
+    color: var(--ts-text-muted);
+    margin-left: var(--ts-space-2);
+}
+div.blueborder > DIV.caption DIV.navigation A {
+    font-size: var(--ts-font-sm);
+    font-weight: 500;
+    color: var(--ts-text-muted);
 }
 
 DIV.ncaption {
@@ -682,6 +774,12 @@ div.msgbox-opened {
 
 div.msgbox-opened div.description {
     padding-left: 58px;
+}
+
+.msgbox-opened TABLE.general {
+    border: 0;
+    box-shadow: none;
+    margin-bottom: 0;
 }
 
 
@@ -932,6 +1030,7 @@ span.expired {
     font-weight: 600;
     font-size: var(--ts-font-base);
     border-bottom: 1px solid var(--ts-border);
+    text-align: left;
 }
 
 div.taskDescription {
@@ -1027,8 +1126,75 @@ div.indent {
 }
 
 div.blueborder {
-    border: 1px solid var(--ts-border);
-    border-radius: var(--ts-radius-sm);
+    border: none;
+    border-radius: var(--ts-radius-md);
+    margin-bottom: var(--ts-space-3);
+    box-shadow: var(--ts-shadow);
+    background-color: var(--ts-surface);
+}
+
+/* Inside blueborder, tables should not duplicate the outer border */
+div.blueborder TABLE.general {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    margin-bottom: 0;
+}
+
+/* First table inside blueborder: no top border (caption or controlPanel provides it) */
+div.blueborder div.indent > TABLE.general:first-child {
+    border-top: none;
+}
+
+/* ── Task property table inside blueborder ────────────────── */
+
+/* TH cells: transparent background, muted right-aligned labels */
+div.blueborder TABLE.general TH {
+    background-color: transparent;
+    color: var(--ts-text-muted);
+    font-weight: 500;
+    border-bottom: 1px solid var(--ts-border);
+}
+
+/* Strut: transparent spacer, no borders */
+div.blueborder TABLE.general TD.strut {
+    width: 24px;
+    padding: 0;
+    background-color: transparent !important;
+    border: none;
+    border-bottom: none;
+}
+
+/* Section headers (.taskinfo-right / .taskinfo-left) */
+div.blueborder .taskinfo-right,
+div.blueborder .taskinfo-left {
+    background-color: transparent !important;
+    font-weight: 600;
+    font-size: var(--ts-font-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ts-text-muted);
+    border-bottom: 2px solid var(--ts-primary) !important;
+    padding: var(--ts-space-2) var(--ts-space-3) var(--ts-space-1);
+}
+
+/* CAPTION for custom fields table */
+div.blueborder TABLE.general CAPTION {
+    background-color: transparent;
+    border: none;
+    border-top: 1px solid var(--ts-border);
+    border-radius: 0;
+    font-size: var(--ts-font-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ts-text-muted);
+    padding: var(--ts-space-3) var(--ts-space-3) var(--ts-space-1);
+}
+
+/* Empty/hidden TH labels — more muted */
+div.blueborder TABLE.general TH.hden {
+    opacity: 0.5;
 }
 
 hr {

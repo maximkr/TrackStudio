@@ -112,26 +112,47 @@ body.ts-tree-body div.content {
     border-right: 1px solid var(--ts-border);
 }
 
+/* Remove all browser-generated focus rings inside the tree (container, expander[role=button], etc.) */
+body.ts-tree-body *:focus,
+body.ts-tree-body *:focus-visible {
+    outline: none !important;
+}
+
 body.ts-tree-body div.head,
 body.ts-tree-body div.foot {
-    background: var(--ts-primary);
+    background: var(--ts-surface);
+    border-bottom: 1px solid var(--ts-border);
 }
 
 body.ts-tree-body label.header {
-    display: block;
-    color: #ffffff;
-    background-color: var(--ts-primary) !important;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--ts-text-muted);
+    background-color: var(--ts-surface) !important;
     font-family: var(--ts-font-family);
-    font-size: var(--ts-font-sm);
+    font-size: var(--ts-font-xs);
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
     padding: var(--ts-space-1) var(--ts-space-2);
     text-shadow: none;
     border: none;
     height: auto;
+    cursor: pointer;
+    transition: color var(--ts-transition), background-color var(--ts-transition);
+}
+
+body.ts-tree-body label.header:hover {
+    color: var(--ts-primary);
+    background-color: var(--ts-primary-soft) !important;
 }
 
 body.ts-tree-body label.header img {
-    margin-right: 6px;
+    margin-right: 0;
+    opacity: 0.45;
+    width: 14px;
+    height: 14px;
 }
 
 body.ts-tree-body ul.fancytree-container {
@@ -152,6 +173,7 @@ body.ts-tree-body .fancytree-node:hover .fancytree-title {
 body.ts-tree-body .fancytree-active .fancytree-title {
     color: var(--ts-primary-strong);
     font-weight: 600;
+    background-color: transparent;
 }
 
 body.ts-tree-body .fancytree-icon,

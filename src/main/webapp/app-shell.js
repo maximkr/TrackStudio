@@ -9,6 +9,11 @@
     var contentFrame = document.getElementById('tsContent');
     var toggle = document.getElementById('tsSidebarToggle');
 
+    var DEFAULT_WIDTH = 260;
+    var MIN_WIDTH = 150;
+    var MAX_WIDTH = 600;
+    var HANDLE_WIDTH = 6;
+
     // --- Deep link: ?url= parameter ---
     var params = new URLSearchParams(window.location.search);
     var initialUrl = params.get('url');
@@ -16,22 +21,74 @@
         contentFrame.src = decodeURIComponent(initialUrl);
     }
 
-    // --- Sidebar toggle ---
+    // --- Sidebar state ---
+    var sidebarWidth = parseInt(localStorage.getItem('ts-sidebar-width'), 10) || DEFAULT_WIDTH;
     var sidebarOpen = localStorage.getItem('ts-sidebar') !== 'closed';
-    if (!sidebarOpen) shell.classList.add('sidebar-collapsed');
 
-    toggle.addEventListener('click', function () {
-        shell.classList.toggle('sidebar-collapsed');
-        sidebarOpen = !shell.classList.contains('sidebar-collapsed');
+    function applyColumns() {
+        var w = sidebarOpen ? sidebarWidth : 0;
+        shell.style.gridTemplateColumns = w + 'px ' + HANDLE_WIDTH + 'px 1fr';
+        if (sidebarOpen) {
+            shell.classList.remove('sidebar-collapsed');
+        } else {
+            shell.classList.add('sidebar-collapsed');
+        }
+    }
+
+    applyColumns();
+
+    // --- Toggle (double-click or click on collapsed handle) ---
+    function toggleSidebar() {
+        sidebarOpen = !sidebarOpen;
         localStorage.setItem('ts-sidebar', sidebarOpen ? 'open' : 'closed');
+        applyColumns();
+    }
+
+    toggle.addEventListener('dblclick', function () {
+        toggleSidebar();
+    });
+
+    // Click on collapsed handle → expand
+    toggle.addEventListener('click', function () {
+        if (!sidebarOpen) {
+            toggleSidebar();
+        }
     });
 
     window.TS.sidebar = {
-        toggle: function () { toggle.click(); },
+        toggle: toggleSidebar,
         isOpen: function () { return sidebarOpen; },
-        open: function () { if (!sidebarOpen) toggle.click(); },
-        close: function () { if (sidebarOpen) toggle.click(); }
+        open: function () { if (!sidebarOpen) toggleSidebar(); },
+        close: function () { if (sidebarOpen) toggleSidebar(); }
     };
+
+    // --- Drag to resize ---
+    var dragging = false;
+
+    toggle.addEventListener('mousedown', function (e) {
+        if (!sidebarOpen) return; // collapsed — click only
+        e.preventDefault();
+        dragging = true;
+        toggle.classList.add('dragging');
+        shell.classList.add('resizing');
+    });
+
+    document.addEventListener('mousemove', function (e) {
+        if (!dragging) return;
+        var newWidth = e.clientX;
+        if (newWidth < MIN_WIDTH) newWidth = MIN_WIDTH;
+        if (newWidth > MAX_WIDTH) newWidth = MAX_WIDTH;
+        sidebarWidth = newWidth;
+        shell.style.gridTemplateColumns = sidebarWidth + 'px ' + HANDLE_WIDTH + 'px 1fr';
+    });
+
+    document.addEventListener('mouseup', function () {
+        if (!dragging) return;
+        dragging = false;
+        toggle.classList.remove('dragging');
+        shell.classList.remove('resizing');
+        localStorage.setItem('ts-sidebar-width', sidebarWidth);
+    });
 
     // --- Navigation ---
     window.TS.navigate = function (url) {

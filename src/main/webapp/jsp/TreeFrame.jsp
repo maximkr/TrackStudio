@@ -23,8 +23,20 @@
     <link href="${contextPath}/html/fancytree-2.31.0/lib/contextmenu-abs/jquery.contextMenu.css" rel="stylesheet" >
 	<style type="text/css">
 		ul.fancytree-container {
-			height: 99%;
+			min-height: 100%;
+			box-sizing: border-box;
 		}
+		/* Remove all focus outlines inside the tree (role=button expanders, container, etc.) */
+		body *:focus, body *:focus-visible { outline: none !important; }
+		/* Active node: bold text only, no background box */
+		.fancytree-active .fancytree-title {
+			color: #1a5a80;
+			font-weight: bold !important;
+			background: transparent !important;
+		}
+		/* Override xp-skin hover/focused background */
+		span.fancytree-title:hover,
+		span.fancytree-focused span.fancytree-title { background: transparent !important; }
 	</style>
 	<script type="text/javascript">
 		TREE_LOADED = false;

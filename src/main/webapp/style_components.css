@@ -173,6 +173,62 @@ div.login A:hover {
     color: var(--ts-primary-strong);
 }
 
+.ts-header-user-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--ts-space-2);
+    padding: 2px 0 var(--ts-space-1) 0;
+}
+
+.ts-header-user-info {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ts-space-1);
+    font-size: var(--ts-font-xs);
+    color: var(--ts-text-muted);
+}
+
+.ts-header-user-link {
+    font-size: var(--ts-font-xs) !important;
+    font-weight: 600;
+    color: var(--ts-text) !important;
+    text-decoration: none;
+}
+.ts-header-user-link:hover {
+    color: var(--ts-primary) !important;
+}
+
+.ts-header-user-sep {
+    color: var(--ts-border-strong);
+    font-size: var(--ts-font-sm);
+}
+
+.ts-header-user-roles {
+    font-size: var(--ts-font-xs);
+    color: var(--ts-text-muted);
+    font-style: italic;
+}
+
+.ts-header-action-link {
+    display: inline-block;
+    font-size: var(--ts-font-xs) !important;
+    font-weight: 600;
+    color: var(--ts-primary) !important;
+    text-decoration: none;
+    padding: 2px 10px;
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-sm);
+    transition: all var(--ts-transition);
+    background: var(--ts-surface);
+    line-height: 1.6;
+}
+.ts-header-action-link:hover {
+    background: var(--ts-primary-soft);
+    border-color: var(--ts-primary);
+    color: var(--ts-primary-strong) !important;
+}
+
 /* Search box in header */
 input.form-autocomplete {
     background: var(--ts-surface) url(cssimages/ico.search.gif) no-repeat calc(100% - 8px) center;
@@ -935,11 +991,65 @@ img[src*="/cssimages/ico."] {
 }
 
 img.state {
-    height: 12px;
-    width: 12px;
-    border-radius: 3px;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 5px;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+
+/* ── Status badge ─────────────────────────────────────────── */
+
+.ts-status-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: var(--ts-font-xs);
+    font-weight: 600;
+    white-space: nowrap;
+    line-height: 1.5;
+    background-color: color-mix(in srgb, var(--sc, var(--ts-primary)) 12%, white);
+    color: var(--sc, var(--ts-primary));
+    border: 1px solid color-mix(in srgb, var(--sc, var(--ts-primary)) 22%, transparent);
+    vertical-align: middle;
+}
+
+
+/* ── Priority cell ────────────────────────────────────────── */
+
+td[data-priority]::before {
+    content: "•";
+    font-size: 16px;
+    line-height: 1;
     vertical-align: middle;
     margin-right: 4px;
+    color: var(--ts-text-muted);
+}
+
+td[data-priority="Критический"]::before,
+td[data-priority="Critical"]::before    { color: #c23b3b; }
+
+td[data-priority="Высокий"]::before,
+td[data-priority="High"]::before        { color: #d68a00; }
+
+td[data-priority="Нормальный"]::before,
+td[data-priority="Normal"]::before      { color: var(--ts-text-muted); }
+
+td[data-priority="Низкий"]::before,
+td[data-priority="Low"]::before         { color: #8fbccc; }
+
+
+/* ── Task number in list ──────────────────────────────────── */
+
+TABLE.general span.internal {
+    font-family: var(--ts-font-mono);
+    font-size: var(--ts-font-xs);
+    color: var(--ts-text-muted);
+    font-weight: 500;
+    letter-spacing: 0.2px;
 }
 
 

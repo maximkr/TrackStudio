@@ -9,14 +9,10 @@ body {
 
 .ts-shell {
     display: grid;
-    grid-template-columns: var(--ts-sidebar-width, 260px) auto 1fr;
+    /* columns set via inline style by app-shell.js */
+    grid-template-columns: 260px 6px 1fr;
     height: 100vh;
     overflow: hidden;
-    transition: grid-template-columns 0.2s ease;
-}
-
-.ts-shell.sidebar-collapsed {
-    grid-template-columns: 0px auto 1fr;
 }
 
 .ts-sidebar {
@@ -24,6 +20,7 @@ body {
     border-right: 1px solid var(--ts-border, #d9e4ec);
     background: var(--ts-surface, #ffffff);
     min-width: 0;
+    transition: visibility 0.15s;
 }
 
 .ts-sidebar__frame {
@@ -32,30 +29,44 @@ body {
     border: 0;
 }
 
+/* Drag handle / toggle strip */
 .ts-sidebar-toggle {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    cursor: pointer;
+    width: 6px;
+    cursor: col-resize;
     background: var(--ts-surface-muted, #f8fafc);
     border-right: 1px solid var(--ts-border, #d9e4ec);
     user-select: none;
     transition: background 0.15s ease;
+    position: relative;
 }
 
-.ts-sidebar-toggle:hover {
+.ts-sidebar-toggle:hover,
+.ts-sidebar-toggle.dragging {
     background: var(--ts-primary-soft, #e6f0f6);
 }
 
 .ts-sidebar-toggle__icon {
-    font-size: 12px;
+    font-size: 10px;
     color: var(--ts-text-muted, #5f7383);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, opacity 0.15s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ts-sidebar-toggle:hover .ts-sidebar-toggle__icon {
+    opacity: 1;
+}
+
+.sidebar-collapsed .ts-sidebar-toggle {
+    cursor: pointer;
 }
 
 .sidebar-collapsed .ts-sidebar-toggle__icon {
     transform: rotate(180deg);
+    opacity: 1;
 }
 
 .sidebar-collapsed .ts-sidebar {
@@ -65,10 +76,16 @@ body {
 
 .ts-main {
     overflow: hidden;
+    min-width: 0;
 }
 
 .ts-main__frame {
     width: 100%;
     height: 100%;
     border: 0;
+}
+
+/* Prevent iframe from capturing mouse events during drag */
+.ts-shell.resizing iframe {
+    pointer-events: none;
 }

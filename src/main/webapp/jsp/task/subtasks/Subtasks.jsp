@@ -685,11 +685,11 @@
 </c:if>
 <c:if test="${headerStatus.canView}">
     <td>
-        <span>
-            <c:if test="${taskLine.status ne null}">
+        <c:if test="${taskLine.status ne null}">
+            <span class="ts-status-badge" style="--sc: ${taskLine.status.color}">
                 <c:out value="${taskLine.status.name}" escapeXml="true"/>
-            </c:if>
-        </span>
+            </span>
+        </c:if>
     </td>
 </c:if>
 <c:if test="${headerResolution.canView}">
@@ -700,7 +700,7 @@
     </td>
 </c:if>
 <c:if test="${headerPriority.canView}">
-    <td>
+    <td<c:if test="${taskLine.priority ne null}"> data-priority="<c:out value="${taskLine.priority.name}" escapeXml="true"/>"</c:if>>
         <c:if test="${taskLine.priority ne null}">
             <c:out value="${taskLine.priority.name}" escapeXml="true"/>
         </c:if>

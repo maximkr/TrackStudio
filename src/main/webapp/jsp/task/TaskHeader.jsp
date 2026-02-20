@@ -279,19 +279,24 @@
 				</form>
 			</td>
 		</tr>
-		<tr style="height:5px;">
+		<tr>
 			<td colspan="2">
-				<div class="link" style="float:right;">
+				<div class="ts-header-user-row">
 					<c:if test="${sc.user.login != 'anonymous'}">
-						<I18n:message key="LOGGED_INFO"/>
-						<html:link href="javascript:{self.top.frames[1].location = '${contextPath}/UserViewAction.do?id=${sc.userId}'};" style="vertical-align:bottom;color:#000000;">
-							<c:out value="${sc.user.name}"/>
-						</html:link>.&nbsp;<I18n:message key="YOUR_EFFECTIVE_PRSTATUSES"/>&nbsp;<div style="display:inline;vertical-align:bottom;color:#000000;">&nbsp;[&nbsp;${prstatuses}&nbsp;]</div>&nbsp;
+						<span class="ts-header-user-info">
+							<html:link href="javascript:{self.top.frames[1].location = '${contextPath}/UserViewAction.do?id=${sc.userId}';};" styleClass="ts-header-user-link">
+								<c:out value="${sc.user.name}"/>
+							</html:link>
+							<c:if test="${not empty prstatuses}">
+								<span class="ts-header-user-sep">·</span>
+								<span class="ts-header-user-roles">${prstatuses}</span>
+							</c:if>
+						</span>
 					</c:if>
 					<c:if test="${regRole && sc.user.login == 'anonymous'}">
-						<a style="color:#000000;" href="${contextPath}/LoginAction.do?method=registerPage"><I18n:message key="REGISTER"/></a>
+						<a class="ts-header-action-link" href="${contextPath}/LoginAction.do?method=registerPage"><I18n:message key="REGISTER"/></a>
 					</c:if>
-					<html:link style="padding-right:10px;" href="${contextPath}/LoginAction.do?method=logoutPage">
+					<html:link styleClass="ts-header-action-link" href="${contextPath}/LoginAction.do?method=logoutPage">
 						<c:choose>
 							<c:when test="${sc.user.login == 'anonymous'}">
 								<I18n:message key="LOG_IN"/>
@@ -299,8 +304,8 @@
 							<c:otherwise>
 								<I18n:message key="LOGOUT"/>
 							</c:otherwise>
-						</c:choose>&nbsp;
-					</html:link>&nbsp;
+						</c:choose>
+					</html:link>
 				</div>
 			</td>
 		</tr>

@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Создание и настройка базы данных)](index.md)
+
+---
+
 # Создание и инициализация базы данных под HSQL
 
 1. Настройте свойства соединения с СУБД:
@@ -27,3 +31,7 @@ hibernate.dialect=org.hibernate.dialect.HSQLDialect
 ```
 > java -cp hsqldb.jar org.hsqldb.util.DatabaseManager
 ```
+
+---
+
+[Домой](../../index.md) | [Наверх (Создание и настройка базы данных)](index.md)

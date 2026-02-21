@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Создание и настройка базы данных)](index.md)
+
+---
+
 # Создание и инициализация базы данных под MS SQL Server
 
 1. Запустите **Enterprise Manager**.
@@ -24,3 +28,7 @@ hibernate.connection.username=sa
 
 - **TrackStudio SA:** На вкладке **База данных** нажмите кнопку **Создать БД**
 - **TrackStudio WAR**: Выполните скрипт **sql\install\ru\trackstudio-mssql.sql**
+
+---
+
+[Домой](../../index.md) | [Наверх (Создание и настройка базы данных)](index.md)

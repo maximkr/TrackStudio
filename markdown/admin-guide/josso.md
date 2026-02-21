@@ -1,3 +1,7 @@
+[Домой](../index.md) | [Наверх (Руководство администратора)](index.md)
+
+---
+
 # Как интегрировать TrackStudio c JOSSO
 
 [JOSSO](http://www.josso.org/confluence/display/JOSSO1/JOSSO+-+Java+Open+Single+Sign-On+Project+Home), или Java Open Single Sign-On, это решение с открытым исходным кодом на J2EE для централизованной авторизации и аутентификации пользователей для приложений.
@@ -46,3 +50,7 @@ $ sudo service tomcat6 restart
 Приступим к настройке JOSSO.
 
 Запустите консоль josso, как написано выше.
+
+---
+
+[Домой](../index.md) | [Наверх (Руководство администратора)](index.md)

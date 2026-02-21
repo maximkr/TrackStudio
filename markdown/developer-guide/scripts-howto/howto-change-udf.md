@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Как писать скрипты и триггеры в TrackStudio)](index.md)
+
+---
+
 # Как изменить значение дополнительного поля в задаче
 
 Менять значение дополнительного поля при редактировании задачи достаточно просто: все дополнительные поля содержатся в HashMap внутри **SecuredTaskTriggerBean**, с которым оперируют триггеры для задач. Хранятся они в виде пар "Заголовок", "Значение", причем значение передается в строковом виде.
@@ -33,3 +37,7 @@ Calendar now = Calendar.getInstance(); now.setTimeZone(TimeZone.getTimeZone(secu
 .../* Создаем SecuredTaskBean через id */SecuredTaskBean theTask = new SecuredTaskBean(id, sc); // sc - это SessionContext, его можно получить из любого secured-объекта, вызвав getSecure()/* Создаем SecuredTaskTriggerBean */SecuredTaskTriggerBean sttb = new SecuredTaskTriggerBean(theTask, new HashMap()); // HashMap - это как раз наш список дополнительных полей, можно передавать его уже инициализированным/* Устанавливаем нужное значение */sttb.setUdfValue("Заголовок поля", "Значение");sttb.update();
 
 ...
+
+---
+
+[Домой](../../index.md) | [Наверх (Как писать скрипты и триггеры в TrackStudio)](index.md)

@@ -1,3 +1,7 @@
+[Домой](../index.md) | [Наверх (Руководство администратора)](index.md)
+
+---
+
 # Как настроить уведомления через Jabber/XMPP
 
 В TrackStudio есть возможность посылать уведомления о событиях по протоколу XMPP вместе с или вместо уведомлений по электронной почте.
@@ -31,3 +35,7 @@ xmpp.sendToSender=true
 ## This template is used for a jabber sender
 jabber.template=default_plain.ftl
 ```
+
+---
+
+[Домой](../index.md) | [Наверх (Руководство администратора)](index.md)

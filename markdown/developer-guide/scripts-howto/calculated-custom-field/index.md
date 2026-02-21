@@ -1,3 +1,7 @@
+[Домой](../../../index.md) | [Наверх (Как писать скрипты и триггеры в TrackStudio)](../index.md)
+
+---
+
 # Как сделать значение дополнительного поля вычисляемым
 
 ```
@@ -22,3 +26,7 @@
 | Задача | List<String> | Список с номерами задач |
 | Пользователь | List<String> | Список логинов пользователей |
 | URL | com.trackstudio.containers.Link | Содержится в trackstudio.jar. Конструктор Link(String link, String description) |
+
+---
+
+[Домой](../../../index.md) | [Наверх (Как писать скрипты и триггеры в TrackStudio)](../index.md)

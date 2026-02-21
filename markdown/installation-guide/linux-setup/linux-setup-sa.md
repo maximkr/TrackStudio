@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Установка под Linux)](index.md)
+
+---
+
 # Установка TrackStudio Standalone
 
 Для того, чтобы настроить и запустить TrackStudio Standalone на сервере с графической оболочкой:
@@ -35,3 +39,7 @@
 ```
 
 Если вы используете СУБД HSQLDB, файлы базы данных будут иметь вид *tsdb.lck, tsdb.log, tsdb.properties* and *tsdb.script.* Не удаляйте их.
+
+---
+
+[Домой](../../index.md) | [Наверх (Установка под Linux)](index.md)

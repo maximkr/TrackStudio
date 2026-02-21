@@ -1,3 +1,7 @@
+[Домой](../index.md)
+
+---
+
 # Руководство по установке
 
 [Обновление TrackStudio](update-trackstudio/index.md)
@@ -49,3 +53,7 @@
 [Резервное копирование и восстановление данных](initializing-database/backup-restore.md)
 
 [Экспорт и импорт базы данных. Миграция](initializing-database/database-export-import-migration.md)
+
+---
+
+[Домой](../index.md)

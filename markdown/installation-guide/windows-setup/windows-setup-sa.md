@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Установка под Windows)](index.md)
+
+---
+
 # Установка TrackStudio Standalone под Windows
 
 Для того, чтобы установить TrackStudio Standalone:
@@ -27,3 +31,7 @@
 ## Примечание
 
 Если вы используете СУБД HSQLDB, файлы базы данных будут иметь вид *tsdb.lck, tsdb.log, tsdb.properties* and *tsdb.script.* Не удаляйте их.
+
+---
+
+[Домой](../../index.md) | [Наверх (Установка под Windows)](index.md)

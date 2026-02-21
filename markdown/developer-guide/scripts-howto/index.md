@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Руководство разработчика)](../index.md)
+
+---
+
 # Как писать скрипты и триггеры в TrackStudio
 
 [Как собрать проект из maven шаблона.](howto-build-maven-project.md)
@@ -167,3 +171,7 @@ jar cf myscripts.jar scripts
 ```
 
 И положить его в папку **./etc/plugins/scripts**.
+
+---
+
+[Домой](../../index.md) | [Наверх (Руководство разработчика)](../index.md)

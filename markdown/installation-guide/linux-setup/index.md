@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Руководство по установке)](../index.md)
+
+---
+
 # Установка под Linux
 
 Мы выпускаем TrackStudio Enterprise в двух вариантах: Standalone — для компьютеров с графической оболочкой X-Windows и WAR — для серверов без графической оболочки.
@@ -17,3 +21,7 @@
 [Установка TrackStudio Standalone из консоли](linux-setup-console.md)
 
 [Установка TrackStudio WAR](linux-setup-war.md)
+
+---
+
+[Домой](../../index.md) | [Наверх (Руководство по установке)](../index.md)

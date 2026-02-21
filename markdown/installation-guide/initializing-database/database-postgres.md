@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Создание и настройка базы данных)](index.md)
+
+---
+
 # Создание и инициализация базы данных под PostgreSQL
 
 1. Запустите postmaster.
@@ -54,3 +58,7 @@ hibernate.connection.password postgres
 > createdb -E UNICODE -U postgres trackstudio
 > pg_restore -U postgres --disable-triggers -S postgres -d trackstudio trackstudio.dmp
 ```
+
+---
+
+[Домой](../../index.md) | [Наверх (Создание и настройка базы данных)](index.md)

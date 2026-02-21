@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Создание и настройка базы данных)](index.md)
+
+---
+
 # Создание и инициализация базы данных под Firebird
 
 1. Запустите поставляемую с Firebird программу **isql**
@@ -33,3 +37,7 @@ hibernate.dialect=org.hibernate.dialect.FirebirdDialect
 ```
 SQL> in trackstudio-firebird.sql;
 ```
+
+---
+
+[Домой](../../index.md) | [Наверх (Создание и настройка базы данных)](index.md)

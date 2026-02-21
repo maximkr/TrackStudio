@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Как писать скрипты и триггеры в TrackStudio)](index.md)
+
+---
+
 # Как получить значения дополнительных полей
 
 Получить значение дополнительного поля, **если известен id поля**, можно через HashMap
@@ -30,3 +34,7 @@ Object result; **for**(SecuredUDFValueBean valueBean:task.getUdfValuesList()) { 
 ```
 
 ```
+
+---
+
+[Домой](../../index.md) | [Наверх (Как писать скрипты и триггеры в TrackStudio)](index.md)

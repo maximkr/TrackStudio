@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Как писать скрипты и триггеры в TrackStudio)](index.md)
+
+---
+
 # Как построить графики в TrackStudio по вашим данным
 
 ```
@@ -134,3 +138,7 @@ transform: rotate(-90deg);  -moz-transform: rotate(-90deg);
 -o-transform: rotate(-90deg);\n
 writing-mode: tb-rl;}
 ```
+
+---
+
+[Домой](../../index.md) | [Наверх (Как писать скрипты и триггеры в TrackStudio)](index.md)

@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Как писать скрипты и триггеры в TrackStudio)](index.md)
+
+---
+
 # Как создать свой отчет в TrackStudio.
 
 В ТС появилась возможность создавать свои отчеты.
@@ -31,3 +35,7 @@ handler.report info.ListTaskInfoBuilder.class;
 1. Создаем отчет типа список и указываем обработчик класс info.ListTaskInfoBuilder.class
 
 ![](../../images/handler-report.PNG)
+
+---
+
+[Домой](../../index.md) | [Наверх (Как писать скрипты и триггеры в TrackStudio)](index.md)

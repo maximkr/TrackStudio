@@ -1,3 +1,7 @@
+[Домой](../../../index.md) | [Наверх (Как использовать настройки операций по расписанию)](index.md)
+
+---
+
 # Как сделать динамический интервал для операций по расписанию
 
 Реализованный механизм находится в проекте скриптов в папке **etc/development/scripts**. Реализация написана в утилитном классе ItitialJob.
@@ -23,3 +27,7 @@ package scripts.after_create_task.example;import com.trackstudio.exception.GranE
 Скрипт InitialLoader при перезапуске сервера проверяет все задачи в системе и перезагружает для них задания по расписанию.
 
 package scripts.scheduler.example;import com.trackstudio.app.adapter.scheduler.SchedulerManager;import com.trackstudio.external.IGeneralScheduler;import com.trackstudio.kernel.cache.TaskRelatedInfo;import com.trackstudio.kernel.cache.TaskRelatedManager;import org.slf4j.Logger;import org.slf4j.LoggerFactory;import scripts.InitialJob;/** * TODO: comment * @author parsentev * @since 25.04.2016 */public class InitialLoader implements IGeneralScheduler{ private static final Logger log = LoggerFactory.getLogger(InitialLoader.class); @Override public String getClassName() { return InitialLoader.class.getName(); } @Override public String getCronTime() { return "0/1 * * * * ?"; } @Override public String getName() { return "initial loader"; } @Override public String execute() throws Exception { TaskRelatedManager manager = TaskRelatedManager.getInstance(); for (TaskRelatedInfo info : manager.getCacheContents()) { new InitialJob(info).init(); } SchedulerManager.getInstance().deleteJob(this.getName()); return null; } @Override public boolean isUse() { return true; }}
+
+---
+
+[Домой](../../../index.md) | [Наверх (Как использовать настройки операций по расписанию)](index.md)

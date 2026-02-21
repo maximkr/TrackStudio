@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Создание и настройка базы данных)](index.md)
+
+---
+
 # Создание и инициализация базы данных под ORACLE
 
 1. Создайте Tablespace.
@@ -34,3 +38,7 @@ With the Partitioning, OLAP and Data Mining options
 SQL> set define off;
 SQL> @@ trackstudio-oracle.sql
 ```
+
+---
+
+[Домой](../../index.md) | [Наверх (Создание и настройка базы данных)](index.md)

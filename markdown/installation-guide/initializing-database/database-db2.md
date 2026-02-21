@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Создание и настройка базы данных)](index.md)
+
+---
+
 # Создание и инициализация базы данных под DB2
 
 1. Создайте user tablespace и temp system tablespace.
@@ -29,3 +33,7 @@ hibernate.connection.password db2admin
 ```
 > db2 -tvf trackstudio-db2.sql
 ```
+
+---
+
+[Домой](../../index.md) | [Наверх (Создание и настройка базы данных)](index.md)

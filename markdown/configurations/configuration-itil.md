@@ -1,3 +1,7 @@
+[Домой](../index.md) | [Наверх (Примеры конфигураций для TrackStudio 4.0)](index.md)
+
+---
+
 # Конфигурация TrackStudio для IT Service Management / Helpdesk.
 
 # TrackStudio Service Desk
@@ -79,3 +83,7 @@ ant build
 5. Внизу списка в выпадающем поле выберите скрипт Upgrade.class и нажмите «Применить».
 6. В процессе обновления в окне логов Server Manager будут выводиться информационные сообщения. Также там могут появляться сообщения об ошибке CantFindObjectException — это нормально.
 7. Перезапустите TrackStudio.
+
+---
+
+[Домой](../index.md) | [Наверх (Примеры конфигураций для TrackStudio 4.0)](index.md)

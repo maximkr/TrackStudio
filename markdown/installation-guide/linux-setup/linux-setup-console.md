@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Установка под Linux)](index.md)
+
+---
+
 # Установка TrackStudio Standalone из консоли
 
 ```
@@ -77,3 +81,7 @@ hibernate.connection.password postgres
 ## Примечания
 
 Если вы используете СУБД HSQLDB, файлы базы данных будут иметь вид *tsdb.lck, tsdb.log, tsdb.properties* and *tsdb.script.* Не удаляйте их.
+
+---
+
+[Домой](../../index.md) | [Наверх (Установка под Linux)](index.md)

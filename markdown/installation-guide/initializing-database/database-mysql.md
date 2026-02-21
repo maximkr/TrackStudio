@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Создание и настройка базы данных)](index.md)
+
+---
+
 # Создание и инициализация базы данных под MySQL
 
 1. Запустите терминальный клиент для MySQL.
@@ -35,3 +39,7 @@ hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect
 ```
 mysql -u <логин> -p <пароль> trackstudio --default-character-set=utf8 <./trackstudio-mysql.sql
 ```
+
+---
+
+[Домой](../../index.md) | [Наверх (Создание и настройка базы данных)](index.md)

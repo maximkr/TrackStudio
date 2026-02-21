@@ -1,3 +1,7 @@
+[Домой](../index.md) | [Наверх (Руководство по установке)](index.md)
+
+---
+
 # Как сменить URL TrackStudio
 
 По-умолчанию TrackStudio открывается по адресу [http://localhost:8888/TrackStudio](http://localhost:8888/TrackStudio).
@@ -64,3 +68,7 @@ trackstudio.siteURL [http://trackstudio.mysite.com](http://trackstudio.mysite.co
 **Внимание! В конце адреса обратный слеш ставить не нужно!**
 
 Затем запустите TrackStudio и откройте адрес [http://trackstudio.mysite.com/](http://trackstudio.mysite.com/)
+
+---
+
+[Домой](../index.md) | [Наверх (Руководство по установке)](index.md)

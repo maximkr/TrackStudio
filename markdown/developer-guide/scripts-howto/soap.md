@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Как писать скрипты и триггеры в TrackStudio)](index.md)
+
+---
+
 # Как использовать интерфейс SOAP для TrackStudio
 
 Для работы с SOAP в папке **etc/deveopment/soap** лежит проект.
@@ -33,3 +37,7 @@ TaskFvalueBean taskFvalueBean = **new** TaskFvalueBean(); taskFvalueBean.setSubt
 Если необходимо найти задачи закрытые в определенный период используется код
 
 GregorianCalendar date = **new** GregorianCalendar(2014, 12, 1); TaskFvalueBean taskFvalueBean = **new** TaskFvalueBean(); taskFvalueBean.setSubtask("1"); taskFvalueBean.setCloseDate("_"+String.valueOf(date.getTimeInMillis())); */*c указанной даты */* taskFvalueBean.setCloseDate(String.valueOf(date.getTimeInMillis())); */*по указанную дату */* TaskSliderBean sliderBean = task.getTaskList(sessionId, taskId, taskFvalueBean, **true**, 20, **new** ArrayList<String>());
+
+---
+
+[Домой](../../index.md) | [Наверх (Как писать скрипты и триггеры в TrackStudio)](index.md)

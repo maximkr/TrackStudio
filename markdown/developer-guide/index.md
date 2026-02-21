@@ -1,3 +1,7 @@
+[Домой](../index.md)
+
+---
+
 # Руководство разработчика
 
 [Как писать скрипты и триггеры в TrackStudio](scripts-howto/index.md)
@@ -93,3 +97,7 @@
 [Как собрать TrackStudio из исходного кода](scripts-howto/compile.md)
 
 [Как установить Deadline создаваемой задачи в зависимости от приоритета](scripts-howto/scripts-deadline-by-priority.md)
+
+---
+
+[Домой](../index.md)

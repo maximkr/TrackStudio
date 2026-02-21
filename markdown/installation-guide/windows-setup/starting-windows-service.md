@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Установка под Windows)](index.md)
+
+---
+
 # Запуск TrackStudio как сервиса Windows
 
 **Jetty (сервер приложений, поставляемый с TrackStudio SA)**
@@ -30,3 +34,7 @@ Service stopped
 >jettyService /uninstall
 Uninstalled service 'jettyService'.
 ```
+
+---
+
+[Домой](../../index.md) | [Наверх (Установка под Windows)](index.md)

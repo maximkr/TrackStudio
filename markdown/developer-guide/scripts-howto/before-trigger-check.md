@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Как писать скрипты и триггеры в TrackStudio)](index.md)
+
+---
+
 # Как проверить данные перед сохранением задачи (Before Task Edit Trigger)
 
 Чтобы проверять данные перед сохранением существующей задачи, нужно подключить к ее процессу триггер Before Edit Task.
@@ -13,3 +17,7 @@
 **package** scripts.before_edit_task;**import** com.trackstudio.exception.GranException;**import** com.trackstudio.exception.UserException;**import** com.trackstudio.external.TaskTrigger;**import** com.trackstudio.secured.SecuredTaskTriggerBean;**import** java.util.Calendar;**public** **class** CheckDeadline **implements** TaskTrigger { **public** SecuredTaskTriggerBean execute(SecuredTaskTriggerBean securedTaskTriggerBean) **throws** GranException { Calendar deadline = securedTaskTriggerBean.getDeadline(); Calendar now = Calendar.getInstance(); **if** (deadline == **null** || deadline.before(now)) **throw** **new** UserException("Укажите срок выполнения задачи"); **return** securedTaskTriggerBean; }}
 
 С помощью триггеров Before Edit Task обычно выполняются действия, которые необходимо совершить до сохранения задачи, так, чтобы если эти действия завершились неуспешно, пользователь вернулся на страницу ввода и мог повторить действия.
+
+---
+
+[Домой](../../index.md) | [Наверх (Как писать скрипты и триггеры в TrackStudio)](index.md)

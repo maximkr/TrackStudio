@@ -1,3 +1,7 @@
+[Домой](../../../index.md) | [Наверх (Как сделать свой Dashboard)](index.md)
+
+---
+
 # Как построить графики на Dashboard
 
 Начиная с версии 4.0.15 вы можете использовать макросы для построения графиков и диаграмм в описании задач, операциях и дополнительных полях типа Текст.
@@ -139,3 +143,7 @@ Burn Down Chart — [LineChart](http://code.google.com/apis/chart/interactive/do
 Отчет о проделанной работе, Распределение нагрузки — [BarChart](http://code.google.com/apis/chart/interactive/docs/gallery/barchart.html)
 
 Текущее состояние проекта, Итоги работы над задачами — [PieChart](http://code.google.com/apis/chart/interactive/docs/gallery/piechart.html)
+
+---
+
+[Домой](../../../index.md) | [Наверх (Как сделать свой Dashboard)](index.md)

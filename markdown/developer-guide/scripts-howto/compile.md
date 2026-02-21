@@ -1,3 +1,7 @@
+[Домой](../../index.md) | [Наверх (Как писать скрипты и триггеры в TrackStudio)](index.md)
+
+---
+
 # Как собрать TrackStudio из исходного кода
 
 Для того, чтобы собрать TrackStudio, вам понадобятся: [Java SDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) и [Apache Ant](http://ant.apache.org/bindownload.cgi). Лучше, если у вас будет [какая-нибудь IDE](http://www.jetbrains.com/idea/download/), но для небольших изменений можно обойтись и простым **текстовым** редактором.
@@ -154,3 +158,7 @@ Listening for transport dt_socket at address: 5005
 3. Остановите резервный экземпляр TrackStudio.
 4. Перекомпилируйте ваш исходный код по инструкции выше.
 5. Снова приступите к отладке.
+
+---
+
+[Домой](../../index.md) | [Наверх (Как писать скрипты и триггеры в TrackStudio)](index.md)

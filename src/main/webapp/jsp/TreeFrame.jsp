@@ -12,6 +12,9 @@
 	<title>TrackStudio</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta http-equiv="content-type" content="text/html; charset=${encoding}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 	<script src="${contextPath}/html/fancytree-2.31.0/lib/jquery.js" type="text/javascript"></script>
 	<script src="${contextPath}/html/fancytree-2.31.0/lib/jquery-ui.custom.js" type="text/javascript"></script>

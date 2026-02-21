@@ -2,9 +2,11 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: var(--ts-font-family, "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif);
+    font-family: var(--ts-font-family, "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif);
     overflow: hidden;
     height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .ts-shell {
@@ -17,7 +19,7 @@ body {
 
 .ts-sidebar {
     overflow: hidden;
-    border-right: 1px solid var(--ts-border, #d9e4ec);
+    border-right: 1px solid var(--ts-border, #E2E8F0);
     background: var(--ts-surface, #ffffff);
     min-width: 0;
     transition: visibility 0.15s;
@@ -36,21 +38,21 @@ body {
     justify-content: center;
     width: 6px;
     cursor: col-resize;
-    background: var(--ts-surface-muted, #f8fafc);
-    border-right: 1px solid var(--ts-border, #d9e4ec);
+    background: var(--ts-surface-muted, #F0F2F5);
+    border-right: 1px solid var(--ts-border, #E2E8F0);
     user-select: none;
-    transition: background 0.15s ease;
+    transition: background 0.2s ease;
     position: relative;
 }
 
 .ts-sidebar-toggle:hover,
 .ts-sidebar-toggle.dragging {
-    background: var(--ts-primary-soft, #e6f0f6);
+    background: var(--ts-primary-soft, #E8F4FD);
 }
 
 .ts-sidebar-toggle__icon {
     font-size: 10px;
-    color: var(--ts-text-muted, #5f7383);
+    color: var(--ts-text-muted, #64748B);
     transition: transform 0.2s ease, opacity 0.15s ease;
     opacity: 0;
     pointer-events: none;

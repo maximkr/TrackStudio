@@ -22,7 +22,7 @@ BODY.ts-app {
 /* ── Login page ───────────────────────────────────────────── */
 
 BODY.ts-login-page {
-    background: linear-gradient(180deg, #f7fbff 0%, #edf4fa 100%);
+    background: var(--ts-primary);
     margin: 0;
     padding: var(--ts-space-4);
 }
@@ -40,7 +40,7 @@ BODY.ts-login-page {
     background-color: var(--ts-surface);
     border: 1px solid var(--ts-border);
     border-radius: var(--ts-radius-md);
-    box-shadow: var(--ts-shadow-lg);
+    box-shadow: var(--ts-shadow-xl);
     padding: 8px 8px 0 8px;
 }
 
@@ -57,12 +57,15 @@ BODY.ts-login-page {
 .ts-login-footer {
     margin-top: var(--ts-space-4);
     text-align: center;
-    color: var(--ts-text-muted);
+    color: rgba(255,255,255,0.55);
     font-size: var(--ts-font-xs);
 }
 .ts-login-footer a {
-    color: var(--ts-text-muted);
+    color: rgba(255,255,255,0.7);
     font-size: var(--ts-font-xs);
+}
+.ts-login-footer a:hover {
+    color: #ffffff;
 }
 
 .ts-login-error {
@@ -102,8 +105,8 @@ INPUT.reallyBig {
     padding: var(--ts-space-2) var(--ts-space-3);
 }
 INPUT.reallyBig:focus {
-    border-color: var(--ts-primary);
-    box-shadow: 0 0 0 3px rgba(47, 115, 150, 0.15);
+    border-color: var(--ts-primary-light);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
 }
 
 
@@ -120,21 +123,25 @@ INPUT.reallyBig:focus {
 }
 
 .ts-brand-mark {
-    display: inline-block;
-    min-width: 30px;
-    line-height: 24px;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    font-size: 0.85rem;
+    font-weight: 700;
     color: #ffffff;
     background-color: var(--ts-primary);
-    border-radius: 6px;
+    border-radius: var(--ts-radius-sm);
 }
 
 .ts-brand-name {
     font-size: 20px;
     line-height: 24px;
     color: var(--ts-text);
+}
+.ts-brand-name span {
+    color: var(--ts-primary-light);
 }
 
 .ts-brand-subtitle {
@@ -166,11 +173,11 @@ div.login {
 }
 div.login A {
     font-size: var(--ts-font-sm);
-    color: var(--ts-primary);
+    color: var(--ts-primary-light);
     text-decoration: none;
 }
 div.login A:hover {
-    color: var(--ts-primary-strong);
+    color: var(--ts-primary);
 }
 
 .ts-header-user-row {
@@ -241,8 +248,8 @@ input.form-autocomplete {
     transition: border-color var(--ts-transition), box-shadow var(--ts-transition);
 }
 input.form-autocomplete:focus {
-    border-color: var(--ts-primary);
-    box-shadow: 0 0 0 3px rgba(47, 115, 150, 0.15);
+    border-color: var(--ts-primary-light);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
     outline: none;
 }
 
@@ -452,10 +459,10 @@ DIV.taskTitle em.number {
 TABLE.general {
     width: 100%;
     border: 1px solid var(--ts-border);
-    border-radius: var(--ts-radius-md);
+    border-radius: var(--ts-radius-sm);
     background-color: var(--ts-surface);
     overflow: hidden;
-    box-shadow: var(--ts-shadow);
+    box-shadow: none;
     margin-bottom: var(--ts-space-4);
     border-collapse: separate;
     border-spacing: 0;
@@ -465,7 +472,7 @@ TABLE.general CAPTION {
     background-color: var(--ts-surface-muted);
     border: 1px solid var(--ts-border);
     border-bottom: 1px solid var(--ts-border);
-    border-radius: var(--ts-radius-md) var(--ts-radius-md) 0 0;
+    border-radius: var(--ts-radius-sm) var(--ts-radius-sm) 0 0;
     color: var(--ts-text);
     font-size: var(--ts-font-base);
     font-weight: 600;
@@ -477,8 +484,10 @@ TABLE.general CAPTION {
 TABLE.general TH {
     background-color: var(--ts-surface-muted);
     color: var(--ts-text-muted);
-    font-weight: 600;
-    font-size: var(--ts-font-sm);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     padding: var(--ts-space-2) var(--ts-space-3);
     border-bottom: 1px solid var(--ts-border);
     text-align: right;
@@ -497,7 +506,7 @@ TABLE.general TR:last-child TH {
 }
 
 TABLE.general TR.wide TH {
-    background-color: var(--ts-primary-soft);
+    background-color: rgba(0,214,143,0.06);
     color: var(--ts-text);
     font-weight: 600;
     font-size: var(--ts-font-base);
@@ -541,7 +550,7 @@ TABLE.general TR.line0:hover TD,
 TABLE.general TR.line1:hover TD,
 TABLE.general TR.one:hover TD,
 TABLE.general TR.two:hover TD {
-    background-color: var(--ts-primary-soft) !important;
+    background-color: var(--ts-bg) !important;
 }
 
 TABLE.general TR.one TD {
@@ -610,7 +619,7 @@ div.blueborder > DIV.caption {
 DIV.caption A {
     font-size: var(--ts-font-base);
     font-weight: 600;
-    color: var(--ts-primary);
+    color: var(--ts-primary-light);
     letter-spacing: 0;
 }
 
@@ -722,7 +731,7 @@ TABLE.tabbedpane TD LI A:hover SPAN {
 TABLE.tabbedpane TD LI#selectedtab A,
 TABLE.tabbedpane TD LI#selectedtab A:hover {
     color: var(--ts-primary);
-    border-bottom-color: var(--ts-primary);
+    border-bottom-color: var(--ts-primary-light);
     font-weight: 600;
     background: none !important;
 }
@@ -733,10 +742,10 @@ TABLE.tabbedpane TD LI#selectedtab A SPAN {
 
 DIV.tabcontent {
     border: 1px solid var(--ts-border);
-    border-radius: 0 0 var(--ts-radius-md) var(--ts-radius-md);
+    border-radius: 0 0 var(--ts-radius-sm) var(--ts-radius-sm);
     background-color: var(--ts-surface);
     padding: var(--ts-space-3);
-    box-shadow: var(--ts-shadow);
+    box-shadow: none;
 }
 
 
@@ -780,9 +789,9 @@ DIV.slider SPAN {
     height: 32px;
     font-size: var(--ts-font-base);
     font-weight: 600;
-    color: #ffffff;
-    background-color: var(--ts-primary);
-    border: 1px solid var(--ts-primary);
+    color: #0A1628;
+    background-color: var(--ts-accent);
+    border: 1px solid var(--ts-accent);
     border-radius: var(--ts-radius-sm);
     padding: 0 var(--ts-space-2);
 }
@@ -810,7 +819,7 @@ A.history-opened {
 
 .fx LABEL.opened {
     background-color: var(--ts-primary-soft);
-    border-top: 3px solid var(--ts-primary);
+    border-top: 3px solid var(--ts-primary-light);
     border-left: 1px solid var(--ts-border);
     border-right: 1px solid var(--ts-border);
     border-bottom: 1px solid var(--ts-border);
@@ -1216,7 +1225,7 @@ div.bookmarkPanel {
 /* ── Allow/deny table ─────────────────────────────────────── */
 
 TABLE.allowdeny CAPTION {
-    color: var(--ts-primary);
+    color: var(--ts-primary-light);
     border-bottom: 1px solid var(--ts-border);
     font-weight: 600;
     font-size: var(--ts-font-base);
@@ -1236,11 +1245,15 @@ div.indent {
 }
 
 div.blueborder {
-    border: none;
-    border-radius: var(--ts-radius-md);
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-sm);
     margin-bottom: var(--ts-space-3);
-    box-shadow: var(--ts-shadow);
+    box-shadow: none;
     background-color: var(--ts-surface);
+    transition: box-shadow var(--ts-transition);
+}
+div.blueborder:hover {
+    box-shadow: var(--ts-shadow-lg);
 }
 
 /* Inside blueborder, tables should not duplicate the outer border */
@@ -1284,7 +1297,7 @@ div.blueborder .taskinfo-left {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--ts-text-muted);
-    border-bottom: 2px solid var(--ts-primary) !important;
+    border-bottom: 2px solid var(--ts-primary-light) !important;
     padding: var(--ts-space-2) var(--ts-space-3) var(--ts-space-1);
 }
 
@@ -1392,7 +1405,7 @@ label.header {
     transform: translate(-50%, -50%) scale(0.95);
     background: var(--ts-surface);
     border-radius: var(--ts-radius-md);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--ts-shadow-xl);
     z-index: var(--ts-z-modal);
     opacity: 0;
     pointer-events: none;
@@ -1468,14 +1481,14 @@ label.header {
 }
 
 .ts-dialog-btn-primary {
-    background-color: var(--ts-primary);
-    border-color: var(--ts-primary);
-    color: #ffffff;
+    background-color: var(--ts-accent);
+    border-color: var(--ts-accent);
+    color: #0A1628;
     font-weight: 600;
 }
 .ts-dialog-btn-primary:hover {
-    background-color: var(--ts-primary-strong);
-    border-color: var(--ts-primary-strong);
+    background-color: var(--ts-accent-hover);
+    border-color: var(--ts-accent-hover);
 }
 
 /* Quick dialogs (confirm/alert) */

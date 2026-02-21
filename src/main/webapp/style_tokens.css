@@ -6,18 +6,24 @@
 
 :root {
     /* ── Colour palette ───────────────────────────────────── */
-    --ts-bg:              #f4f7fb;
+    --ts-bg:              #F8F9FB;
     --ts-surface:         #ffffff;
-    --ts-surface-muted:   #f8fafc;
-    --ts-border:          #d9e4ec;
-    --ts-border-strong:   #bfcfdb;
+    --ts-surface-muted:   #F0F2F5;
+    --ts-border:          #E2E8F0;
+    --ts-border-strong:   #E2E8F0;
 
-    --ts-text:            #1d2b36;
-    --ts-text-muted:      #5f7383;
+    --ts-text:            #1E293B;
+    --ts-text-muted:      #64748B;
+    --ts-text-muted-2:    #94A3B8;
 
-    --ts-primary:         #2f7396;
-    --ts-primary-strong:  #225975;
-    --ts-primary-soft:    #e6f0f6;
+    --ts-primary:         #0F2B46;
+    --ts-primary-strong:  #1B4F72;
+    --ts-primary-light:   #3498DB;
+    --ts-primary-soft:    #E8F4FD;
+    --ts-primary-glow:    #5DADE2;
+
+    --ts-accent:          #00D68F;
+    --ts-accent-hover:    #00B377;
 
     --ts-success:         #1e8a54;
     --ts-success-soft:    #e6f5ed;
@@ -25,11 +31,11 @@
     --ts-danger-soft:     #fde8e8;
     --ts-warning:         #d68a00;
     --ts-warning-soft:    #fff3d6;
-    --ts-info:            #2f7396;
+    --ts-info:            #3498DB;
 
     /* ── Typography ───────────────────────────────────────── */
-    --ts-font-family:     "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-    --ts-font-mono:       "Cascadia Code", "Fira Code", "JetBrains Mono", Consolas, monospace;
+    --ts-font-family:     "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    --ts-font-mono:       "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
 
     --ts-font-xs:         11px;
     --ts-font-sm:         12px;
@@ -39,8 +45,8 @@
     --ts-font-xl:         20px;
     --ts-font-xxl:        24px;
 
-    --ts-line-height:       1.5;
-    --ts-line-height-tight: 1.3;
+    --ts-line-height:       1.65;
+    --ts-line-height-tight: 1.25;
 
     /* ── Spacing scale ────────────────────────────────────── */
     --ts-space-1:   4px;
@@ -54,24 +60,26 @@
     --ts-space-12: 48px;
 
     /* ── Radii ────────────────────────────────────────────── */
-    --ts-radius-sm:  6px;
-    --ts-radius-md: 10px;
+    --ts-radius-sm:  8px;
+    --ts-radius-md: 12px;
     --ts-radius-lg: 16px;
 
     /* ── Shadows ──────────────────────────────────────────── */
-    --ts-shadow:       0 1px 4px rgba(29, 43, 54, 0.06), 0 4px 16px rgba(29, 43, 54, 0.06);
-    --ts-shadow-lg:    0 4px 12px rgba(29, 43, 54, 0.08), 0 12px 40px rgba(29, 43, 54, 0.10);
+    --ts-shadow-sm:    0 1px 2px rgba(0,0,0,0.05);
+    --ts-shadow:       0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+    --ts-shadow-lg:    0 4px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04);
+    --ts-shadow-xl:    0 8px 24px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.04);
 
     /* ── Transitions ──────────────────────────────────────── */
     --ts-transition-fast: 0.1s ease;
-    --ts-transition:      0.15s ease;
+    --ts-transition:      0.2s ease;
     --ts-transition-slow: 0.3s ease;
 
     /* ── Layout sizes ─────────────────────────────────────── */
     --ts-sidebar-width:   260px;
     --ts-header-height:    48px;
     --ts-toolbar-height:   40px;
-    --ts-max-content:    1400px;
+    --ts-max-content:    1140px;
     --ts-input-height:     34px;
 
     /* ── Z-index scale ────────────────────────────────────── */
@@ -114,11 +122,19 @@ TD, TH, INPUT, SELECT, TEXTAREA, BUTTON {
 
 /* Links */
 A {
-    color: var(--ts-primary);
+    color: var(--ts-primary-light);
     transition: color var(--ts-transition);
 }
 A:hover {
     color: var(--ts-primary-strong);
+}
+
+/* Headings */
+H1, H2, H3, H4, H5, H6 {
+    line-height: var(--ts-line-height-tight);
+    color: var(--ts-primary);
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
 
 /* ============================================================
@@ -159,8 +175,8 @@ INPUT:focus,
 SELECT:focus,
 TEXTAREA:focus {
     outline: none;
-    border-color: var(--ts-primary);
-    box-shadow: 0 0 0 3px rgba(47, 115, 150, 0.15);
+    border-color: var(--ts-primary-light);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
 }
 
 /* ── Buttons ──────────────────────────────────────────────── */
@@ -172,12 +188,13 @@ BUTTON,
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     height: var(--ts-input-height);
     padding: var(--ts-space-1) var(--ts-space-4);
-    border: 1px solid var(--ts-primary);
+    border: none;
     border-radius: var(--ts-radius-sm);
-    background-color: var(--ts-primary);
-    color: #ffffff;
+    background-color: var(--ts-accent);
+    color: #0A1628;
     font-family: var(--ts-font-family);
     font-size: var(--ts-font-base);
     font-weight: 600;
@@ -188,42 +205,53 @@ BUTTON,
     box-sizing: border-box;
     line-height: 1;
     vertical-align: middle;
+    letter-spacing: -0.01em;
 }
 
 INPUT[type="submit"]:hover,
 INPUT[type="button"]:hover,
 BUTTON:hover,
 .iconized:hover {
-    background-color: var(--ts-primary-strong);
-    border-color: var(--ts-primary-strong);
+    background-color: var(--ts-accent-hover);
 }
 
 /* Secondary button */
 .iconized.secondary,
 INPUT.secondary[type="submit"],
 INPUT.secondary[type="button"] {
-    background-color: var(--ts-surface);
-    color: var(--ts-primary);
-    border-color: var(--ts-border-strong);
-    font-weight: 500;
+    background-color: var(--ts-primary);
+    color: #ffffff;
+    border: none;
+    font-weight: 600;
 }
 
 .iconized.secondary:hover,
 INPUT.secondary[type="submit"]:hover,
 INPUT.secondary[type="button"]:hover {
-    background-color: var(--ts-primary-soft);
-    border-color: var(--ts-primary);
-    color: var(--ts-primary-strong);
+    background-color: var(--ts-primary-strong);
+    color: #ffffff;
+}
+
+/* Outline button */
+.iconized.outline {
+    background-color: transparent;
+    color: var(--ts-text);
+    border: 1.5px solid var(--ts-border);
+    font-weight: 500;
+}
+.iconized.outline:hover {
+    background-color: var(--ts-surface-muted);
+    border-color: var(--ts-primary-light);
+    color: var(--ts-primary);
 }
 
 /* Danger button */
 .iconized.danger {
     background-color: var(--ts-danger);
-    border-color: var(--ts-danger);
+    border: none;
 }
 .iconized.danger:hover {
     background-color: #a83232;
-    border-color: #a83232;
 }
 
 /* Checkbox / radio — don't force height */

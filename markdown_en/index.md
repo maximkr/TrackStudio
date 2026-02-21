@@ -4,7 +4,7 @@
   - [Updating TrackStudio](installation-guide/updating-trackstudio/index.md)
     - [Upgrading the minor versions (5.0.x)](installation-guide/updating-trackstudio/upgrading-the-minor-versions-5.md)
     - [Upgrade from version 4.0.x to 5.0.x](installation-guide/updating-trackstudio/upgrade-from-version-4-0-x-to-.md)
-    - [Upgrading the minor versions (4.0.x)](installation-guide/updating-trackstudio/upgrading-the-minor-versions-(.md)
+    - [Upgrading the minor versions (4.0.x)](installation-guide/updating-trackstudio/upgrading-the-minor-versions-.md)
     - [Upgrade from version 3.5](installation-guide/updating-trackstudio/upgrade-from-version-3-5.md)
   - [Installing on Windows](installation-guide/installing-on-windows/index.md)
     - [Installing TrackStudio Standalone in Windows](installation-guide/installing-on-windows/installing-trackstudio-standal.md)

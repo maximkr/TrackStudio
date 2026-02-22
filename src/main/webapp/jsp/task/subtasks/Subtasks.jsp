@@ -24,7 +24,7 @@
         });
     }
 </script>
-<div id="servicePanel" class="${selectedIds!=null && !empty selectedIds ? "norm" : "closed"}">
+<div id="servicePanel" class="${selectedIds!=null && !empty selectedIds ? "norm" : "closed"}" style="display:none;">
     <span>
     <img id="windowhideicon" src="${contextPath}${ImageServlet}/cssimages/ico.hidewin.gif" class="icon"
          onclick="hideServicePanel();" title="<I18n:message key="HIDE"/>">
@@ -85,7 +85,6 @@
 </script>
 <div class="blueborder">
 <div class="caption">
-    <c:out value="${headerSlider}" escapeXml="false"/>
     <c:if test="${canViewRSS}">
         <html:link href="${RSSLink}" target="_blank" styleClass="floatlink">
             <html:img src="${contextPath}${ImageServlet}/cssimages/rssicon.png" border="0"/>
@@ -240,13 +239,22 @@
     </c:if>
 </ajax:tabPanel>
 <div class="indent">
-<html:form method="post" action="/SubtaskAction" onsubmit="return onSubmitFunction(this);">
+<html:form method="post" action="/SubtaskAction" styleId="taskListForm" onsubmit="return onSubmitFunction(this);">
 <html:hidden property="method" value="page" styleId="subtaskId"/>
 <html:hidden property="operation" value="SINGLE_COPY" styleId="operationId"/>
 <html:hidden property="collector"/>
 <html:hidden property="id" value="${id}"/>
 <html:hidden property="session" value="${session}"/>
-<table class="general" cellpadding="0" cellspacing="0">
+
+<div class="ts-quick-filter">
+    <input type="text" class="ts-quick-filter__input"
+           placeholder='<I18n:message key="QUICK_FILTER_PLACEHOLDER"/>' id="quickFilter" autocomplete="off">
+</div>
+<div class="ts-pagination ts-pagination--top">
+    <c:out value="${slider}" escapeXml="false"/>
+</div>
+
+<table class="general ts-task-list" id="taskListTable" cellpadding="0" cellspacing="0">
 <tr class="wide">
 <c:set var="columns" value="1"/>
 <th width="4%" style="white-space:nowrap;text-align: center;">
@@ -555,7 +563,7 @@
 
 <c:set var="listMes" value="${taskLineEntity.value}"/>
 <c:set var="taskLine" value="${taskLineEntity.key}"/>
-<tr class="line<c:out value="${status.index mod 2}"/>">
+<tr class="line<c:out value="${status.index mod 2}"/>" data-task-row="true" data-task-id="<c:out value="${taskLine.id}"/>">
 <c:choose>
     <c:when test="${(!empty listMes)}">
         <c:set var="tmprowspan" value="${rowspan+1}"/>
@@ -700,7 +708,7 @@
     </td>
 </c:if>
 <c:if test="${headerPriority.canView}">
-    <td<c:if test="${taskLine.priority ne null}"> data-priority="<c:out value="${taskLine.priority.name}" escapeXml="true"/>"</c:if>>
+    <td class="ts-priority-cell"<c:if test="${taskLine.priority ne null}"> data-priority="<c:out value="${taskLine.priority.name}" escapeXml="true"/>" data-priority-order="<c:out value="${taskLine.priority.order}" escapeXml="true"/>" data-priority-default="<c:out value="${taskLine.priority.def}" escapeXml="true"/>"</c:if>>
         <c:if test="${taskLine.priority ne null}">
             <c:out value="${taskLine.priority.name}" escapeXml="true"/>
         </c:if>
@@ -725,18 +733,30 @@
     <td style="white-space: nowrap;">
         <c:choose>
             <c:when test="${taskLine.handlerUserId ne null}">
-			<span class="user" ${taskLine.handlerUserId eq sc.userId ? "id='loggedUser'" : ""}>
-            <html:img styleClass="icon" border="0"
-                      src="${contextPath}${ImageServlet}/cssimages/${taskLine.handlerUser.active ? 'arw.usr.a.gif' : 'arw.usr.gif'}"/>
-            <c:out value="${taskLine.handlerUser.name}" escapeXml="true"/>
-			</span>
+                <c:set var="handlerName" value="${taskLine.handlerUser.name}"/>
+                <c:set var="handlerInitial" value="${fn:substring(handlerName, 0, 1)}"/>
+                <c:set var="handlerSpaceIndex" value="${fn:indexOf(handlerName, ' ')}"/>
+                <c:if test="${handlerSpaceIndex gt 0}">
+                    <c:set var="handlerInitial"
+                           value="${handlerInitial}${fn:substring(handlerName, handlerSpaceIndex + 1, handlerSpaceIndex + 2)}"/>
+                </c:if>
+                <span class="ts-user" ${taskLine.handlerUserId eq sc.userId ? "id='loggedUser'" : ""}>
+                    <span class="ts-avatar" aria-hidden="true"><c:out value="${handlerInitial}" escapeXml="true"/></span>
+                    <span class="ts-user__name"><c:out value="${handlerName}" escapeXml="true"/></span>
+                </span>
             </c:when>
             <c:when test="${taskLine.handlerGroupId ne null}">
-					<span class="user">
-                        <html:img styleClass="icon" border="0"
-                                  src="${contextPath}${ImageServlet}/cssimages/ico.status.gif"/><c:out
-                            value="${taskLine.handlerGroup.name}" escapeXml="true"/>
-						</span>
+                <c:set var="handlerGroupName" value="${taskLine.handlerGroup.name}"/>
+                <c:set var="handlerGroupInitial" value="${fn:substring(handlerGroupName, 0, 1)}"/>
+                <c:set var="handlerGroupSpaceIndex" value="${fn:indexOf(handlerGroupName, ' ')}"/>
+                <c:if test="${handlerGroupSpaceIndex gt 0}">
+                    <c:set var="handlerGroupInitial"
+                           value="${handlerGroupInitial}${fn:substring(handlerGroupName, handlerGroupSpaceIndex + 1, handlerGroupSpaceIndex + 2)}"/>
+                </c:if>
+                <span class="ts-user ts-user--group">
+                    <span class="ts-avatar ts-avatar--group" aria-hidden="true"><c:out value="${handlerGroupInitial}" escapeXml="true"/></span>
+                    <span class="ts-user__name"><c:out value="${handlerGroupName}" escapeXml="true"/></span>
+                </span>
             </c:when>
             <c:otherwise>
 
@@ -752,24 +772,48 @@
     </td>
 </c:if>
 <c:if test="${headerSubmitDate.canView}">
-    <td><span style="white-space: nowrap;"><c:if test="${taskLine.submitdate ne null}">
-        <I18n:formatDate value="${taskLine.submitdate.time}" type="both" dateStyle="short" timeStyle="short"/>
-    </c:if></span></td>
+    <td>
+        <c:if test="${taskLine.submitdate ne null}">
+            <span class="ts-relative-time" data-time="${taskLine.submitdate.time.time}"
+                  title='<I18n:formatDate value="${taskLine.submitdate.time}" type="both" dateStyle="short" timeStyle="short"/>'>
+                <span class="ts-relative-time__sortkey"><c:out value="${taskLine.submitdate.time.time}"/></span>
+                <span class="ts-relative-time__label"><I18n:formatDate value="${taskLine.submitdate.time}" type="both" dateStyle="short" timeStyle="short"/></span>
+            </span>
+        </c:if>
+    </td>
 </c:if>
 <c:if test="${headerUpdateDate.canView}">
-    <td><span style="white-space: nowrap;"><c:if test="${taskLine.updatedate ne null}">
-        <I18n:formatDate value="${taskLine.updatedate.time}" type="both" dateStyle="short" timeStyle="short"/>
-    </c:if></span></td>
+    <td>
+        <c:if test="${taskLine.updatedate ne null}">
+            <span class="ts-relative-time" data-time="${taskLine.updatedate.time.time}"
+                  title='<I18n:formatDate value="${taskLine.updatedate.time}" type="both" dateStyle="short" timeStyle="short"/>'>
+                <span class="ts-relative-time__sortkey"><c:out value="${taskLine.updatedate.time.time}"/></span>
+                <span class="ts-relative-time__label"><I18n:formatDate value="${taskLine.updatedate.time}" type="both" dateStyle="short" timeStyle="short"/></span>
+            </span>
+        </c:if>
+    </td>
 </c:if>
 <c:if test="${headerCloseDate.canView}">
-    <td><span style="white-space: nowrap;"><c:if test="${taskLine.closedate ne null}">
-        <I18n:formatDate value="${taskLine.closedate.time}" type="both" dateStyle="short" timeStyle="short"/>
-    </c:if></span></td>
+    <td>
+        <c:if test="${taskLine.closedate ne null}">
+            <span class="ts-relative-time" data-time="${taskLine.closedate.time.time}"
+                  title='<I18n:formatDate value="${taskLine.closedate.time}" type="both" dateStyle="short" timeStyle="short"/>'>
+                <span class="ts-relative-time__sortkey"><c:out value="${taskLine.closedate.time.time}"/></span>
+                <span class="ts-relative-time__label"><I18n:formatDate value="${taskLine.closedate.time}" type="both" dateStyle="short" timeStyle="short"/></span>
+            </span>
+        </c:if>
+    </td>
 </c:if>
 <c:if test="${headerDeadline.canView}">
-    <td><span style="white-space: nowrap;"><c:if test="${taskLine.deadline ne null}">
-        <I18n:formatDate value="${taskLine.deadline.time}" type="both" dateStyle="short" timeStyle="short"/>
-    </c:if></span></td>
+    <td>
+        <c:if test="${taskLine.deadline ne null}">
+            <span class="ts-relative-time" data-time="${taskLine.deadline.time.time}"
+                  title='<I18n:formatDate value="${taskLine.deadline.time}" type="both" dateStyle="short" timeStyle="short"/>'>
+                <span class="ts-relative-time__sortkey"><c:out value="${taskLine.deadline.time.time}"/></span>
+                <span class="ts-relative-time__label"><I18n:formatDate value="${taskLine.deadline.time}" type="both" dateStyle="short" timeStyle="short"/></span>
+            </span>
+        </c:if>
+    </td>
 </c:if>
 <c:if test="${headerBudget.canView}">
     <td>
@@ -941,7 +985,58 @@
 </table>
 
 
-<c:out value="${slider}" escapeXml="false"/>
+<div class="ts-pagination">
+    <c:out value="${slider}" escapeXml="false"/>
+    <c:if test="${!empty taskLines}">
+        <c:set var="pageNumber" value="${empty param.sliderPage ? 1 : param.sliderPage}"/>
+        <c:set var="pageSize" value="${fn:length(taskLines)}"/>
+        <c:set var="taskTotal" value="${not empty totalTasks ? totalTasks : sliderSize}"/>
+        <c:if test="${empty taskTotal}">
+            <c:set var="taskTotal" value="0"/>
+        </c:if>
+        <c:set var="startIndex" value="${pageSize > 0 ? ((pageNumber - 1) * pageSize + 1) : 0}"/>
+        <c:set var="endIndex" value="${pageSize > 0 ? ((pageNumber - 1) * pageSize + pageSize) : 0}"/>
+        <c:if test="${endIndex > taskTotal}">
+            <c:set var="endIndex" value="${taskTotal}"/>
+        </c:if>
+        <span class="ts-pagination__info">
+            <I18n:message key="PAGINATION_SHOWING">
+                <I18n:param value="${startIndex}"/>
+                <I18n:param value="${endIndex}"/>
+                <I18n:param value="${taskTotal}"/>
+            </I18n:message>
+        </span>
+    </c:if>
+</div>
+
+<c:if test="${showClipboardButton || canDelete}">
+    <div class="ts-bulk-bar" id="bulkBar" data-form="taskListForm" style="display:none">
+        <span class="ts-bulk-bar__count"><I18n:message key="SELECTED"/>: <span id="bulkCount">0</span></span>
+        <div class="ts-bulk-bar__actions">
+            <c:if test="${showClipboardButton && canArchive}">
+                <button type="button" class="ts-btn ts-btn--secondary" data-bulk-action="archive">
+                    <I18n:message key="ARCHIVE"/>
+                </button>
+            </c:if>
+            <c:if test="${showClipboardButton}">
+                <button type="button" class="ts-btn ts-btn--secondary" data-bulk-action="cut">
+                    <I18n:message key="CUT"/>
+                </button>
+                <button type="button" class="ts-btn ts-btn--secondary" data-bulk-action="copy">
+                    <I18n:message key="COPY"/>
+                </button>
+                <button type="button" class="ts-btn ts-btn--secondary" data-bulk-action="copy-recursively">
+                    <I18n:message key="COPY_RECURSIVELY"/>
+                </button>
+            </c:if>
+            <c:if test="${canDelete}">
+                <button type="button" class="ts-btn ts-btn--danger" data-bulk-action="delete">
+                    <I18n:message key="DELETE"/>
+                </button>
+            </c:if>
+        </div>
+    </div>
+</c:if>
 <div class="controls">
     <c:if test="${!(empty taskLines)}">
 
@@ -980,33 +1075,33 @@
                 </c:if>
             </div>
         </c:if>
-        <c:if test="${showClipboardButton}">
-            <c:if test="${canArchive}">
-            <input type="submit" class="iconized secondary"
-                   value="<I18n:message key="ARCHIVE"/>"
-                   name="ARCHIVE"
-                   onClick="archiveTask(this); this.form['collector'].value=forrobots(document.forms['taskListForm'].elements['SELTASK']); set('archive'); setOperation('ARCHIVE'); if(onSubmitFunction(this.form)) this.form.submit();">
-            </c:if>
-            <input type="submit" class="iconized secondary"
-                   value="<I18n:message key="CUT"/>"
-                   name="CUT"
-                   onClick="submitDelete=true; this.form['collector'].value=forrobots(document.forms['taskListForm'].elements['SELTASK']); set('clipboardOperation'); setOperation('CUT'); if(onSubmitFunction(this.form)) this.form.submit();">
-            <input type="submit" class="iconized secondary"
-                   value="<I18n:message key="COPY"/>"
-                   name="SINGLE_COPY"
-                   onClick="submitDelete=true; this.form['collector'].value=forrobots(document.forms['taskListForm'].elements['SELTASK']); set('clipboardOperation'); setOperation('SINGLE_COPY'); if(onSubmitFunction(this.form) ) this.form.submit();">
-            <input type="submit" class="iconized secondary"
-                   value="<I18n:message key="COPY_RECURSIVELY"/>"
-                   onClick="submitDelete=true; this.form['collector'].value=forrobots(document.forms['taskListForm'].elements['SELTASK']); set('clipboardOperation'); setOperation('RECURSIVELY_COPY'); if(onSubmitFunction(this.form) ) this.form.submit();"
-                   name="RECURSIVELY_COPY">
-        </c:if>
     </c:if>
     <c:if test="${canPaste eq true}">
         <input type="submit" class="iconized secondary" value="<I18n:message key="PASTE"/>" name="PASTE"
                onClick="submitDelete=true; set('paste');closeServicePanel(document.forms['taskListForm'].elements['SELTASK']); if(onSubmitFunction(this.form)) this.form.submit();">
     </c:if>
+    <c:if test="${showClipboardButton && canArchive}">
+        <input type="submit" style="display:none;"
+               value="<I18n:message key="ARCHIVE"/>"
+               name="ARCHIVE"
+               onClick="archiveTask(this); this.form['collector'].value=forrobots(document.forms['taskListForm'].elements['SELTASK']); set('archive'); setOperation('ARCHIVE'); if(onSubmitFunction(this.form)) this.form.submit();">
+    </c:if>
+    <c:if test="${showClipboardButton}">
+        <input type="submit" style="display:none;"
+               value="<I18n:message key="CUT"/>"
+               name="CUT"
+               onClick="submitDelete=true; this.form['collector'].value=forrobots(document.forms['taskListForm'].elements['SELTASK']); set('clipboardOperation'); setOperation('CUT'); if(onSubmitFunction(this.form)) this.form.submit();">
+        <input type="submit" style="display:none;"
+               value="<I18n:message key="COPY"/>"
+               name="SINGLE_COPY"
+               onClick="submitDelete=true; this.form['collector'].value=forrobots(document.forms['taskListForm'].elements['SELTASK']); set('clipboardOperation'); setOperation('SINGLE_COPY'); if(onSubmitFunction(this.form) ) this.form.submit();">
+        <input type="submit" style="display:none;"
+               value="<I18n:message key="COPY_RECURSIVELY"/>"
+               onClick="submitDelete=true; this.form['collector'].value=forrobots(document.forms['taskListForm'].elements['SELTASK']); set('clipboardOperation'); setOperation('RECURSIVELY_COPY'); if(onSubmitFunction(this.form) ) this.form.submit();"
+               name="RECURSIVELY_COPY">
+    </c:if>
     <c:if test="${canDelete}">
-        <input type="submit" class="iconized danger"
+        <input type="submit" style="display:none;"
                onClick="deleteTask(); this.form['collector'].value=forrobots(document.forms['taskListForm'].elements['SELTASK']); set('delete'); if(onSubmitFunction(this.form)) this.form.submit();"
                value="<I18n:message key="DELETE"/>"
                name="DELETE">
@@ -1114,6 +1209,7 @@
         <input type="hidden" id="method" value="changeTaskFilter">
     </div>
 </div>
+<script type="text/javascript" src="${contextPath}/html/quick-filter.js"></script>
 <script type="text/javascript">
     openSubtasksMessage();
 </script>

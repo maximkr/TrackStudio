@@ -65,7 +65,7 @@
     <div class="help">
         A system error has occurred.
         <br>
-        You can report the problem here: <a class="internal">https://github.com/maximkr/TrackStudio/issues</a>GitHub issue tracker</a> <% if (!Config.isTurnItOn("trackstudio.disable.show.stack.trace")) { %> with the following information:
+        You can report the problem here: <a class="internal" href="https://github.com/maximkr/TrackStudio/issues" target="_blank" rel="noopener noreferrer">GitHub issue tracker</a> <% if (!Config.isTurnItOn("trackstudio.disable.show.stack.trace")) { %> with the following information:
         <ul>
             <li>description of your problem</li>
             <li>the information found below</li>

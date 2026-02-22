@@ -30,7 +30,7 @@
 <div class="indent">
 <c:choose>
 <c:when test="${!empty priorityList}">
-<html:form action="/PriorityAction" method="post" styleId="checkunload" onsubmit="return onSubmitFunction();">
+<html:form action="/PriorityAction" method="post" styleId="priorityFormId" onsubmit="return onSubmitFunction();">
 <html:hidden property="method" value="save" styleId="priorityListId"/>
 <html:hidden property="id" value="${id}"/>
 <html:hidden property="session" value="${session}"/>
@@ -127,7 +127,7 @@
     <c:if test="${canDelete}">
         <input type="submit" class="iconized secondary"
                value="<I18n:message key="DELETE"/>"
-               name="DELETE" onclick="checkDeleteSelectedAndDefault();">
+               name="DELETE" onclick="return checkDeleteSelectedAndDefault();">
     </c:if>
     <script type="text/javascript">
         var submitForm = false;
@@ -140,11 +140,33 @@
             return submitForm;
         }
 
+        function hasCheckedPriorities(form) {
+            if (!form || !form.elements) {
+                return false;
+            }
+            for (var i = 0; i < form.elements.length; i++) {
+                var element = form.elements[i];
+                if (element.type === "checkbox" && element.getAttribute("alt") === "delete1" && !element.disabled && element.checked) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         function checkDeleteSelectedAndDefault() {
-            if (deleteConfirm("<I18n:message key="DELETE_PRIORITIES_REQ"/>", "priorityForm")) {
+            var form = document.getElementById("priorityFormId") || document.forms["priorityForm"];
+            if (!hasCheckedPriorities(form)) {
+                return false;
+            }
+            TSDialog.confirm("<I18n:message key="DELETE_PRIORITIES_REQ"/>", function(ok) {
+                if (!ok) {
+                    return;
+                }
                 setSubmitForm(true);
                 setMethod('delete');
-            }
+                form.submit();
+            }, { danger: true });
+            return false;
         }
 
         function setMethod(target) {
@@ -207,5 +229,3 @@
 </div>
 </tiles:put>
 </tiles:insert>
-
-

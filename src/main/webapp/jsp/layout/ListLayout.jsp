@@ -167,6 +167,7 @@
     <ts:jsLink link="${urlHtml}/calendar-helper.js"/>
     <ts:jsLink link="${urlHtml}/validate.js"/>
     <ts:jsLink link="${urlHtml}/quickSelect.js"/>
+    <ts:jsLink link="${urlHtml}/ts-predictor.js"/>
     <ts:jsLink link="${urlHtml}/slidingframe.js"/>
     <ts:jsLink link="${urlHtml}/ts-dialog.js"/>
     <ts:jsLink link="${urlHtml}/colorpicker/js/utilities.js"/>

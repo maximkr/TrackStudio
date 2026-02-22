@@ -547,10 +547,48 @@ function isChecked(frm) {
     return false;
 }
 
+var tsQuickConfirmBypass = false;
+
+function tsIsSubmitControl(el) {
+    if (!el || !el.tagName) return false;
+    var tag = el.tagName.toLowerCase();
+    if (tag === "input") {
+        return el.type === "submit" || el.type === "image";
+    }
+    if (tag === "button") {
+        return !el.type || el.type === "submit";
+    }
+    return false;
+}
+
+function tsFindActiveSubmit(form) {
+    var active = document.activeElement;
+    if (!active || !form) return null;
+    if (active.form !== form) return null;
+    return tsIsSubmitControl(active) ? active : null;
+}
+
+function tsSubmitWithBypass(form, submitElement) {
+    if (!form) return;
+    if (submitElement && typeof submitElement.click === "function") {
+        tsQuickConfirmBypass = true;
+        setTimeout(function() { tsQuickConfirmBypass = false; }, 1000);
+        submitElement.click();
+        return;
+    }
+    form.submit();
+}
+
 function deleteConfirm(msg, formName) {
+    if (tsQuickConfirmBypass) {
+        tsQuickConfirmBypass = false;
+        return true;
+    }
     var needConfirm = false;
+    var form = document.forms[formName];
+    var submitElement = tsFindActiveSubmit(form);
     try {
-        var col = document.forms[formName].elements;
+        var col = form.elements;
         for (var i = 0; i < col.length; i++) {
             if ((col[i].type == "checkbox") && (col[i].getAttribute("alt") == "delete1") && !col[i].disabled && col[i].checked) {
                 needConfirm = true;
@@ -562,8 +600,8 @@ function deleteConfirm(msg, formName) {
     }
     if (needConfirm) {
         TSDialog.confirm(msg, function(ok) {
-            if (ok) document.forms[formName].submit();
-        });
+            if (ok) tsSubmitWithBypass(form, submitElement);
+        }, { danger: true });
     }
     return false;
 }
@@ -588,11 +626,16 @@ function deleteCheck(parentId, attachmentId, method, msg, taskOrUser, attaDiv) {
         if (countAtt <= 0) {
             document.getElementById(attaDiv).remove();
         }
-    });
+    }, { danger: true });
 }
 
 function deleteConfirmForCurrentForm(msg, form) {
+    if (tsQuickConfirmBypass) {
+        tsQuickConfirmBypass = false;
+        return true;
+    }
     var needConfirm = false;
+    var submitElement = tsFindActiveSubmit(form);
     try {
         var col = form.elements;
         for (var i = 0; i < col.length; i++) {
@@ -606,13 +649,14 @@ function deleteConfirmForCurrentForm(msg, form) {
     }
     if (needConfirm) {
         TSDialog.confirm(msg, function(ok) {
-            if (ok) form.submit();
-        });
+            if (ok) tsSubmitWithBypass(form, submitElement);
+        }, { danger: true });
     }
     return false;
 }
 
 function deleteDefaultAlertForCurrentForm(msg, form, defaultResolutionId) {
+    var submitElement = tsFindActiveSubmit(form);
     try {
         var col = form.elements;
         var allCheckboxCount = 0;
@@ -628,7 +672,7 @@ function deleteDefaultAlertForCurrentForm(msg, form, defaultResolutionId) {
         if (allCheckedCheckboxCount == allCheckboxCount) return false;
         for (var i = 0; i < col.length; i++) {
             if ((col[i].value == defaultResolutionId) && (col[i].type == "checkbox") && (col[i].getAttribute("alt") == "delete1") && !col[i].disabled && col[i].checked) {
-                TSDialog.alert(msg, function() { form.submit(); });
+                TSDialog.alert(msg, function() { tsSubmitWithBypass(form, submitElement); });
                 return false;
             }
         }
@@ -639,8 +683,10 @@ function deleteDefaultAlertForCurrentForm(msg, form, defaultResolutionId) {
 }
 
 function deleteDefaultAlert(msg, formName, defaultPriorityId) {
+    var form = document.forms[formName];
+    var submitElement = tsFindActiveSubmit(form);
     try {
-        var col = document.forms[formName].elements;
+        var col = form.elements;
         var allCheckboxCount = 0;
         var allCheckedCheckboxCount = 0;
         for (var i = 0; i < col.length; i++) {
@@ -654,7 +700,7 @@ function deleteDefaultAlert(msg, formName, defaultPriorityId) {
         if (allCheckedCheckboxCount == allCheckboxCount) return false;
         for (var i = 0; i < col.length; i++) {
             if ((col[i].value == defaultPriorityId) && (col[i].type == "checkbox") && (col[i].getAttribute("alt") == "delete1") && !col[i].disabled && col[i].checked) {
-                TSDialog.alert(msg, function() { document.forms[formName].submit(); });
+                TSDialog.alert(msg, function() { tsSubmitWithBypass(form, submitElement); });
                 return false;
             }
         }
@@ -665,11 +711,13 @@ function deleteDefaultAlert(msg, formName, defaultPriorityId) {
 }
 
 function startStateAlert(msg, formName, startStateId) {
+    var form = document.forms[formName];
+    var submitElement = tsFindActiveSubmit(form);
     try {
-        var col = document.forms[formName].elements;
+        var col = form.elements;
         for (var i = 0; i < col.length; i++) {
             if ((col[i].value == startStateId) && (col[i].type == "checkbox") && (col[i].getAttribute("alt") == "delete1") && !col[i].disabled && col[i].checked) {
-                TSDialog.alert(msg, function() { document.forms[formName].submit(); });
+                TSDialog.alert(msg, function() { tsSubmitWithBypass(form, submitElement); });
                 return false;
             }
         }
@@ -748,9 +796,15 @@ function changeFormat(sender) {
 }
 
 function clonConfirm(msg, formName) {
+    if (tsQuickConfirmBypass) {
+        tsQuickConfirmBypass = false;
+        return true;
+    }
     var needConfirm = false;
+    var form = document.forms[formName];
+    var submitElement = tsFindActiveSubmit(form);
     try {
-        var col = document.forms[formName].elements;
+        var col = form.elements;
         for (var i = 0; i < col.length; i++) {
             if ((col[i].type == "checkbox") && (col[i].getAttribute("alt") == "delete1") && !col[i].disabled && col[i].checked) {
                 needConfirm = true;
@@ -762,7 +816,7 @@ function clonConfirm(msg, formName) {
     }
     if (needConfirm) {
         TSDialog.confirm(msg, function(ok) {
-            if (ok) document.forms[formName].submit();
+            if (ok) tsSubmitWithBypass(form, submitElement);
         });
     }
     return false;

@@ -3,7 +3,7 @@
  *
  * Provides:
  *   new TSDialog(elementId, config)  — wraps an existing DOM element as a modal dialog
- *   TSDialog.confirm(message, cb)    — one-liner confirmation dialog (replaces window.confirm)
+ *   TSDialog.confirm(message, cb, options) — one-liner confirmation dialog (replaces window.confirm)
  *   TSDialog.alert(message, cb)      — one-liner alert dialog (replaces window.alert)
  *
  * Config keys (compatible with YUI Dialog):
@@ -168,8 +168,8 @@
      * TSDialog.confirm(message, callback)
      * Replacement for window.confirm(). Async, calls callback(true/false).
      */
-    TSDialog.confirm = function (message, callback) {
-        _createQuickDialog(message, "confirm", callback);
+    TSDialog.confirm = function (message, callback, options) {
+        _createQuickDialog(message, "confirm", callback, options);
     };
 
     /**
@@ -177,13 +177,21 @@
      * Replacement for window.alert(). Calls callback() on close.
      */
     TSDialog.alert = function (message, callback) {
-        _createQuickDialog(message, "alert", callback);
+        _createQuickDialog(message, "alert", callback, null);
     };
 
-    function _createQuickDialog(message, type, callback) {
+    function _isDangerConfirm(message, options) {
+        return !!(options && options.danger);
+    }
+
+    function _createQuickDialog(message, type, callback, options) {
         // Build DOM
         var overlay = createElement("div", OVERLAY_CLASS);
         var wrapper = createElement("div", DIALOG_CLASS + " ts-dialog-quick");
+        var dangerConfirm = type === "confirm" && _isDangerConfirm(message, options);
+        if (dangerConfirm) {
+            wrapper.classList.add("ts-dialog-quick-danger");
+        }
         var body = createElement("div", "ts-dialog-quick-body", wrapper);
         body.innerHTML = message;
 
@@ -207,6 +215,9 @@
             cancelBtn.addEventListener("click", function () { close(false); });
 
             var okBtn = createElement("button", "ts-dialog-btn ts-dialog-btn-primary", footer);
+            if (dangerConfirm) {
+                okBtn.classList.add("ts-dialog-btn-danger");
+            }
             okBtn.textContent = TSDialog.labels.ok;
             okBtn.addEventListener("click", function () { close(true); });
         } else {

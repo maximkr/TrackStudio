@@ -195,9 +195,14 @@
 	taskTab = false;
 	<c:out value="${jsUserPath}" escapeXml="false"/>
 	</c:if>
+	var tsPredictorI18nQueryLabel = "<I18n:message key="SEARCH"/>";
+	var tsPredictorI18nSearchPrefix = tsPredictorI18nQueryLabel + ": ";
 
 	$(function() {
-		$("#key").on("keydown", function( event ) {
+		if (!$.fn || typeof $.fn.autocomplete !== "function" || !window.TSPredictor) {
+			return;
+		}
+		var autocomplete = $("#key").on("keydown", function( event ) {
 			if ( event.keyCode === $.ui.keyCode.ENTER) {
 				submitSearchForm();
 			}
@@ -221,95 +226,109 @@
 							}
 						});
 			},
-			minLength: 3,
+			minLength: 1,
+			delay: 300,
+			open: function() {
+				$(this).autocomplete("widget").addClass("ts-header-search-menu");
+			},
 			select: function( event, ui ) {
-				var value = ui.item.value;
-				if (ui.item.label === ui.item.value) {
-                    document.location.href = '${contextPath}/TaskDispatchAction.do?method=go&id=${tci.id}&key=' + ui.item.value.replace(/<(?:.|\n)*?>/gm, '');
-                } else if (value.match("^u-")) {
-					document.location.href = '${contextPath}/UserAction.do?method=page&id=' + value.substr(value.indexOf('_') + 3);
+				var value = TSPredictor.rawValue(ui.item.value);
+				if (TSPredictor.isSearchRequestItem(value, ui.item.label)) {
+					document.location.href = '${contextPath}/TaskDispatchAction.do?method=go&id=${tci.id}&key=' + TSPredictor.safeQuery($("#key").val());
+				} else if (value.indexOf("_u-") > -1) {
+					document.location.href = '${contextPath}/UserAction.do?method=page&id=' + TSPredictor.safeToken(TSPredictor.extractToken(value, "_u-"));
+				} else if (value.match("^u-")) {
+					document.location.href = '${contextPath}/UserAction.do?method=page&id=' + TSPredictor.safeToken(TSPredictor.extractToken(value, "u-"));
+				} else if (value.indexOf("_") > -1) {
+					document.location.href = '${contextPath}/TaskAction.do?method=page&id=' + TSPredictor.safeToken(TSPredictor.extractToken(value, "_"));
 				} else {
-					document.location.href = '${contextPath}/TaskAction.do?method=page&id=' + value.substr(value.indexOf('_') + 1);
+					document.location.href = '${contextPath}/TaskDispatchAction.do?method=go&id=${tci.id}&key=' + TSPredictor.safeQuery($("#key").val());
 				}
 				return false;
 			},
 			focus: function( event, ui ) {
-				var value = ui.item.value;
-				var label = '';
-				if (value.match("^u-")) {
-					label = value.substr(0, value.indexOf('_'));
-				} else {
-					label = value.substr(0, value.indexOf('_'));
+				var label = TSPredictor.key(ui.item.value, ui.item.label);
+				if (label) {
+					$("#key").val(label);
 				}
-				$("#key").val(label);
+				return false;
 			}
-		}).data("ui-autocomplete")._renderItem = function (ul, item) {
-			return $("<li></li>")
-					.data("item.autocomplete", item)
-					.append(item.label)
-					.appendTo(ul);
-		};
+		});
+		var autocompleteInstance = null;
+		try {
+			autocompleteInstance = autocomplete.autocomplete("instance");
+		} catch (ignored) {
+			autocompleteInstance = null;
+		}
+		if (!autocompleteInstance) {
+			autocompleteInstance = autocomplete.data("ui-autocomplete") || autocomplete.data("autocomplete");
+		}
+		if (autocompleteInstance) {
+			autocompleteInstance._renderItem = function (ul, item) {
+				return TSPredictor.renderItem(ul, item, {
+					inputSelector: "#key",
+					queryLabel: tsPredictorI18nQueryLabel,
+					searchPrefix: tsPredictorI18nSearchPrefix
+				});
+			};
+		}
 	});
 </script>
 <div class="login">
-	<table width="100%" style="height:25px;" cellpadding="0" cellspacing="0">
-		<tr>
-			<td>
+	<div class="ts-header-main">
+		<div class="ts-header-main__brand">
+			<html:link styleClass="ts-header-brand-link" href="${contextPath}/task/${homePageNumber}?thisframe=true" titleKey="TASK">
 				<div id="logoHeader" class="ts-brand-inline">
 					<span class="ts-brand-mark">TS</span>
 					<span class="ts-brand-name">TrackStudio</span>
 				</div>
-			</td>
-			<td>
-				<form method="post" style="display:inline;float:right;" action="<c:out value="${contextPath}"/>/TaskDispatchAction.do" id="searchForm" onsubmit="return !forbidEmptyLineSearch(this);">
-					<input type="hidden" name="method" value="go"/>
-					<input type="hidden" name="id" value="<c:out value="${tci.id}"/>"/>
-					<input type="hidden" name="searchIn" value="tasks"/>
-					<input type="hidden" name="session" value="<c:out value="${session}"/>"/>
-					<script type="text/javascript">
-						function submitSearchForm(){
-							if ($("#key").val() != "") {
-								document.forms['searchForm'].submit();
-							}
+			</html:link>
+		</div>
+		<div class="ts-header-main__search">
+			<form method="post" class="ts-header-search-form" action="<c:out value="${contextPath}"/>/TaskDispatchAction.do" id="searchForm" onsubmit="return !forbidEmptyLineSearch(this);">
+				<input type="hidden" name="method" value="go"/>
+				<input type="hidden" name="id" value="<c:out value="${tci.id}"/>"/>
+				<input type="hidden" name="searchIn" value="tasks"/>
+				<input type="hidden" name="session" value="<c:out value="${session}"/>"/>
+				<script type="text/javascript">
+					function submitSearchForm(){
+						if ($("#key").val() != "") {
+							document.forms['searchForm'].submit();
 						}
-					</script>
-					<div class="link" style="vertical-align:top;padding-right:10px;">
-						<input type="text" style="font-weight: bold;" class="form-autocomplete" name="key" id="key" size="46" value="${key}">
-					</div>
-				</form>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<div class="ts-header-user-row">
-					<c:if test="${sc.user.login != 'anonymous'}">
-						<span class="ts-header-user-info">
-							<html:link href="javascript:{self.top.frames[1].location = '${contextPath}/UserViewAction.do?id=${sc.userId}';};" styleClass="ts-header-user-link">
-								<c:out value="${sc.user.name}"/>
-							</html:link>
-							<c:if test="${not empty prstatuses}">
-								<span class="ts-header-user-sep">·</span>
-								<span class="ts-header-user-roles">${prstatuses}</span>
-							</c:if>
-						</span>
-					</c:if>
-					<c:if test="${regRole && sc.user.login == 'anonymous'}">
-						<a class="ts-header-action-link" href="${contextPath}/LoginAction.do?method=registerPage"><I18n:message key="REGISTER"/></a>
-					</c:if>
-					<html:link styleClass="ts-header-action-link" href="${contextPath}/LoginAction.do?method=logoutPage">
-						<c:choose>
-							<c:when test="${sc.user.login == 'anonymous'}">
-								<I18n:message key="LOG_IN"/>
-							</c:when>
-							<c:otherwise>
-								<I18n:message key="LOGOUT"/>
-							</c:otherwise>
-						</c:choose>
-					</html:link>
-				</div>
-			</td>
-		</tr>
-	</table>
+					}
+				</script>
+				<input type="text" style="font-weight: bold;" class="form-autocomplete" name="key" id="key" size="46" value="<c:out value="${key}" escapeXml="true"/>">
+			</form>
+		</div>
+		<div class="ts-header-main__user">
+			<div class="ts-header-user-row">
+				<c:if test="${sc.user.login != 'anonymous'}">
+					<span class="ts-header-user-info">
+						<html:link href="javascript:{self.top.frames[1].location = '${contextPath}/UserViewAction.do?id=${sc.userId}';};" styleClass="ts-header-user-link">
+							<c:out value="${sc.user.name}"/>
+						</html:link>
+						<c:if test="${not empty prstatuses}">
+							<span class="ts-header-user-sep">·</span>
+							<span class="ts-header-user-roles"><c:out value="${prstatuses}" escapeXml="true"/></span>
+						</c:if>
+					</span>
+				</c:if>
+				<c:if test="${regRole && sc.user.login == 'anonymous'}">
+					<a class="ts-header-action-link" href="${contextPath}/LoginAction.do?method=registerPage"><I18n:message key="REGISTER"/></a>
+				</c:if>
+				<html:link styleClass="ts-header-action-link" href="${contextPath}/LoginAction.do?method=logoutPage">
+					<c:choose>
+						<c:when test="${sc.user.login == 'anonymous'}">
+							<I18n:message key="LOG_IN"/>
+						</c:when>
+						<c:otherwise>
+							<I18n:message key="LOGOUT"/>
+						</c:otherwise>
+					</c:choose>
+				</html:link>
+			</div>
+		</div>
+	</div>
 </div>
 <div class="controlPanel">
 	<script type="text/javascript">
@@ -545,5 +564,3 @@
 		</tbody>
 	</table>
 </c:if>
-
-

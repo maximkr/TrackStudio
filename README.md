@@ -9,7 +9,7 @@ TrackStudio — это классический трекер задач уров
     
 -   **Стек:** Java 21 / Tomcat 9 / PostgreSQL 17 / Hibernate 5.6 / Lucene / Liquibase / Gradle 9 / Docker & Docker Compose
 
-Подробная документация и руководства будут выкладываться в [вики](https://github.com/maximkr/TrackStudio/wiki). Документация (устаревшая) по TrackStudio 5.5 (коммерческой) находится в папке legacyManual (откройте index.html). 
+Подробная документация и руководства будут выкладываться в [вики](https://github.com/maximkr/TrackStudio/wiki). Документация (устаревшая) по TrackStudio 5.5 (коммерческой) находится в папке markdown_ru/markdown_en. 
 
 ## ✓ Обзор функций TrackStudio Enterprise
 

@@ -47,7 +47,7 @@ mouseProto._mouseInit = function() {
     var self = this;
     self._touchActive = false;
 
-    this.element.bind( 'touchstart.' + this.widgetName, function(event) {
+    this.element.on( 'touchstart.' + this.widgetName, function(event) {
         if (gesturesSupport && event.originalEvent.touches.length > 1) { return; }
         self._touchActive = true;
         return self._mouseDown(makeMouseEvent(event));
@@ -68,8 +68,8 @@ mouseProto._mouseInit = function() {
     };
 
     $(document)
-        .bind('touchmove.'+ this.widgetName, this._mouseMoveDelegate)
-        .bind('touchend.' + this.widgetName, this._mouseUpDelegate);
+        .on('touchmove.'+ this.widgetName, this._mouseMoveDelegate)
+        .on('touchend.' + this.widgetName, this._mouseUpDelegate);
 
     _mouseInit.apply(this);
 };
@@ -322,7 +322,7 @@ $.widget( "ui.iviewer", $.ui.mouse, {
                 .click(function(e){ me._click(e); });
         }
 
-        this.container.bind('mousemove.iviewer', function(ev) { me._handleMouseMove(ev); });
+        this.container.on('mousemove.iviewer', function(ev) { me._handleMouseMove(ev); });
 
         this.loadImage(this.options.src);
 
@@ -357,15 +357,15 @@ $.widget( "ui.iviewer", $.ui.mouse, {
      */
     activateMouseWheel: function(isActive){
         // Remove all the previous event bind on the mousewheel
-        this.container.unbind('mousewheel.iviewer');
+        this.container.off('mousewheel.iviewer');
         if (gesturesSupport) {
-            this.img_object.object().unbind('touchstart').unbind('gesturechange.iviewer').unbind('gestureend.iviewer');
+            this.img_object.object().off('touchstart').off('gesturechange.iviewer').off('gestureend.iviewer');
         }
 
         if (isActive) {
             var me = this;
 
-            this.container.bind('mousewheel.iviewer', function(ev, delta)
+            this.container.on('mousewheel.iviewer', function(ev, delta)
                 {
                     //this event is there instead of containing div, because
                     //at opera it triggers many times on div
@@ -385,7 +385,7 @@ $.widget( "ui.iviewer", $.ui.mouse, {
                 var gestureThrottle = +new Date();
                 var originalScale, originalCenter;
                 this.img_object.object()
-                    .bind('touchstart', function(ev) {
+                    .on('touchstart', function(ev) {
                         originalScale = me.current_zoom;
                         var touches = ev.originalEvent.touches,
                             container_offset;
@@ -398,7 +398,7 @@ $.widget( "ui.iviewer", $.ui.mouse, {
                         } else {
                             originalCenter = null;
                         }
-                    }).bind('gesturechange.iviewer', function(ev) {
+                    }).on('gesturechange.iviewer', function(ev) {
                         //do not want to import throttle function from underscore
                         var d = +new Date();
                         if ((d - gestureThrottle) < 50) { return; }
@@ -406,7 +406,7 @@ $.widget( "ui.iviewer", $.ui.mouse, {
                         var zoom = originalScale * ev.originalEvent.scale;
                         me.set_zoom(zoom, originalCenter);
                         ev.preventDefault();
-                    }).bind('gestureend.iviewer', function(ev) {
+                    }).on('gestureend.iviewer', function(ev) {
                         originalCenter = null;
                     });
             }
@@ -935,30 +935,30 @@ $.widget( "ui.iviewer", $.ui.mouse, {
         var me=this;
 
         $("<div>", { 'class': "iviewer_zoom_in iviewer_common iviewer_button"})
-                    .bind('mousedown touchstart',function(){me.zoom_by(1); return false;})
+                    .on('mousedown touchstart',function(){me.zoom_by(1); return false;})
                     .appendTo(this.container);
 
         $("<div>", { 'class': "iviewer_zoom_out iviewer_common iviewer_button"})
-                    .bind('mousedown touchstart',function(){me.zoom_by(- 1); return false;})
+                    .on('mousedown touchstart',function(){me.zoom_by(- 1); return false;})
                     .appendTo(this.container);
 
         $("<div>", { 'class': "iviewer_zoom_zero iviewer_common iviewer_button"})
-                    .bind('mousedown touchstart',function(){me.set_zoom(100); return false;})
+                    .on('mousedown touchstart',function(){me.set_zoom(100); return false;})
                     .appendTo(this.container);
 
         $("<div>", { 'class': "iviewer_zoom_fit iviewer_common iviewer_button"})
-                    .bind('mousedown touchstart',function(){me.fit(this); return false;})
+                    .on('mousedown touchstart',function(){me.fit(this); return false;})
                     .appendTo(this.container);
 
         this.zoom_object = $("<div>").addClass("iviewer_zoom_status iviewer_common")
                                     .appendTo(this.container);
 
         $("<div>", { 'class': "iviewer_rotate_left iviewer_common iviewer_button"})
-                    .bind('mousedown touchstart',function(){me.angle(-90); return false;})
+                    .on('mousedown touchstart',function(){me.angle(-90); return false;})
                     .appendTo(this.container);
 
         $("<div>", { 'class': "iviewer_rotate_right iviewer_common iviewer_button" })
-                    .bind('mousedown touchstart',function(){me.angle(90); return false;})
+                    .on('mousedown touchstart',function(){me.angle(90); return false;})
                     .appendTo(this.container);
 
         this.update_status(); //initial status update

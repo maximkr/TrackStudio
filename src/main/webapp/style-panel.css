@@ -182,9 +182,9 @@ body.ts-tree-body .fancytree-node:hover .fancytree-title {
 }
 
 body.ts-tree-body .fancytree-active .fancytree-title {
-    color: var(--ts-primary-strong);
+    color: var(--ts-primary-strong) !important;
     font-weight: 600;
-    background-color: transparent;
+    background-color: transparent !important;
 }
 
 body.ts-tree-body #task_tree .fancytree-active,

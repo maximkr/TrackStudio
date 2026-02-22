@@ -18,7 +18,7 @@
 		</c:if>
 		<div>
 		<html:form method="POST" enctype="multipart/form-data" action="/TaskEditAction" styleId="checkunload"
-		           onsubmit="if (validate(this)) {$(window).unbind('beforeunload'); showButton(true); return true;} else {return false}">
+		           onsubmit="if (validate(this)) {$(window).off('beforeunload'); showButton(true); return true;} else {return false}">
 			<table width="100%">
 				<tr>
 					<td width="60%">
@@ -29,7 +29,7 @@
 						<input type="submit" class="iconized" value="<I18n:message key="SAVE" />" name="SAVE"
 						       disabled="true"/>
 						<html:button styleClass="iconized secondary" property="cancelButton" disabled="true"
-						             onclick="$(window).unbind('beforeunload'); showButton(true); document.location='${referer}';">
+						             onclick="$(window).off('beforeunload'); showButton(true); document.location='${referer}';">
 							<I18n:message key="CANCEL"/>
 						</html:button>
 					</td>
@@ -172,7 +172,7 @@
 		}
 	}
 
-	$(window).bind('beforeunload', function() {
+	$(window).on('beforeunload', function() {
 		return true;
 	});
 </script>

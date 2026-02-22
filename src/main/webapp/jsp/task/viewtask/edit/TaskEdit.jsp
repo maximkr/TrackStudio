@@ -19,7 +19,7 @@
 <c:set var="valid" value="false"/>
 <div class="blueborder">
 <html:form method="POST" action="/TaskEditAction" enctype="multipart/form-data"  styleId="checkunload"
-           onsubmit="if (valid) {$(window).unbind('beforeunload'); showButton(true); return true;} else {return false}">
+           onsubmit="if (valid) {$(window).off('beforeunload'); showButton(true); return true;} else {return false}">
 <div class="caption" style="text-align: right"><span class="fleft"><c:choose>
     <c:when test="${newTask eq true}">
         <c:choose>
@@ -56,7 +56,7 @@
             var dontValid = false;
         </script>
         <html:button styleClass="iconized secondary" property="cancelButton" disabled="true"
-                     onclick="$(window).unbind('beforeunload'); showButton(true); document.location='${referer}';" styleId="cancelUp">
+                     onclick="$(window).off('beforeunload'); showButton(true); document.location='${referer}';" styleId="cancelUp">
             <I18n:message key="CANCEL"/>
         </html:button></span></div>
 <div class="indent">
@@ -522,14 +522,14 @@
             var dontValid = false;
         </script>
         <html:button styleClass="iconized secondary" property="cancelButton" disabled="true"
-                     onclick="$(window).unbind('beforeunload'); showButton(true); document.location='${referer}';" styleId="cancelDown">
+                     onclick="$(window).off('beforeunload'); showButton(true); document.location='${referer}';" styleId="cancelDown">
             <I18n:message key="CANCEL"/>
         </html:button>
         <script type="text/javascript">
             function set(target) {
                 valid = validate(document.forms["checkunload"]);
                 if (valid) {
-                    $(window).unbind('beforeunload');
+                    $(window).off('beforeunload');
                     showButton(true);
                     document.getElementById('editTaskId').value = target;
                     document.forms["checkunload"].submit();
@@ -569,7 +569,7 @@
 
     showButton(false);
 
-    $(window).bind('beforeunload', function() {
+    $(window).on('beforeunload', function() {
         return true;
     });
 </script>

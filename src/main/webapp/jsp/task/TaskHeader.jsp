@@ -197,7 +197,7 @@
 	</c:if>
 
 	$(function() {
-		$("#key").bind("keydown", function( event ) {
+		$("#key").on("keydown", function( event ) {
 			if ( event.keyCode === $.ui.keyCode.ENTER) {
 				submitSearchForm();
 			}

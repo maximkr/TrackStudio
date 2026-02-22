@@ -16,14 +16,13 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-	<script src="${contextPath}/html/fancytree-2.31.0/lib/jquery.js" type="text/javascript"></script>
-	<script src="${contextPath}/html/fancytree-2.31.0/lib/jquery-ui.custom.js" type="text/javascript"></script>
-    <link href="${contextPath}/html/fancytree-2.31.0/src/skin-xp/ui.fancytree.css" rel="stylesheet" type="text/css">
-	<script src="${contextPath}/html/fancytree-2.31.0/src/jquery-ui-dependencies/jquery.fancytree.ui-deps.js"></script>
-	<script src="${contextPath}/html/fancytree-2.31.0/src/jquery.fancytree.js" type="text/javascript"></script>
-	<script src="${contextPath}/html/fancytree-2.31.0/src/jquery.fancytree.dnd5.js" type="text/javascript"></script>
-    <script src="${contextPath}/html/fancytree-2.31.0/lib/contextmenu-abs/jquery.contextMenu-custom.js"></script>
-    <link href="${contextPath}/html/fancytree-2.31.0/lib/contextmenu-abs/jquery.contextMenu.css" rel="stylesheet" >
+	<script src="${contextPath}/html/fancytree-2.38.6/lib/jquery.js" type="text/javascript"></script>
+	<script src="${contextPath}/html/fancytree-2.38.6/lib/jquery-ui.custom.js" type="text/javascript"></script>
+    <link href="${contextPath}/html/fancytree-2.38.6/src/skin-xp/ui.fancytree.css" rel="stylesheet" type="text/css">
+	<script src="${contextPath}/html/fancytree-2.38.6/src/jquery-ui-dependencies/jquery.fancytree.ui-deps.js"></script>
+	<script src="${contextPath}/html/fancytree-2.38.6/src/jquery.fancytree.js" type="text/javascript"></script>
+    <script src="${contextPath}/html/fancytree-2.38.6/lib/contextmenu-abs/jquery.contextMenu-custom.js"></script>
+    <link href="${contextPath}/html/fancytree-2.38.6/lib/contextmenu-abs/jquery.contextMenu.css" rel="stylesheet" >
 	<style type="text/css">
 		ul.fancytree-container {
 			min-height: 100%;
@@ -66,7 +65,6 @@
 		$(function(){
 			$("#task_tree").fancytree(
 					{
-                        extensions: ["dnd5"],
 						source: {
 							url: "${contextPath}/TreeLoaderAction.do?method=taskLoadChildren"
 						},
@@ -96,17 +94,6 @@
                             // bindContextMenu(data.node.span);
                             normalizeStateIcons(data.node.span);
                         },
-                    dnd5: {
-                        preventRecursion: true, // Prevent dropping nodes on own descendants
-                        preventVoidMoves: true, // Prevent moving nodes 'before self', etc.
-                        dragStart: function(node, data) {
-                            data.effectAllowed = "all";
-                            data.dropEffect = "move";
-                            return true;
-                        },
-                        dragDrop: function(node, data) {
-                        }
-                    }
 					}
 			);
 		});

@@ -50,6 +50,19 @@
             });
         }
 
+        function normalizeStateIcons(span) {
+            if (!span) return;
+            var icons = span.querySelectorAll("img.state");
+            for (var i = 0; i < icons.length; i++) {
+                var icon = icons[i];
+                var bg = icon.style.backgroundColor;
+                if (bg) {
+                    icon.style.setProperty("--sc", bg);
+                    icon.style.backgroundColor = "transparent";
+                }
+            }
+        }
+
 		$(function(){
 			$("#task_tree").fancytree(
 					{
@@ -81,6 +94,7 @@
 						},
                         createNode: function(event, data){
                             // bindContextMenu(data.node.span);
+                            normalizeStateIcons(data.node.span);
                         },
                     dnd5: {
                         preventRecursion: true, // Prevent dropping nodes on own descendants

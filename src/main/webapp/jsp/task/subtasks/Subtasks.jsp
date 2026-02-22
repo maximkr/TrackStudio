@@ -1006,7 +1006,7 @@
                onClick="submitDelete=true; set('paste');closeServicePanel(document.forms['taskListForm'].elements['SELTASK']); if(onSubmitFunction(this.form)) this.form.submit();">
     </c:if>
     <c:if test="${canDelete}">
-        <input type="submit" class="iconized"
+        <input type="submit" class="iconized danger"
                onClick="deleteTask(); this.form['collector'].value=forrobots(document.forms['taskListForm'].elements['SELTASK']); set('delete'); if(onSubmitFunction(this.form)) this.form.submit();"
                value="<I18n:message key="DELETE"/>"
                name="DELETE">

@@ -166,6 +166,17 @@ body.ts-tree-body .fancytree-title {
     color: var(--ts-text);
 }
 
+body.ts-tree-body #task_tree .fancytree-node,
+body.ts-tree-body #task_tree .fancytree-title {
+    background-color: transparent !important;
+}
+
+body.ts-tree-body #task_tree li {
+    outline: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
 body.ts-tree-body .fancytree-node:hover .fancytree-title {
     color: var(--ts-primary);
 }
@@ -174,6 +185,16 @@ body.ts-tree-body .fancytree-active .fancytree-title {
     color: var(--ts-primary-strong);
     font-weight: 600;
     background-color: transparent;
+}
+
+body.ts-tree-body #task_tree .fancytree-active,
+body.ts-tree-body #task_tree .fancytree-focused,
+body.ts-tree-body #task_tree .fancytree-active .fancytree-title,
+body.ts-tree-body #task_tree .fancytree-focused .fancytree-title {
+    outline: none !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    background-color: transparent !important;
 }
 
 body.ts-tree-body .fancytree-icon,

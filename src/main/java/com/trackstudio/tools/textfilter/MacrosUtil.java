@@ -119,10 +119,15 @@ public class MacrosUtil {
     }
 
     public static String buildImageForState(SecuredStatusBean ssb, String url) {
+        String color = ssb.getColor() != null ? ssb.getColor() : "transparent";
+        String safeName = HTMLEncoder.encode(ssb.getName());
+        if (safeName == null) {
+            safeName = "";
+        }
         StringBuilder sb = new StringBuilder();
-        sb.append("<img title=\""+ssb.getName()+
-                "\"class=\"fancytree-icon state\" border=\"0\" style=\"margin-left: 0 !important; background-color: ")
-                .append(ssb.getColor()).append("\"; src=\"").append(url).append(ssb.getImage()).append("\"/>");
+        sb.append("<img title=\"").append(safeName)
+                .append("\" class=\"fancytree-icon state\" border=\"0\" style=\"margin-left: 0 !important; --sc: ")
+                .append(color).append(";\" src=\"").append(url).append(ssb.getImage()).append("\"/>");
         return sb.toString();
     }
 

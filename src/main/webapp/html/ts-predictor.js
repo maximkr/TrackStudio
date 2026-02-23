@@ -109,6 +109,35 @@
         return Predictor.trimText(text.replace(trailingKey, ""));
     };
 
+    Predictor.isUserItem = function (rawValue) {
+        var value = Predictor.rawValue(rawValue);
+        if (!value) {
+            return false;
+        }
+        return value.indexOf("_u-") > -1 || value.indexOf("u-") === 0;
+    };
+
+    Predictor.userAvatar = function (title) {
+        var avatarUtils = window.TSAvatar || {};
+        var name = Predictor.trimText(title);
+        if (!name) {
+            name = "user";
+        }
+        var color = typeof avatarUtils.colorFromName === "function"
+            ? avatarUtils.colorFromName("search-user:" + name)
+            : "hsl(205, 60%, 45%)";
+        var avatar = $("<span class='ts-search-item__avatar' aria-hidden='true'></span>");
+        avatar.text(typeof avatarUtils.getAvatarInitial === "function"
+            ? avatarUtils.getAvatarInitial(name)
+            : "?");
+        if (avatar[0] && avatar[0].style) {
+            avatar[0].style.setProperty("--ts-search-avatar-bg", color);
+            avatar[0].style.setProperty("--ts-search-avatar-fg", "#ffffff");
+            avatar[0].style.setProperty("--ts-search-avatar-border", "color-mix(in srgb, " + color + " 62%, #1f2937)");
+        }
+        return avatar;
+    };
+
     Predictor.icons = function (labelHtml) {
         var icons = $("<span class='ts-search-item__icons' aria-hidden='true'></span>");
         var rawLabel = labelHtml || "";
@@ -142,7 +171,14 @@
                 row.addClass("ts-search-item--no-key");
             }
             var main = $("<span class='ts-search-item__main'></span>");
-            main.append(Predictor.icons(item.label));
+            var icons = Predictor.icons(item.label);
+            if (!isSearchRow && Predictor.isUserItem(item.value)) {
+                icons.find("img[src*='arw.usr']").remove();
+                if (!icons.find(".ts-search-item__avatar").length) {
+                    icons.prepend(Predictor.userAvatar(title || key));
+                }
+            }
+            main.append(icons);
             main.append($("<span class='ts-search-item__title'></span>").text(isSearchRow ? (queryPrefix + title) : title));
             row.append(main);
             return $("<li></li>")

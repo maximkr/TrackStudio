@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.trackstudio.action.GeneralAction;
 import com.trackstudio.app.adapter.AdapterManager;
 import com.trackstudio.app.filter.FValue;
 import com.trackstudio.app.filter.TaskFValue;
@@ -27,6 +28,7 @@ import com.trackstudio.secured.SecuredStatusBean;
 import com.trackstudio.secured.SecuredUserBean;
 import com.trackstudio.startup.I18n;
 import com.trackstudio.tools.Null;
+import com.trackstudio.tools.textfilter.HTMLEncoder;
 
 import net.jcip.annotations.NotThreadSafe;
 
@@ -37,6 +39,12 @@ import net.jcip.annotations.NotThreadSafe;
 public class ListCustomizer extends Customizer implements Serializable{
 
     private static Log log = LogFactory.getLog(ListCustomizer.class);
+    private static final String CURRENT_USER_ID = "CurrentUserID";
+    private static final String I_AND_SUB_USERS = "IandSubUsers";
+    private static final String I_AND_MANAGER = "IandManager";
+    private static final String I_AND_MANAGERS = "IandManagers";
+    private static final String GROUP_PREFIX = "GROUP_";
+    private static final String NONE_KEY = "null";
     /**
      * Константа равенства списка
      */
@@ -233,12 +241,16 @@ public class ListCustomizer extends Customizer implements Serializable{
         StringBuilder unselectedGroup = new StringBuilder(1000);
         StringBuilder selectedUser = new StringBuilder(1000);
         StringBuilder unselectedUser = new StringBuilder(1000);
-        boolean withUserRole = map.getFilterKey().equals(FieldMap.HUSER_NAME.getFilterKey());
+        boolean withUserRole = map.getFilterKey().equals(FieldMap.SUSER_NAME.getFilterKey())
+                || map.getFilterKey().equals(FieldMap.HUSER_NAME.getFilterKey())
+                || map.getFilterKey().equals(FieldMap.MSG_SUSER_NAME.getFilterKey())
+                || map.getFilterKey().equals(FieldMap.MSG_HUSER_NAME.getFilterKey());
         for (Iterator it = theType == LIST_UNEQUAL ? this.byNumberIterator() : this.byNameIterator(); it.hasNext();) {
             int classStyle = marker ? 1 : 0;
             marker = !marker;
             String key = (String) it.next();
             String value = this.items.get(key);
+            String renderedValue = renderListItemValue(contextPath, key, value, withUserRole);
             if (key.equals("null")) {
                 //outp.append("<label class=\"sel").append(classStyle).append("\">").append("</label>");
             } else if (key.startsWith("GROUP_")) {
@@ -247,20 +259,20 @@ public class ListCustomizer extends Customizer implements Serializable{
                 if (checked.isEmpty()) {
                     unselectedGroup.append("<label class=\"sel").append(classStyle).append("\">").append("&nbsp;&nbsp;&nbsp;&nbsp;<input alt=\"listcheckbox\" " +
                             " onclick=\"moveToParticipate(this.id, this.checked, '" + (withUserRole ? "participants_prstatus_" : "participants_") + "');\"" +
-                            "type=\"checkbox\"").append(checked).append(" value=\"").append(key).append("\" name=\"udflist(").append(map.getFilterKey()).append(")\" id='").append(map.getFilterKey()).append("_").append(id).append("'>").append(value).append("").append("</label>");
+                            "type=\"checkbox\"").append(checked).append(" value=\"").append(key).append("\" name=\"udflist(").append(map.getFilterKey()).append(")\" id='").append(map.getFilterKey()).append("_").append(id).append("'>").append(renderedValue).append("</label>");
                 } else {
                     selectedGroup.append("<label class=\"sel").append(classStyle).append("\">").append("&nbsp;&nbsp;&nbsp;&nbsp;<input alt=\"listcheckbox\" " +
                             " onclick=\"moveToParticipate(this.id, this.checked, '" + (withUserRole ? "participants_prstatus_" : "participants_") + "');\"" +
-                            "type=\"checkbox\"").append(checked).append(" value=\"").append(key).append("\" name=\"udflist(").append(map.getFilterKey()).append(")\" id='").append(map.getFilterKey()).append("_").append(id).append("'>").append(value).append("").append("</label>");
+                            "type=\"checkbox\"").append(checked).append(" value=\"").append(key).append("\" name=\"udflist(").append(map.getFilterKey()).append(")\" id='").append(map.getFilterKey()).append("_").append(id).append("'>").append(renderedValue).append("</label>");
                 }
             } else {
                 String checked = defs != null && defs.contains(key) ? " checked=\"checked\"" : "";
                 if (checked.isEmpty()) {
                     unselectedUser.append("<label class=\"sel").append(classStyle).append("\">")
-                            .append("&nbsp;&nbsp;&nbsp;&nbsp;<input alt=\"listcheckbox\" type=\"checkbox\" onclick=\"moveToParticipate(this.id, this.checked, '" + (withUserRole ? "participants_user_" : "participants_") + "');\"").append(checked).append(" value=\"").append(key).append("\" name=\"udflist(").append(map.getFilterKey()).append(")\" id='").append(map.getFilterKey()).append("_").append(key).append("'>").append(value).append("").append("</label>");
+                            .append("&nbsp;&nbsp;&nbsp;&nbsp;<input alt=\"listcheckbox\" type=\"checkbox\" onclick=\"moveToParticipate(this.id, this.checked, '" + (withUserRole ? "participants_user_" : "participants_") + "');\"").append(checked).append(" value=\"").append(key).append("\" name=\"udflist(").append(map.getFilterKey()).append(")\" id='").append(map.getFilterKey()).append("_").append(key).append("'>").append(renderedValue).append("</label>");
                 } else {
                     selectedUser.append("<label class=\"sel").append(classStyle).append("\">")
-                            .append("&nbsp;&nbsp;&nbsp;&nbsp;<input alt=\"listcheckbox\" type=\"checkbox\" onclick=\"moveToParticipate(this.id, this.checked, '"+(withUserRole ? "participants_user_" : "participants_")+"');\"").append(checked).append(" value=\"").append(key).append("\" name=\"udflist(").append(map.getFilterKey()).append(")\" id='").append(map.getFilterKey()).append("_").append(key).append("'>").append(value).append("").append("</label>");
+                            .append("&nbsp;&nbsp;&nbsp;&nbsp;<input alt=\"listcheckbox\" type=\"checkbox\" onclick=\"moveToParticipate(this.id, this.checked, '"+(withUserRole ? "participants_user_" : "participants_")+"');\"").append(checked).append(" value=\"").append(key).append("\" name=\"udflist(").append(map.getFilterKey()).append(")\" id='").append(map.getFilterKey()).append("_").append(key).append("'>").append(renderedValue).append("</label>");
                 }
             }
         }
@@ -299,6 +311,77 @@ public class ListCustomizer extends Customizer implements Serializable{
         outp.append("</table>\n");
         outp.append("</td>\n");
         return outp.toString();
+    }
+
+    private String renderListItemValue(String contextPath, String key, String value, boolean withUserRole) {
+        String safeValue = HTMLEncoder.encode(Null.stripNullText(value));
+        if (safeValue.length() == 0 || isPseudoGroupValue(value)) {
+            return safeValue;
+        }
+        if (isRoleItem(key, withUserRole)) {
+            return iconHtml(contextPath, "ico.status.gif") + safeValue;
+        }
+        if (isUserItem(key)) {
+            return iconHtml(contextPath, "arw.usr.gif") + safeValue;
+        }
+        return safeValue;
+    }
+
+    private String iconHtml(String contextPath, String iconName) {
+        String imageServlet = "/ImageServlet/" + GeneralAction.SERVLET_KEY;
+        return "<img alt=\"\" class=\"icon\" src=\"" + contextPath + imageServlet + "/cssimages/" + iconName + "\" border=\"0\" hspace=\"0\" vspace=\"0\"> ";
+    }
+
+    private boolean isPseudoGroupValue(String value) {
+        String text = Null.stripNullText(value);
+        return text.startsWith("-------") || text.startsWith("--");
+    }
+
+    private boolean isUserItem(String key) {
+        if (key == null || key.length() == 0 || key.equals("0") || key.equals(NONE_KEY) || key.startsWith(GROUP_PREFIX)) {
+            return false;
+        }
+        if (CURRENT_USER_ID.equals(key) || I_AND_SUB_USERS.equals(key) || I_AND_MANAGER.equals(key) || I_AND_MANAGERS.equals(key)) {
+            return false;
+        }
+        String filterKey = map.getFilterKey();
+        if (FieldMap.SUSER_NAME.getFilterKey().equals(filterKey)
+                || FieldMap.HUSER_NAME.getFilterKey().equals(filterKey)
+                || FieldMap.MSG_SUSER_NAME.getFilterKey().equals(filterKey)
+                || FieldMap.MSG_HUSER_NAME.getFilterKey().equals(filterKey)) {
+            return true;
+        }
+        return filterKey.startsWith(FValue.UDF) && hasUserTokensInMap();
+    }
+
+    private boolean isRoleItem(String key, boolean withUserRole) {
+        if (key == null || key.length() == 0 || key.equals("0") || key.equals(NONE_KEY)) {
+            return false;
+        }
+        if (key.startsWith(GROUP_PREFIX)) {
+            return withUserRole;
+        }
+        String filterKey = map.getFilterKey();
+        return FieldMap.SUSER_STATUS.getFilterKey().equals(filterKey)
+                || FieldMap.HUSER_STATUS.getFilterKey().equals(filterKey)
+                || FieldMap.USER_STATUS.getFilterKey().equals(filterKey);
+    }
+
+    private boolean hasUserTokensInMap() {
+        return items.containsKey(CURRENT_USER_ID)
+                || items.containsKey(I_AND_SUB_USERS)
+                || items.containsKey(I_AND_MANAGER)
+                || items.containsKey(I_AND_MANAGERS)
+                || containsGroupKeys();
+    }
+
+    private boolean containsGroupKeys() {
+        for (String key : items.keySet()) {
+            if (key != null && key.startsWith(GROUP_PREFIX)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void buildIterator(List<String> defs2, SessionContext sc) {

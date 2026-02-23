@@ -193,11 +193,12 @@
                 <c:if test="${sc.user.login != 'anonymous'}">
                     <span class="ts-header-user-info">
                         <html:link href="javascript:{self.top.frames[1].location = '${contextPath}/UserViewAction.do?id=${sc.userId}'};" styleClass="ts-header-user-link">
+                            <html:img styleClass="icon" border="0" src="${contextPath}${ImageServlet}/cssimages/${sc.user.active ? 'arw.usr.a.gif' : 'arw.usr.gif'}"/>
                             <c:out value="${sc.user.name}"/>
                         </html:link>
                         <c:if test="${not empty prstatuses}">
                             <span class="ts-header-user-sep">·</span>
-                            <span class="ts-header-user-roles"><c:out value="${prstatuses}" escapeXml="true"/></span>
+                            <span class="ts-header-user-roles"><html:img styleClass="icon" border="0" src="${contextPath}${ImageServlet}/cssimages/ico.status.gif"/><c:out value="${prstatuses}" escapeXml="true"/></span>
                         </c:if>
                     </span>
                 </c:if>

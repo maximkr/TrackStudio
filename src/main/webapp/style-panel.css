@@ -202,6 +202,24 @@ body.ts-tree-body .fancytree-expander {
     filter: saturate(1.05) contrast(1.05);
 }
 
+body.ts-tree-body #user_tree .ts-tree-user-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    margin: 0 5px 0 2px;
+    background-color: var(--ts-tree-user-avatar-bg, var(--ts-primary));
+    color: var(--ts-tree-user-avatar-fg, #ffffff);
+    border: 1px solid var(--ts-tree-user-avatar-border, color-mix(in srgb, var(--ts-primary) 62%, #1f2937));
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, #000000 12%, transparent);
+}
+
 body.ts-tree-body #panel_1 div.head {
     height: 24px;
 }

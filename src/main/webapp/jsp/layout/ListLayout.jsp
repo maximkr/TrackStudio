@@ -167,6 +167,8 @@
     <ts:jsLink link="${urlHtml}/calendar-helper.js"/>
     <ts:jsLink link="${urlHtml}/validate.js"/>
     <ts:jsLink link="${urlHtml}/quickSelect.js"/>
+    <ts:jsLink link="${urlHtml}/ts-avatar.js"/>
+    <ts:jsLink link="${urlHtml}/ts-user-avatar-enhancer.js"/>
     <ts:jsLink link="${urlHtml}/ts-predictor.js"/>
     <ts:jsLink link="${urlHtml}/slidingframe.js"/>
     <ts:jsLink link="${urlHtml}/ts-dialog.js"/>
@@ -307,7 +309,14 @@
     // Set localized labels for TSDialog.confirm / TSDialog.alert
     TSDialog.labels.cancel = "<I18n:message key="CANCEL"/>";
 
+    function tsInitUserAvatars() {
+        if (window.TSAvatarEnhancer && typeof window.TSAvatarEnhancer.init === 'function') {
+            window.TSAvatarEnhancer.init();
+        }
+    }
+
     $(function () {
+        tsInitUserAvatars();
 
         var handleSubmit = function() {
             if ($('#bookmark_name').val() != null) {

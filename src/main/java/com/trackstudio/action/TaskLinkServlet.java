@@ -52,14 +52,6 @@ public class TaskLinkServlet extends HttpServlet {
                     RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/Error.jsp");
                     requestDispatcher.forward(req, resp);
                 }
-            } else {
-                i = rurl.indexOf("/task/webdav/");
-                if (i > -1) {
-                    String url = rurl.substring(i + 5);
-                    RequestDispatcher requestDispatcher = req.getRequestDispatcher(url);
-                    requestDispatcher.forward(req, resp);
-                    return;
-                }
             }
         }
         super.service(req, resp);

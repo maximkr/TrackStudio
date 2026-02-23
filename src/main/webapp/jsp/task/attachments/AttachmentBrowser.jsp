@@ -1,6 +1,7 @@
 <%@ page buffer="128kb" errorPage="/jsp/Error.jsp"%>
 <%@ taglib uri="struts/html-el" prefix="html" %>
 <%@ taglib uri="jstl/c" prefix="c" %>
+<%@ taglib uri="jstl/fn" prefix="fn" %>
 <%@ taglib uri="jstl/fmt" prefix="I18n" %>
 <%@ taglib uri="struts/tiles-el" prefix="tiles" %>
 <I18n:setLocale value='${sc.locale}'/>
@@ -49,7 +50,7 @@
                     <div class="caption">
                         <I18n:message key="ATTACHMENTS"/>
                         <div style="float:right;">
-                            <input style="height:11px;vertical-align:middle; background-color:#FFFFFF; border:1px solid #B2C9D9; cursor:text;" class="form-autocomplete" name="filter" size="30" onkeyup="search_attachment(this, 'table_attachment', [1])" type="text">
+                            <input style="height:11px;vertical-align:middle; background-color:#FFFFFF; border:1px solid #B2C9D9; cursor:text;" class="form-autocomplete" name="filter" size="30" onkeyup="search_attachment(this, 'table_attachment')" type="text">
                         </div>
                     </div>
                     <div class="indent">
@@ -58,7 +59,6 @@
                                 <th width="1%" nowrap style="white-space:nowrap" class="nosort"> <input type="checkbox" onClick="selectAllCheckboxes(this, 'delete1');"></th>
                                 <th width="24%"><I18n:message key="FILE"/></th>
                                 <th width="24%"><I18n:message key="TASK_NAME"/></th>
-                                <th width="5%"><I18n:message key="WEBDAV"/></th>
                                 <th><I18n:message key="FILE_SIZE"/></th>
                                 <th width="15%"><I18n:message key="LAST_MODIFIED"/></th>
                                 <th width="15%"><I18n:message key="OWNER"/></th>
@@ -121,7 +121,6 @@
                                             <c:out value="${attachment.task.name}" escapeXml="true"/>
                                         </html:link>
                                     </td>
-                                    <td style="white-space: nowrap;text-align:center;"><c:if test="${!attachment.deleted}"><a class="internal" target="blank" href="<c:url value="/webdav/task/${attachment.task.number}/${attachment.id}/${attachment.name}"/>">link</a></c:if></td>
                                     <td style="white-space: nowrap;" <c:if test="${!attachment.deleted}">title="<I18n:message key="SIZE_ORIGIN"><I18n:param value="${attachment.size}"/></I18n:message>"</c:if>><c:if test="${!attachment.deleted}"><I18n:message key="SIZE_FORMAT"><I18n:param value="${attachment.sizeDoubleValue}"/><I18n:param value="${attachment.sizeDoubleValue/1024}"/><I18n:param value="${attachment.sizeDoubleValue/1048576}"/></I18n:message></c:if></td>
                                     <td style="white-space: nowrap;"><c:if test="${!attachment.deleted}"><I18n:formatDate value="${attachment.lastModified.time}" type="both" dateStyle="short" timeStyle="short"/></c:if></td>
                                     <td style="white-space: nowrap;">
@@ -130,7 +129,7 @@
                                     </td>
                                     <td>
                                         <c:if test="${attachment.description ne null}">
-                                            <span title="${attachment.description}"><c:out value="${attachment.shortDescription}" escapeXml="true"/></span>
+                                            <span title="${fn:escapeXml(attachment.description)}"><c:out value="${attachment.shortDescription}" escapeXml="true"/></span>
                                         </c:if>
                                     </td>
                                     <td class="thumbnail">

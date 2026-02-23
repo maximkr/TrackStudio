@@ -62,6 +62,18 @@
             }
         }
 
+        function enhanceUserTreeNode(span) {
+            if (window.TSAvatarEnhancer && typeof window.TSAvatarEnhancer.enhanceTreeUserNode === "function") {
+                window.TSAvatarEnhancer.enhanceTreeUserNode(span);
+            }
+        }
+
+        function enhanceUserTreeIcons() {
+            if (window.TSAvatarEnhancer && typeof window.TSAvatarEnhancer.enhanceUserTreeIcons === "function") {
+                window.TSAvatarEnhancer.enhanceUserTreeIcons("#user_tree");
+            }
+        }
+
 		$(function(){
 			$("#task_tree").fancytree(
 					{
@@ -175,6 +187,7 @@
 						},
 						init: function(event, data, flag) {
 							TREE_LOADED = true;
+                            setTimeout(enhanceUserTreeIcons, 0);
 						},
 						click: function(event, data) {
 							var node = data.node;
@@ -183,9 +196,15 @@
 								self.top.frames[1].location='${contextPath}/user/'+data.node.key + '?thisframe=true';
 								data.node.setExpanded(true);
 							}
-						}
-					}
-			);
+						},
+                        createNode: function(event, data){
+                            enhanceUserTreeNode(data.node.span);
+                        },
+                        renderNode: function(event, data) {
+                            enhanceUserTreeNode(data.node.span);
+                        }
+                    }
+            );
 		});
 
 		function reloadTsUserTree(parent, nodes) {
@@ -234,12 +253,14 @@
 		var contextPath = '${contextPath}';
 		var urlHtml = '${urlHtml}';
 	</script>
-	<ts:js request="${request}" response="${response}">
-		<%--<ts:jsLink link="${urlHtml}/jquery/jquery-1.11.2.min.js"/>--%>
-		<%--<ts:jsLink link="${urlHtml}/jquery/jquery-ui.min.js"/>--%>
-		<ts:jsLink link="${urlHtml}/slidingframe.js"/>
-		<ts:jsLink link="${urlHtml}/validate.js"/>
-	</ts:js>
+		<ts:js request="${request}" response="${response}">
+			<%--<ts:jsLink link="${urlHtml}/jquery/jquery-1.11.2.min.js"/>--%>
+			<%--<ts:jsLink link="${urlHtml}/jquery/jquery-ui.min.js"/>--%>
+			<ts:jsLink link="${urlHtml}/ts-avatar.js"/>
+			<ts:jsLink link="${urlHtml}/ts-user-avatar-enhancer.js"/>
+			<ts:jsLink link="${urlHtml}/slidingframe.js"/>
+			<ts:jsLink link="${urlHtml}/validate.js"/>
+		</ts:js>
 
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 	<link rel="icon" href="${contextPath}/${ImageServlet}/favicon.png" type="image/png"/>

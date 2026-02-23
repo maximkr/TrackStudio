@@ -20,7 +20,6 @@ import com.trackstudio.app.UdfValue;
 import com.trackstudio.app.adapter.AdapterManager;
 import com.trackstudio.app.filter.FValue;
 import com.trackstudio.app.filter.TaskFValue;
-import com.trackstudio.app.filter.list.TaskFilter;
 import com.trackstudio.app.session.SessionContext;
 import com.trackstudio.common.FieldMap;
 import com.trackstudio.exception.CantFindObjectException;
@@ -50,6 +49,10 @@ public class TaskFilterViewAction extends TSDispatchAction {
     private static final String VIEW_DISPLAY = "v_display";
     private static final String VIEW_SORT = "v_sort";
     private static final String VIEW_MESSAGE = "v_message";
+    private static final String CURRENT_USER_ID = "CurrentUserID";
+    private static final String I_AND_SUB_USERS = "IandSubUsers";
+    private static final String I_AND_MANAGER = "IandManager";
+    private static final String I_AND_MANAGERS = "IandManagers";
 
     public ActionForward page(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws GranException {
         boolean w = lockManager.acquireConnection();
@@ -185,8 +188,8 @@ public class TaskFilterViewAction extends TSDispatchAction {
 
         propertyValuesCollection = flthm.toList(FieldMap.SUSER_NAME.getFilterKey());
 
-        values = getSubmitterList(propertyValuesCollection, sc);
-        UserFilterViewAction.printList(sc, FieldMap.SUSER_NAME, flthm, values, fd, use, sort);
+        values = getSubmitterList(propertyValuesCollection, sc, context);
+        printListHtml(sc, FieldMap.SUSER_NAME, flthm, values, fd, use, sort);
 
         values = new ArrayList<String>();
         propertyValuesCollection = flthm.toList(FieldMap.SUSER_STATUS.getFilterKey());
@@ -200,12 +203,12 @@ public class TaskFilterViewAction extends TSDispatchAction {
                 }
             }
         }
-        UserFilterViewAction.printList(sc, FieldMap.SUSER_STATUS, flthm, values, fd, use, sort);
+        printListHtml(sc, FieldMap.SUSER_STATUS, flthm, decorateRoleValues(values, context), fd, use, sort);
 
 
         propertyValuesCollection = flthm.toList(FieldMap.HUSER_NAME.getFilterKey());
-        values = TaskFilter.getHandlerValues(propertyValuesCollection, sc);
-        UserFilterViewAction.printList(sc, FieldMap.HUSER_NAME, flthm, values, fd, use, sort);
+        values = getHandlerList(propertyValuesCollection, sc, context);
+        printListHtml(sc, FieldMap.HUSER_NAME, flthm, values, fd, use, sort);
 
         values = new ArrayList<String>();
         propertyValuesCollection = flthm.toList(FieldMap.HUSER_STATUS.getFilterKey());
@@ -220,7 +223,7 @@ public class TaskFilterViewAction extends TSDispatchAction {
                 }
             }
 
-        UserFilterViewAction.printList(sc, FieldMap.HUSER_STATUS, flthm, values, fd, use, sort);
+        printListHtml(sc, FieldMap.HUSER_STATUS, flthm, decorateRoleValues(values, context), fd, use, sort);
 
         UserFilterViewAction.printDate(sc, FieldMap.TASK_SUBMITDATE, flthm, fd, use, sort);
         UserFilterViewAction.printDate(sc, FieldMap.TASK_UPDATEDATE, flthm, fd, use, sort);
@@ -272,8 +275,8 @@ public class TaskFilterViewAction extends TSDispatchAction {
                 if (type == UdfValue.USER)
 
                     if (propertyValuesCollection != null) {
-                        values = getSubmitterList(propertyValuesCollection, sc);
-                        UserFilterViewAction.printList(sc, FieldMap.createUDF(udf.getCaptionEx(), FValue.UDF + udf.getId(), FValue.UDF_SORT + udf.getId()), flthm, values, fd, use, sort);
+                        values = getSubmitterList(propertyValuesCollection, sc, context);
+                        printListHtml(sc, FieldMap.createUDF(udf.getCaptionEx(), FValue.UDF + udf.getId(), FValue.UDF_SORT + udf.getId()), flthm, values, fd, use, sort);
                     }
             }
         }
@@ -300,8 +303,8 @@ public class TaskFilterViewAction extends TSDispatchAction {
             messages.add(new Pair(I18n.getString(sc, FieldMap.MESSAGEVIEW.getAltKey()), mess));
 
         propertyValuesCollection = flthm.toList(FieldMap.MSG_SUSER_NAME.getFilterKey());
-        values = getSubmitterList(propertyValuesCollection, sc);
-        UserFilterViewAction.printList(sc, FieldMap.MSG_SUSER_NAME, flthm, values, messages, usemsg, sort);
+        values = getSubmitterList(propertyValuesCollection, sc, context);
+        printListHtml(sc, FieldMap.MSG_SUSER_NAME, flthm, values, messages, usemsg, sort);
 
 
         UserFilterViewAction.printDate(sc, FieldMap.MSG_SUBMITDATE, flthm, messages, usemsg, sort);
@@ -325,8 +328,8 @@ public class TaskFilterViewAction extends TSDispatchAction {
 
 
         propertyValuesCollection = flthm.toList(FieldMap.MSG_HUSER_NAME.getFilterKey());
-        values = TaskFilter.getHandlerValues(propertyValuesCollection, sc);
-        UserFilterViewAction.printList(sc, FieldMap.MSG_HUSER_NAME, flthm, values, messages, usemsg, sort);
+        values = getHandlerList(propertyValuesCollection, sc, context);
+        printListHtml(sc, FieldMap.MSG_HUSER_NAME, flthm, values, messages, usemsg, sort);
 
 
         values = new ArrayList<String>();
@@ -377,22 +380,114 @@ public class TaskFilterViewAction extends TSDispatchAction {
         return ret;
     }
 
-    private static List<String> getSubmitterList(List<String> propertyValuesCollection, SessionContext sc) throws GranException {
+    private static List<String> getSubmitterList(List<String> propertyValuesCollection, SessionContext sc, String context) throws GranException {
+        return getUserLikeList(propertyValuesCollection, sc, context, false, false);
+    }
+
+    private static List<String> getHandlerList(List<String> propertyValuesCollection, SessionContext sc, String context) throws GranException {
+        return getUserLikeList(propertyValuesCollection, sc, context, true, true);
+    }
+
+    private static List<String> getUserLikeList(List<String> propertyValuesCollection, SessionContext sc, String context,
+                                                boolean allowGroups, boolean allowNonePseudo) throws GranException {
         List<String> values = new ArrayList<String>();
-        if (propertyValuesCollection != null)
-            for (String pvString : propertyValuesCollection) {
-                if (pvString.equals("0")) continue;
-                if (pvString.equals("CurrentUserID"))
-                    values.add("--" + I18n.getString(sc.getLocale(), "I_AM") + "--");
-                else if (pvString.equals("IandSubUsers"))
-                    values.add("--" + I18n.getString(sc.getLocale(), "ME_AND_SUBORDINATED") + "--");
-                else if (pvString.equals("IandManager"))
-                    values.add("--" + I18n.getString(sc.getLocale(), "ME_AND_MANAGER") + "--");
-                else if (pvString.equals("IandManagers"))
-                    values.add("--" + I18n.getString(sc.getLocale(), "ME_AND_MANAGERS") + "--");
-                else if (UserRelatedManager.getInstance().isUserExists(pvString))
-                    values.add(new SecuredUserBean(pvString, sc).getName());
+        if (propertyValuesCollection == null) {
+            return values;
+        }
+        for (String pvString : propertyValuesCollection) {
+            if (pvString.equals("0")) {
+                continue;
             }
+            if (appendCommonUserPseudoValue(values, pvString, sc)) {
+                continue;
+            }
+            if (allowGroups && pvString.equals("GROUP_MyActiveGroup")) {
+                values.add(wrapPseudoValue(sc, "MSG_MY_ACTIVE_GROUP"));
+            } else if (allowGroups && pvString.startsWith("GROUP_") && !pvString.equals("GROUP_MyActiveGroup")) {
+                try {
+                    values.add(withRoleIcon(context, KernelManager.getFind().findPrstatus(pvString.substring("GROUP_".length())).getName()));
+                } catch (CantFindObjectException ex) {
+                    // object not found
+                }
+            } else if (allowNonePseudo && pvString.equals("null")) {
+                values.add(wrapPseudoValue(sc, "NONE"));
+            } else if (UserRelatedManager.getInstance().isUserExists(pvString)) {
+                values.add(withUserIcon(context, new SecuredUserBean(pvString, sc).getName()));
+            }
+        }
         return values;
+    }
+
+    private static boolean appendCommonUserPseudoValue(List<String> values, String key, SessionContext sc) throws GranException {
+        if (CURRENT_USER_ID.equals(key)) {
+            values.add(wrapPseudoValue(sc, "I_AM"));
+            return true;
+        }
+        if (I_AND_SUB_USERS.equals(key)) {
+            values.add(wrapPseudoValue(sc, "ME_AND_SUBORDINATED"));
+            return true;
+        }
+        if (I_AND_MANAGER.equals(key)) {
+            values.add(wrapPseudoValue(sc, "ME_AND_MANAGER"));
+            return true;
+        }
+        if (I_AND_MANAGERS.equals(key)) {
+            values.add(wrapPseudoValue(sc, "ME_AND_MANAGERS"));
+            return true;
+        }
+        return false;
+    }
+
+    private static String wrapPseudoValue(SessionContext sc, String i18nKey) throws GranException {
+        return HTMLEncoder.encode("--" + I18n.getString(sc.getLocale(), i18nKey) + "--");
+    }
+
+    private static List<String> decorateRoleValues(List<String> values, String context) {
+        ArrayList<String> decorated = new ArrayList<String>();
+        if (values == null) {
+            return decorated;
+        }
+        for (String value : values) {
+            decorated.add(withRoleIcon(context, value));
+        }
+        return decorated;
+    }
+
+    private static String withUserIcon(String context, String value) {
+        return iconPrefix(context, "arw.usr.gif") + HTMLEncoder.encode(value);
+    }
+
+    private static String withRoleIcon(String context, String value) {
+        return iconPrefix(context, "ico.status.gif") + HTMLEncoder.encode(value);
+    }
+
+    private static String iconPrefix(String context, String iconFile) {
+        return "<img alt=\"\" class=\"icon\" src=\"" + context + "/ImageServlet/" + GeneralAction.SERVLET_KEY + "/cssimages/" + iconFile + "\" border=\"0\" hspace=\"0\" vspace=\"0\"> ";
+    }
+
+    private static void printListHtml(SessionContext sc, FieldMap map, FValue flthm, List<String> values, List<Pair> prop, List<String> display, List<FieldMap> sort) throws GranException {
+        String prefix = flthm.getPrefix(map.getFilterKey());
+        StringBuffer fd = new StringBuffer(200);
+        if (flthm.hasListValue(FValue.DISPLAY, map.getFilterKey())) {
+            display.add(I18n.getString(sc, map.getAltKey()));
+        }
+        if (flthm.getSortOrder().indexOf(map.getFieldKey()) > -1) {
+            sort.add(map);
+        }
+        if (values != null && !values.isEmpty()) {
+            if (prefix.equals(FValue.SUB)) {
+                fd.append(I18n.getString(sc, "NOT_IN"));
+            } else {
+                fd.append(I18n.getString(sc, "IN_SET"));
+            }
+            fd.append(" <b>");
+            fd.append("[");
+            for (String value : values) {
+                fd.append(value).append(", ");
+            }
+            fd.setCharAt(fd.length() - 2, ']');
+            fd.append("</b>");
+            prop.add(new Pair(I18n.getString(sc, map.getAltKey()), fd.toString(), map.getFilterKey()));
+        }
     }
 }

@@ -3,6 +3,7 @@
 <%@ taglib uri="jstl/c" prefix="c" %>
 <%@ taglib uri="jstl/fmt" prefix="I18n" %>
 <%@ taglib uri="struts/tiles-el" prefix="tiles" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <I18n:setLocale value='${sc.locale}'/>
 <I18n:setTimeZone value='${sc.timezone}'/>
 <I18n:setBundle basename='language'/>
@@ -14,24 +15,22 @@
     response.setHeader( "Vary", "User-Agent" );
 %>
 <c:if test="${!empty attachments}">
-<div class="blueborder">
-<div class="caption">
-    <I18n:message key="ATTACHMENTS"/>
-</div>
+<div class="blueborder ts-task-attachments">
 <c:if test="${canCreateUserAttachments}">
-    <div class="controlPanel">
+    <div class="controlPanel ts-attachment-toolbar">
         <html:link  href="${contextPath}/AttachmentEditAction.do?method=attachToUser&id=${id}">
             <html:img src="${contextPath}${ImageServlet}/cssimages/ico.attachment.png" border="0"/>
             <I18n:message key="FILE_ADD"/>
         </html:link>
-        <html:link  href="javascript:{}" onclick="window.open('${contextPath}/UploadAppletAction.do?method=page&amp;user=true&amp;id=${id}',
-                 'uplWin','dependent=yes,menubar=no,toolbar=no,status=no,scrollbars=no,titlebar=no,left=0,top=20,width=845,height=445,resizable=no');">
-            <html:img src="${contextPath}${ImageServlet}/cssimages/ico.attachment.png" border="0" alt="Attachment"/>
-            <I18n:message key="UPLOAD_MANAGER"/>
-        </html:link>
-        <div style="float:right;">
-            <input style="height:11px;vertical-align:middle; background-color:#FFFFFF; border:1px solid #B2C9D9; cursor:text;" class="form-autocomplete" name="filter" size="30" onkeyup="search_attachment(this, 'table_attachment', [1])" type="text">
-        </div>
+        <span class="ts-attachment-toolbar__separator" aria-hidden="true"></span>
+        <span class="ts-attachment-toolbar__search">
+            <input class="form-autocomplete ts-attachment-filter"
+                   name="filter"
+                   size="30"
+                   placeholder="<I18n:message key="SEARCH"/>"
+                   onkeyup="search_attachment(this, 'table_attachment')"
+                   type="text">
+        </span>
     </div>
 </c:if>
 <script type="text/javascript">
@@ -78,7 +77,6 @@
                 <th width='25%'>
                     <I18n:message key="FILE"/>
                 </th>
-                <th width="5%"><I18n:message key="WEBDAV"/></th>
                 <th>
                     <I18n:message key="FILE_SIZE"/>
                 </th>
@@ -182,7 +180,6 @@
                             </c:otherwise>
                         </c:choose>
                     </td>
-                    <td style="white-space: nowrap;text-align:center;"><c:if test="${!attachment.deleted}"><a class="internal" target="blank" href="<c:url value="/webdav/user/${attachment.user.login}/${attachment.id}/${attachment.name}"/>">link</a></c:if></td>
                     <td style="white-space: nowrap;" <c:if test="${!attachment.deleted}">
                         title="<I18n:message key="SIZE_ORIGIN"><I18n:param value="${attachment.size}"/></I18n:message>"</c:if>>
                         <c:if test="${!attachment.deleted}">
@@ -201,7 +198,7 @@
                     </td>
                     <td>
                         <c:if test="${isDescription}">
-                            <span title="${attachment.description}"><c:out value="${attachment.shortDescription}" escapeXml="true"/></span>
+                            <span title="${fn:escapeXml(attachment.description)}"><c:out value="${attachment.shortDescription}" escapeXml="true"/></span>
                         </c:if>
                     </td>
                     <td class="thumbnail">

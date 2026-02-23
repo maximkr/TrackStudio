@@ -16,20 +16,19 @@
     response.setHeader( "Vary", "User-Agent" );
 %>
 <c:if test="${!empty attachments}">
-    <div class="blueborder" id="divAttachment">
-        <div class="caption">
-            <a class="internal" href="${contextPath}/task/${tci.number}?thisframe=true#attachments" id="attachments"><div style="font-size:14px;"><I18n:message key="ATTACHMENTS"/></div></a>
-        </div>
+    <div class="blueborder ts-task-attachments" id="divAttachment">
         <c:if test="${canCreateTaskAttachments && canEditTask}">
-            <div class="controlPanel">
+            <div class="controlPanel ts-attachment-toolbar">
                 <html:link  href="${contextPath}/AttachmentEditAction.do?method=attachToTask&amp;id=${id}"><html:img  src="${contextPath}${ImageServlet}/cssimages/ico.attachment.png" border="0" altKey="FILE_ADD"/><I18n:message key="FILE_ADD"/></html:link>
-                <html:link  href="javascript:{}" onclick="window.open('${contextPath}/UploadAppletAction.do?method=page&amp;id=${id}',
-                     'uplWin','dependent=yes,menubar=no,toolbar=no,status=no,scrollbars=no,titlebar=no,left=0,top=20,width=845,height=445,resizable=no');"><html:img alt=""  src="${contextPath}${ImageServlet}/cssimages/ico.attachment.png" border="0" />
-                    <I18n:message key="UPLOAD_MANAGER"/>
-                </html:link>
-                <div style="float:right;">
-                    <input style="height:11px;vertical-align:middle; background-color:#FFFFFF; border:1px solid #B2C9D9; cursor:text;" class="form-autocomplete" name="filter" size="30" onkeyup="search_attachment(this, 'table_attachment', [1])" type="text">
-                </div>
+                <span class="ts-attachment-toolbar__separator" aria-hidden="true"></span>
+                <span class="ts-attachment-toolbar__search">
+                    <input class="form-autocomplete ts-attachment-filter"
+                           name="filter"
+                           size="30"
+                           placeholder="<I18n:message key="SEARCH"/>"
+                           onkeyup="search_attachment(this, 'table_attachment')"
+                           type="text">
+                </span>
             </div>
         </c:if>
         <script type="text/javascript">
@@ -69,7 +68,6 @@
                     <tr class="wide">
                         <th width="1%" nowrap style="white-space:nowrap;" class="nosort"> <input type="checkbox" onClick="selectAllCheckboxes(this, 'delete1');"></th>
                         <th width="24%"><I18n:message key="FILE"/></th>
-                        <th width="5%"><I18n:message key="WEBDAV"/></th>
                         <th><I18n:message key="FILE_SIZE"/></th>
                         <th width="15%" ${fn:contains(sc.locale, 'ru') ? 'class=date-ru' : ''}><I18n:message key="LAST_MODIFIED"/></th>
                         <th width="15%"><I18n:message key="OWNER"/></th>
@@ -134,7 +132,6 @@
                                     </c:otherwise>
                                 </c:choose>
                             </td>
-                            <td style="white-space: nowrap;text-align:center;"><c:if test="${!attachment.deleted}"><a class="internal" target="blank" href="<c:url value="/webdav/task/${attachment.task.number}/${attachment.id}/${attachment.name}"/>">link</a></c:if></td>
                             <td style="white-space: nowrap;" <c:if test="${!attachment.deleted}">title="<I18n:message key="SIZE_ORIGIN"><I18n:param value="${attachment.size}"/></I18n:message>"</c:if>><c:if test="${!attachment.deleted}"><I18n:message key="SIZE_FORMAT"><I18n:param value="${attachment.sizeDoubleValue}"/><I18n:param value="${attachment.sizeDoubleValue/1024}"/><I18n:param value="${attachment.sizeDoubleValue/1048576}"/></I18n:message></c:if></td>
                             <td style="white-space: nowrap;"><c:if test="${!attachment.deleted}"><I18n:formatDate value="${attachment.lastModified.time}" type="both" dateStyle="short" timeStyle="short"/></c:if></td>
                             <td style="white-space: nowrap;">
@@ -142,7 +139,7 @@
                                 <c:out value="${attachment.user.name}" escapeXml="true"/></span></c:if>
                             </td>
                             <td>
-                                <span title="${attachment.description}"><c:out value="${attachment.shortDescription}" escapeXml="true"/></span>
+                                <span title="${fn:escapeXml(attachment.description)}"><c:out value="${attachment.shortDescription}" escapeXml="true"/></span>
                             </td>
                             <td class="thumbnail">
                                 <c:if test="${!attachment.deleted}">

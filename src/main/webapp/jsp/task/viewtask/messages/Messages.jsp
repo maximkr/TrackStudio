@@ -89,11 +89,11 @@
                                 <c:when test="${fn:indexOf(mstatus.action,'/')>0}">
                                     <c:set var="menuGroup" value="${fn:substringBefore(mstatus.action,'/')}"/>
                                     <script type="text/javascript">
-                                        if (!mstatusHistoryMenu['${menuGroup}']) {
-                                            mstatusHistoryMenu['${menuGroup}'] = new TSMenu();
-                                            mstatusHistoryMenu['${menuGroup}'].width = 320;
+                                        if (!mstatusHistoryMenu['${fn:escapeXml(menuGroup)}']) {
+                                            mstatusHistoryMenu['${fn:escapeXml(menuGroup)}'] = new TSMenu();
+                                            mstatusHistoryMenu['${fn:escapeXml(menuGroup)}'].width = 320;
                                         }
-                                        mstatusHistoryMenu['${menuGroup}'].add(new TSMenuItem("<c:out value="${fn:substringAfter(mstatus.action,'/')}"/>", "javascript:document.getElementById('formMethod').value='page'; document.getElementById('formMstatus').value='${mstatus.id}'; document.getElementById('messageCreateActionForm').submit();", false, false, "<c:out value="${contextPath}"/>${ImageServlet}/cssimages/ico.messagetypes.gif", "", ""));
+                                        mstatusHistoryMenu['${fn:escapeXml(menuGroup)}'].add(new TSMenuItem("<c:out value="${fn:substringAfter(mstatus.action,'/')}"/>", "javascript:document.getElementById('formMethod').value='page'; document.getElementById('formMstatus').value='${mstatus.id}'; document.getElementById('messageCreateActionForm').submit();", false, false, "<c:out value="${contextPath}"/>${ImageServlet}/cssimages/ico.messagetypes.gif", "", ""));
                                     </script>
                                 </c:when>
                                 <c:otherwise>

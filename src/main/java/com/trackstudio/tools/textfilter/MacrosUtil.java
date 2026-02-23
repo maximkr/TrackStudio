@@ -119,7 +119,7 @@ public class MacrosUtil {
     }
 
     public static String buildImageForState(SecuredStatusBean ssb, String url) {
-        String color = ssb.getColor() != null ? ssb.getColor() : "transparent";
+        String color = validateColor(ssb.getEncodeColor());
         String safeName = HTMLEncoder.encode(ssb.getName());
         if (safeName == null) {
             safeName = "";
@@ -129,6 +129,33 @@ public class MacrosUtil {
                 .append("\" class=\"fancytree-icon state\" border=\"0\" style=\"margin-left: 0 !important; --sc: ")
                 .append(color).append(";\" src=\"").append(url).append(ssb.getImage()).append("\"/>");
         return sb.toString();
+    }
+
+    /**
+     * Validates color string to prevent CSS injection.
+     * Only allows: hex colors (#RGB, #RRGGBB, #RGBA, #RRGGBBAA) and rgb(r,g,b) format.
+     * @param color color string to validate
+     * @return validated color or "transparent" if invalid
+     */
+    public static String validateColor(String color) {
+        if (color == null || color.isEmpty()) {
+            return "transparent";
+        }
+        String trimmed = color.trim();
+        // Allow hex colors: #RGB, #RRGGBB, #RGBA, #RRGGBBAA
+        if (trimmed.matches("^#[0-9a-fA-F]{3,8}$")) {
+            return trimmed;
+        }
+        // Allow rgb() format: rgb(r, g, b) or rgba(r, g, b, a)
+        if (trimmed.matches("^rgba?\\s*\\(\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*,\\s*\\d{1,3}(\\s*,\\s*[0-9.]+)?\\s*\\)$")) {
+            return trimmed;
+        }
+        // Allow transparent keyword
+        if ("transparent".equalsIgnoreCase(trimmed)) {
+            return "transparent";
+        }
+        // Invalid color - return safe default
+        return "transparent";
     }
 
     public static String getFullPath(SessionContext sc, int number, String delime) {

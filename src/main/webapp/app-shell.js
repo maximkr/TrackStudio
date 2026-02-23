@@ -18,7 +18,40 @@
     var params = new URLSearchParams(window.location.search);
     var initialUrl = params.get('url');
     if (initialUrl) {
-        contentFrame.src = decodeURIComponent(initialUrl);
+        // C3: Open Redirect fix — only allow relative URLs or same-origin URLs
+        var decodedUrl = decodeURIComponent(initialUrl);
+        if (isValidInternalUrl(decodedUrl)) {
+            contentFrame.src = decodedUrl;
+        } else {
+            console.warn('Blocked potentially unsafe URL:', decodedUrl);
+        }
+    }
+
+    /**
+     * Validates that a URL is safe for internal navigation.
+     * Only allows relative URLs or same-origin absolute URLs.
+     * @param {string} url - URL to validate
+     * @returns {boolean} true if URL is safe
+     */
+    function isValidInternalUrl(url) {
+        if (!url || typeof url !== 'string') {
+            return false;
+        }
+        // Allow relative URLs (starting with / or ./ or alphanumeric)
+        if (/^(\/|\.\/|[a-zA-Z0-9])/.test(url)) {
+            // Reject protocol:// URLs (potential external redirect)
+            if (/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(url)) {
+                // Only allow same-origin URLs
+                try {
+                    var parsed = new URL(url, window.location.origin);
+                    return parsed.origin === window.location.origin;
+                } catch (e) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     // --- Sidebar state ---

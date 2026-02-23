@@ -454,11 +454,11 @@
 				<c:when test="${fn:indexOf(category.action,'/')>0}">
 					<c:set var="menuGroup" value="${fn:substringBefore(category.action,'/')}"/>
 					<script type="text/javascript">
-						if (!taskAddMenu['${menuGroup}']){
-							taskAddMenu['${menuGroup}'] = new TSMenu();
-							taskAddMenu['${menuGroup}'].width = 320;
+						if (!taskAddMenu['${fn:escapeXml(menuGroup)}']){
+							taskAddMenu['${fn:escapeXml(menuGroup)}'] = new TSMenu();
+							taskAddMenu['${fn:escapeXml(menuGroup)}'].width = 320;
 						}
-						taskAddMenu['${menuGroup}'].add(new TSMenuItem("${fn:substringAfter(category.action,'/')}", "<c:out value="${contextPath}/TaskEditAction.do?method=page&id=${id}&newTask=true&category=${category.id}"/>", false, false, "<c:out value="${contextPath}${ImageServlet}/icons/categories/${category.icon}"/>"));
+						taskAddMenu['${fn:escapeXml(menuGroup)}'].add(new TSMenuItem("${fn:substringAfter(category.action,'/')}", "<c:out value="${contextPath}/TaskEditAction.do?method=page&id=${id}&newTask=true&category=${category.id}"/>", false, false, "<c:out value="${contextPath}${ImageServlet}/icons/categories/${category.icon}"/>"));
 					</script>
 				</c:when>
 

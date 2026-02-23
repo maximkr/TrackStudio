@@ -24,7 +24,7 @@
         });
     }
 </script>
-<div id="servicePanel" class="${selectedIds!=null && !empty selectedIds ? "norm" : "closed"}" style="display:none;">
+<div id="servicePanel" class="${selectedIds!=null && !empty selectedIds ? "norm" : "closed"}">
     <span>
     <img id="windowhideicon" src="${contextPath}${ImageServlet}/cssimages/ico.hidewin.gif" class="icon"
          onclick="hideServicePanel();" title="<I18n:message key="HIDE"/>">
@@ -122,11 +122,11 @@
                 <c:when test="${fn:indexOf(f.correctName,'/')>0}">
                     <c:set var="menuGroup" value="${fn:substringBefore(f.correctName,'/')}"/>
                     <script type="text/javascript">
-                        if (!filterMenu['${menuGroup}']) {
-                            filterMenu['${menuGroup}'] = new TSMenu();
-                            filterMenu['${menuGroup}'].width = 320;
+                        if (!filterMenu['${fn:escapeXml(menuGroup)}']) {
+                            filterMenu['${fn:escapeXml(menuGroup)}'] = new TSMenu();
+                            filterMenu['${fn:escapeXml(menuGroup)}'].width = 320;
                         }
-                        filterMenu['${menuGroup}'].add(new TSMenuItem(
+                        filterMenu['${fn:escapeXml(menuGroup)}'].add(new TSMenuItem(
                                 "${fn:substringAfter(f.correctName,'/')}",
                                 "<c:out value="${contextPath}"/>/TaskFilterParametersAction.do?method=changeTaskFilter&id=${id}&filterId=${f.id}&go=true",
                                 false,
@@ -135,7 +135,7 @@
                                 null,
                                 "<c:out value="${f.correctDesc}" escapeXml="true"/>"));
                         <c:if test="${f.id eq filter.id}">
-                        filterMenu['${menuGroup}'].selected = true;
+                        filterMenu['${fn:escapeXml(menuGroup)}'].selected = true;
                         </c:if>
                     </script>
                 </c:when>

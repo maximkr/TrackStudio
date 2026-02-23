@@ -19,6 +19,7 @@ import com.trackstudio.app.Preferences;
 import com.trackstudio.app.UdfValue;
 import com.trackstudio.app.adapter.AdapterManager;
 import com.trackstudio.app.filter.FValue;
+import com.trackstudio.app.filter.FilterConstants;
 import com.trackstudio.app.filter.TaskFValue;
 import com.trackstudio.app.session.SessionContext;
 import com.trackstudio.common.FieldMap;
@@ -49,10 +50,7 @@ public class TaskFilterViewAction extends TSDispatchAction {
     private static final String VIEW_DISPLAY = "v_display";
     private static final String VIEW_SORT = "v_sort";
     private static final String VIEW_MESSAGE = "v_message";
-    private static final String CURRENT_USER_ID = "CurrentUserID";
-    private static final String I_AND_SUB_USERS = "IandSubUsers";
-    private static final String I_AND_MANAGER = "IandManager";
-    private static final String I_AND_MANAGERS = "IandManagers";
+    // L4: Moved constants to FilterConstants to avoid duplication
 
     public ActionForward page(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws GranException {
         boolean w = lockManager.acquireConnection();
@@ -419,19 +417,19 @@ public class TaskFilterViewAction extends TSDispatchAction {
     }
 
     private static boolean appendCommonUserPseudoValue(List<String> values, String key, SessionContext sc) throws GranException {
-        if (CURRENT_USER_ID.equals(key)) {
+        if (FilterConstants.CURRENT_USER_ID.equals(key)) {
             values.add(wrapPseudoValue(sc, "I_AM"));
             return true;
         }
-        if (I_AND_SUB_USERS.equals(key)) {
+        if (FilterConstants.I_AND_SUB_USERS.equals(key)) {
             values.add(wrapPseudoValue(sc, "ME_AND_SUBORDINATED"));
             return true;
         }
-        if (I_AND_MANAGER.equals(key)) {
+        if (FilterConstants.I_AND_MANAGER.equals(key)) {
             values.add(wrapPseudoValue(sc, "ME_AND_MANAGER"));
             return true;
         }
-        if (I_AND_MANAGERS.equals(key)) {
+        if (FilterConstants.I_AND_MANAGERS.equals(key)) {
             values.add(wrapPseudoValue(sc, "ME_AND_MANAGERS"));
             return true;
         }
@@ -467,7 +465,8 @@ public class TaskFilterViewAction extends TSDispatchAction {
 
     private static void printListHtml(SessionContext sc, FieldMap map, FValue flthm, List<String> values, List<Pair> prop, List<String> display, List<FieldMap> sort) throws GranException {
         String prefix = flthm.getPrefix(map.getFilterKey());
-        StringBuffer fd = new StringBuffer(200);
+        // L3: Use StringBuilder instead of StringBuffer (single-threaded context)
+        StringBuilder fd = new StringBuilder(200);
         if (flthm.hasListValue(FValue.DISPLAY, map.getFilterKey())) {
             display.add(I18n.getString(sc, map.getAltKey()));
         }

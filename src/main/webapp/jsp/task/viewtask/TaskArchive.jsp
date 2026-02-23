@@ -187,11 +187,11 @@
                                 <c:when test="${fn:indexOf(mstatus.action,'/')>0}">
                                     <c:set var="menuGroup" value="${fn:substringBefore(mstatus.action,'/')}"/>
                                     <script type="text/javascript">
-                                        if (!mstatusMenu['${menuGroup}']) {
-                                            mstatusMenu['${menuGroup}'] = new TSMenu();
-                                            mstatusMenu['${menuGroup}'].width = 320;
+                                        if (!mstatusMenu['${fn:escapeXml(menuGroup)}']) {
+                                            mstatusMenu['${fn:escapeXml(menuGroup)}'] = new TSMenu();
+                                            mstatusMenu['${fn:escapeXml(menuGroup)}'].width = 320;
                                         }
-                                        mstatusMenu['${menuGroup}'].add(new TSMenuItem("<c:out value="${fn:substringAfter(mstatus.action,'/')}"/>", "${contextPath}/MessageCreateAction.do?method=page&id=${id}&mstatus=${mstatus.id}", false, false, "<c:out value="${contextPath}"/>${ImageServlet}/cssimages/ico.messagetypes.gif", "", ""));
+                                        mstatusMenu['${fn:escapeXml(menuGroup)}'].add(new TSMenuItem("<c:out value="${fn:substringAfter(mstatus.action,'/')}"/>", "${contextPath}/MessageCreateAction.do?method=page&id=${id}&mstatus=${mstatus.id}", false, false, "<c:out value="${contextPath}"/>${ImageServlet}/cssimages/ico.messagetypes.gif", "", ""));
                                     </script>
                                 </c:when>
 
@@ -230,11 +230,11 @@
                                 <c:when test="${fn:indexOf(mstatus.action,'/')>0}">
                                     <c:set var="menuGroup" value="${fn:substringBefore(mstatus.action,'/')}"/>
                                     <script type="text/javascript">
-                                        if (!mstatusMenu['${menuGroup}']) {
-                                            mstatusMenu['${menuGroup}'] = new TSMenu();
-                                            mstatusMenu['${menuGroup}'].width = 320;
+                                        if (!mstatusMenu['${fn:escapeXml(menuGroup)}']) {
+                                            mstatusMenu['${fn:escapeXml(menuGroup)}'] = new TSMenu();
+                                            mstatusMenu['${fn:escapeXml(menuGroup)}'].width = 320;
                                         }
-                                        mstatusMenu['${menuGroup}'].add(new TSMenuItem("<c:out value="${fn:substringAfter(mstatus.action,'/')}"/>", "javascript:document.getElementById('formMethod').value='page'; document.getElementById('formMstatus').value='${mstatus.id}'; document.getElementById('messageCreateActionForm').submit();", false, false, "<c:out value="${contextPath}"/>${ImageServlet}/cssimages/ico.messagetypes.gif", "", ""));
+                                        mstatusMenu['${fn:escapeXml(menuGroup)}'].add(new TSMenuItem("<c:out value="${fn:substringAfter(mstatus.action,'/')}"/>", "javascript:document.getElementById('formMethod').value='page'; document.getElementById('formMstatus').value='${mstatus.id}'; document.getElementById('messageCreateActionForm').submit();", false, false, "<c:out value="${contextPath}"/>${ImageServlet}/cssimages/ico.messagetypes.gif", "", ""));
                                     </script>
                                 </c:when>
 
@@ -453,7 +453,7 @@
                                 </th>
                                 <td class="nowrap statetracking">
                                     <c:set var="hintUser" value="${archive.submitterLogin} email:${archive.submitterEmail} ${archive.submitterTel}"/>
-                                    <span title="${hintUser}" class="user" ${archive.submitterId eq sc.userId ? "id='loggedUser'" : ""}>
+                                    <span title="<c:out value="${hintUser}" escapeXml="true"/>" class="user" ${archive.submitterId eq sc.userId ? "id='loggedUser'" : ""}>
                     <html:img styleClass="icon" border="0"
                               src="${contextPath}${ImageServlet}/cssimages/${archive.submitterActive ? 'arw.usr.a.gif' : 'arw.usr.gif'}"/>
                     <c:out value="${archive.submitterName}" escapeXml="true"/>
@@ -496,7 +496,7 @@
                                         <c:when test="${archive.handlerUserId ne null}">
                                             <c:set var="hintUser"
                                                    value="${archive.handlerUserLogin} email:${archive.handlerUserEmail} ${archive.handlerUserTel}"/>
-                                            <span title="${hintUser}" class="user" ${archive.handlerUserId eq sc.userId ? "id='loggedUser'" : ""}>
+                                            <span title="<c:out value="${hintUser}" escapeXml="true"/>" class="user" ${archive.handlerUserId eq sc.userId ? "id='loggedUser'" : ""}>
                         <html:img styleClass="icon" border="0"
                                   src="${contextPath}${ImageServlet}/cssimages/${archive.handlerUserActive ? 'arw.usr.a.gif' : 'arw.usr.gif'}"/>
                         <c:out value="${archive.handlerUserName}" escapeXml="true"/>

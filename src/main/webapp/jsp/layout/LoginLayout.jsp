@@ -17,9 +17,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="content-type" content="text/html; charset=<c:out value="${charSet}"/>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- L9: Removed Google Fonts CDN for GDPR and offline support. Inter font will use system fallback -->
     <c:set var="urlHtml" value="html"/>
     <ts:css request="${request}">
         <ts:cssLink link="style_tokens.css"/>
@@ -87,7 +85,7 @@
                 <div class="indent">
                     <html:messages id="error" message="true" property="msg">
                         <span class="ts-login-error">
-                            <c:out value="${error}" escapeXml="false"/>
+                            <c:out value="${error}"/>
                         </span>
                     </html:messages>
                     <tiles:get name="form"/>

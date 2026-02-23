@@ -14,6 +14,7 @@ import org.apache.commons.logging.LogFactory;
 import com.trackstudio.action.GeneralAction;
 import com.trackstudio.app.adapter.AdapterManager;
 import com.trackstudio.app.filter.FValue;
+import com.trackstudio.app.filter.FilterConstants;
 import com.trackstudio.app.filter.TaskFValue;
 import com.trackstudio.app.session.SessionContext;
 import com.trackstudio.common.FieldMap;
@@ -39,12 +40,9 @@ import net.jcip.annotations.NotThreadSafe;
 public class ListCustomizer extends Customizer implements Serializable{
 
     private static Log log = LogFactory.getLog(ListCustomizer.class);
-    private static final String CURRENT_USER_ID = "CurrentUserID";
-    private static final String I_AND_SUB_USERS = "IandSubUsers";
-    private static final String I_AND_MANAGER = "IandManager";
-    private static final String I_AND_MANAGERS = "IandManagers";
-    private static final String GROUP_PREFIX = "GROUP_";
-    private static final String NONE_KEY = "null";
+    // L4: Moved constants to FilterConstants to avoid duplication
+    private static final String GROUP_PREFIX = FilterConstants.GROUP_PREFIX;
+    private static final String NONE_KEY = FilterConstants.NONE_KEY;
     /**
      * Константа равенства списка
      */
@@ -341,7 +339,7 @@ public class ListCustomizer extends Customizer implements Serializable{
         if (key == null || key.length() == 0 || key.equals("0") || key.equals(NONE_KEY) || key.startsWith(GROUP_PREFIX)) {
             return false;
         }
-        if (CURRENT_USER_ID.equals(key) || I_AND_SUB_USERS.equals(key) || I_AND_MANAGER.equals(key) || I_AND_MANAGERS.equals(key)) {
+        if (FilterConstants.CURRENT_USER_ID.equals(key) || FilterConstants.I_AND_SUB_USERS.equals(key) || FilterConstants.I_AND_MANAGER.equals(key) || FilterConstants.I_AND_MANAGERS.equals(key)) {
             return false;
         }
         String filterKey = map.getFilterKey();
@@ -368,10 +366,10 @@ public class ListCustomizer extends Customizer implements Serializable{
     }
 
     private boolean hasUserTokensInMap() {
-        return items.containsKey(CURRENT_USER_ID)
-                || items.containsKey(I_AND_SUB_USERS)
-                || items.containsKey(I_AND_MANAGER)
-                || items.containsKey(I_AND_MANAGERS)
+        return items.containsKey(FilterConstants.CURRENT_USER_ID)
+                || items.containsKey(FilterConstants.I_AND_SUB_USERS)
+                || items.containsKey(FilterConstants.I_AND_MANAGER)
+                || items.containsKey(FilterConstants.I_AND_MANAGERS)
                 || containsGroupKeys();
     }
 

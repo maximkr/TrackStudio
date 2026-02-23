@@ -21,7 +21,7 @@
         <ts:jsLink link="${urlHtml}/validate.js"/>
         <ts:jsLink link="${urlHtml}/quickSelect.js"/>
         <ts:jsLink link="${urlHtml}/tsmenu/tsmenu.js"/>
-	    <ts:jsLink link="${urlHtml}/jquery/jquery-1.11.2.min.js"/>
+	    <ts:jsLink link="${urlHtml}/jquery/jquery-4.0.0.min.js"/>
 	    <ts:jsLink link="${urlHtml}/jquery/jquery-ui.min.js"/>
     </ts:js>
 

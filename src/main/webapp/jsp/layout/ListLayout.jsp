@@ -23,9 +23,7 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta http-equiv="content-type" content="text/html; charset=<c:out value="${charSet}"/>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- L9: Removed Google Fonts CDN for GDPR and offline support. Inter font will use system fallback -->
 <title>${originTitle}</title>
 
 <style type="text/css">
@@ -156,7 +154,7 @@
 </script>
 <!--    -->
 <ts:js request="${request}" response="${response}">
-	<ts:jsLink link="${urlHtml}/jquery/jquery-1.11.2.min.js"/>
+	<ts:jsLink link="${urlHtml}/jquery/jquery-4.0.0.min.js"/>
 	<ts:jsLink link="${urlHtml}/jquery/jquery-ui.min.js"/>
     <ts:jsLink link="${urlHtml}/jquery/jquery.form.js"/>
     <ts:jsLink link="${urlHtml}/tsmenu/tsmenu.js"/>
@@ -244,7 +242,7 @@
             </caption>
             <tr class="line0">
                 <td>
-                    <c:out value="${error}" escapeXml="false"/>
+                    <c:out value="${error}"/>
                 </td>
             </tr>
         </table>

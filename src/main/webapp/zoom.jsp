@@ -2,7 +2,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>TrackStudio</title>
-        <script type="text/javascript" src="<%=request.getContextPath()%>/html/jquery/jquery-1.11.2.min.js" ></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/html/jquery/jquery-4.0.0.min.js" ></script>
         <script type="text/javascript" src="<%=request.getContextPath()%>/html/jquery/jquery-ui.js" ></script>
         <script type="text/javascript" src="<%=request.getContextPath()%>/html/jquery/jquery.mousewheel.js" ></script>
         <script type="text/javascript" src="<%=request.getContextPath()%>/html/jquery/jquery.iviewer.js" ></script>

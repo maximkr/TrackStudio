@@ -12,9 +12,7 @@
 	<title>TrackStudio</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta http-equiv="content-type" content="text/html; charset=${encoding}">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<!-- L9: Removed Google Fonts CDN for GDPR and offline support. Inter font will use system fallback -->
 
 	<script src="${contextPath}/html/fancytree-2.38.6/lib/jquery.js" type="text/javascript"></script>
 	<script src="${contextPath}/html/fancytree-2.38.6/lib/jquery-ui.custom.js" type="text/javascript"></script>
@@ -29,7 +27,7 @@
 			box-sizing: border-box;
 		}
 		/* Remove all focus outlines inside the tree (role=button expanders, container, etc.) */
-		body *:focus, body *:focus-visible { outline: none !important; }
+		/* L2: Removed outline: none to preserve keyboard accessibility */
 		/* Active node: bold text only, no background box */
 		.fancytree-active .fancytree-title {
 			color: #1a5a80;

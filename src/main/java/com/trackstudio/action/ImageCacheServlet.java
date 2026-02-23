@@ -78,7 +78,7 @@ public class ImageCacheServlet extends HttpServlet {
             path = path.substring(0, k);
         }
         if (isModernizedLegacyIcon(path)) {
-            writeModernIcon(response, path);
+            writeModernIcon(request, response, path);
             return;
         }
         ServletContext context = getServletContext();
@@ -101,8 +101,9 @@ public class ImageCacheServlet extends HttpServlet {
                 in = new BufferedInputStream(new FileInputStream(file));
                 response.setContentLength((int) file.length());
                 byte[] b = new byte[1024];
-                while (in.read(b) != -1) {
-                    out.write(b);
+                int n;
+                while ((n = in.read(b)) != -1) {
+                    out.write(b, 0, n);
                 }
             }
 
@@ -158,13 +159,21 @@ public class ImageCacheServlet extends HttpServlet {
         return false;
     }
 
-    private void writeModernIcon(HttpServletResponse response, String path) throws IOException {
+    private void writeModernIcon(HttpServletRequest request, HttpServletResponse response, String path) throws IOException {
         response.setContentType("image/svg+xml");
         String svg = buildIconSvg(path);
         byte[] bytes = svg.getBytes(StandardCharsets.UTF_8);
+        // L10: Add ETag for SVG caching
+        String etag = "\"" + Integer.toHexString(svg.hashCode()) + "\"";
+        response.setHeader("ETag", etag);
+        if (etag.equals(request.getHeader("If-None-Match"))) {
+            response.setStatus(304);
+            return;
+        }
         response.setContentLength(bytes.length);
         OutputStream out = response.getOutputStream();
         out.write(bytes);
+        out.flush();
     }
 
     private String buildIconSvg(String path) {

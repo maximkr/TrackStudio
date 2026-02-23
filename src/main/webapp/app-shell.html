@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>TrackStudio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- L9: Removed Google Fonts CDN for GDPR and offline support. Inter font will use system fallback -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <link rel="icon" href="favicon.png" type="image/png"/>
     <link rel="stylesheet" href="style_tokens.css"/>
@@ -16,15 +14,18 @@
 <body>
     <div class="ts-shell" id="tsShell">
         <aside class="ts-sidebar" id="tsSidebar">
+            <!-- M9: Added title for accessibility -->
             <iframe id="tsSidebarFrame" src="TreeLoaderAction.do?method=init"
-                    class="ts-sidebar__frame"></iframe>
+                    class="ts-sidebar__frame" title="Navigation sidebar"></iframe>
         </aside>
-        <div class="ts-sidebar-toggle" id="tsSidebarToggle" title="Toggle sidebar">
+        <div class="ts-sidebar-toggle" id="tsSidebarToggle" title="Toggle sidebar"
+             role="button" tabindex="0" aria-label="Toggle navigation sidebar">
             <span class="ts-sidebar-toggle__icon">&#x276E;</span>
         </div>
         <main class="ts-main" id="tsMain">
+            <!-- M9: Added title for accessibility -->
             <iframe id="tsContent" name="mainFrame" src="TaskAction.do"
-                    class="ts-main__frame"></iframe>
+                    class="ts-main__frame" title="Main content"></iframe>
         </main>
     </div>
     <script src="app-shell.js"></script>

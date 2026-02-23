@@ -230,7 +230,15 @@
         }
 
         update();
-        setInterval(update, 60000);
+        // H7: Store interval ID for cleanup to prevent memory leaks
+        var updateIntervalId = setInterval(update, 60000);
+        
+        // Cleanup interval on page unload to prevent memory leaks in iframe navigation
+        if (window.addEventListener) {
+            window.addEventListener('beforeunload', function() {
+                clearInterval(updateIntervalId);
+            });
+        }
     }
 
     function initPriorityColors() {

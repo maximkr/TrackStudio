@@ -197,7 +197,8 @@ public class UserFilterViewAction extends TSDispatchAction {
     }
 
     public static void printString(SessionContext sc, FieldMap map, FValue flthm, ArrayList<Pair> prop, ArrayList<String> display, ArrayList<FieldMap> sort) throws GranException {
-        StringBuffer fd = new StringBuffer(200);
+        // R2: Use StringBuilder instead of StringBuffer (single-threaded context)
+        StringBuilder fd = new StringBuilder(200);
         if (flthm.hasListValue(FValue.DISPLAY, map.getFilterKey())) {
             display.add(I18n.getString(sc, map.getAltKey()));
             if (flthm.getSortOrder().toString().indexOf(map.getFieldKey()) > -1)
@@ -228,7 +229,8 @@ public class UserFilterViewAction extends TSDispatchAction {
     }
 
     public static void printQuantity(SessionContext sc, FieldMap map, FValue flthm, ArrayList<Pair> prop, ArrayList<String> display, ArrayList<FieldMap> sort) throws GranException {
-        StringBuffer fd = new StringBuffer(200);
+        // R2: Use StringBuilder instead of StringBuffer (single-threaded context)
+        StringBuilder fd = new StringBuilder(200);
         if (flthm.hasListValue(FValue.DISPLAY, map.getFilterKey())) {
             display.add(I18n.getString(sc, map.getAltKey()));
             if (flthm.getSortOrder().indexOf(map.getFieldKey()) > -1)
@@ -281,7 +283,8 @@ public class UserFilterViewAction extends TSDispatchAction {
     }
 
     public static void printNumber(SessionContext sc, FieldMap map, FValue flthm, ArrayList<Pair> prop, ArrayList<String> display, ArrayList<FieldMap> sort) throws GranException {
-        StringBuffer fd = new StringBuffer(200);
+        // R2: Use StringBuilder instead of StringBuffer (single-threaded context)
+        StringBuilder fd = new StringBuilder(200);
         if (flthm.hasListValue(FValue.DISPLAY, map.getFilterKey())) {
             display.add(I18n.getString(sc, map.getAltKey()));
             if (flthm.getSortOrder().toString().indexOf(map.getFieldKey()) > -1)
@@ -323,15 +326,15 @@ public class UserFilterViewAction extends TSDispatchAction {
     public static void printList(SessionContext sc, FieldMap map, FValue flthm, List values, List<Pair> prop, List<String> display, List<FieldMap> sort) throws GranException {
 
         String prefix = flthm.getPrefix(map.getFilterKey());
-        StringBuffer fd = new StringBuffer(200);
+        // R2: Use StringBuilder instead of StringBuffer (single-threaded context)
+        StringBuilder fd = new StringBuilder(200);
         if (flthm.hasListValue(FValue.DISPLAY, map.getFilterKey())) {
             display.add(I18n.getString(sc, map.getAltKey()));
-            if (flthm.getSortOrder().toString().indexOf(map.getFieldKey()) > -1)
-                sort.add(map);
         }
-
-        if (flthm.getSortOrder().indexOf(map.getFieldKey()) > -1)
+        // H6: Fix duplicate sort.add — check sortOrder only once
+        if (flthm.getSortOrder().indexOf(map.getFieldKey()) > -1) {
             sort.add(map);
+        }
         if (values != null && !values.isEmpty()) {
 
             if (prefix.equals(FValue.SUB)) {
@@ -353,7 +356,8 @@ public class UserFilterViewAction extends TSDispatchAction {
     }
 
     public static void printDate(SessionContext sc, FieldMap map, FValue flthm, ArrayList<Pair> prop, ArrayList<String> display, ArrayList<FieldMap> sort) throws GranException {
-        StringBuffer fd = new StringBuffer(200);
+        // R2: Use StringBuilder instead of StringBuffer (single-threaded context)
+        StringBuilder fd = new StringBuilder(200);
         if (flthm.hasListValue(FValue.DISPLAY, map.getFilterKey())) {
             display.add(I18n.getString(sc, map.getAltKey()));
             if (flthm.getSortOrder().toString().indexOf(map.getFieldKey()) > -1)
@@ -517,7 +521,8 @@ public class UserFilterViewAction extends TSDispatchAction {
 
     public static void checkbox(SessionContext sc, FieldMap map, FValue flthm, ArrayList<Pair> prop, String context) throws GranException {
         if ("1".equals(flthm.getAsString(map.getFilterKey()))) {
-            StringBuffer fd = new StringBuffer(200);
+            // R2: Use StringBuilder instead of StringBuffer (single-threaded context)
+            StringBuilder fd = new StringBuilder(200);
             fd.append("<img src=\"").append(context).append("/ImageServlet/").append(GeneralAction.SERVLET_KEY).append("/cssimages/ico.checked.gif\"/>");
             prop.add(new Pair(I18n.getString(sc, map.getAltKey()), fd.toString(), map.getFilterKey()));
         }

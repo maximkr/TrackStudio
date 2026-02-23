@@ -184,7 +184,7 @@ LoginLayout.jsp (шаблон)
 
 ```jsp
 <ts:js request="${request}" response="${response}">
-    <ts:jsLink link="${urlHtml}/jquery/jquery-1.11.2.min.js"/>
+    <ts:jsLink link="${urlHtml}/jquery/jquery-4.0.0.min.js"/>
     <ts:jsLink link="${urlHtml}/tsmenu/tsmenu.js"/>
     ...
 </ts:js>
@@ -1384,7 +1384,7 @@ TSDialog.confirm("Удалить задачу #123?", function(confirmed) {
 4. Убрать jQuery Migrate
 
 **Файлы:**
-- `src/main/webapp/html/jquery/jquery-1.11.2.min.js` → заменить на jQuery 3.7.1
+- `src/main/webapp/html/jquery/jquery-4.0.0.min.js` → jQuery 4.0.0
 - `src/main/webapp/html/jquery/jquery-ui.min.js` → обновить до совместимой версии
 - `src/main/webapp/html/fancytree-2.31.0/lib/jquery.js` → обновить (дерево грузит свой jQuery!)
 

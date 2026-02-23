@@ -193,7 +193,8 @@
             wrapper.classList.add("ts-dialog-quick-danger");
         }
         var body = createElement("div", "ts-dialog-quick-body", wrapper);
-        body.innerHTML = message;
+        // C1: XSS fix — use textContent instead of innerHTML to prevent XSS
+        body.textContent = message;
 
         var footer = createElement("div", "ts-dialog-buttons", wrapper);
 

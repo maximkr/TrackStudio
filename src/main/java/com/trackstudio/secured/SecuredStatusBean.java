@@ -7,6 +7,7 @@ import com.trackstudio.model.Status;
 import com.trackstudio.soap.bean.StatusBean;
 import com.trackstudio.tools.Null;
 import com.trackstudio.tools.PropertyContainer;
+import com.trackstudio.tools.textfilter.MacrosUtil;
 
 import net.jcip.annotations.Immutable;
 
@@ -39,8 +40,14 @@ public class SecuredStatusBean extends Secured implements Comparable {
         return isSecondaryStart;
     }
 
+    /**
+     * Returns validated color value safe for CSS injection.
+     * Validates against hex colors (#RGB, #RRGGBB, #RGBA, #RRGGBBAA) and rgb() formats.
+     * @return validated color or "transparent" if invalid
+     */
     public String getColor() {
-        return color.toUpperCase();
+        // R1: Use MacrosUtil.validateColor() to avoid duplication, add toUpperCase() for backward compatibility
+        return MacrosUtil.validateColor(color).toUpperCase();
     }
 
     public String getEncodeColor() {

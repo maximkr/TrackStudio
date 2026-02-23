@@ -1,80 +1,7 @@
 var altGrFix = true;
 
-function constExpression(x) {
-    return x;
-}
-
-function simplifyCSSExpression() {
-    try {
-        var ss,sl;
-        ss = document.styleSheets;
-        sl = ss.length
-
-        for (var i = 0; i < sl; i++) {
-            simplifyCSSBlock(ss[i]);
-        }
-    }
-    catch (e) {
-        //		alert("Got an error while processing css. The page should still work but might be a bit slower");
-        //		throw exc;
-    }
-}
-
-function simplifyCSSBlock(ss) {
-    var rs, rl;
-
-    for (var i = 0; i < ss.imports.length; i++)
-        simplifyCSSBlock(ss.imports[i]);
-
-    if (ss.cssText != null && ss.cssText.indexOf("expression(constExpression(") == -1)
-        return;
-
-    rs = ss.rules;
-    rl = rs.length;
-    for (var j = 0; j < rl; j++)
-        simplifyCSSRule(rs[j]);
-
-}
-
-function simplifyCSSRule(r) {
-    var str = r.style.cssText;
-    var str2 = str;
-    var lastStr;
-    do {
-        lastStr = str2;
-        str2 = simplifyCSSRuleHelper(lastStr);
-    } while (str2 != lastStr)
-
-    if (str2 != str)
-        r.style.cssText = str2;
-}
-
-function simplifyCSSRuleHelper(str) {
-    var i, i2;
-    i = str.indexOf("expression(constExpression(");
-    if (i == -1) return str;
-    i2 = str.indexOf("))", i);
-    var hd = str.substring(0, i);
-    var tl = str.substring(i2 + 2);
-    var exp = str.substring(i + 27, i2);
-    var val = eval(exp);
-    return hd + val + tl;
-}
-
-function removeExpressions() {
-    var all = document.all;
-    var l = all.length;
-    for (var i = 0; i < l; i++) {
-        simplifyCSSRule(all[i]);
-    }
-}
-
-if (/msie/i.test(navigator.userAgent) && window.attachEvent != null) {
-    window.attachEvent("onload", function () {
-        simplifyCSSExpression();
-        removeExpressions();
-    });
-}
+// L11: Removed legacy IE5 CSS expressions code (simplifyCSSExpression, removeExpressions, etc.)
+// IE5 is no longer supported; modern browsers do not use CSS expressions
 
 var ts_menu_keymap = new Array();
 var ts_menu_ua = navigator.userAgent;
@@ -136,9 +63,13 @@ var TSMenuHandler = {
 
             if (tsMenuShowTime <= 0)
                 this._over(jsItem);
-            else
-            // I hate IE5.0 because the piece of shit crashes when using setTimeout with a function object
-                this.showTimeout = window.setTimeout("TSMenuHandler._over(TSMenuHandler.all['" + jsItem.id + "'])", tsMenuShowTime);
+            else {
+                // H8: Use closure instead of string for CSP compliance
+                var itemId = jsItem.id;
+                this.showTimeout = window.setTimeout(function() {
+                    TSMenuHandler._over(TSMenuHandler.all[itemId]);
+                }, tsMenuShowTime);
+            }
             var root = jsItem;
             var m;
             if (root instanceof TSMenuBut)
@@ -169,13 +100,22 @@ var TSMenuHandler = {
             if (jsItem == null)return;
             if (tsMenuHideTime <= 0)
                 this._out(jsItem);
-            else
-                this.hideTimeout = window.setTimeout("TSMenuHandler._out(TSMenuHandler.all['" + jsItem.id + "'])", tsMenuHideTime);
+            else {
+                // H8: Use closure instead of string for CSP compliance
+                var itemId = jsItem.id;
+                this.hideTimeout = window.setTimeout(function() {
+                    TSMenuHandler._out(TSMenuHandler.all[itemId]);
+                }, tsMenuHideTime);
+            }
         }
         // if (overed == jsItem.id) overed=null;
     },
     blurMenu        :    function (oMenuItem) {
-        window.setTimeout("TSMenuHandler.all[\"" + oMenuItem.id + "\"].subMenu.hide();", tsMenuHideTime);
+        // H8: Use closure instead of string for CSP compliance
+        var menuItemId = oMenuItem.id;
+        window.setTimeout(function() {
+            TSMenuHandler.all[menuItemId].subMenu.hide();
+        }, tsMenuHideTime);
     },
     _over    :    function (jsItem) {
         if (jsItem == null)return;
@@ -206,7 +146,11 @@ var TSMenuHandler = {
         if (this.hideTimeout != null)
             window.clearTimeout(this.hideTimeout);
 
-        this.hideTimeout = window.setTimeout("TSMenuHandler.all['" + menu.id + "'].hide()", tsMenuHideTime);
+        // H8: Use closure instead of string for CSP compliance
+        var menuId = menu.id;
+        this.hideTimeout = window.setTimeout(function() {
+            TSMenuHandler.all[menuId].hide();
+        }, tsMenuHideTime);
     },
     showMenu    :    function (menu, src, dir) {
         if (this.showTimeout != null)

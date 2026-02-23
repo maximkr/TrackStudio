@@ -183,11 +183,11 @@
                             <c:when test="${fn:indexOf(mstatus.action,'/')>0}">
                                 <c:set var="menuGroup" value="${fn:substringBefore(mstatus.action,'/')}"/>
                                 <script type="text/javascript">
-                                    if (!taskWorkflowMenu['${menuGroup}']) {
-                                        taskWorkflowMenu['${menuGroup}'] = new TSMenu();
-                                        taskWorkflowMenu['${menuGroup}'].width = 320;
+                                    if (!taskWorkflowMenu['${fn:escapeXml(menuGroup)}']) {
+                                        taskWorkflowMenu['${fn:escapeXml(menuGroup)}'] = new TSMenu();
+                                        taskWorkflowMenu['${fn:escapeXml(menuGroup)}'].width = 320;
                                     }
-                                    taskWorkflowMenu['${menuGroup}'].add(new TSMenuItem("<c:out value="${fn:substringAfter(mstatus.action,'/')}"/>", "${contextPath}/MessageCreateAction.do?method=page&id=${id}&mstatus=${mstatus.id}", false, false, "<c:out value="${contextPath}"/>${ImageServlet}/cssimages/ico.messagetypes.gif", "", ""));
+                                    taskWorkflowMenu['${fn:escapeXml(menuGroup)}'].add(new TSMenuItem("<c:out value="${fn:substringAfter(mstatus.action,'/')}"/>", "${contextPath}/MessageCreateAction.do?method=page&id=${id}&mstatus=${mstatus.id}", false, false, "<c:out value="${contextPath}"/>${ImageServlet}/cssimages/ico.messagetypes.gif", "", ""));
                                 </script>
                             </c:when>
                             <c:otherwise>
@@ -225,11 +225,11 @@
                             <c:when test="${fn:indexOf(mstatus.action,'/')>0}">
                                 <c:set var="menuGroup" value="${fn:substringBefore(mstatus.action,'/')}"/>
                                 <script type="text/javascript">
-                                    if (!taskWorkflowMenu['${menuGroup}']) {
-                                        taskWorkflowMenu['${menuGroup}'] = new TSMenu();
-                                        taskWorkflowMenu['${menuGroup}'].width = 320;
+                                    if (!taskWorkflowMenu['${fn:escapeXml(menuGroup)}']) {
+                                        taskWorkflowMenu['${fn:escapeXml(menuGroup)}'] = new TSMenu();
+                                        taskWorkflowMenu['${fn:escapeXml(menuGroup)}'].width = 320;
                                     }
-                                    taskWorkflowMenu['${menuGroup}'].add(new TSMenuItem("<c:out value="${fn:substringAfter(mstatus.action,'/')}"/>", "javascript:document.getElementById('formMethod').value='page'; document.getElementById('formMstatus').value='${mstatus.id}'; document.getElementById('messageCreateActionForm').submit();", false, false, "<c:out value="${contextPath}"/>${ImageServlet}/cssimages/ico.messagetypes.gif", "", ""));
+                                    taskWorkflowMenu['${fn:escapeXml(menuGroup)}'].add(new TSMenuItem("<c:out value="${fn:substringAfter(mstatus.action,'/')}"/>", "javascript:document.getElementById('formMethod').value='page'; document.getElementById('formMstatus').value='${mstatus.id}'; document.getElementById('messageCreateActionForm').submit();", false, false, "<c:out value="${contextPath}"/>${ImageServlet}/cssimages/ico.messagetypes.gif", "", ""));
                                 </script>
                             </c:when>
                             <c:otherwise>
@@ -375,7 +375,7 @@
         <tr class="ts-task-property-value-row">
             <td>
                 <c:set var="hintUser" value="${tci.submitter.login} email:${tci.submitter.email} ${tci.submitter.tel}"/>
-                <span title="${hintUser}" class="user" ${tci.submitterId eq sc.userId ? "id='loggedUser'" : ""}>
+                <span title="<c:out value="${hintUser}" escapeXml="true"/>" class="user" ${tci.submitterId eq sc.userId ? "id='loggedUser'" : ""}>
                     <html:img styleClass="icon" border="0" src="${contextPath}${ImageServlet}/cssimages/${tci.submitter.active ? 'arw.usr.a.gif' : 'arw.usr.gif'}"/>
                     <c:out value="${tci.submitter.name}" escapeXml="true"/>
                 </span>
@@ -390,7 +390,7 @@
             <c:choose>
                 <c:when test="${tci.handlerUserId ne null}">
                     <c:set var="hintUser" value="${tci.handlerUser.login} email:${tci.handlerUser.email} ${tci.handlerUser.tel}"/>
-                    <span title="${hintUser}" class="user" ${tci.handlerUserId eq sc.userId ? "id='loggedUser'" : ""}>
+                    <span title="<c:out value="${hintUser}" escapeXml="true"/>" class="user" ${tci.handlerUserId eq sc.userId ? "id='loggedUser'" : ""}>
                         <html:img styleClass="icon" border="0" src="${contextPath}${ImageServlet}/cssimages/${tci.handlerUser.active ? 'arw.usr.a.gif' : 'arw.usr.gif'}"/>
                         <c:out value="${tci.handlerUser.name}" escapeXml="true"/>
                     </span>

@@ -24,7 +24,7 @@
         <ts:jsLink link="${urlHtml}/validate.js"/>
         <ts:jsLink link="${urlHtml}/quickSelect.js"/>
         <ts:jsLink link="${urlHtml}/tsmenu/tsmenu.js"/>
-	    <ts:jsLink link="${urlHtml}/jquery/jquery-1.11.2.min.js"/>
+	    <ts:jsLink link="${urlHtml}/jquery/jquery-4.0.0.min.js"/>
 	    <ts:jsLink link="${urlHtml}/jquery/jquery-ui.min.js"/>
     </ts:js>
     <!-- -->
@@ -140,11 +140,11 @@
                 <c:when test="${fn:indexOf(f.name,'/')>0}">
                     <c:set var="menuGroup" value="${fn:substringBefore(f.name,'/')}"/>
                     <script type="text/javascript">
-                        if (!filterMenu['${menuGroup}']) {
-                            filterMenu['${menuGroup}'] = new TSMenu();
-                            filterMenu['${menuGroup}'].width = 320;
+                        if (!filterMenu['${fn:escapeXml(menuGroup)}']) {
+                            filterMenu['${fn:escapeXml(menuGroup)}'] = new TSMenu();
+                            filterMenu['${fn:escapeXml(menuGroup)}'].width = 320;
                         }
-                        filterMenu['${menuGroup}'].add(new TSMenuItem(
+                        filterMenu['${fn:escapeXml(menuGroup)}'].add(new TSMenuItem(
                                 "${fn:substringAfter(f.name,'/')}",
                                 "<c:out value="${contextPath}"/>/TaskSelectAction.do?method=page&amp;id=${id}&amp;filter=${f.id}&amp;udffield=${udffield}&amp;go=true",
                                 false,
@@ -153,7 +153,7 @@
                                 null,
                                 '<c:out value="${f.htmlDesc}" escapeXml="true"/>'));
                         <c:if test="${f.id eq filter.id}">
-                        filterMenu['${menuGroup}'].selected = true;
+                        filterMenu['${fn:escapeXml(menuGroup)}'].selected = true;
                         </c:if>
                     </script>
                 </c:when>

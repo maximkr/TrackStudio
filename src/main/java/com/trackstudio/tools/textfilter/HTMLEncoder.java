@@ -369,4 +369,57 @@ public class HTMLEncoder {
     public static String nl2br(String origin) {
         return origin.replaceAll("\n", "<br>");
     }
+
+    /**
+     * Escapes a string for safe use in JavaScript string literals.
+     * Escapes backslashes, quotes, newlines, carriage returns, tabs, and line separators.
+     *
+     * @param str the string to escape
+     * @return the escaped string safe for use in JavaScript
+     */
+    public static String escapeJavaScript(String str) {
+        if (str == null) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder(str.length() + 16);
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            switch (c) {
+                case '\\':
+                    sb.append("\\\\");
+                    break;
+                case '"':
+                    sb.append("\\\"");
+                    break;
+                case '\'':
+                    sb.append("\\'");
+                    break;
+                case '\n':
+                    sb.append("\\n");
+                    break;
+                case '\r':
+                    sb.append("\\r");
+                    break;
+                case '\t':
+                    sb.append("\\t");
+                    break;
+                case '/':
+                    sb.append("\\/");
+                    break;
+                case '<':
+                    sb.append("\\u003C");
+                    break;
+                case '>':
+                    sb.append("\\u003E");
+                    break;
+                case '&':
+                    sb.append("\\u0026");
+                    break;
+                default:
+                    sb.append(c);
+                    break;
+            }
+        }
+        return sb.toString();
+    }
 }

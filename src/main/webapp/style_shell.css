@@ -9,6 +9,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+
 .ts-shell {
     display: grid;
     /* columns set via inline style by app-shell.js */
@@ -38,7 +39,7 @@ body {
     justify-content: center;
     width: 6px;
     cursor: col-resize;
-    background: var(--ts-surface-muted, #F0F2F5);
+    background: var(--ts-border, #E2E8F0);
     border-right: 1px solid var(--ts-border, #E2E8F0);
     user-select: none;
     transition: background 0.2s ease;
@@ -47,7 +48,7 @@ body {
 
 .ts-sidebar-toggle:hover,
 .ts-sidebar-toggle.dragging {
-    background: var(--ts-primary-soft, #E8F4FD);
+    background: color-mix(in srgb, var(--ts-primary-soft, #E8F4FD) 55%, var(--ts-surface, #ffffff));
 }
 
 .ts-sidebar-toggle__icon {
@@ -90,4 +91,89 @@ body {
 /* Prevent iframe from capturing mouse events during drag */
 .ts-shell.resizing iframe {
     pointer-events: none;
+}
+
+
+/* ── Phase 9: Responsive Design ──────────────────────────── */
+
+/* Sidebar overlay backdrop */
+.ts-sidebar-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: calc(var(--ts-z-sidebar, 100) - 1);
+    opacity: 0;
+    transition: opacity var(--ts-transition-slow, 0.3s ease);
+}
+.ts-sidebar-backdrop.visible {
+    opacity: 1;
+}
+
+/* Tablet: sidebar becomes a fixed overlay */
+@media (max-width: 1199px) {
+    .ts-shell {
+        grid-template-columns: 0px 0px 1fr !important;
+    }
+
+    .ts-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: var(--ts-sidebar-width, 260px);
+        z-index: var(--ts-z-sidebar, 100);
+        transform: translateX(-100%);
+        transition: transform var(--ts-transition-slow, 0.3s ease);
+        border-right: 1px solid var(--ts-border, #E2E8F0);
+        background: var(--ts-surface, #ffffff);
+    }
+
+    .ts-shell:not(.sidebar-collapsed) .ts-sidebar {
+        transform: translateX(0);
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+        visibility: visible;
+    }
+
+    .ts-shell:not(.sidebar-collapsed) .ts-sidebar-backdrop {
+        display: block;
+    }
+
+    /* Toggle handle becomes a hamburger button */
+    .ts-sidebar-toggle {
+        position: fixed;
+        top: 8px;
+        left: 8px;
+        width: 36px;
+        height: 36px;
+        z-index: var(--ts-z-header, 200);
+        border-radius: var(--ts-radius-sm, 8px);
+        background: var(--ts-surface, #ffffff);
+        border: 1px solid var(--ts-border, #E2E8F0);
+        box-shadow: var(--ts-shadow-sm, 0 1px 2px rgba(0,0,0,0.05));
+        cursor: pointer;
+    }
+
+    .ts-sidebar-toggle__icon {
+        opacity: 1;
+        font-size: 14px;
+    }
+
+    .sidebar-collapsed .ts-sidebar-toggle__icon {
+        transform: none;
+    }
+}
+
+/* Mobile: additional compactness */
+@media (max-width: 767px) {
+    .ts-sidebar {
+        width: min(280px, 85vw);
+    }
+
+    .ts-sidebar-toggle {
+        top: 4px;
+        left: 4px;
+        width: 32px;
+        height: 32px;
+    }
 }

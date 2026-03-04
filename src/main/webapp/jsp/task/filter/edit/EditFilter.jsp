@@ -16,7 +16,7 @@
     <tiles:put name="tabs" type="string"/>
 
     <tiles:put name="main" type="string">
-<div class="blueborder">
+<div class="blueborder ts-filter-edit">
 <div class="caption"><I18n:message key="FILTER_PROPERTIES_EDIT"/></div>
 <div class="indent">
 <c:set var="urlHtml" value="html"/>

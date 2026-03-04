@@ -34,7 +34,9 @@
             }
 
             function showBookmarkDialogSimple() {
-                showBookmarkDialog('<c:out value="${tci.name}" escapeXml="false"/>', '<c:out value="${tci.id}"/>');
+                var nameEl = document.getElementById('bookmarkTaskName');
+                var taskName = nameEl ? nameEl.textContent : '';
+                showBookmarkDialog(taskName, '<c:out value="${tci.id}"/>');
             }
 
             function showViewDialog() {
@@ -46,41 +48,49 @@
                 pauseTimer('${id}');
             }
         </script>
+        <span id="bookmarkTaskName" style="display:none"><c:out value="${tci.name}"/></span>
         <c:set var="urlHtml" value="html"/>
         <ts:js request="${request}" response="${response}">
             <ts:jsLink link="${urlHtml}/dnd/dnd.js"/>
         </ts:js>
         <c:if test="${canView}">
-            <div class="caption" style="border-color:#FFFFFF; padding-left: 20px; font-size: 20px; background-color:#FFFFFF">
-                <html:link href="javascript:showBookmarkDialogSimple();" style="float:right;padding-top:6px;padding-right:5px;">
-                    <html:img src="${contextPath}${ImageServlet}/cssimages/ico.star.gif" border="0"/>
-                </html:link>
-                <html:link href="javascript:window.print();" style="float:right;padding-top:6px;padding-right:5px;">
-                    <html:img src="${contextPath}${ImageServlet}/cssimages/ico.print.png" border="0"/>
-                </html:link>
-                <c:out value="${tci.name}"/>&nbsp;<html:link href="${contextPath}/task/${tci.number}?thisframe=true" title="#${tci.number}">[#${tci.number}]</html:link>
-                <div style="float:right; padding-right:10px; display: inline;">
-                    <c:if test="${showView}"><a href="#" style=" text-decoration: none;" onclick="javascript:showViewDialog();"><I18n:message key="VIEWS"/></a></c:if>
+            <div class="caption ts-document-caption">
+                <div class="ts-document-caption__title">
+                    <c:out value="${tci.name}"/>&nbsp;<html:link href="${contextPath}/task/${tci.number}?thisframe=true" title="#${tci.number}">[#${tci.number}]</html:link>
+                </div>
+                <div class="ts-document-caption__actions">
                     <c:if test="${canEditTask}">
-                        <input type="button" onclick="document.location = '${contextPath}/TaskEditAction.do?method=page&id=${id}&asView=document';" value="<I18n:message key="EDIT"/>">
+                        <html:link href="${contextPath}/TaskEditAction.do?method=page&id=${id}&asView=document" styleClass="ts-document-action-link">
+                            <html:img src="${contextPath}${ImageServlet}/cssimages/ico.edit.gif" border="0" altKey="EDIT"/>
+                            <I18n:message key="EDIT"/>
+                        </html:link>
                     </c:if>
+                    <html:link href="javascript:showBookmarkDialogSimple();" styleClass="ts-document-action-link">
+                        <html:img src="${contextPath}${ImageServlet}/cssimages/ico.star.gif" border="0"/>
+                        <I18n:message key="BOOKMARKS"/>
+                    </html:link>
+                    <html:link href="javascript:window.print();" styleClass="ts-document-action-link">
+                        <html:img src="${contextPath}${ImageServlet}/cssimages/ico.print.png" border="0"/>
+                        <I18n:message key="PRINT"/>
+                    </html:link>
+                    <c:if test="${showView}"><a href="#" class="ts-document-action-link" onclick="javascript:showViewDialog();"><I18n:message key="VIEWS"/></a></c:if>
                 </div>
             </div>
-            <div>
-                <span class="user" style="padding-left:20px;" ${tci.submitterId eq sc.userId ? "id='loggedUser'" : ""}>
+            <div class="ts-document-meta">
+                <span class="user" ${tci.submitterId eq sc.userId ? "id='loggedUser'" : ""}>
                     <html:img styleClass="icon" border="0" src="${contextPath}${ImageServlet}/cssimages/${tci.submitter.active ? 'arw.usr.a.gif' : 'arw.usr.gif'}"/>
                     <c:out value="${tci.submitter.name}" escapeXml="true"/>,&nbsp;
 	            </span><I18n:formatDate value="${tci.updatedate.time}" type="both" dateStyle="short" timeStyle="short"/>
                 <c:if test="${isHistory}">
                     &nbsp;<html:link href="${contextPath}/MessageDocumentAction.do?method=page&id=${tci.id}"><I18n:message key="HISTORY"/></html:link><br>
                 </c:if>
-                <div style="padding-left:20px;padding-top:20px;">
+                <div class="ts-document-body">
                     <ts:htmlfilter session="${sc.id}" macros="true" audit="false" request="<%=request%>">
                         <c:out value="${tci.description}" escapeXml="false"/>
                     </ts:htmlfilter><br>
                 </div>
                 <c:if test="${!empty attachments}">
-                    <table class="general" style="background-color:#FFFFFF;border-color:#FFFFFF;">
+                    <table class="general ts-document-attachments">
                         <tr>
                             <td>
                                 <c:forEach items="${attachments}" var="ata">

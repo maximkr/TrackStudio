@@ -12,6 +12,7 @@
 	<title>TrackStudio</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta http-equiv="content-type" content="text/html; charset=${encoding}">
+	<meta name="color-scheme" content="light dark">
 	<!-- L9: Removed Google Fonts CDN for GDPR and offline support. Inter font will use system fallback -->
 
 	<script src="${contextPath}/html/fancytree-2.38.6/lib/jquery.js" type="text/javascript"></script>
@@ -273,31 +274,56 @@
 
 <body class="ts-tree-body">
 <script type="text/javascript">
+    /** Phase 10: Update aria-selected and aria-hidden on panel switch (N8 fix) */
+    function tsSwitchPanel(activeId) {
+        var panels = ['panel_1', 'panel_2', 'panel_3'];
+        var tabIds = {
+            'panel_1': ['tab_tasks', 'tab_users', 'tab_bookmarks'],
+            'panel_2': ['tab_tasks', 'tab_users', 'tab_bookmarks'],
+            'panel_3': ['tab_tasks', 'tab_users', 'tab_bookmarks']
+        };
+        
+        for (var i = 0; i < panels.length; i++) {
+            var panel = document.getElementById(panels[i]);
+            if (panel) {
+                var isActive = panels[i] === activeId;
+                panel.setAttribute('aria-hidden', String(!isActive));
+            }
+        }
+        
+        // N8: Update aria-selected on all tab elements
+        var tabs = document.querySelectorAll('[role="tab"]');
+        for (var j = 0; j < tabs.length; j++) {
+            var tab = tabs[j];
+            var controls = tab.getAttribute('aria-controls');
+            tab.setAttribute('aria-selected', String(controls === activeId));
+        }
+    }
 </script>
 
 <ul id="myMenu" class="contextMenu">
     <li class="copy"><a href="#"><I18n:message key="MORE"/></a></li>
     </ul>
 
-<div id="panel_1" style="display: block">
-	<div class="head">
-		<label class="header" for="panel_1" onclick="">
+<div id="panel_1" role="tabpanel" aria-labelledby="tab_tasks" style="display: block">
+	<div class="head" role="tablist">
+		<label class="header" id="tab_tasks" role="tab" tabindex="0" aria-selected="true" aria-controls="panel_1" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
 			<html:img alt="" src="${contextPath}${ImageServlet}/${urlHtml}/xtree/images/taskMGM.gif" style="vertical-align: middle"/>
 			<I18n:message key="BROWSE_TASKS"/>
 		</label>
 	</div>
-	<div id='task_tree' class="content">
+	<div id='task_tree' class="content" aria-label="Task navigation">
 	</div>
 	<div class="foot">
-		<label class="header" for="panel_2"
-		       onclick="document.getElementById('panel_1').style.display='none';document.getElementById('panel_2').style.display='block';document.getElementById('panel_3').style.display='none';">
+		<label class="header" role="tab" tabindex="0" aria-selected="false" aria-controls="panel_2" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"
+		       onclick="document.getElementById('panel_1').style.display='none';document.getElementById('panel_2').style.display='block';document.getElementById('panel_3').style.display='none';tsSwitchPanel('panel_2');">
 			<html:img alt="" src="${contextPath}${ImageServlet}/${urlHtml}/xtree/images/userMGM.gif"
 			          style="vertical-align: middle"/>
 			<I18n:message key="BROWSE_USERS"/>
 		</label>
 
-		<label class="header" for="panel_3"
-		       onclick="document.getElementById('panel_1').style.display='none';document.getElementById('panel_2').style.display='none';document.getElementById('panel_3').style.display='block';  updateBookmarks('${contextPath}/bookmark');">
+		<label class="header" role="tab" tabindex="0" aria-selected="false" aria-controls="panel_3" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"
+		       onclick="document.getElementById('panel_1').style.display='none';document.getElementById('panel_2').style.display='none';document.getElementById('panel_3').style.display='block';tsSwitchPanel('panel_3');updateBookmarks('${contextPath}/bookmark');">
 			<html:img src="${contextPath}${ImageServlet}/cssimages/ico.star.gif" border="0"
 			          style="vertical-align: middle"/>
 			<I18n:message key="BOOKMARKS"/>
@@ -305,51 +331,51 @@
 	</div>
 </div>
 
-<div id="panel_2" style="display: none;">
-	<div class="head">
-		<label class="header" for="panel_1"
-		       onclick="document.getElementById('panel_1').style.display='block';document.getElementById('panel_2').style.display='none';document.getElementById('panel_3').style.display='none';">
+<div id="panel_2" role="tabpanel" aria-labelledby="tab_users" aria-hidden="true" style="display: none;">
+	<div class="head" role="tablist">
+		<label class="header" role="tab" tabindex="0" aria-selected="false" aria-controls="panel_1" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"
+		       onclick="document.getElementById('panel_1').style.display='block';document.getElementById('panel_2').style.display='none';document.getElementById('panel_3').style.display='none';tsSwitchPanel('panel_1');">
 			<html:img alt="" src="${contextPath}${ImageServlet}/${urlHtml}/xtree/images/taskMGM.gif"
 			          style="vertical-align: middle"/>
 			<I18n:message key="BROWSE_TASKS"/>
 		</label>
 
-		<label class="header" for="panel_2"
-		       onclick="document.getElementById('panel_1').style.display='none';document.getElementById('panel_2').style.display='block';document.getElementById('panel_3').style.display='none';">
+		<label class="header" id="tab_users" role="tab" tabindex="0" aria-selected="true" aria-controls="panel_2" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"
+		       onclick="document.getElementById('panel_1').style.display='none';document.getElementById('panel_2').style.display='block';document.getElementById('panel_3').style.display='none';tsSwitchPanel('panel_2');">
 			<html:img alt="" src="${contextPath}${ImageServlet}/${urlHtml}/xtree/images/userMGM.gif"
 			          style="vertical-align: middle"/>
 			<I18n:message key="BROWSE_USERS"/>
 		</label>
 	</div>
-	<div id='user_tree' class="content">
+	<div id='user_tree' class="content" aria-label="User navigation">
 	</div>
 	<div class="foot">
-		<label class="header" for="panel_3"
-		       onclick="document.getElementById('panel_1').style.display='none';document.getElementById('panel_2').style.display='none';document.getElementById('panel_3').style.display='block';  updateBookmarks('${contextPath}/bookmark');">
+		<label class="header" role="tab" tabindex="0" aria-selected="false" aria-controls="panel_3" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"
+		       onclick="document.getElementById('panel_1').style.display='none';document.getElementById('panel_2').style.display='none';document.getElementById('panel_3').style.display='block';tsSwitchPanel('panel_3');updateBookmarks('${contextPath}/bookmark');">
 			<html:img src="${contextPath}${ImageServlet}/cssimages/ico.star.gif" border="0"
 			          style="vertical-align: middle"/>
 			<I18n:message key="BOOKMARKS"/>
 		</label>
 	</div>
 </div>
-<div id="panel_3" style="display: none;">
-	<div class="head">
-		<label class="header" for="panel_1"
-		       onclick="document.getElementById('panel_1').style.display='block';document.getElementById('panel_2').style.display='none';document.getElementById('panel_3').style.display='none';">
+<div id="panel_3" role="tabpanel" aria-labelledby="tab_bookmarks" aria-hidden="true" style="display: none;">
+	<div class="head" role="tablist">
+		<label class="header" role="tab" tabindex="0" aria-selected="false" aria-controls="panel_1" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"
+		       onclick="document.getElementById('panel_1').style.display='block';document.getElementById('panel_2').style.display='none';document.getElementById('panel_3').style.display='none';tsSwitchPanel('panel_1');">
 			<html:img alt="" src="${contextPath}${ImageServlet}/${urlHtml}/xtree/images/taskMGM.gif"
 			          style="vertical-align: middle"/>
 			<I18n:message key="BROWSE_TASKS"/>
 		</label>
 
-		<label class="header" for="panel_2"
-		       onclick="document.getElementById('panel_1').style.display='none';document.getElementById('panel_2').style.display='block';document.getElementById('panel_3').style.display='none';">
+		<label class="header" role="tab" tabindex="0" aria-selected="false" aria-controls="panel_2" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"
+		       onclick="document.getElementById('panel_1').style.display='none';document.getElementById('panel_2').style.display='block';document.getElementById('panel_3').style.display='none';tsSwitchPanel('panel_2');">
 			<html:img alt="" src="${contextPath}${ImageServlet}/${urlHtml}/xtree/images/userMGM.gif"
 			          style="vertical-align: middle"/>
 			<I18n:message key="BROWSE_USERS"/>
 		</label>
 
-		<label class="header" for="panel_3"
-		       onclick="document.getElementById('panel_1').style.display='none';document.getElementById('panel_2').style.display='none';document.getElementById('panel_3').style.display='block'; updateBookmarks('${contextPath}/bookmark');">
+		<label class="header" id="tab_bookmarks" role="tab" tabindex="0" aria-selected="true" aria-controls="panel_3" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"
+		       onclick="document.getElementById('panel_1').style.display='none';document.getElementById('panel_2').style.display='none';document.getElementById('panel_3').style.display='block';tsSwitchPanel('panel_3');updateBookmarks('${contextPath}/bookmark');">
 			<html:img src="${contextPath}${ImageServlet}/cssimages/ico.star.gif" border="0"
 			          style="vertical-align: middle"/>
 			<I18n:message key="BOOKMARKS"/>
@@ -366,7 +392,7 @@
 			}
 			updateBookmarks("${contextPath}/bookmark");
 		</script>
-		<div id="bookmarkPanel" class="bookmarkPanel"></div>
+		<div id="bookmarkPanel" class="bookmarkPanel" aria-label="Bookmarks"></div>
 	</div>
 	<div class="foot">
 	</div>

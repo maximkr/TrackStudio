@@ -16,6 +16,7 @@
     </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="content-type" content="text/html; charset=<c:out value="${charSet}"/>">
+    <meta name="color-scheme" content="light dark">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- L9: Removed Google Fonts CDN for GDPR and offline support. Inter font will use system fallback -->
     <c:set var="urlHtml" value="html"/>
@@ -73,7 +74,7 @@
 <body class="ts-login-page">
 <div class="ts-login-shell">
     <div id="content">
-        <div class="box ts-login-card">
+        <div class="box ts-login-card" role="main">
             <div class="ts-login-brand">
                 <div class="ts-brand-logo">
                     <span class="ts-brand-mark">TS</span>
@@ -84,7 +85,7 @@
             <div class="blueborder">
                 <div class="indent">
                     <html:messages id="error" message="true" property="msg">
-                        <span class="ts-login-error">
+                        <span class="ts-login-error" role="alert">
                             <c:out value="${error}"/>
                         </span>
                     </html:messages>
@@ -92,7 +93,7 @@
                 </div>
             </div>
         </div>
-        <div class="ts-login-footer">
+        <div class="ts-login-footer" role="contentinfo">
             <c:out value="${tsVersionDescription}" escapeXml="false"/>&nbsp;<c:out value="${tsBuildDate}" escapeXml="false"/>&nbsp;<I18n:message key="COPYRIGHT"/>
             <c:if test="${!empty tsSupportExpired}">
                 <br/><span class="expired">

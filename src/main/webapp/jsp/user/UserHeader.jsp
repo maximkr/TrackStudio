@@ -164,7 +164,7 @@
         //tsMenu.add(new TSMenuItem("<I18n:message key="OTHER_ACTIONS"/>", "", taskAddMenu, false, "<c:out value="${contextPath}"/>${ImageServlet}/cssimages/ico.customfields.gif"));
     </script>
 </c:if>
-<div class="login header">
+<div class="login header" role="banner">
     <div class="ts-header-main">
         <div class="ts-header-main__brand">
             <html:link styleClass="ts-header-brand-link" href="${contextPath}/task/${homePageNumber}?thisframe=true" titleKey="TASK">
@@ -174,7 +174,7 @@
                 </div>
             </html:link>
         </div>
-        <div class="ts-header-main__search">
+        <div class="ts-header-main__search" role="search">
             <form method="post" class="ts-header-search-form" action="<c:out value="${contextPath}"/>/TaskDispatchAction.do" id="searchForm" onsubmit="return !forbidEmptyLineSearch(this);">
                 <input type="hidden" name="method" value="go"/>
                 <input type="hidden" name="id" value="<c:out value="${userId}"/>"/>
@@ -185,7 +185,7 @@
                         return document.forms['searchForm'].submit();
                     }
                 </script>
-                <input type="text" style="font-weight: bold;" class="form-autocomplete" name="key" id="key" size="46" value="<c:out value="${key}" escapeXml="true"/>">
+                <input type="text" style="font-weight: bold;" class="form-autocomplete" name="key" id="key" size="46" value="<c:out value="${key}" escapeXml="true"/>" aria-label="<I18n:message key="SEARCH"/>">
             </form>
         </div>
         <div class="ts-header-main__user">
@@ -220,7 +220,7 @@
     </div>
 </div>
 <div>
-    <div class="controlPanel">
+    <div class="controlPanel" role="group" aria-label="User actions">
         <span id="topleft" onclick="showTree();">
             <span id="closepanel" class="tree-toggle-button" aria-label="<I18n:message key="CLOSE"/>" title="<I18n:message key="CLOSE"/>">&#x276E;</span>
             <span id="openpanel" class="tree-toggle-button" aria-label="<I18n:message key="OPEN"/>" title="<I18n:message key="OPEN"/>"
@@ -246,7 +246,7 @@
 //                showTree();
 //            }
         </script>
-        <span class="mainmenu">
+        <span class="mainmenu" aria-label="Main menu">
         <script type="text/javascript">
             <c:set var="urlHtml" value="html"/>
             <c:if test="${user != null && currentTab=='TAB_USER_OVERVIEW'}">
@@ -317,14 +317,14 @@
             </c:if>
         </c:if>
     </div>
-    <div class="logopath">
+    <nav class="logopath" aria-label="Breadcrumb">
         <c:forEach var="user" items="${currentUser.ancestors}" varStatus="varCounter">
             <html:link styleClass="internal" href="${contextPath}/user/${user.login}?thisframe=true" title="${user.login}">
                 <c:out value="${user.name}" escapeXml="true"/>
             </html:link>&nbsp;/
         </c:forEach>
-    </div>
-    <div class="taskTitle">
+    </nav>
+    <div class="taskTitle" role="heading" aria-level="1">
         <html:link styleClass="internal" href="${contextPath}/user/${currentUser.login}?thisframe=true" title="${currentUser.login}">
             <html:img  border="0" src="${contextPath}${ImageServlet}/cssimages/${currentUser.active ? 'arw.usr.a.gif' : 'arw.usr.gif'}"/>
             <c:out value="${currentUser.name}" escapeXml="true"/>

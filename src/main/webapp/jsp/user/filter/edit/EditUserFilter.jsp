@@ -15,7 +15,7 @@
     <tiles:put name="customHeader" value="/jsp/user/filter/UserFilterHeader.jsp"/>
     <tiles:put name="tabs" type="string"/>
         <tiles:put name="main" type="string">
-    <div class="blueborder">
+    <div class="blueborder ts-filter-edit">
     <div class="caption"><I18n:message key="USER_FILTER_PROPERTIES"/></div>
     <div class="indent">
         <c:set var="urlHtml" value="html"/>

@@ -274,7 +274,7 @@
 		}
 	});
 </script>
-<div class="login">
+<div class="login" role="banner">
 	<div class="ts-header-main">
 		<div class="ts-header-main__brand">
 			<html:link styleClass="ts-header-brand-link" href="${contextPath}/task/${homePageNumber}?thisframe=true" titleKey="TASK">
@@ -284,7 +284,7 @@
 				</div>
 			</html:link>
 		</div>
-		<div class="ts-header-main__search">
+		<div class="ts-header-main__search" role="search">
 			<form method="post" class="ts-header-search-form" action="<c:out value="${contextPath}"/>/TaskDispatchAction.do" id="searchForm" onsubmit="return !forbidEmptyLineSearch(this);">
 				<input type="hidden" name="method" value="go"/>
 				<input type="hidden" name="id" value="<c:out value="${tci.id}"/>"/>
@@ -297,7 +297,7 @@
 						}
 					}
 				</script>
-				<input type="text" style="font-weight: bold;" class="form-autocomplete" name="key" id="key" size="46" value="<c:out value="${key}" escapeXml="true"/>">
+				<input type="text" style="font-weight: bold;" class="form-autocomplete" name="key" id="key" size="46" value="<c:out value="${key}" escapeXml="true"/>" aria-label="<I18n:message key="SEARCH"/>">
 			</form>
 		</div>
 		<div class="ts-header-main__user">
@@ -331,7 +331,7 @@
 		</div>
 	</div>
 </div>
-<div class="controlPanel">
+<div class="controlPanel" role="group" aria-label="Task actions">
 	<script type="text/javascript">
 		var taskAddMenu = {};
 	</script>
@@ -361,7 +361,7 @@
 		//            showTree();
 		//        }
 	</script>
-	<span class="mainmenu">
+ 	<span class="mainmenu" aria-label="Main menu">
                     <script type="text/javascript">
 	                    //       var myBar = new TSMenuBar;
 						<c:if test="${canViewSubtasks}">
@@ -516,14 +516,14 @@
 </div>
 <c:choose>
 	<c:when test="${archive == null}">
-	<div class="logopath">
+	<nav class="logopath" aria-label="Breadcrumb">
 		<c:forEach var="task" items="${tci.ancestors}" varStatus="varCounter">
 			<html:link styleClass="internal" href="${contextPath}/task/${task.number}?thisframe=true" title="#${task.number}">
 				<c:out value="${task.name}" escapeXml="true"/>&nbsp;/
 			</html:link>
 		</c:forEach>
-	</div>
-	<div class="taskTitle">
+	</nav>
+	<div class="taskTitle" role="heading" aria-level="1">
 		<c:if test="${ asView == null || asView == 'task'}"><html:link styleClass="internal" href="${contextPath}/task/${tci.number}?thisframe=true" title="#${tci.number}">
 			<html:img   border="0" src="${contextPath}${ImageServlet}/icons/categories/${tci.category.icon}"/>
 			<html:img styleClass="state" border="0" style="background-color: ${tci.status.color}" src="${contextPath}${ImageServlet}${tci.status.image}"/>
@@ -558,7 +558,7 @@
 			<tr>
 				<td>
 					<div><b><c:out value="${notice.key}"/></b></div>
-					<div class="notice"><pre><c:out value="${notice.value}" escapeXml="false"/></pre></div>
+					<div class="notice"><pre><c:out value="${notice.value}"/></pre></div>
 				</td>
 			</tr>
 		</c:forEach>

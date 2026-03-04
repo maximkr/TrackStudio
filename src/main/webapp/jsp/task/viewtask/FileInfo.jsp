@@ -39,7 +39,9 @@
     }
 
     function showBookmarkDialogSimple() {
-        showBookmarkDialog('<c:out value="${tci.name}" escapeXml="false"/>', '<c:out value="${tci.id}"/>');
+        var nameEl = document.getElementById('bookmarkTaskName');
+        var taskName = nameEl ? nameEl.textContent : '';
+        showBookmarkDialog(taskName, '<c:out value="${tci.id}"/>');
     }
     setTimer('${id}');
     getTimer();
@@ -47,33 +49,31 @@
         pauseTimer('${id}');
     }
 </script>
+<span id="bookmarkTaskName" style="display:none"><c:out value="${tci.name}"/></span>
 <c:set var="urlHtml" value="html"/>
 <ts:js request="${request}" response="${response}">
     <ts:jsLink link="${urlHtml}/dnd/dnd.js"/>
 </ts:js>
 <div>
-    <div class="caption" style="border-color:#FFFFFF; padding-left:20px; font-size: 20px; background-color:#FFFFFF">
-        <html:link href="javascript:showBookmarkDialogSimple();" style="float:right;padding-top:6px;padding-right:5px;">
-            <html:img src="${contextPath}${ImageServlet}/cssimages/ico.star.gif" border="0"/>
-        </html:link>
-        <c:out value="${tci.name}"/>
-                    <span style="float:right; padding-right:10px;">
-                         <c:if test="${showView}"><a href="#" style=" text-decoration: none;" onclick="javascript:showViewDialog();"><I18n:message key="VIEWS"/></a></c:if>
-
-                         <c:if test="${canCreateTaskAttachments && canEditTask}">
-                             <html:link href="${contextPath}/AttachmentEditAction.do?method=attachToTask&id=${id}">
-                                 <html:img src="${contextPath}${ImageServlet}/cssimages/ico.attachment.png" border="0"/>
-                                 <I18n:message key="FILE_ADD"/>
-                             </html:link>
-                             <%--<html:link styleClass="internal" href="javascript:{}" onclick="window.open('${contextPath}/UploadAppletAction.do?method=page&amp;id=${id}','uplWin','dependent=yes,menubar=no,toolbar=no,status=no,scrollbars=no,titlebar=no,left=0,top=20,width=845,height=445,resizable=no');">--%>
-                                 <%--<html:img src="${contextPath}${ImageServlet}/cssimages/ico.attachment.png" border="0"/>--%>
-                                 <%--<I18n:message key="UPLOAD_MANAGER"/>--%>
-                             <%--</html:link>--%>
-                         </c:if>
-                        <c:if test="${canEditTask}">
-                            <input type="button" onclick="document.location = '${contextPath}/TaskEditAction.do?method=page&id=${id}';" value="<I18n:message key="EDIT"/>">
-                        </c:if>
-                    </span>
+    <div class="caption ts-document-caption">
+        <div class="ts-document-caption__title">
+            <c:out value="${tci.name}"/>
+        </div>
+        <div class="ts-document-caption__actions">
+            <c:if test="${canCreateTaskAttachments && canEditTask}">
+                <html:link href="${contextPath}/AttachmentEditAction.do?method=attachToTask&id=${id}" styleClass="ts-document-action-link">
+                    <html:img src="${contextPath}${ImageServlet}/cssimages/ico.attachment.png" border="0"/>
+                    <I18n:message key="FILE_ADD"/>
+                </html:link>
+            </c:if>
+            <c:if test="${canEditTask}">
+                <input type="button" onclick="document.location = '${contextPath}/TaskEditAction.do?method=page&id=${id}';" value="<I18n:message key="EDIT"/>">
+            </c:if>
+            <html:link href="javascript:showBookmarkDialogSimple();" styleClass="ts-document-action-link">
+                <html:img src="${contextPath}${ImageServlet}/cssimages/ico.star.gif" border="0"/>
+            </html:link>
+            <c:if test="${showView}"><a href="#" class="ts-document-action-link" onclick="javascript:showViewDialog();"><I18n:message key="VIEWS"/></a></c:if>
+        </div>
     </div>
                 <span class="user" style="padding-left:20px;" ${tci.submitterId eq sc.userId ? "id='loggedUser'" : ""}>
                                     <html:img styleClass="icon" border="0" src="${contextPath}${ImageServlet}/cssimages/${tci.submitter.active ? 'arw.usr.a.gif' : 'arw.usr.gif'}"/>
@@ -221,7 +221,7 @@
                     <td><c:out value="${tci.name}"/></td>
                 </tr>
             </table>
-            <input type="hidden" value="'${taskId}'" id="task_id"/>
+            <input type="hidden" value="${taskId}" id="task_id"/>
         </form>
     </div>
 </div>

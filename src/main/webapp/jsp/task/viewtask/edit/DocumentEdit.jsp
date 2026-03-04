@@ -19,22 +19,17 @@
 		<div>
 		<html:form method="POST" enctype="multipart/form-data" action="/TaskEditAction" styleId="checkunload"
 		           onsubmit="if (validate(this)) {$(window).off('beforeunload'); showButton(true); return true;} else {return false}">
-			<table width="100%">
-				<tr>
-					<td width="60%">
-						<div class="caption" style="display:inline;border-color:#FFFFFF; font-size: 20px; background-color:#FFFFFF"></div>
-						<input type="text" spellcheck="true" name="name" value='${tci.name}' styleId="name" style="font-size: 20px;width:60%;" property="name" maxlength="200" alt=">0"/>
-					</td>
-					<td width="40%" style="float:right;">
-						<input type="submit" class="iconized" value="<I18n:message key="SAVE" />" name="SAVE"
-						       disabled="true"/>
-						<html:button styleClass="iconized secondary" property="cancelButton" disabled="true"
-						             onclick="$(window).off('beforeunload'); showButton(true); document.location='${referer}';">
-							<I18n:message key="CANCEL"/>
-						</html:button>
-					</td>
-				</tr>
-			</table>
+			<div class="ts-document-edit-header">
+				<input type="text" spellcheck="true" name="name" value="<c:out value='${tci.name}'/>" id="name" maxlength="200" alt=">0"/>
+				<div class="ts-document-edit-actions">
+					<input type="submit" class="iconized" value="<I18n:message key="SAVE" />" name="SAVE"
+					       disabled="true"/>
+					<html:button styleClass="iconized secondary" property="cancelButton" disabled="true"
+					             onclick="$(window).off('beforeunload'); showButton(true); document.location='${referer}';">
+						<I18n:message key="CANCEL"/>
+					</html:button>
+				</div>
+			</div>
 			<div class="indent">
 			<html:hidden property="method" value="saveDocument" styleId="editTaskId"/>
 			<html:hidden property="id"/>

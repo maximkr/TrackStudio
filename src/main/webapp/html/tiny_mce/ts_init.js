@@ -61,6 +61,7 @@ tinymce.init({
         'insertdatetime media table contextmenu paste code',
         'textcolor template'
     ],
+    content_css: window.tsTinyMceContentCss || undefined,
     toolbar: 'insertfile undo redo | styleselect fontselect fontsizeselect | forecolor backcolor | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | template',
     setup : function(editor)
     {

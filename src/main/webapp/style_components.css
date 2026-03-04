@@ -13,9 +13,50 @@ BODY.ts-app {
     padding: var(--ts-space-4);
 }
 
+html,
+body {
+    background-color: var(--ts-bg);
+    scrollbar-color: var(--ts-border-strong) var(--ts-surface-muted);
+    scrollbar-width: thin;
+}
+
+/* P20: Limit scrollbar styling to common containers to avoid conflicts with widgets */
+.ts-app-shell::-webkit-scrollbar,
+.ts-main-content::-webkit-scrollbar,
+.ts-sidebar::-webkit-scrollbar,
+.ts-workflow-dialog__body::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+.ts-app-shell::-webkit-scrollbar-track,
+.ts-main-content::-webkit-scrollbar-track,
+.ts-sidebar::-webkit-scrollbar-track,
+.ts-workflow-dialog__body::-webkit-scrollbar-track {
+    background-color: var(--ts-surface-muted);
+}
+.ts-app-shell::-webkit-scrollbar-thumb,
+.ts-main-content::-webkit-scrollbar-thumb,
+.ts-sidebar::-webkit-scrollbar-thumb,
+.ts-workflow-dialog__body::-webkit-scrollbar-thumb {
+    background-color: var(--ts-border-strong);
+    border-radius: 10px;
+    border: 2px solid var(--ts-surface-muted);
+    background-clip: padding-box;
+}
+.ts-app-shell::-webkit-scrollbar-thumb:hover,
+.ts-main-content::-webkit-scrollbar-thumb:hover,
+.ts-sidebar::-webkit-scrollbar-thumb:hover,
+.ts-workflow-dialog__body::-webkit-scrollbar-thumb:hover {
+    background-color: var(--ts-primary);
+}
+
 .ts-app-shell {
     max-width: 1680px;
     margin: 0 auto;
+}
+
+.ts-main-content {
+    padding-top: var(--ts-space-3);
 }
 
 
@@ -346,12 +387,86 @@ input.form-autocomplete {
     height: var(--ts-input-height);
     font-size: var(--ts-font-base);
     font-weight: normal;
+    color: var(--ts-text);
     transition: border-color var(--ts-transition), box-shadow var(--ts-transition);
+}
+div.login input.form-autocomplete {
+    background: var(--ts-surface-muted) url(cssimages/ico.search.gif) no-repeat calc(100% - 8px) center;
+    color: var(--ts-text);
+}
+input.form-autocomplete::placeholder {
+    color: var(--ts-text-muted);
 }
 input.form-autocomplete:focus {
     border-color: var(--ts-primary-light);
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--ts-primary) 15%, transparent);
     outline: none;
+}
+
+/* Selectbox (legacy assignee lists) */
+div.selectbox {
+    background-color: var(--ts-surface-muted);
+    border: 1px solid var(--ts-border-strong);
+    color: var(--ts-text);
+}
+div.selectbox label {
+    color: var(--ts-text);
+}
+div.selectbox label.sel1,
+div.selectbox div.sel0 {
+    background-color: color-mix(in srgb, var(--ts-surface-muted) 75%, var(--ts-surface));
+}
+div.selectbox label.sel0,
+div.selectbox div.sel1 {
+    background-color: var(--ts-surface);
+}
+div.selectbox div.currenthandler {
+    background-color: color-mix(in srgb, var(--ts-primary-soft) 45%, var(--ts-surface-muted));
+    color: var(--ts-text);
+}
+
+select,
+select[multiple],
+select[size] {
+    background-color: var(--ts-surface);
+    color: var(--ts-text);
+    border: 1px solid var(--ts-border-strong);
+    border-radius: var(--ts-radius-sm);
+    padding: 4px 8px;
+}
+select:focus {
+    border-color: var(--ts-primary-light);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--ts-primary) 15%, transparent);
+    outline: none;
+}
+option {
+    background-color: var(--ts-surface);
+    color: var(--ts-text);
+}
+
+/* File input */
+input[type="file"] {
+    color: var(--ts-text);
+    background-color: var(--ts-surface-muted);
+    border: 1px solid var(--ts-border-strong);
+    border-radius: var(--ts-radius-sm);
+    padding: 4px;
+}
+input[type="file"]::file-selector-button {
+    background: var(--ts-surface);
+    color: var(--ts-text);
+    border: 1px solid var(--ts-border-strong);
+    border-radius: var(--ts-radius-sm);
+    padding: 4px 10px;
+    margin-right: var(--ts-space-2);
+}
+input[type="file"]::-webkit-file-upload-button {
+    background: var(--ts-surface);
+    color: var(--ts-text);
+    border: 1px solid var(--ts-border-strong);
+    border-radius: var(--ts-radius-sm);
+    padding: 4px 10px;
+    margin-right: var(--ts-space-2);
 }
 
 /* jQuery UI autocomplete dropdown */
@@ -362,6 +477,8 @@ input.form-autocomplete:focus {
     border: 1px solid var(--ts-border);
     border-radius: var(--ts-radius-sm);
     box-shadow: var(--ts-shadow-lg);
+    background-color: var(--ts-surface);
+    color: var(--ts-text);
 }
 .ts-header-search-menu {
     min-width: 560px;
@@ -370,9 +487,19 @@ input.form-autocomplete:focus {
     overflow-y: auto;
     overflow-x: hidden;
     padding: 0;
+    list-style: none;
+    background-color: var(--ts-surface);
+    color: var(--ts-text);
 }
 .ts-header-search-menu .ui-menu-item {
     margin: 0;
+    list-style: none;
+}
+.ts-header-search-menu .ui-menu-item-wrapper {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    display: block;
 }
 .ts-header-search-menu .ui-menu-item + .ui-menu-item {
     border-top: 1px solid var(--ts-border);
@@ -459,6 +586,7 @@ input.form-autocomplete:focus {
     text-overflow: ellipsis;
     font-size: var(--ts-font-sm);
     font-weight: 500;
+    color: var(--ts-text);
 }
 .ts-header-search-menu .ts-search-item--query .ts-search-item__title {
     font-weight: 600;
@@ -470,10 +598,22 @@ input.form-autocomplete:focus {
     background: transparent;
     margin: 0;
 }
+.ts-header-search-menu .ui-menu-item-wrapper.ui-state-hover,
+.ts-header-search-menu .ui-menu-item-wrapper.ui-state-focus,
+.ts-header-search-menu .ui-menu-item-wrapper.ui-state-active {
+    background: transparent;
+    border: 0;
+    margin: 0;
+}
 .ts-header-search-menu .ts-search-item:hover,
 .ts-header-search-menu .ui-state-hover.ts-search-item,
 .ts-header-search-menu .ui-state-focus.ts-search-item,
 .ts-header-search-menu .ui-state-active.ts-search-item {
+    background-color: var(--ts-primary-soft);
+}
+.ts-header-search-menu .ui-menu-item-wrapper.ui-state-hover .ts-search-item,
+.ts-header-search-menu .ui-menu-item-wrapper.ui-state-focus .ts-search-item,
+.ts-header-search-menu .ui-menu-item-wrapper.ui-state-active .ts-search-item {
     background-color: var(--ts-primary-soft);
 }
 .ts-header-search-menu .ts-search-item:hover .ts-search-item__key,
@@ -481,6 +621,11 @@ input.form-autocomplete:focus {
 .ts-header-search-menu .ui-state-focus.ts-search-item .ts-search-item__key,
 .ts-header-search-menu .ui-state-active.ts-search-item .ts-search-item__key {
     background-color: rgba(52, 152, 219, 0.12);
+    background-color: color-mix(in srgb, var(--ts-primary-soft) 55%, var(--ts-surface-muted));
+}
+.ts-header-search-menu .ui-menu-item-wrapper.ui-state-hover .ts-search-item__key,
+.ts-header-search-menu .ui-menu-item-wrapper.ui-state-focus .ts-search-item__key,
+.ts-header-search-menu .ui-menu-item-wrapper.ui-state-active .ts-search-item__key {
     background-color: color-mix(in srgb, var(--ts-primary-soft) 55%, var(--ts-surface-muted));
 }
 
@@ -493,6 +638,81 @@ input.form-autocomplete:focus {
     .ts-header-search-menu .ts-search-item {
         grid-template-columns: 90px minmax(0, 1fr);
     }
+}
+
+
+/* ── TinyMCE editor (dark theme) ──────────────────────────── */
+
+.mce-tinymce {
+    border: 1px solid var(--ts-border) !important;
+    border-radius: var(--ts-radius-sm);
+    box-shadow: var(--ts-shadow);
+    background-color: var(--ts-surface);
+}
+.mce-tinymce .mce-top-part,
+.mce-tinymce .mce-toolbar-grp,
+.mce-tinymce .mce-toolbar,
+.mce-tinymce .mce-menubar,
+.mce-tinymce .mce-panel,
+.mce-tinymce .mce-container-body {
+    background-color: var(--ts-surface) !important;
+    border-color: var(--ts-border) !important;
+}
+.mce-tinymce .mce-edit-area {
+    background-color: var(--ts-surface) !important;
+}
+.mce-tinymce iframe {
+    background-color: var(--ts-surface) !important;
+}
+.mce-content-body {
+    background-color: var(--ts-surface) !important;
+    color: var(--ts-text) !important;
+}
+.mce-tinymce .mce-btn {
+    background-color: var(--ts-surface-muted) !important;
+    border-color: var(--ts-border) !important;
+    color: var(--ts-text) !important;
+}
+.mce-tinymce .mce-btn:hover,
+.mce-tinymce .mce-btn:focus,
+.mce-tinymce .mce-btn.mce-active {
+    background-color: var(--ts-primary-soft) !important;
+    border-color: var(--ts-primary) !important;
+    color: var(--ts-text) !important;
+}
+.mce-tinymce .mce-btn button,
+.mce-tinymce .mce-ico,
+.mce-tinymce .mce-caret {
+    color: var(--ts-text) !important;
+}
+.mce-tinymce .mce-label,
+.mce-tinymce .mce-path,
+.mce-tinymce .mce-statusbar,
+.mce-tinymce .mce-statusbar * {
+    color: var(--ts-text-muted) !important;
+    background-color: var(--ts-surface) !important;
+    border-color: var(--ts-border) !important;
+}
+.mce-menu,
+.mce-menu-item,
+.mce-menu-item .mce-text,
+.mce-menu-item-normal,
+.mce-menu-item-sep,
+.mce-menu-item-shortcut,
+.mce-menu-item-preview {
+    background-color: var(--ts-surface) !important;
+    color: var(--ts-text) !important;
+}
+.mce-menu-item:hover,
+.mce-menu-item-selected,
+.mce-menu-item:focus,
+.mce-menu-item.mce-active {
+    background-color: var(--ts-primary-soft) !important;
+    color: var(--ts-text) !important;
+}
+.mce-menu-item .mce-caret,
+.mce-menu-item .mce-ico {
+    color: var(--ts-text) !important;
 }
 
 
@@ -714,7 +934,6 @@ TABLE.general CAPTION {
 }
 
 TABLE.general TH {
-    background-color: var(--ts-surface-muted);
     color: var(--ts-text-muted);
     font-weight: 700;
     font-size: 0.8rem;
@@ -724,7 +943,18 @@ TABLE.general TH {
     border-bottom: 1px solid var(--ts-border);
     text-align: right;
 }
-
+TABLE.general TH,
+TABLE.general TH a,
+TABLE.general TH span,
+TABLE.general TH div {
+    background-color: transparent !important;
+    color: var(--ts-text-muted) !important;
+}
+TABLE.general TH.taskinfo-right,
+TABLE.general TH.taskinfo-left {
+    color: var(--ts-text) !important;
+    background-color: var(--ts-surface-muted) !important;
+}
 TABLE.general TD {
     padding: var(--ts-space-2) var(--ts-space-3);
     color: var(--ts-text);
@@ -738,7 +968,7 @@ TABLE.general TR:last-child TH {
 }
 
 TABLE.general TR.wide TH {
-    background-color: rgba(0,214,143,0.06);
+    background-color: color-mix(in srgb, var(--ts-accent) 8%, var(--ts-surface-muted));
     color: var(--ts-text);
     font-weight: 600;
     font-size: var(--ts-font-base);
@@ -797,7 +1027,12 @@ tr.overdue.line0 TD, tr.overdue.line0 TH {
     background-color: var(--ts-danger-soft) !important;
 }
 tr.overdue.line1 TD, tr.overdue.line1 TH {
-    background-color: #f9d4d4 !important;
+    background-color: var(--ts-danger-soft, #f9d4d4) !important;
+}
+
+[data-theme="dark"] tr.overdue.line1 TD,
+[data-theme="dark"] tr.overdue.line1 TH {
+    background-color: rgba(220, 38, 38, 0.2) !important;
 }
 
 /* Strut separator between two-column sections */
@@ -881,6 +1116,107 @@ div.blueborder > DIV.caption IMG {
     vertical-align: middle;
     border: 0 !important;
     margin-right: 2px;
+}
+
+/* Document view caption/header */
+.ts-document-caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ts-space-3);
+    flex-wrap: wrap;
+}
+.ts-document-caption__title {
+    display: flex;
+    align-items: center;
+    gap: var(--ts-space-2);
+    min-width: 0;
+}
+.ts-document-caption__actions {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ts-space-2);
+    flex-wrap: wrap;
+}
+.ts-document-action-link,
+.ts-document-caption .ts-document-action-link,
+.ts-document-caption a.ts-document-action-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-sm);
+    background-color: var(--ts-surface-muted);
+    color: var(--ts-text);
+    text-decoration: none;
+    line-height: 1.2;
+    font-weight: 600;
+}
+.ts-document-action-link:hover {
+    background-color: var(--ts-primary-soft);
+    border-color: var(--ts-primary);
+    color: var(--ts-text);
+}
+.ts-document-action-button,
+.ts-document-caption input[type="button"] {
+    border: 1px solid var(--ts-border-strong);
+    border-radius: var(--ts-radius-sm);
+    background-color: var(--ts-accent);
+    color: var(--ts-text-inverted, #0b1f14);
+    padding: 6px 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+    .ts-document-action-button,
+    .ts-document-caption input[type="button"] {
+        color: var(--ts-surface);
+    }
+}
+.ts-document-caption input[type="button"]:hover,
+.ts-document-action-button:hover {
+    background-color: var(--ts-accent-hover);
+}
+.ts-document-meta {
+    padding: 0 var(--ts-space-4);
+    color: var(--ts-text-muted);
+    margin-top: var(--ts-space-2);
+    font-size: var(--ts-font-sm);
+}
+.ts-document-body {
+    padding: var(--ts-space-4) 0;
+}
+
+/* Document edit header */
+.ts-document-edit-header {
+    display: flex;
+    align-items: center;
+    gap: var(--ts-space-3);
+    padding: var(--ts-space-3) 0;
+    flex-wrap: wrap;
+}
+.ts-document-edit-header input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+    font-size: 1.25rem;
+    padding: var(--ts-space-2) var(--ts-space-3);
+    border: 1px solid var(--ts-border-strong);
+    border-radius: var(--ts-radius-sm);
+    background-color: var(--ts-surface);
+    color: var(--ts-text);
+}
+.ts-document-edit-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--ts-space-2);
+    flex-shrink: 0;
+}
+.ts-document-attachments {
+    background-color: var(--ts-surface) !important;
+    border-color: var(--ts-border) !important;
 }
 
 /* Title link in caption */
@@ -978,6 +1314,51 @@ DIV.tabcontent {
     background-color: var(--ts-surface);
     padding: var(--ts-space-3);
     box-shadow: none;
+}
+
+/* ── Tabs (table.tabs legacy) ─────────────────────────────── */
+table.tabs {
+    width: 100%;
+    border-top: 1px solid var(--ts-border);
+    border-bottom: 1px solid var(--ts-border);
+    background: var(--ts-surface);
+}
+table.tabs td {
+    padding: 0;
+    border-bottom: 1px solid var(--ts-border);
+}
+table.tabs td A {
+    display: block;
+    padding: var(--ts-space-2) var(--ts-space-3);
+    color: var(--ts-text-muted);
+    text-decoration: none;
+    font-weight: 600;
+    background: transparent;
+}
+table.tabs td A:hover {
+    color: var(--ts-primary);
+    background: var(--ts-primary-soft);
+}
+table.tabs td.selectedtab {
+    background: var(--ts-surface-muted);
+    border-bottom: 1px solid var(--ts-border);
+}
+table.tabs td.selectedtab A {
+    color: var(--ts-text);
+    background: var(--ts-surface-muted);
+    border-bottom: 2px solid var(--ts-primary);
+}
+
+span.bookmarks {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background-color: var(--ts-primary-soft);
+    color: var(--ts-primary) !important;
+    font-size: var(--ts-font-xs);
+    font-weight: 600;
 }
 
 
@@ -1278,7 +1659,7 @@ img.state {
     white-space: nowrap;
     line-height: 1.5;
     background-color: var(--sc, var(--ts-primary-soft));
-    background-color: color-mix(in srgb, var(--sc, var(--ts-primary)) 12%, white);
+    background-color: color-mix(in srgb, var(--sc, var(--ts-primary)) 12%, var(--ts-surface, white));
     color: var(--ts-text);
     border: 1px solid var(--sc, var(--ts-primary));
     border: 1px solid color-mix(in srgb, var(--sc, var(--ts-primary)) 28%, var(--ts-border));
@@ -1413,6 +1794,36 @@ TABLE.sortfilter A:hover {
     color: var(--ts-primary);
 }
 
+.sortcol {
+    cursor: pointer;
+    padding-right: 20px;
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+.sortasc,
+.sortdesc,
+.nosort {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-weight: 600;
+    border: 1px solid var(--ts-border);
+}
+.sortasc {
+    background-color: color-mix(in srgb, var(--ts-success) 18%, var(--ts-surface));
+    color: var(--ts-text);
+}
+.sortdesc {
+    background-color: color-mix(in srgb, var(--ts-info) 18%, var(--ts-surface));
+    color: var(--ts-text);
+}
+.nosort {
+    background-color: var(--ts-surface-muted);
+    color: var(--ts-text-muted);
+}
+
 
 /* ── Post-filtering area ──────────────────────────────────── */
 
@@ -1432,10 +1843,25 @@ TABLE.sortfilter A:hover {
     color: var(--ts-text-muted);
     white-space: nowrap;
     padding: var(--ts-space-2) var(--ts-space-3);
+    text-align: left;
 }
 #postFiltering table.general TD {
     font-size: var(--ts-font-sm);
     padding: var(--ts-space-2) var(--ts-space-3);
+}
+#postFiltering table.general tr > td:nth-child(3) {
+    width: 36px;
+    text-align: center;
+    padding-left: var(--ts-space-1);
+    padding-right: var(--ts-space-1);
+}
+#postFiltering table.general tr[style] > th,
+#postFiltering table.general tr[style] > td {
+    background-color: var(--ts-surface) !important;
+}
+#postFiltering table.general tr[style]:nth-of-type(even) > th,
+#postFiltering table.general tr[style]:nth-of-type(even) > td {
+    background-color: var(--ts-surface-muted) !important;
 }
 #postFiltering table.general TR + TR {
     border-top: 1px solid var(--ts-border);
@@ -1449,6 +1875,51 @@ TABLE.sortfilter A:hover {
     display: flex;
     justify-content: flex-end;
     gap: var(--ts-space-2);
+}
+
+/* ── Filter edit forms ────────────────────────────────────── */
+.ts-filter-edit table.general th {
+    text-align: left;
+    color: var(--ts-text-muted);
+    font-weight: 600;
+    text-transform: none;
+    font-size: var(--ts-font-sm);
+    letter-spacing: 0;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.ts-filter-edit table.general td {
+    text-align: left;
+}
+.ts-filter-edit table.general input[type="text"],
+.ts-filter-edit table.general select {
+    max-width: 420px;
+    width: 100%;
+}
+.ts-filter-edit table.sortfilter td {
+    vertical-align: top;
+}
+.ts-filter-edit .fieldsSelect {
+    width: min(360px, 100%);
+}
+.ts-filter-edit table.sortfilter input[type="button"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 34px;
+    padding: 0 10px;
+    border: 1px solid var(--ts-border-strong);
+    border-radius: var(--ts-radius-sm);
+    background-color: var(--ts-surface-muted);
+    color: var(--ts-text);
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: var(--ts-space-1);
+}
+.ts-filter-edit table.sortfilter input[type="button"]:hover {
+    background-color: var(--ts-primary-soft);
+    border-color: var(--ts-primary);
 }
 
 
@@ -1782,18 +2253,21 @@ TABLE.general.ts-task-customfields tr TD {
     height: 34px;
     min-width: 220px;
     width: clamp(220px, 28vw, 360px);
-    border: 1px solid color-mix(in srgb, var(--ts-primary) 18%, var(--ts-border));
+    border: 1px solid var(--ts-border-strong);
     border-radius: 999px;
-    background: linear-gradient(180deg, #ffffff, color-mix(in srgb, var(--ts-surface) 88%, #ffffff));
+    background: var(--ts-surface-muted);
     padding: 0 var(--ts-space-3);
     color: var(--ts-text);
     font-size: var(--ts-font-sm);
-    box-shadow: inset 0 1px 0 color-mix(in srgb, #ffffff 88%, transparent);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--ts-surface) 70%, transparent);
+}
+.ts-message-history-caption .ts-message-history-caption__search::placeholder {
+    color: var(--ts-text-muted-2);
 }
 
 .ts-message-history-caption .ts-message-history-caption__search:focus {
     outline: none;
-    border-color: var(--ts-primary);
+    border-color: var(--ts-primary-light);
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--ts-primary) 16%, transparent);
 }
 
@@ -2397,6 +2871,7 @@ div.bookmarkCaption {
     font-weight: 600;
     border-bottom: 1px solid var(--ts-border);
     padding: var(--ts-space-1) var(--ts-space-2);
+    border-top: 1px solid var(--ts-border);
 }
 
 span.bookmarkName {
@@ -2406,6 +2881,13 @@ span.bookmarkName {
 
 div.bookmarkPanel {
     background-color: var(--ts-surface);
+    color: var(--ts-text);
+}
+div.bookmarkItem {
+    color: var(--ts-text);
+}
+span.bookmarkName {
+    color: var(--ts-text) !important;
 }
 
 
@@ -2417,11 +2899,67 @@ TABLE.allowdeny CAPTION {
     font-weight: 600;
     font-size: var(--ts-font-base);
 }
+TABLE.allowdeny {
+    width: 100%;
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-sm);
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: var(--ts-surface);
+}
+TABLE.allowdeny TH {
+    background-color: var(--ts-surface-muted);
+    color: var(--ts-text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: var(--ts-font-xs);
+    letter-spacing: 0.04em;
+    padding: var(--ts-space-2) var(--ts-space-3);
+    border-bottom: 1px solid var(--ts-border);
+    text-align: left;
+}
 TABLE.allowdeny TH.allowed {
-    background-color: var(--ts-success-soft);
+    background-color: color-mix(in srgb, var(--ts-success) 18%, var(--ts-surface-muted));
+    color: var(--ts-text);
 }
 TABLE.allowdeny TH.denied {
-    background-color: var(--ts-danger-soft);
+    background-color: color-mix(in srgb, var(--ts-danger) 18%, var(--ts-surface-muted));
+    color: var(--ts-text);
+}
+TABLE.allowdeny TD {
+    padding: var(--ts-space-3);
+    vertical-align: top;
+}
+TABLE.allowdeny TD select,
+TABLE.allowdeny TD select[multiple] {
+    width: 100%;
+    min-width: 240px;
+    min-height: 220px;
+    background-color: var(--ts-surface);
+    color: var(--ts-text);
+    border: 1px solid var(--ts-border-strong);
+    border-radius: var(--ts-radius-sm);
+}
+TABLE.allowdeny input.iconized {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 36px;
+    padding: 0 10px;
+    border: 1px solid var(--ts-border-strong);
+    border-radius: var(--ts-radius-sm);
+    background-color: var(--ts-surface-muted);
+    color: var(--ts-text);
+    font-weight: 600;
+    cursor: pointer;
+}
+TABLE.allowdeny input.iconized:hover {
+    background-color: var(--ts-primary-soft);
+    border-color: var(--ts-primary);
+}
+TABLE.allowdeny label {
+    color: var(--ts-text-muted);
 }
 
 
@@ -2449,6 +2987,65 @@ div.blueborder TABLE.general {
     border-radius: 0;
     box-shadow: none;
     margin-bottom: 0;
+}
+
+/* ── See also blocks (dl list) ─────────────────────────────── */
+div.blueborder .indent dl {
+    margin: 0;
+    padding: var(--ts-space-3);
+    background-color: var(--ts-surface-muted);
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-sm);
+}
+div.blueborder .indent dl + dl {
+    margin-top: var(--ts-space-2);
+}
+div.blueborder .indent dl dt {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--ts-space-2);
+}
+div.blueborder .indent dl dd {
+    margin: var(--ts-space-1) 0 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ts-space-2);
+}
+span.itemname a {
+    color: var(--ts-text) !important;
+    font-weight: 600;
+    font-size: var(--ts-font-base);
+    text-decoration: none;
+}
+span.itemname a img {
+    vertical-align: middle;
+    margin-right: 6px;
+}
+span.itempath {
+    padding-left: 0;
+    color: var(--ts-text-muted);
+    font-size: var(--ts-font-sm);
+}
+span.itempath a {
+    color: var(--ts-text-muted) !important;
+    text-decoration: none;
+}
+div.blueborder .indent dl dd a.internal {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-sm);
+    background-color: var(--ts-surface);
+    color: var(--ts-text) !important;
+    text-decoration: none;
+}
+div.blueborder .indent dl dd a.internal:hover {
+    background-color: var(--ts-primary-soft);
+    border-color: var(--ts-primary);
 }
 
 /* First table inside blueborder: no top border (caption or controlPanel provides it) */
@@ -2570,7 +3167,7 @@ cite {
 }
 .ts-btn--danger:hover {
     background-color: var(--ts-danger-soft);
-    background-color: color-mix(in srgb, var(--ts-danger) 14%, white);
+    background-color: color-mix(in srgb, var(--ts-danger) 14%, var(--ts-surface));
 }
 
 .ts-btn--primary {
@@ -2591,7 +3188,7 @@ cite {
 }
 
 .ts-btn--success:hover {
-    background-color: color-mix(in srgb, var(--ts-success) 12%, white);
+    background-color: color-mix(in srgb, var(--ts-success) 12%, var(--ts-surface));
 }
 
 .ts-btn--outline {
@@ -2618,7 +3215,7 @@ input[type="submit"].iconized[name*="delete" i]:hover,
 input[type="button"].iconized[name*="delete" i]:hover,
 button.iconized[name*="delete" i]:hover {
     background-color: var(--ts-danger-soft) !important;
-    background-color: color-mix(in srgb, var(--ts-danger) 12%, white) !important;
+    background-color: color-mix(in srgb, var(--ts-danger) 12%, var(--ts-surface)) !important;
     border-color: var(--ts-danger) !important;
     color: var(--ts-danger) !important;
 }
@@ -2653,19 +3250,16 @@ button.iconized[name*="delete" i]:hover {
     gap: var(--ts-space-2);
 }
 
-/* Service panel (bulk selection bar) */
-div#servicePanel, div.norm#servicePanel {
-    background-color: var(--ts-warning-soft);
-    border-top: 1px solid var(--ts-warning);
-    border-bottom: 1px solid var(--ts-warning);
-    font-size: var(--ts-font-base);
+/* Service panel (bulk selection bar) - hidden, replaced by ts-bulk-bar */
+div#servicePanel, div.norm#servicePanel, div.hiddn#servicePanel {
+    display: none !important;
 }
 
 .ts-service-panel-item {
     padding-top: 1px;
     padding-bottom: 1px;
-    font-family: Verdana, sans-serif;
-    font-size: 11px;
+    font-family: var(--ts-font-family);
+    font-size: var(--ts-font-xs);
     font-weight: 700;
 }
 
@@ -2843,3 +3437,726 @@ label.header {
 .yui-skin-sam .mask {
     display: none !important;
 }
+
+
+/* ============================================================
+   Phase 9: Responsive Design — Component Media Queries
+   ============================================================ */
+
+/* ── Mobile: compact tables, single-column task layout ────── */
+@media (max-width: 767px) {
+    .ts-task-layout {
+        grid-template-columns: 1fr;
+    }
+    .ts-task-layout .ts-task-sidebar {
+        grid-column: 1;
+    }
+
+    TABLE.general {
+        font-size: var(--ts-font-sm);
+    }
+    TABLE.general TH {
+        display: none;
+    }
+    TABLE.general TD {
+        display: block;
+        padding: var(--ts-space-1) var(--ts-space-2);
+        text-align: left;
+    }
+    TABLE.general TD:before {
+        content: attr(data-label);
+        display: block;
+        font-weight: 700;
+        font-size: var(--ts-font-xs);
+        color: var(--ts-text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-bottom: 2px;
+    }
+
+    /* Breadcrumb: smaller text on mobile */
+    DIV.logopath {
+        font-size: var(--ts-font-xs);
+    }
+
+    /* Task title: smaller on mobile */
+    DIV.taskTitle A,
+    DIV.taskTitle SPAN {
+        font-size: var(--ts-font-lg);
+    }
+
+    /* Control panel: scrollable horizontally */
+    div.controlPanel {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Pagination: stack vertically */
+    DIV.slider {
+        flex-wrap: wrap;
+    }
+
+    /* Login card: full-width on mobile */
+    .ts-login-card {
+        padding: var(--ts-space-2);
+    }
+
+    /* Tabs: scrollable horizontally */
+    TABLE.tabbedpane TD {
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Task toolbar: scrollable */
+    div.controlPanel.ts-task-main-actions {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+
+/* ── Touch-friendly: larger touch targets ─────────────────── */
+@media (pointer: coarse) {
+    div.controlPanel A {
+        min-height: 44px;
+        padding: var(--ts-space-2) var(--ts-space-3);
+    }
+
+    INPUT[type="checkbox"],
+    INPUT[type="radio"] {
+        width: 20px;
+        height: 20px;
+    }
+
+    .ts-sidebar-toggle {
+        width: 44px;
+    }
+
+    /* Larger click targets for menu items */
+    .ts-menu a {
+        min-height: 44px;
+        padding: var(--ts-space-2) var(--ts-space-3);
+        display: flex;
+        align-items: center;
+    }
+
+    /* Larger pagination buttons */
+    DIV.slider A,
+    DIV.slider SPAN {
+        min-width: 40px;
+        height: 40px;
+    }
+
+    /* Tabs: bigger touch targets */
+    TABLE.tabbedpane TD LI A {
+        min-height: 44px;
+        padding: var(--ts-space-2) var(--ts-space-4);
+        display: inline-flex;
+        align-items: center;
+    }
+
+    /* Tree toggle: bigger on touch */
+    .tree-toggle-button {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+
+/* ============================================================
+   Phase 10: Polish — Micro-interactions
+   ============================================================ */
+
+/* ── Skeleton loading placeholder ─────────────────────────── */
+.ts-skeleton {
+    background: linear-gradient(90deg,
+        var(--ts-surface-muted) 25%,
+        var(--ts-surface) 50%,
+        var(--ts-surface-muted) 75%
+    );
+    background-size: 200% 100%;
+    animation: ts-skeleton-pulse 1.5s ease-in-out infinite;
+    border-radius: var(--ts-radius-sm);
+    color: transparent !important;
+    user-select: none;
+}
+.ts-skeleton * {
+    visibility: hidden;
+}
+
+@keyframes ts-skeleton-pulse {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+
+/* ── Toast notifications ──────────────────────────────────── */
+.ts-toast-container {
+    position: fixed;
+    bottom: var(--ts-space-4);
+    right: var(--ts-space-4);
+    z-index: var(--ts-z-toast);
+    display: flex;
+    flex-direction: column-reverse;
+    gap: var(--ts-space-2);
+    pointer-events: none;
+}
+
+.ts-toast {
+    padding: var(--ts-space-3) var(--ts-space-4);
+    background: var(--ts-text);
+    color: #ffffff;
+    border-radius: var(--ts-radius-md);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    font-size: var(--ts-font-sm);
+    font-weight: 500;
+    line-height: var(--ts-line-height);
+    max-width: 400px;
+    pointer-events: auto;
+    animation: ts-toast-in 0.3s ease forwards;
+    display: flex;
+    align-items: center;
+    gap: var(--ts-space-2);
+}
+
+.ts-toast--success {
+    background: var(--ts-success);
+}
+.ts-toast--error {
+    background: var(--ts-danger);
+}
+.ts-toast--warning {
+    background: var(--ts-warning);
+    color: var(--ts-text);
+}
+
+.ts-toast.ts-toast--out {
+    animation: ts-toast-out 0.25s ease forwards;
+}
+
+@keyframes ts-toast-in {
+    0% {
+        opacity: 0;
+        transform: translateY(12px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes ts-toast-out {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(12px) scale(0.95);
+    }
+}
+
+
+/* ============================================================
+   Phase 10: Accessibility — Focus & Contrast
+   ============================================================ */
+
+/* ── Focus-visible ring for keyboard navigation ───────────── */
+:focus-visible {
+    outline: 2px solid var(--ts-primary-light);
+    outline-offset: 2px;
+}
+
+/* Remove outline for mouse/touch users */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Specific focus styles for interactive elements */
+A:focus-visible,
+INPUT:focus-visible,
+SELECT:focus-visible,
+TEXTAREA:focus-visible,
+BUTTON:focus-visible,
+.ts-sidebar-toggle:focus-visible {
+    outline: 2px solid var(--ts-primary-light);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.15);
+}
+
+/* ── Visually-hidden utility (screen-reader only) ─────────── */
+.ts-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* ============================================================
+   Phase 10: Dark Mode
+   ============================================================ */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --ts-bg:              #0d1117;
+        --ts-surface:         #161b22;
+        --ts-surface-muted:   #1c2129;
+        --ts-border:          #30363d;
+        --ts-border-strong:   #484f58;
+
+        --ts-text:            #e6edf3;
+        --ts-text-muted:      #8b949e;
+        --ts-text-muted-2:    #6e7681;
+
+        --ts-primary:         #58a6ff;
+        --ts-primary-strong:  #79c0ff;
+        --ts-primary-light:   #58a6ff;
+        --ts-primary-soft:    #0d2240;
+        --ts-primary-glow:    #79c0ff;
+
+        --ts-accent:          #3fb950;
+        --ts-accent-hover:    #2ea043;
+
+        --ts-success:         #3fb950;
+        --ts-success-soft:    #0d2818;
+        --ts-danger:          #f85149;
+        --ts-danger-soft:     #3d1214;
+        --ts-warning:         #d29922;
+        --ts-warning-soft:    #3d2e00;
+        --ts-info:            #58a6ff;
+
+        --ts-shadow-sm:       0 1px 2px rgba(0, 0, 0, 0.3);
+        --ts-shadow:          0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.2);
+        --ts-shadow-lg:       0 4px 12px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.2);
+        --ts-shadow-xl:       0 8px 24px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Dark mode overrides for elements with hardcoded colors */
+    INPUT.reallyBig {
+        background-color: var(--ts-surface);
+        color: var(--ts-text);
+    }
+
+    .ts-brand-mark {
+        color: #ffffff;
+    }
+
+    img.state {
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Skeleton loading: dark variant */
+    .ts-skeleton {
+        background: linear-gradient(90deg,
+            var(--ts-surface-muted) 25%,
+            #2a2f38 50%,
+            var(--ts-surface-muted) 75%
+        );
+        background-size: 200% 100%;
+    }
+
+    /* Overdue rows: dark variant */
+    tr.overdue.line0 TD, tr.overdue.line0 TH {
+        background-color: var(--ts-danger-soft) !important;
+    }
+    tr.overdue.line1 TD, tr.overdue.line1 TH {
+        background-color: #4d1a1a !important;
+    }
+
+    /* Login page: dark background */
+    BODY.ts-login-page {
+        background: #0d1117;
+    }
+    .ts-login-footer {
+        color: rgba(255, 255, 255, 0.4);
+    }
+    .ts-login-footer a {
+        color: rgba(255, 255, 255, 0.55);
+    }
+
+    /* Pagination active page */
+    DIV.slider SPAN {
+        color: #0d1117;
+    }
+
+    /* Buttons: ensure contrast */
+    INPUT[type="submit"],
+    INPUT[type="button"],
+    BUTTON,
+    .iconized {
+        color: #0d1117;
+    }
+
+    /* Override inline white backgrounds in legacy views */
+    DIV.caption {
+        background-color: var(--ts-surface-muted) !important;
+        border-color: var(--ts-border) !important;
+        color: var(--ts-text) !important;
+    }
+    TABLE.general {
+        background-color: var(--ts-surface) !important;
+        border-color: var(--ts-border) !important;
+    }
+    TABLE.general CAPTION {
+        background-color: var(--ts-surface-muted) !important;
+        border-color: var(--ts-border) !important;
+        color: var(--ts-text) !important;
+    }
+    .container-internal {
+        color: var(--ts-text-muted) !important;
+    }
+}
+
+/* Manual dark mode toggle via data attribute */
+[data-theme="dark"] {
+    --ts-bg:              #0d1117;
+    --ts-surface:         #161b22;
+    --ts-surface-muted:   #1c2129;
+    --ts-border:          #30363d;
+    --ts-border-strong:   #484f58;
+
+    --ts-text:            #e6edf3;
+    --ts-text-muted:      #8b949e;
+    --ts-text-muted-2:    #6e7681;
+
+    --ts-primary:         #58a6ff;
+    --ts-primary-strong:  #79c0ff;
+    --ts-primary-light:   #58a6ff;
+    --ts-primary-soft:    #0d2240;
+    --ts-primary-glow:    #79c0ff;
+
+    --ts-accent:          #3fb950;
+    --ts-accent-hover:    #2ea043;
+
+    --ts-success:         #3fb950;
+    --ts-success-soft:    #0d2818;
+    --ts-danger:          #f85149;
+    --ts-danger-soft:     #3d1214;
+    --ts-warning:         #d29922;
+    --ts-warning-soft:    #3d2e00;
+    --ts-info:            #58a6ff;
+
+    --ts-shadow-sm:       0 1px 2px rgba(0, 0, 0, 0.3);
+    --ts-shadow:          0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.2);
+    --ts-shadow-lg:       0 4px 12px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.2);
+    --ts-shadow-xl:       0 8px 24px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] DIV.caption {
+    background-color: var(--ts-surface-muted) !important;
+    border-color: var(--ts-border) !important;
+    color: var(--ts-text) !important;
+}
+[data-theme="dark"] TABLE.general {
+    background-color: var(--ts-surface) !important;
+    border-color: var(--ts-border) !important;
+}
+[data-theme="dark"] TABLE.general CAPTION {
+    background-color: var(--ts-surface-muted) !important;
+    border-color: var(--ts-border) !important;
+    color: var(--ts-text) !important;
+}
+[data-theme="dark"] .container-internal {
+    color: var(--ts-text-muted) !important;
+}
+
+/* N14: Tabs dark mode — dark background, light text */
+@media (prefers-color-scheme: dark) {
+    /* tabbedpane: all tabs get dark surface, muted text */
+    TABLE.tabbedpane TD LI A,
+    TABLE.tabbedpane TD A:link,
+    TABLE.tabbedpane TD A:visited,
+    TABLE.tabbedpane TD A:active {
+        background: var(--ts-surface) !important;
+        color: var(--ts-text-muted-2) !important;
+    }
+    TABLE.tabbedpane TD LI A SPAN {
+        background: transparent !important;
+    }
+    TABLE.tabbedpane TD LI A:hover {
+        background: var(--ts-surface-muted) !important;
+        color: var(--ts-text-muted) !important;
+        border-bottom-color: var(--ts-border-strong);
+    }
+    /* active tab: slightly raised surface + bright text + primary underline */
+    TABLE.tabbedpane TD LI#selectedtab A,
+    TABLE.tabbedpane TD LI#selectedtab A:hover {
+        background: var(--ts-surface-muted) !important;
+        color: var(--ts-text) !important;
+        border-bottom-color: var(--ts-primary) !important;
+    }
+    TABLE.tabbedpane TD LI#selectedtab A SPAN {
+        background: transparent !important;
+    }
+    /* table.tabs (legacy): same approach */
+    table.tabs,
+    table.tabs td {
+        background-color: var(--ts-surface) !important;
+    }
+    table.tabs td A,
+    table.tabs td A:link,
+    table.tabs td A:visited,
+    table.tabs td A:active {
+        background-color: transparent !important;
+        color: var(--ts-text-muted-2) !important;
+    }
+    table.tabs td A:hover {
+        background-color: var(--ts-surface-muted) !important;
+        color: var(--ts-text-muted) !important;
+    }
+    table.tabs td.selectedtab,
+    table.tabs td.selectedtab A {
+        background-color: var(--ts-surface-muted) !important;
+        color: var(--ts-text) !important;
+        border-bottom-color: var(--ts-primary) !important;
+    }
+}
+[data-theme="dark"] TABLE.tabbedpane TD LI A,
+[data-theme="dark"] TABLE.tabbedpane TD A:link,
+[data-theme="dark"] TABLE.tabbedpane TD A:visited,
+[data-theme="dark"] TABLE.tabbedpane TD A:active {
+    background: var(--ts-surface) !important;
+    color: var(--ts-text-muted-2) !important;
+}
+[data-theme="dark"] TABLE.tabbedpane TD LI A SPAN {
+    background: transparent !important;
+}
+[data-theme="dark"] TABLE.tabbedpane TD LI A:hover {
+    background: var(--ts-surface-muted) !important;
+    color: var(--ts-text-muted) !important;
+    border-bottom-color: var(--ts-border-strong);
+}
+[data-theme="dark"] TABLE.tabbedpane TD LI#selectedtab A,
+[data-theme="dark"] TABLE.tabbedpane TD LI#selectedtab A:hover {
+    background: var(--ts-surface-muted) !important;
+    color: var(--ts-text) !important;
+    border-bottom-color: var(--ts-primary) !important;
+}
+[data-theme="dark"] TABLE.tabbedpane TD LI#selectedtab A SPAN {
+    background: transparent !important;
+}
+[data-theme="dark"] table.tabs,
+[data-theme="dark"] table.tabs td {
+    background-color: var(--ts-surface) !important;
+}
+[data-theme="dark"] table.tabs td A,
+[data-theme="dark"] table.tabs td A:link,
+[data-theme="dark"] table.tabs td A:visited,
+[data-theme="dark"] table.tabs td A:active {
+    background-color: transparent !important;
+    color: var(--ts-text-muted-2) !important;
+}
+[data-theme="dark"] table.tabs td A:hover {
+    background-color: var(--ts-surface-muted) !important;
+    color: var(--ts-text-muted) !important;
+}
+[data-theme="dark"] table.tabs td.selectedtab,
+[data-theme="dark"] table.tabs td.selectedtab A {
+    background-color: var(--ts-surface-muted) !important;
+    color: var(--ts-text) !important;
+    border-bottom-color: var(--ts-primary) !important;
+}
+
+/* N13: Status badges dark mode - use contrasting text color */
+[data-theme="dark"] .ts-status-badge {
+    color: #ffffff;
+    /* Make badge background darker in dark mode */
+    background-color: color-mix(in srgb, var(--sc, var(--ts-primary)) 35%, #000);
+    border-color: color-mix(in srgb, var(--sc, var(--ts-primary)) 55%, #000);
+}
+
+
+/* ============================================================
+   Phase 10: Workflow Dialog (ts-workflow-dialog.js)
+   ============================================================ */
+
+/* N2: CSS classes for ts-workflow-dialog */
+.ts-workflow-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: var(--ts-z-modal-backdrop, 1000);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--ts-transition, 0.2s);
+}
+.ts-workflow-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.ts-workflow-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    background: var(--ts-surface, #ffffff);
+    border-radius: var(--ts-radius-md, 8px);
+    box-shadow: var(--ts-shadow-xl, 0 8px 24px rgba(0, 0, 0, 0.3));
+    z-index: var(--ts-z-modal, 1001);
+    opacity: 0;
+    pointer-events: none;
+    transition: all var(--ts-transition, 0.2s);
+    max-width: 90vw;
+    max-height: 85vh;
+    overflow: auto;
+    width: 640px;
+}
+.ts-workflow-dialog.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+.ts-workflow-dialog--submitting .ts-workflow-dialog__body {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.ts-workflow-dialog__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--ts-space-4) var(--ts-space-5) var(--ts-space-3);
+    border-bottom: 1px solid var(--ts-border, #e2e8f0);
+}
+
+.ts-workflow-dialog__title {
+    margin: 0;
+    font-size: var(--ts-font-lg, 18px);
+    font-weight: 600;
+    color: var(--ts-text, #1a202c);
+}
+
+.ts-workflow-dialog__close {
+    appearance: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--ts-text-muted, #718096);
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: var(--ts-radius-sm, 4px);
+}
+.ts-workflow-dialog__close:hover {
+    background: var(--ts-surface-muted, #f7fafc);
+    color: var(--ts-text, #1a202c);
+}
+
+.ts-workflow-dialog__body {
+    padding: var(--ts-space-4) var(--ts-space-5);
+    min-height: 200px;
+    transition: opacity var(--ts-transition, 0.2s);
+}
+
+.ts-workflow-dialog__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--ts-space-3, 12px);
+    padding: var(--ts-space-3) var(--ts-space-5) var(--ts-space-4);
+    border-top: 1px solid var(--ts-border, #e2e8f0);
+}
+
+.ts-workflow-dialog__btn {
+    appearance: none;
+    border: 1px solid var(--ts-border-strong, #cbd5e0);
+    border-radius: var(--ts-radius-sm, 4px);
+    padding: var(--ts-space-2) var(--ts-space-4);
+    font-size: var(--ts-font-base, 14px);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ts-transition, 0.2s);
+}
+.ts-workflow-dialog__btn--secondary {
+    background: var(--ts-surface-muted, #f7fafc);
+    color: var(--ts-text, #1a202c);
+}
+.ts-workflow-dialog__btn--secondary:hover {
+    background: var(--ts-surface, #ffffff);
+    border-color: var(--ts-primary, #3182ce);
+    color: var(--ts-primary, #3182ce);
+}
+.ts-workflow-dialog__btn--primary {
+    background: var(--ts-accent, #3fb950);
+    border-color: var(--ts-accent, #3fb950);
+    color: #ffffff;
+}
+.ts-workflow-dialog__btn--primary:hover {
+    background: var(--ts-accent-hover, #2ea043);
+    border-color: var(--ts-accent-hover, #2ea043);
+}
+.ts-workflow-dialog__btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.ts-workflow-dialog__loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--ts-space-8);
+    color: var(--ts-text-muted, #718096);
+}
+
+.ts-workflow-dialog__spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--ts-border, #e2e8f0);
+    border-top-color: var(--ts-primary, #3182ce);
+    border-radius: 50%;
+    animation: ts-workflow-spin 0.8s linear infinite;
+    margin-bottom: var(--ts-space-2);
+}
+
+@keyframes ts-workflow-spin {
+    to { transform: rotate(360deg); }
+}
+
+.ts-workflow-dialog__iframe {
+    width: 100%;
+    min-height: 300px;
+    border: none;
+    background: var(--ts-surface, #ffffff);
+}
+
+/* Quick action mode */
+.ts-workflow-dialog--quick {
+    width: 480px;
+}
+.ts-workflow-quick-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ts-space-3);
+}
+.ts-workflow-quick__label {
+    font-weight: 600;
+    color: var(--ts-text-muted, #718096);
+    font-size: var(--ts-font-sm, 13px);
+}
+.ts-workflow-quick__textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: var(--ts-space-3);
+    border: 1px solid var(--ts-border-strong, #cbd5e0);
+    border-radius: var(--ts-radius-sm, 4px);
+    font-family: inherit;
+    font-size: var(--ts-font-base, 14px);
+    resize: vertical;
+    background: var(--ts-surface, #ffffff);
+    color: var(--ts-text, #1a202c);
+}
+.ts-workflow-quick__textarea:focus {
+    outline: none;
+    border-color: var(--ts-primary, #3182ce);
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15);
+}
+

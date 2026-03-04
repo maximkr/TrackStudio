@@ -23,6 +23,7 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta http-equiv="content-type" content="text/html; charset=<c:out value="${charSet}"/>">
+<meta name="color-scheme" content="light dark">
 <!-- L9: Removed Google Fonts CDN for GDPR and offline support. Inter font will use system fallback -->
 <title>${originTitle}</title>
 
@@ -170,6 +171,7 @@
     <ts:jsLink link="${urlHtml}/ts-predictor.js"/>
     <ts:jsLink link="${urlHtml}/slidingframe.js"/>
     <ts:jsLink link="${urlHtml}/ts-dialog.js"/>
+    <ts:jsLink link="${urlHtml}/ts-toast.js"/>
     <ts:jsLink link="${urlHtml}/colorpicker/js/utilities.js"/>
     <ts:jsLink link="${urlHtml}/colorpicker/js/slider-min.js"/>
     <ts:jsLink link="${urlHtml}/colorpicker/js/colorpicker-min.js"/>
@@ -236,7 +238,7 @@
     <tiles:get name="customHeader"/>
 
     <html:messages id="error" message="true" property="msg">
-        <table class="error ts-message-error" cellpadding="0" cellspacing="0">
+        <table class="error ts-message-error" cellpadding="0" cellspacing="0" role="alert">
             <caption>
                 <I18n:message key="ERROR_OCCURRED"/>
             </caption>
@@ -248,14 +250,14 @@
         </table>
     </html:messages>
 
-    <div class="ts-main-tabs">
+    <div class="ts-main-tabs" role="tablist" aria-label="Page tabs">
         <tiles:get name="tabs"/>
     </div>
-    <div class="ts-main-content">
+    <div class="ts-main-content" role="main">
         <tiles:get name="main"/>
     </div>
 </div>
-<table class="allrights ts-footer">
+<table class="allrights ts-footer" role="contentinfo">
     <tr>
         <td>
             <c:out value="${tsVersionDescription}" escapeXml="false"/>&nbsp;<c:out value="${tsBuildDate}" escapeXml="false"/>&nbsp;<I18n:message key="COPYRIGHT"/>

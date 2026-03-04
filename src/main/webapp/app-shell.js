@@ -5,14 +5,19 @@
     window.TS = window.TS || {};
 
     var shell = document.getElementById('tsShell');
+    var sidebar = document.getElementById('tsSidebar');
     var sidebarFrame = document.getElementById('tsSidebarFrame');
     var contentFrame = document.getElementById('tsContent');
     var toggle = document.getElementById('tsSidebarToggle');
+    var backdrop = document.getElementById('tsSidebarBackdrop');
 
     var DEFAULT_WIDTH = 260;
     var MIN_WIDTH = 150;
     var MAX_WIDTH = 600;
     var HANDLE_WIDTH = 6;
+
+    // --- Responsive breakpoint detection ---
+    var TABLET_BREAKPOINT = 1199;
 
     // --- Deep link: ?url= parameter ---
     var params = new URLSearchParams(window.location.search);
@@ -58,13 +63,39 @@
     var sidebarWidth = parseInt(localStorage.getItem('ts-sidebar-width'), 10) || DEFAULT_WIDTH;
     var sidebarOpen = localStorage.getItem('ts-sidebar') !== 'closed';
 
+    function isTabletOrSmaller() {
+        return window.innerWidth <= TABLET_BREAKPOINT;
+    }
+
     function applyColumns() {
         var w = sidebarOpen ? sidebarWidth : 0;
-        shell.style.gridTemplateColumns = w + 'px ' + HANDLE_WIDTH + 'px 1fr';
+        // On tablet/mobile, grid columns are overridden by CSS media query
+        if (!isTabletOrSmaller()) {
+            shell.style.gridTemplateColumns = w + 'px ' + HANDLE_WIDTH + 'px 1fr';
+        }
         if (sidebarOpen) {
             shell.classList.remove('sidebar-collapsed');
         } else {
             shell.classList.add('sidebar-collapsed');
+        }
+        // Phase 10: Update ARIA expanded state
+        toggle.setAttribute('aria-expanded', String(sidebarOpen));
+        // Phase 9: Manage backdrop visibility on tablet
+        if (backdrop) {
+            if (isTabletOrSmaller() && sidebarOpen) {
+                backdrop.style.display = 'block';
+                requestAnimationFrame(function () {
+                    backdrop.classList.add('visible');
+                });
+            } else {
+                backdrop.classList.remove('visible');
+                // Wait for transition before hiding
+                setTimeout(function () {
+                    if (!backdrop.classList.contains('visible')) {
+                        backdrop.style.display = 'none';
+                    }
+                }, 300);
+            }
         }
     }
 
@@ -86,6 +117,45 @@
         if (!sidebarOpen) {
             toggleSidebar();
         }
+    });
+
+    // Phase 10: Keyboard support for toggle (Enter/Space)
+    toggle.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleSidebar();
+        }
+    });
+
+    // Phase 9: Close sidebar when clicking backdrop on tablet
+    if (backdrop) {
+        backdrop.addEventListener('click', function () {
+            if (sidebarOpen) {
+                toggleSidebar();
+            }
+        });
+    }
+
+    // Phase 9: Close sidebar on Escape key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && sidebarOpen && isTabletOrSmaller()) {
+            toggleSidebar();
+        }
+    });
+
+    // Phase 9: Auto-close sidebar on resize to desktop
+    var lastWasTablet = isTabletOrSmaller();
+    window.addEventListener('resize', function () {
+        var currentIsTablet = isTabletOrSmaller();
+        // P15: Apply columns when transitioning from tablet to desktop
+        if (lastWasTablet && !currentIsTablet) {
+            // Restore sidebar if it was closed on tablet (user likely wants it on desktop)
+            if (!sidebarOpen) {
+                sidebarOpen = true;
+            }
+            applyColumns();
+        }
+        lastWasTablet = currentIsTablet;
     });
 
     window.TS.sidebar = {
@@ -175,5 +245,40 @@
     // self.top.frames[0] = sidebar iframe (automatic, iframes register in DOM order)
     // self.top.frames[1] = content iframe (automatic)
     // No additional bridging needed for existing self.top.frames[0/1] code.
+
+    // === Phase 9: Touch / swipe support for sidebar ===
+    (function () {
+        var touchStartX = 0;
+        var touchStartY = 0;
+        var SWIPE_THRESHOLD = 50;
+        var EDGE_ZONE = 30; // px from left edge to start swipe-open
+
+        document.addEventListener('touchstart', function (e) {
+            var touch = e.touches[0];
+            touchStartX = touch.clientX;
+            touchStartY = touch.clientY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', function (e) {
+            if (!isTabletOrSmaller()) return;
+
+            var touch = e.changedTouches[0];
+            var deltaX = touch.clientX - touchStartX;
+            var deltaY = touch.clientY - touchStartY;
+
+            // Only detect horizontal swipes (not vertical scroll)
+            if (Math.abs(deltaX) < SWIPE_THRESHOLD || Math.abs(deltaY) > Math.abs(deltaX)) {
+                return;
+            }
+
+            if (deltaX > 0 && !sidebarOpen && touchStartX < EDGE_ZONE) {
+                // Swipe right from left edge → open sidebar
+                toggleSidebar();
+            } else if (deltaX < 0 && sidebarOpen) {
+                // Swipe left → close sidebar
+                toggleSidebar();
+            }
+        }, { passive: true });
+    })();
 
 })();

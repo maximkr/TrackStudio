@@ -7,5 +7,8 @@
 <I18n:setTimeZone value="${sc.timezone}"/>
 <I18n:setBundle basename="language"/>
 <c:set var="urlHtml" value="html"/>
+<script type="text/javascript">
+    window.tsTinyMceContentCss = "<c:out value='${contextPath}${versionPath}'/>/tinymce.css";
+</script>
 <script type="text/javascript" src="<c:out value="${contextPath}${versionPath}"/>/${urlHtml}/tiny_mce/tinymce.min.js"></script>
 <script type="text/javascript" src="<c:out value="${contextPath}${versionPath}"/>/${urlHtml}/tiny_mce/ts_init.js"></script>

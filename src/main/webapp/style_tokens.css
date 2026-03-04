@@ -5,12 +5,14 @@
    ============================================================ */
 
 :root {
+    color-scheme: light dark;
+
     /* ── Colour palette ───────────────────────────────────── */
     --ts-bg:              #F8F9FB;
     --ts-surface:         #ffffff;
     --ts-surface-muted:   #F0F2F5;
     --ts-border:          #E2E8F0;
-    --ts-border-strong:   #E2E8F0;
+    --ts-border-strong:   #CBD5E1; /* N10: Different from --ts-border for scrollbar visibility */
 
     --ts-text:            #1E293B;
     --ts-text-muted:      #64748B;
@@ -65,6 +67,7 @@
     --ts-radius-lg: 16px;
 
     /* ── Shadows ──────────────────────────────────────────── */
+    --ts-shadow-xs:    0 1px 1px rgba(0,0,0,0.03);
     --ts-shadow-sm:    0 1px 2px rgba(0,0,0,0.05);
     --ts-shadow:       0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
     --ts-shadow-lg:    0 4px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04);
@@ -261,4 +264,84 @@ INPUT[type="radio"] {
     width: auto;
     vertical-align: middle;
     cursor: pointer;
+}
+
+
+/* ============================================================
+   Dark Mode Token Overrides
+   Defined here (not only in style_components.css) so that
+   app-shell.html, which loads only this file, also inherits
+   the correct dark-mode tokens for the sidebar handle etc.
+   ============================================================ */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+        --ts-bg:              #0d1117;
+        --ts-surface:         #161b22;
+        --ts-surface-muted:   #1c2129;
+        --ts-border:          #30363d;
+        --ts-border-strong:   #484f58;
+
+        --ts-text:            #e6edf3;
+        --ts-text-muted:      #8b949e;
+        --ts-text-muted-2:    #6e7681;
+
+        --ts-primary:         #58a6ff;
+        --ts-primary-strong:  #79c0ff;
+        --ts-primary-light:   #58a6ff;
+        --ts-primary-soft:    #0d2240;
+        --ts-primary-glow:    #79c0ff;
+
+        --ts-accent:          #3fb950;
+        --ts-accent-hover:    #2ea043;
+
+        --ts-success:         #3fb950;
+        --ts-success-soft:    #0d2818;
+        --ts-danger:          #f85149;
+        --ts-danger-soft:     #3d1214;
+        --ts-warning:         #d29922;
+        --ts-warning-soft:    #3d2e00;
+        --ts-info:            #58a6ff;
+
+        --ts-shadow-sm:       0 1px 2px rgba(0, 0, 0, 0.3);
+        --ts-shadow:          0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.2);
+        --ts-shadow-lg:       0 4px 12px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.2);
+        --ts-shadow-xl:       0 8px 24px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
+    --ts-bg:              #0d1117;
+    --ts-surface:         #161b22;
+    --ts-surface-muted:   #1c2129;
+    --ts-border:          #30363d;
+    --ts-border-strong:   #484f58;
+
+    --ts-text:            #e6edf3;
+    --ts-text-muted:      #8b949e;
+    --ts-text-muted-2:    #6e7681;
+
+    --ts-primary:         #58a6ff;
+    --ts-primary-strong:  #79c0ff;
+    --ts-primary-light:   #58a6ff;
+    --ts-primary-soft:    #0d2240;
+    --ts-primary-glow:    #79c0ff;
+
+    --ts-accent:          #3fb950;
+    --ts-accent-hover:    #2ea043;
+
+    --ts-success:         #3fb950;
+    --ts-success-soft:    #0d2818;
+    --ts-danger:          #f85149;
+    --ts-danger-soft:     #3d1214;
+    --ts-warning:         #d29922;
+    --ts-warning-soft:    #3d2e00;
+    --ts-info:            #58a6ff;
+
+    --ts-shadow-sm:       0 1px 2px rgba(0, 0, 0, 0.3);
+    --ts-shadow:          0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.2);
+    --ts-shadow-lg:       0 4px 12px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.2);
+    --ts-shadow-xl:       0 8px 24px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.2);
 }

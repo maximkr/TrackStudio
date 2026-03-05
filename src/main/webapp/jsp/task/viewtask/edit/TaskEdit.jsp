@@ -245,18 +245,19 @@
                         </c:choose>
                     </div>
                 </c:if>
-                <br>
-                <input type="text" name="searchhandler" style="padding:0;margin-left:-1px;height:15px;"
-                       class="form-autocomplete" size="30" onkeyup="__localsearch(this);"><br>
+                <div class="ts-handler-picker">
+                    <input type="text" name="searchhandler"
+                           class="form-autocomplete ts-handler-picker__search"
+                           size="30" onkeyup="__localsearch(this);">
 
-                <div class="selectbox" id="_handler">
+                    <div class="selectbox ts-handler-picker__panel" id="_handler">
                     <c:if test="${!newTaskCategory.handlerRequired}">
                         <label class="sel0" for="handler_nobody"><html:radio property="handler" value=""
                                                                              styleId="handler_nobody"/><I18n:message
                                 key="NOBODY"/></label>
                     </c:if>
                     <c:if test="${!(empty handlerGroups)}">
-                        <div id="roles" class="optgroup"><I18n:message key="PRSTATUSES"/>
+                        <div id="roles" class="optgroup ts-handler-picker__group"><I18n:message key="PRSTATUSES"/>
                             <c:forEach items="${handlerGroups}" var="group" varStatus="c">
                                 <label for="handlergroup_${group.id}" class="sel${c.index mod 2}">
                                     <span class="user">
@@ -271,7 +272,7 @@
                         </div>
                     </c:if>
                     <c:if test="${!(empty handlers)}">
-                        <div id="userlist" class="optgroup"><I18n:message key="USERS_LIST"/>
+                        <div id="userlist" class="optgroup ts-handler-picker__group"><I18n:message key="USERS_LIST"/>
                             <c:forEach items="${handlers}" var="huser" varStatus="c">
                                 <label for="handler_${huser.id}" class="sel${c.index mod 2}">
                                     <html:radio style="vertical-align:top;"
@@ -287,6 +288,7 @@
                         </div>
                     </c:if>
 
+                    </div>
                 </div>
             </c:when>
             <c:otherwise>

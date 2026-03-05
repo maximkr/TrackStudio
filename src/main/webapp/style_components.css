@@ -430,6 +430,94 @@ div.selectbox div.currenthandler {
     color: var(--ts-text);
 }
 
+/* Legacy assignee picker (task/message handler search) */
+.ts-handler-picker {
+    display: grid;
+    gap: var(--ts-space-2);
+    width: min(100%, 640px);
+    margin-top: var(--ts-space-2);
+}
+
+.ts-handler-picker__search {
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+div.selectbox.ts-handler-picker__panel {
+    width: 100%;
+    min-height: 220px;
+    max-height: 320px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: 1px solid var(--ts-border-strong);
+    border-radius: var(--ts-radius-sm);
+    background-color: var(--ts-surface);
+    box-shadow: var(--ts-shadow-sm);
+}
+
+div.selectbox.ts-handler-picker__panel label {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--ts-space-2);
+    width: 100%;
+    padding: 8px 12px;
+    box-sizing: border-box;
+    line-height: 1.4;
+    font-size: var(--ts-font-base);
+    font-weight: 500;
+}
+
+div.selectbox.ts-handler-picker__panel label input[type="radio"] {
+    margin: 2px 0 0;
+    flex: 0 0 auto;
+}
+
+div.selectbox.ts-handler-picker__panel label .user {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    flex-wrap: wrap;
+    white-space: normal;
+}
+
+div.selectbox.ts-handler-picker__panel .ts-handler-picker__group {
+    display: block;
+    font-size: var(--ts-font-sm);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ts-text-muted);
+    padding: 10px 12px 6px;
+    background-color: color-mix(in srgb, var(--ts-surface-muted) 75%, var(--ts-surface));
+    border-top: 1px solid var(--ts-border);
+}
+
+div.selectbox.ts-handler-picker__panel .ts-handler-picker__group:first-of-type {
+    border-top: none;
+}
+
+div.selectbox.ts-handler-picker__panel .ts-handler-picker__group > label {
+    margin: 6px -12px 0;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+div.selectbox.ts-handler-picker__panel label.sel1,
+div.selectbox.ts-handler-picker__panel div.sel0 {
+    background-color: color-mix(in srgb, var(--ts-surface-muted) 82%, var(--ts-surface));
+}
+
+div.selectbox.ts-handler-picker__panel label.sel0,
+div.selectbox.ts-handler-picker__panel div.sel1 {
+    background-color: var(--ts-surface);
+}
+
+div.selectbox.ts-handler-picker__panel label:hover {
+    background-color: color-mix(in srgb, var(--ts-primary) 10%, var(--ts-surface));
+}
+
 select,
 select[multiple],
 select[size] {

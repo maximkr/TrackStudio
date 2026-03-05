@@ -59,6 +59,11 @@ body {
     padding-top: var(--ts-space-3);
 }
 
+/* Keep tabs visually attached to page body blocks (nblueborder/blueborder content). */
+.ts-main-tabs + .ts-main-content {
+    padding-top: 0;
+}
+
 
 /* ── Login page ───────────────────────────────────────────── */
 
@@ -1347,6 +1352,24 @@ table.tabs td.selectedtab A {
     color: var(--ts-text);
     background: var(--ts-surface-muted);
     border-bottom: 2px solid var(--ts-primary);
+}
+
+/* Legacy tabs + nblueborder: remove visual separator bars between tabs and content */
+table.tabs,
+table.tabs td,
+table.tabs td.selectedtab,
+table.tabs th {
+    border-bottom: none;
+}
+table.tabs th {
+    border-left: none;
+    width: auto;
+}
+div.nblueborder > div.ncaption {
+    display: none;
+}
+div.nblueborder > div.indent {
+    padding-top: var(--ts-space-2);
 }
 
 span.bookmarks {
@@ -3444,7 +3467,7 @@ label.header {
    ============================================================ */
 
 /* ── Mobile: compact tables, single-column task layout ────── */
-@media (max-width: 767px) {
+@media screen and (max-width: 767px) {
     .ts-task-layout {
         grid-template-columns: 1fr;
     }
@@ -4159,4 +4182,3 @@ BUTTON:focus-visible,
     border-color: var(--ts-primary, #3182ce);
     box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15);
 }
-

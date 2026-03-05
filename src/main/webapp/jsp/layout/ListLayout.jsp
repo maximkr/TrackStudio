@@ -29,9 +29,82 @@
 
 <style type="text/css">
     @media print {
-        .controlPanel {display: none;}
-        .link {display: none;}
-        .navigation {display: none;}
+        div.login,
+        .controlPanel,
+        .link,
+        .navigation,
+        .logopath,
+        #servicePanel {
+            display: none !important;
+        }
+
+        BODY.ts-app {
+            padding: 0 !important;
+        }
+
+        .ts-main-content {
+            padding-top: 0 !important;
+        }
+
+        .ts-message-history-caption__controls {
+            display: none !important;
+        }
+
+        /* Print task properties as a strict 2-column table: "field | value". */
+        #taskProperties TABLE.general.ts-task-properties {
+            display: grid;
+            grid-template-columns: 34% 66%;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #taskProperties TABLE.general.ts-task-properties tr {
+            display: contents;
+        }
+
+        #taskProperties TABLE.general.ts-task-properties tr.ts-task-property-label-row TH,
+        #taskProperties TABLE.general.ts-task-properties tr.ts-task-property-value-row TD {
+            display: block;
+            padding: 4px 8px !important;
+            border-bottom: 1px solid #d9e0ea !important;
+            box-sizing: border-box;
+        }
+
+        #taskProperties TABLE.general.ts-task-properties tr.ts-task-property-value-row TD {
+            padding-left: 8px !important;
+        }
+
+        #taskProperties TABLE.general.ts-task-properties .taskinfo-right.ts-task-property-group {
+            grid-column: 1 / -1;
+        }
+
+        #taskProperties TABLE.general.ts-task-customfields tr {
+            display: table-row !important;
+            border-bottom: none !important;
+            padding: 0 !important;
+        }
+
+        #taskProperties TABLE.general.ts-task-customfields tr TH,
+        #taskProperties TABLE.general.ts-task-customfields tr TD {
+            display: table-cell !important;
+            width: auto;
+            padding: 4px 8px !important;
+            border-bottom: 1px solid #d9e0ea !important;
+            vertical-align: top;
+        }
+
+        #taskProperties TABLE.general.ts-task-customfields tr TH {
+            text-transform: none !important;
+            color: #333 !important;
+            font-size: inherit !important;
+            font-weight: 600 !important;
+            padding-left: 0 !important;
+            width: 34%;
+        }
+
+        #taskProperties TABLE.general.ts-task-customfields tr TD {
+            padding-left: 8px !important;
+        }
     }
 </style>
 

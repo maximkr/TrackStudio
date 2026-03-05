@@ -136,7 +136,7 @@
     }
     if (parent === self || !window.top.TS) {
         // Page opened directly (not inside app-shell) — redirect into shell
-        var currentUrl = encodeURIComponent(self.location.pathname + self.location.search);
+        var currentUrl = encodeURIComponent(self.location.pathname + self.location.search + self.location.hash);
         self.location.replace('${contextPath}/app-shell.html?url=' + currentUrl);
     }
 </script>

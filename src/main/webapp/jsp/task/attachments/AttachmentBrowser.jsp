@@ -1,7 +1,7 @@
 <%@ page buffer="128kb" errorPage="/jsp/Error.jsp"%>
 <%@ taglib uri="struts/html-el" prefix="html" %>
 <%@ taglib uri="jstl/c" prefix="c" %>
-<%@ taglib uri="jstl/fn" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="jstl/fmt" prefix="I18n" %>
 <%@ taglib uri="struts/tiles-el" prefix="tiles" %>
 <I18n:setLocale value='${sc.locale}'/>
@@ -50,7 +50,7 @@
                     <div class="caption">
                         <I18n:message key="ATTACHMENTS"/>
                         <div style="float:right;">
-                            <input style="height:11px;vertical-align:middle; background-color:#FFFFFF; border:1px solid #B2C9D9; cursor:text;" class="form-autocomplete" name="filter" size="30" onkeyup="search_attachment(this, 'table_attachment')" type="text">
+                            <input class="form-autocomplete" name="filter" size="30" placeholder="<I18n:message key="SEARCH"/>" onkeyup="search_attachment(this, 'table_attachment')" type="text">
                         </div>
                     </div>
                     <div class="indent">

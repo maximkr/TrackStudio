@@ -997,6 +997,28 @@ DIV.taskTitle em.number {
     color: var(--ts-text-muted);
     margin-left: 4px;
 }
+DIV.taskTitle .ts-user-avatar,
+DIV.taskTitle .ts-role-avatar {
+    display: inline-flex !important;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    padding: 0 !important;
+    margin-left: 0 !important;
+    box-sizing: border-box;
+    font-size: 10px !important;
+    line-height: 1 !important;
+}
+DIV.taskTitle .ts-user-avatar {
+    color: var(--ts-user-avatar-fg, #ffffff) !important;
+    background-color: var(--ts-user-avatar-bg, var(--ts-primary)) !important;
+    border-radius: 50%;
+}
+DIV.taskTitle .ts-role-avatar {
+    color: var(--ts-role-avatar-bg, var(--ts-primary)) !important;
+    background-color: var(--ts-surface) !important;
+    border-radius: 50%;
+}
 
 
 /* ── TABLE.general — main data table ──────────────────────── */
@@ -1203,6 +1225,16 @@ div.blueborder > DIV.caption A.link:hover {
     color: var(--ts-primary) !important;
     background-color: var(--ts-primary-soft) !important;
     border-color: var(--ts-primary) !important;
+}
+div.blueborder > DIV.caption .ts-caption-actions {
+    float: right;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ts-space-1);
+    margin-left: var(--ts-space-3);
+}
+div.blueborder > DIV.caption .ts-caption-actions A.link {
+    margin-left: 0 !important;
 }
 div.blueborder > DIV.caption A.link IMG,
 div.blueborder > DIV.caption IMG {

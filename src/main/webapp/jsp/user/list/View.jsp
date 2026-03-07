@@ -40,9 +40,12 @@
 <div class="blueborder">
 <div class="caption">
     <c:out value="${headerSlider}" escapeXml="fasle"/>
-    <html:link href="javascript:showBookmarkDialogSimple();" styleClass="floatlink">
-        <html:img src="${contextPath}${ImageServlet}/cssimages/ico.star.gif" border="0"/>
-    </html:link>
+    <span class="ts-caption-actions">
+        <html:link href="javascript:showBookmarkDialogSimple();" styleClass="link">
+            <html:img src="${contextPath}${ImageServlet}/cssimages/ico.star.gif" border="0"/>
+            <I18n:message key="BOOKMARKS"/>
+        </html:link>
+    </span>
     <span><I18n:message key="USERS"/>:</span>
     <c:out value="${filterName}"/>
 </div>
@@ -620,6 +623,5 @@
 </div>
 </tiles:put>
 </tiles:insert>
-
 
 

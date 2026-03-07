@@ -85,14 +85,18 @@
 </script>
 <div class="blueborder">
 <div class="caption">
-    <c:if test="${canViewRSS}">
-        <html:link href="${RSSLink}" target="_blank" styleClass="floatlink">
-            <html:img src="${contextPath}${ImageServlet}/cssimages/rssicon.png" border="0"/>
+    <span class="ts-caption-actions">
+        <c:if test="${canViewRSS}">
+            <html:link href="${RSSLink}" target="_blank" styleClass="link">
+                <html:img src="${contextPath}${ImageServlet}/cssimages/rssicon.png" border="0"/>
+                RSS
+            </html:link>
+        </c:if>
+        <html:link href="javascript:showBookmarkDialogSimple();" styleClass="link">
+            <html:img src="${contextPath}${ImageServlet}/cssimages/ico.star.gif" border="0"/>
+            <I18n:message key="BOOKMARKS"/>
         </html:link>
-    </c:if>
-    <html:link href="javascript:showBookmarkDialogSimple();" styleClass="floatlink">
-        <html:img src="${contextPath}${ImageServlet}/cssimages/ico.star.gif" border="0"/>
-    </html:link>
+    </span>
     <span><I18n:message key="TASKS"/>:</span>
     <span title="<c:out value="${filter.description}"/>"><c:out value="${filter.name}"/></span>
 </div>

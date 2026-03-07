@@ -9,13 +9,14 @@
     <div>
         <html:img src="${contextPath}${ImageServlet}/cssimages/L.png"/>
         <html:link  styleClass="ul" href="${contextPath}/UserStatusAction.do?method=page&id=${id}">
-            <html:img src="${contextPath}${ImageServlet}/cssimages/ico.status.gif" hspace="0" vspace="0" border="0"/>
             <I18n:message key="PRSTATUSES"/>
         </html:link>
         <span>:</span>
         <c:if test="${currentPrstatus ne null}">
             <html:link styleClass="internal"
                     href="${contextPath}/UserStatusViewAction.do?method=page&prstatusId=${currentPrstatus.id}&id=${id}">
+                <html:img styleClass="icon" border="0"
+                          src="${contextPath}${ImageServlet}/cssimages/ico.status.gif"/>
                 <c:out value="${currentPrstatus.name}" escapeXml="true"/>
             </html:link>
         </c:if>

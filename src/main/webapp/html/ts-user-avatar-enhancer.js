@@ -125,6 +125,9 @@
         if (typeof node.className !== "string" || node.className.indexOf("ts-role-with-avatar") !== -1) {
             return;
         }
+        if (node.closest && (node.closest(".ts-menu") || node.closest(".ts-menu-bar"))) {
+            return;
+        }
         if (!node.querySelector("img[src*='ico.status.gif']")) {
             return;
         }

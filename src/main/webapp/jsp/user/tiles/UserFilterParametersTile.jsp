@@ -37,8 +37,8 @@
                         <c:out value="${item.value}" escapeXml="false"/>
                     </td>
                     <td>
-                    <span class="internal" onclick="this.parentNode.parentNode.remove(); new AjaxForm().submit(document.getElementById('filterForm'), 'deleteElement=${item.valueSort}');">
-                        <img alt="<I18n:message key="DELETE"/>" title="<I18n:message key="DELETE"/>" border="0" hspace="0" vspace="0" src="${contextPath}${ImageServlet}/cssimages/ico.stop.gif"/>
+                    <span class="internal" style="cursor:pointer;" onclick="this.parentNode.parentNode.remove(); new AjaxForm().submit(document.getElementById('filterForm'), 'deleteElement=${item.valueSort}');">
+                        <img alt="<I18n:message key="DELETE"/>" title="<I18n:message key="DELETE"/>" border="0" hspace="0" vspace="0" src="${contextPath}${ImageServlet}/cssimages/delete.png"/>
                     </span>
                     </td>
                 </tr>

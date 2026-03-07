@@ -64,9 +64,9 @@
                             <c:choose>
                                 <c:when test="${!prstatus.canManage}">
                                     <span class="link" ${prstatus.id eq currentUser.prstatusId ? "id='current'" : ""}>
-                                        <img title="<I18n:message key="OBJECT_PROPERTIES_VIEW"/>" border="0"
-                                             hspace="0" vspace="0" src="${contextPath}${ImageServlet}/cssimages/ico.closed.gif"/>
-                                <c:out value="${prstatus.name}" escapeXml='true'/>
+                                        <html:img styleClass="icon" border="0"
+                                                  src="${contextPath}${ImageServlet}/cssimages/ico.status.gif"/>
+                                        <c:out value="${prstatus.name}" escapeXml='true'/>
                                     </span>
                                 </c:when>
                                 <c:otherwise>
@@ -77,6 +77,8 @@
                                     </html:link>
                                     <html:link styleClass="internal"
                                     href="${contextPath}/UserStatusViewAction.do?method=page&prstatusId=${prstatus.id}&id=${id}">
+                                        <html:img styleClass="icon" border="0"
+                                                  src="${contextPath}${ImageServlet}/cssimages/ico.status.gif"/>
                                 <c:if test="${prstatus.id eq currentUser.prstatusId}">
                                     <img border="0" hspace="0" vspace="0"
                                          src="${contextPath}${ImageServlet}/cssimages/ico.current.gif"/>
@@ -201,4 +203,3 @@
 </c:if>
 </tiles:put>
 </tiles:insert>
-

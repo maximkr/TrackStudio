@@ -42,8 +42,8 @@
                         </a>
                     </td>
                     <td>
-                        <div class="internal" style="display:inline;" onclick="this.parentNode.parentNode.remove(); deleteNote('${undoUrl}', '${item.valueSort}', '${id}', '${filterId}');">
-                            <img alt="<I18n:message key="DELETE"/>" title="<I18n:message key="DELETE"/>" border="0" hspace="0" vspace="0" src="${contextPath}${ImageServlet}/cssimages/ico.stop.gif"/>
+                        <div class="internal" style="display:inline;cursor:pointer;" onclick="this.parentNode.parentNode.remove(); deleteNote('${undoUrl}', '${item.valueSort}', '${id}', '${filterId}');">
+                            <img alt="<I18n:message key="DELETE"/>" title="<I18n:message key="DELETE"/>" border="0" hspace="0" vspace="0" src="${contextPath}${ImageServlet}/cssimages/delete.png"/>
                         </div>
                     </td>
                 </tr>
@@ -68,8 +68,8 @@
                         </a>
                     </td>
                     <td>
-                    <span class="internal" onclick="this.parentNode.parentNode.remove(); new AjaxForm().submit(document.getElementById('filterForm', 'deleteElement=${item.key}'));">
-                        <img alt="<I18n:message key="DELETE"/>" title="<I18n:message key="DELETE"/>" border="0" hspace="0" vspace="0" src="${contextPath}${ImageServlet}/cssimages/ico.stop.gif"/>
+                    <span class="internal" style="cursor:pointer;" onclick="this.parentNode.parentNode.remove(); new AjaxForm().submit(document.getElementById('filterForm', 'deleteElement=${item.key}'));">
+                        <img alt="<I18n:message key="DELETE"/>" title="<I18n:message key="DELETE"/>" border="0" hspace="0" vspace="0" src="${contextPath}${ImageServlet}/cssimages/delete.png"/>
                     </span>
                     </td>
                 </tr>

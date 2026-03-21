@@ -106,8 +106,8 @@
     </c:forEach>
 
 </div>
-<div class="controlPanel ts-task-layout__full ts-task-main-actions">
-    <span class="ts-task-toolbar-main">
+<div class="controlPanel ts-task-layout__full ts-task-main-actions ts-task-overview-actions">
+    <span class="ts-task-toolbar-main ts-task-overview-actions__primary">
         <c:if test="${canEditTask}">
             <html:link href="${contextPath}/TaskEditAction.do?method=page&id=${id}">
                 <html:img src="${contextPath}${ImageServlet}/cssimages/ico.edit.gif" border="0" altKey="EDIT"/>
@@ -122,7 +122,7 @@
         </c:if>
     </span>
     <span class="separator ts-task-toolbar-divider" aria-hidden="true"></span>
-    <span class="ts-task-toolbar-secondary">
+    <span class="ts-task-toolbar-secondary ts-task-overview-actions__utility">
         <html:link href="javascript:showBookmarkDialogSimple();">
             <html:img src="${contextPath}${ImageServlet}/cssimages/ico.star.gif" border="0"/>
             <I18n:message key="BOOKMARKS"/>
@@ -171,11 +171,12 @@
     </span>
 </div>
 <c:if test="${!empty mstatuses}">
-    <div class="controlPanel ts-task-layout__full ts-workflow-toolbar ts-task-workflow-toolbar">
+    <div class="controlPanel ts-task-layout__full ts-workflow-toolbar ts-task-workflow-toolbar ts-task-overview-workflow">
         <script type="text/javascript">
             var taskWorkflowMenu = {};
         </script>
-        <span class="ts-workflow-toolbar__group">
+        <span class="ts-task-workflow-toolbar__label"><I18n:message key="ACTION"/></span>
+        <span class="ts-workflow-toolbar__group ts-task-workflow-toolbar__group">
             <c:forEach items="${mstatuses}" var="mstatus">
                 <c:choose>
                     <c:when test="${lastMessage == null}">
@@ -278,33 +279,38 @@
 </c:if>
 <c:if test="${isDescription}">
     <div class="ts-task-main">
-        <div class="taskDescription">
-            <div class="content" id="taskDescription">
-                <div class="indent">
-                    <ts:htmlfilter session="${sc.id}" macros="true" audit="false" request="<%=request%>"><c:out value="${tci.description}" escapeXml="false"/></ts:htmlfilter>
+        <section class="ts-task-description-card">
+            <header class="ts-task-section-heading">
+                <span class="ts-task-section-heading__eyebrow"><I18n:message key="DESCRIPTION"/></span>
+            </header>
+            <div class="taskDescription">
+                <div class="content" id="taskDescription">
+                    <div class="indent">
+                        <ts:htmlfilter session="${sc.id}" macros="true" audit="false" request="<%=request%>"><c:out value="${tci.description}" escapeXml="false"/></ts:htmlfilter>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 </c:if>
 <div class="blueborder ts-task-sidebar" id="taskProperties">
-<div class="caption">
-    <div class="navigation">
+<div class="caption ts-task-sidebar-caption">
+    <div class="navigation ts-task-sidebar-caption__meta">
         <c:if test="${showView}"><a href="#" style=" text-decoration: none;" onclick="javascript:showViewDialog();"><I18n:message key="VIEWS"/></a></c:if>
         <c:if test="${prev ne null}">&lt; <html:link styleClass="internal link"
-                                                     href="${contextPath}/TaskViewAction.do?method=page&amp;id=${prev.id}&amp;thisframe=true"
+                                                     href="${contextPath}/task/${prev.number}?thisframe=true"
                                                      title="${prev.name}">
             <I18n:message key="PREV"/>
         </html:link></c:if>
         <c:if test="${position ne null}">${position+1} <I18n:message key="OF"/> ${listSize}</c:if>
         <c:if test="${next ne null}"><html:link styleClass="internal link"
-                                                href="${contextPath}/TaskViewAction.do?method=page&amp;id=${next.id}&amp;thisframe=true"
+                                                href="${contextPath}/task/${next.number}?thisframe=true"
                                                 title="${next.name}">
             <I18n:message key="NEXT"/>
         </html:link> &gt;</c:if>
     </div>
     <c:if test="${canPerformBulkProcessing}">
-        <span style="float: right;">
+        <span class="ts-task-sidebar-caption__bulk">
         <c:if test="${!empty bulkProcessing}">
             <select id="bulk">
                 <c:forEach items="${bulkProcessing}" var="t">
@@ -319,7 +325,7 @@
         </span>
     </c:if>
 </div>
-<div class="indent ts-task-properties-wrap" style="padding-bottom:0px;">
+<div class="indent ts-task-properties-wrap">
 <table class="general ts-task-properties">
     <tr>
         <th class="taskinfo-right ts-task-property-group">
@@ -555,7 +561,7 @@
                                 <c:choose>
                                     <c:when test="${t.allowedByACL}">
                                         <html:link styleClass="internal"
-                                                   href="${contextPath}/TaskViewAction.do?method=page&amp;id=${t.id}">
+                                                   href="${contextPath}/task/${t.number}?thisframe=true">
                                             <html:img styleClass="icon" border="0"
                                                       src="${contextPath}${ImageServlet}/icons/categories/${t.category.icon}"/>
                                             <html:img styleClass="state" border="0"
@@ -685,11 +691,11 @@
     <script text="text/javascript">
         $(window).keydown(function(event) {
             if(event.ctrlKey && event.keyCode === 37 && '${prev}' !== '') {
-                location.href='${contextPath}/TaskViewAction.do?method=page&id=${prev.id}&thisframe=true';
+                location.href='${contextPath}/task/${prev.number}?thisframe=true';
                 event.preventDefault();
             }
             if(event.ctrlKey && event.keyCode === 39 && '${next}' !== '') {
-                location.href='${contextPath}/TaskViewAction.do?method=page&id=${next.id}&thisframe=true';
+                location.href='${contextPath}/task/${next.number}?thisframe=true';
                 event.preventDefault();
             }
         });

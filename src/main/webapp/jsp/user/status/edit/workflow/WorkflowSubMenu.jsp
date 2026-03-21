@@ -6,7 +6,8 @@
 <I18n:setTimeZone value='${sc.timezone}'/>
 <I18n:setBundle basename='language'/>
 
-    <table class="tabs">
+<div class="ts-admin-tabs-wrap">
+    <table class="tabs ts-admin-tabs ts-admin-tabs--user-workflow">
         <tr>
 
                     <c:if test="${tabView.allowed}">
@@ -33,7 +34,7 @@
                             </html:link>
                         </td>
                     </c:if>
-            <th>&nbsp;</th>
+            <th class="ts-admin-tabs__fill">&nbsp;</th>
         </tr>
     </table>
-
+</div>

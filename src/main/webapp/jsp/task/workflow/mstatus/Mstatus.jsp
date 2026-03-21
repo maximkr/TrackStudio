@@ -14,10 +14,10 @@
 <tiles:put name="tabs" value="/jsp/task/workflow/WorkflowSubMenu.jsp"/>
 <tiles:put name="main" type="string">
 <c:if test="${canManage}">
-<div class="nblueborder">
+<div class="nblueborder ts-workflow-page">
 <div class="ncaption"></div>
 <c:if test="${canManage}">
-    <div class="controlPanel">
+    <div class="controlPanel ts-workflow-actions">
         <html:link styleClass="external"
                    href="${contextPath}${createObjectAction}?method=create&id=${id}&workflowId=${workflowId}">
             <html:img src="${contextPath}${ImageServlet}/cssimages/ico.messagetypes.gif" hspace="0" vspace="0" border="0"
@@ -27,10 +27,10 @@
     </div>
 </c:if>
 
-<div class="indent">
+<div class="indent ts-workflow-page__content">
     <c:if test="${!isValidPermissions}">
-        <div class="general">
-            <table class="error" cellpadding="0" cellspacing="0">
+        <div class="general ts-workflow-card ts-workflow-card--warning">
+            <table class="error ts-workflow-issues" cellpadding="0" cellspacing="0">
                 <caption>
                     <I18n:message key="WORKFLOW_INVALID_PERMISSION_OVERVIEW"/>
                 </caption>
@@ -56,8 +56,8 @@
     <html:hidden property="id" value="${id}"/>
     <html:hidden property="session" value="${session}"/>
     <html:hidden property="workflowId" value="${flow.id}"/>
-    <div class="general">
-        <table class="general" cellpadding="0" cellspacing="0">
+    <div class="general ts-workflow-card">
+        <table class="general ts-workflow-list" cellpadding="0" cellspacing="0">
             <tr class="wide">
                 <c:if test="${canManage}">
                     <th width="1%" nowrap style="white-space:nowrap">
@@ -114,7 +114,7 @@
         </table>
     </div>
     <c:if test="${canManage eq true}">
-        <div class="controls">
+        <div class="controls ts-workflow-controls">
                 <input type="submit" class="iconized"
                        value="<I18n:message key="CLONE"/>"
                        name="CLONE" onclick="onSubmit(); setMethod('clone');">

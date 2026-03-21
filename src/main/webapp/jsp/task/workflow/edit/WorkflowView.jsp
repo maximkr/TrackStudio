@@ -15,10 +15,10 @@
 <tiles:put name="tabs" value="/jsp/task/workflow/WorkflowSubMenu.jsp"/>
 <tiles:put name="main" type="string">
 
-<div class="nblueborder">
+<div class="nblueborder ts-workflow-page">
 <div class="ncaption"></div>
 <c:if test="${flow.canManage}">
-    <div class="controlPanel">
+    <div class="controlPanel ts-workflow-actions">
         <html:link  href="${contextPath}/WorkflowEditAction.do?method=page&amp;id=${id}&amp;workflowId=${workflowId}">
             <html:img src="${contextPath}${ImageServlet}/cssimages/ico.edit.gif" hspace="0" vspace="0" border="0" align="middle"/>
             <I18n:message key="EDIT"/>
@@ -26,10 +26,10 @@
     </div>
 </c:if>
 
-<div class="indent">
+<div class="indent ts-workflow-page__content">
 <c:if test="${!isValid}">
-    <div class="general">
-        <table class="error" cellpadding="0" cellspacing="0">
+    <div class="general ts-workflow-card ts-workflow-card--warning">
+        <table class="error ts-workflow-issues" cellpadding="0" cellspacing="0">
             <caption>
                 <I18n:message key="WORKFLOW_INVALID_OVERVIEW"/>
             </caption>
@@ -60,7 +60,7 @@
     </div>
 </c:if>
 
-<table class="general" cellpadding="0" cellspacing="0">
+<table class="general ts-workflow-properties" cellpadding="0" cellspacing="0">
     <caption>
         <I18n:message key="PROPERTIES"/>
     </caption>
@@ -79,8 +79,8 @@
 </table>
 
 <c:if test="${viewPriority}">
-    <div class="general">
-        <table class="general" cellpadding="0" cellspacing="0">
+    <div class="general ts-workflow-card">
+        <table class="general ts-workflow-list" cellpadding="0" cellspacing="0">
             <caption>
                 <I18n:message key="PRIORITIES_LIST"/>
             </caption>
@@ -133,8 +133,8 @@
     </div>
 </c:if>
 <c:if test="${viewState}">
-    <div class="general">
-        <table class="general" cellpadding="0" cellspacing="0">
+    <div class="general ts-workflow-card">
+        <table class="general ts-workflow-properties" cellpadding="0" cellspacing="0">
             <caption>
                 <I18n:message key="STATES_LIST"/>
             </caption>
@@ -173,8 +173,8 @@
     </div>
 </c:if>
 <c:if test="${viewMstatus}">
-    <div class="general">
-        <table class="general" cellpadding="0" cellspacing="0">
+    <div class="general ts-workflow-card">
+        <table class="general ts-workflow-list" cellpadding="0" cellspacing="0">
             <caption>
                 <I18n:message key="MESSAGE_TYPES_VIEW"/>
             </caption>
@@ -245,8 +245,8 @@
     </div>
 </c:if>
 <c:if test="${_can_view}">
-    <div class="general">
-        <table class="general" cellpadding="0" cellspacing="0">
+    <div class="general ts-workflow-card">
+        <table class="general ts-workflow-list" cellpadding="0" cellspacing="0">
             <caption>
                 <I18n:message key="CUSTOM_FIELDS"/>
             </caption>

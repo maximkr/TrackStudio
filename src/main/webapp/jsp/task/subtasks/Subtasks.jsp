@@ -36,6 +36,7 @@
         </span>
     <c:forEach items="${selectedIds}" var="st">
         <label id="_spi_<c:out value="${st.id}"/>"
+               class="ts-service-panel-item"
                style="padding-top: 1px; padding-bottom: 1px; font-family: Verdana; font-size: 11px; font-weight: bold;"
                title="[#${st.number}] <c:out value="${st.name}"/>"
                onclick="placeOnServicePanel('<c:out value="${st.id}"/>','#<c:out value="${st.number}"/>');"
@@ -83,8 +84,12 @@
         showBookmarkDialog('<c:out value="${title}"  escapeXml="true"/>', '<c:out value="${tci.id}"/>', '<c:out value="${filter.id}"/>');
     }
 </script>
-<div class="blueborder">
-<div class="caption">
+<div class="blueborder ts-task-list-surface">
+<div class="caption ts-task-list-caption">
+    <div class="ts-task-list-caption__main">
+        <span class="ts-task-list-caption__eyebrow"><I18n:message key="TASKS"/></span>
+        <span class="ts-task-list-caption__title" title="<c:out value="${filter.description}"/>"><c:out value="${filter.name}"/></span>
+    </div>
     <span class="ts-caption-actions">
         <c:if test="${canViewRSS}">
             <html:link href="${RSSLink}" target="_blank" styleClass="link">
@@ -97,12 +102,11 @@
             <I18n:message key="BOOKMARKS"/>
         </html:link>
     </span>
-    <span><I18n:message key="TASKS"/>:</span>
-    <span title="<c:out value="${filter.description}"/>"><c:out value="${filter.name}"/></span>
 </div>
+<div class="ts-task-list-toolbar-wrap">
 <ajax:tabPanel
         panelStyleId="${sc.currentSpace}"
-        panelStyleClass="controlPanel"
+        panelStyleClass="controlPanel ts-task-main-actions ts-task-list-toolbar"
         contentStyleId="yellowbox"
         currentStyleId="selected"
         baseUrl="${contextPath}/SubtaskAction.do?method=page&id=${id}">
@@ -242,6 +246,7 @@
         </c:if>
     </c:if>
 </ajax:tabPanel>
+</div>
 <div class="indent">
 <html:form method="post" action="/SubtaskAction" styleId="taskListForm" onsubmit="return onSubmitFunction(this);">
 <html:hidden property="method" value="page" styleId="subtaskId"/>
@@ -250,21 +255,27 @@
 <html:hidden property="id" value="${id}"/>
 <html:hidden property="session" value="${session}"/>
 
-<div class="ts-quick-filter">
-    <input type="text" class="ts-quick-filter__input"
-           placeholder='<I18n:message key="QUICK_FILTER_PLACEHOLDER"/>' id="quickFilter" autocomplete="off">
-</div>
-<div class="ts-pagination ts-pagination--top">
-    <c:out value="${slider}" escapeXml="false"/>
+<div class="ts-task-list-toolbar-utility">
+    <label class="ts-task-list-toolbar-search" for="quickFilter">
+        <span class="ts-task-list-toolbar-search-label"><I18n:message key="SEARCH"/></span>
+        <span class="ts-quick-filter">
+            <input type="text" class="ts-quick-filter__input"
+                   placeholder='<I18n:message key="QUICK_FILTER_PLACEHOLDER"/>' id="quickFilter" autocomplete="off">
+        </span>
+    </label>
+    <div class="ts-pagination ts-pagination--top ts-task-list-toolbar-meta">
+        <c:out value="${slider}" escapeXml="false"/>
+    </div>
 </div>
 
+<div class="ts-task-list-table-wrap">
 <table class="general ts-task-list" id="taskListTable" cellpadding="0" cellspacing="0">
 <tr class="wide">
 <c:set var="columns" value="1"/>
-<th width="4%" style="white-space:nowrap;text-align: center;">
-    <input type="checkbox" id="headerChecker" onClick="_selectAll(this, this.form.elements['SELTASK']);">
+<th class="ts-task-list__select-head" width="4%" style="white-space:nowrap;text-align: center;">
+    <input type="checkbox" id="headerChecker" aria-label="<I18n:message key="SELECTED"/>" onClick="_selectAll(this, this.form.elements['SELTASK']);">
     <c:if test="${showOpenAll}">
-        <a id="messageHistoryHeader" class="history-closed" href="javascript://nop/" onclick="openSubtasksMessage();">&nbsp;</a>
+        <a id="messageHistoryHeader" class="history-closed" href="javascript://nop/" onclick="openSubtasksMessage();" title="<I18n:message key="OPEN"/>" aria-label="<I18n:message key="OPEN"/>">&nbsp;</a>
     </c:if>
 </th>
 <c:if test="${headerNumber.canView}">
@@ -567,7 +578,7 @@
 
 <c:set var="listMes" value="${taskLineEntity.value}"/>
 <c:set var="taskLine" value="${taskLineEntity.key}"/>
-<tr class="line<c:out value="${status.index mod 2}"/>" data-task-row="true" data-task-id="<c:out value="${taskLine.id}"/>">
+<tr class="line<c:out value="${status.index mod 2}"/> ts-task-list__row" data-task-row="true" data-task-id="<c:out value="${taskLine.id}"/>">
 <c:choose>
     <c:when test="${(!empty listMes)}">
         <c:set var="tmprowspan" value="${rowspan+1}"/>
@@ -578,22 +589,22 @@
 </c:choose>
 <c:choose>
 <c:when test="${taskLine.updatedate.time.time > sc.prevLogonDate.time.time && taskLine.updatedate.time.time > sc.lastLogonDate.time.time}">
-<td rowspan="<c:out value="${tmprowspan}"/>" style="text-align: center" class="top<c:if
+<td rowspan="<c:out value="${tmprowspan}"/>" style="text-align: center" class="ts-task-list__select-cell top<c:if
                 test="${taskLine.overdue}"> overdue</c:if> hottask" title="<c:if test="${taskLine.overdue}"><I18n:message
                 key="OVERDUE_TASK"/>, </c:if> <I18n:message key="HOT_TASK"/>">
     </c:when>
     <c:when test="${taskLine.updatedate.time.time > sc.prevLogonDate.time.time}">
-<td rowspan="<c:out value="${tmprowspan}"/>" style="text-align: center" class="top<c:if
+<td rowspan="<c:out value="${tmprowspan}"/>" style="text-align: center" class="ts-task-list__select-cell top<c:if
                 test="${taskLine.overdue}"> overdue</c:if> newtask" title="<c:if test="${taskLine.overdue}"><I18n:message
                 key="OVERDUE_TASK"/>, </c:if><I18n:message key="NEW_TASK"/>">
     </c:when>
     <c:when test="${taskLine.updatedate.time.time > sc.lastLogonDate.time.time}">
-<td rowspan="<c:out value="${tmprowspan}"/>" style="text-align: center" class="top<c:if
+<td rowspan="<c:out value="${tmprowspan}"/>" style="text-align: center" class="ts-task-list__select-cell top<c:if
                 test="${taskLine.overdue}"> overdue</c:if> hottask" title="<c:if test="${taskLine.overdue}"><I18n:message
                 key="OVERDUE_TASK"/>, </c:if><I18n:message key="HOT_TASK"/>">
     </c:when>
     <c:otherwise>
-<td rowspan="<c:out value="${tmprowspan}"/>" style="text-align: center" class="top<c:if
+<td rowspan="<c:out value="${tmprowspan}"/>" style="text-align: center" class="ts-task-list__select-cell top<c:if
                 test="${taskLine.overdue}"> overdue</c:if>" title="<c:if test="${taskLine.overdue}"><I18n:message
                 key="OVERDUE_TASK"/></c:if>">
     </c:otherwise>
@@ -601,19 +612,21 @@
     <html:hidden property="TASKIDS" value="${taskLine.id}"/>
     <c:if test="${taskLine.canUpdate}">
         <input type="checkbox" name="SELTASK" alt="delete1"
+               class="ts-task-list__checkbox"
+               aria-label="Select task #<c:out value="${taskLine.number}" escapeXml="true"/>"
                title="#${taskLine.number}"
                value="<c:out value="${taskLine.id}"/>"
-               onclick="this.checked=placeOnServicePanel('<c:out value="${taskLine.id}" escapeXml="true"/>','#<c:out value="${taskLine.number}" escapeXml="true"/>');">
+               onclick="this.checked=placeOnServicePanel('<c:out value="${taskLine.id}" escapeXml="true"/>','#<c:out value="${taskLine.number}" escapeXml="true"/>','<c:out value="${taskLine.name}" escapeXml="true"/>');">
     </c:if>
 </td>
 
 <c:if test="${headerNumber.canView}">
-    <td>
+    <td class="ts-task-list__number-cell">
         <span class="internal">#<c:out value="${taskLine.number}" escapeXml="true"/></span>
     </td>
 </c:if>
 <c:if test="${headerFullPath.canView}">
-    <td>
+    <td class="ts-task-list__path-cell">
         <c:set var="ancestor" value="false"/>
         <c:forEach var="task" items="${taskLine.ancestors}" varStatus="varCounter">
             <c:if test="${ancestor}">
@@ -638,7 +651,7 @@
 </c:if>
 
 <c:if test="${headerName.canView}">
-    <td>
+    <td class="ts-task-list__name-cell">
         <html:link styleClass="internal" styleId="${taskLine.id}-name"
                    href="${contextPath}/task/${taskLine.number}?thisframe=true&asView=taskInfo">
             <html:img styleClass="icon" border="0"
@@ -662,7 +675,7 @@
 </c:if>
 
 <c:if test="${headerTaskParent.canView}">
-    <td>
+    <td class="ts-task-list__parent-cell">
         <c:if test="${taskLine.parent != null}">
             <html:link styleClass="internal" styleId="${taskLine.parent.id}-name"
                        href="${contextPath}/task/${taskLine.parent.number}?thisframe=true&asView=taskInfo">
@@ -690,13 +703,13 @@
     </td>
 </c:if>
 <c:if test="${headerCategory.canView}">
-    <td><span>
+    <td class="ts-task-list__category-cell"><span>
              <c:out value="${taskLine.categorySubtaskView.name}" escapeXml="true"/>
         </span>
     </td>
 </c:if>
 <c:if test="${headerStatus.canView}">
-    <td>
+    <td class="ts-task-list__status-cell">
         <c:if test="${taskLine.status ne null}">
             <span class="ts-status-badge" style="--sc: ${taskLine.status.color}">
                 <c:out value="${taskLine.status.name}" escapeXml="true"/>
@@ -712,20 +725,27 @@
     </td>
 </c:if>
 <c:if test="${headerPriority.canView}">
-    <td class="ts-priority-cell"<c:if test="${taskLine.priority ne null}"> data-priority="<c:out value="${taskLine.priority.name}" escapeXml="true"/>" data-priority-order="<c:out value="${taskLine.priority.order}" escapeXml="true"/>" data-priority-default="<c:out value="${taskLine.priority.def}" escapeXml="true"/>"</c:if>>
+    <td class="ts-task-list__priority-cell ts-priority-cell"<c:if test="${taskLine.priority ne null}"> data-priority="<c:out value="${taskLine.priority.name}" escapeXml="true"/>" data-priority-order="<c:out value="${taskLine.priority.order}" escapeXml="true"/>" data-priority-default="<c:out value="${taskLine.priority.def}" escapeXml="true"/>"</c:if>>
         <c:if test="${taskLine.priority ne null}">
             <c:out value="${taskLine.priority.name}" escapeXml="true"/>
         </c:if>
     </td>
 </c:if>
 <c:if test="${headerSubmitter.canView}">
-    <td style="white-space: nowrap;">
-        <c:if test="${taskLine.submitter ne null}"><span
-                class="user" ${taskLine.submitter.id eq sc.userId ? "id='loggedUser'" : ""}>
-            <html:img styleClass="icon" border="0"
-                      src="${contextPath}${ImageServlet}/cssimages/${taskLine.submitter.active ? 'arw.usr.a.gif' : 'arw.usr.gif'}"/>
-    <c:out value="${taskLine.submitter.name}" escapeXml="true"/>
-    </span></c:if>
+    <td class="ts-task-list__submitter-cell" style="white-space: nowrap;">
+        <c:if test="${taskLine.submitter ne null}">
+            <c:set var="submitterName" value="${taskLine.submitter.name}"/>
+            <c:set var="submitterInitial" value="${fn:substring(submitterName, 0, 1)}"/>
+            <c:set var="submitterSpaceIndex" value="${fn:indexOf(submitterName, ' ')}"/>
+            <c:if test="${submitterSpaceIndex gt 0}">
+                <c:set var="submitterInitial"
+                       value="${submitterInitial}${fn:substring(submitterName, submitterSpaceIndex + 1, submitterSpaceIndex + 2)}"/>
+            </c:if>
+            <span class="ts-user" ${taskLine.submitter.id eq sc.userId ? "id='loggedUser'" : ""}>
+                <span class="ts-avatar" aria-hidden="true"><c:out value="${submitterInitial}" escapeXml="true"/></span>
+                <span class="ts-user__name"><c:out value="${submitterName}" escapeXml="true"/></span>
+            </span>
+        </c:if>
     </td>
 </c:if>
 <c:if test="${headerSubmitterStatus.canView}">
@@ -734,7 +754,7 @@
     </td>
 </c:if>
 <c:if test="${headerHandler.canView}">
-    <td style="white-space: nowrap;">
+    <td class="ts-task-list__handler-cell" style="white-space: nowrap;">
         <c:choose>
             <c:when test="${taskLine.handlerUserId ne null}">
                 <c:set var="handlerName" value="${taskLine.handlerUser.name}"/>
@@ -930,7 +950,7 @@
                 test="${taskLine.overdue}"><I18n:message key="OVERDUE_TASK"/>, </c:if><I18n:message key="HOT_TASK"/>">
         </c:when>
         <c:otherwise>
-            <tr class="line<c:out value="${status.index mod 2}"/><c:if
+            <tr class="line<c:out value="${status.index mod 2}"/> ts-task-list__details-row<c:if
                 test="${taskLine.overdue}"> overdue</c:if>" title="<c:if test="${taskLine.overdue}"><I18n:message
                 key="OVERDUE_TASK"/></c:if>">
         </c:otherwise>
@@ -960,7 +980,7 @@
                 test="${taskLine.overdue}"><I18n:message key="OVERDUE_TASK"/>, </c:if><I18n:message key="HOT_TASK"/>">
         </c:when>
         <c:otherwise>
-            <tr class="line<c:out value="${status.index mod 2}"/><c:if
+            <tr class="line<c:out value="${status.index mod 2}"/> ts-task-list__details-row<c:if
                 test="${taskLine.overdue}"> overdue</c:if>" title="<c:if test="${taskLine.overdue}"><I18n:message
                 key="OVERDUE_TASK"/></c:if>">
         </c:otherwise>
@@ -978,15 +998,16 @@
 <c:remove var="messages" scope="session"/>
 </c:if>
 <c:if test="${empty taskLines}">
-    <tr>
+    <tr class="ts-task-list__empty-row">
         <td colspan="<c:out value="${columns}"/>" width="100%">
-            <span style="text-align: center;">
+            <span class="ts-task-list__empty" style="text-align: center;">
                 <I18n:message key="EMPTY_TASK_LIST"/>
             </span>
         </td>
     </tr>
 </c:if>
 </table>
+</div>
 
 
 <div class="ts-pagination">
@@ -1017,31 +1038,35 @@
     <div class="ts-bulk-bar" id="bulkBar" data-form="taskListForm" style="display:none">
         <span class="ts-bulk-bar__count"><I18n:message key="SELECTED"/>: <span id="bulkCount">0</span></span>
         <div class="ts-bulk-bar__actions">
-            <c:if test="${showClipboardButton && canArchive}">
-                <button type="button" class="ts-btn ts-btn--secondary" data-bulk-action="archive">
-                    <I18n:message key="ARCHIVE"/>
-                </button>
-            </c:if>
-            <c:if test="${showClipboardButton}">
-                <button type="button" class="ts-btn ts-btn--secondary" data-bulk-action="cut">
-                    <I18n:message key="CUT"/>
-                </button>
-                <button type="button" class="ts-btn ts-btn--secondary" data-bulk-action="copy">
-                    <I18n:message key="COPY"/>
-                </button>
-                <button type="button" class="ts-btn ts-btn--secondary" data-bulk-action="copy-recursively">
-                    <I18n:message key="COPY_RECURSIVELY"/>
-                </button>
-            </c:if>
+            <div class="ts-bulk-bar__group">
+                <c:if test="${showClipboardButton && canArchive}">
+                    <button type="button" class="ts-btn ts-btn--secondary" data-bulk-action="archive">
+                        <I18n:message key="ARCHIVE"/>
+                    </button>
+                </c:if>
+                <c:if test="${showClipboardButton}">
+                    <button type="button" class="ts-btn ts-btn--secondary" data-bulk-action="cut">
+                        <I18n:message key="CUT"/>
+                    </button>
+                    <button type="button" class="ts-btn ts-btn--secondary" data-bulk-action="copy">
+                        <I18n:message key="COPY"/>
+                    </button>
+                    <button type="button" class="ts-btn ts-btn--secondary" data-bulk-action="copy-recursively">
+                        <I18n:message key="COPY_RECURSIVELY"/>
+                    </button>
+                </c:if>
+            </div>
             <c:if test="${canDelete}">
-                <button type="button" class="ts-btn ts-btn--danger" data-bulk-action="delete">
-                    <I18n:message key="DELETE"/>
-                </button>
+                <div class="ts-bulk-bar__group ts-bulk-bar__group--danger">
+                    <button type="button" class="ts-btn ts-btn--danger" data-bulk-action="delete">
+                        <I18n:message key="DELETE"/>
+                    </button>
+                </div>
             </c:if>
         </div>
     </div>
 </c:if>
-<div class="controls">
+<div class="controls ts-task-list-controls">
     <c:if test="${!(empty taskLines)}">
 
         <c:if test="${canPerformBulkProcessing}">
@@ -1146,7 +1171,7 @@
         }
     }
 </script>
-<I18n:message key="TOTAL_TASKS"/>&nbsp;:&nbsp;<c:out value="${totalTasks}"/>
+<div class="ts-task-list-total"><I18n:message key="TOTAL_TASKS"/>&nbsp;:&nbsp;<c:out value="${totalTasks}"/></div>
 </div>
 </div>
 <script type="text/javascript">

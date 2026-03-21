@@ -274,8 +274,8 @@
 		}
 	});
 </script>
-<div class="login" role="banner">
-	<div class="ts-header-main">
+	<div class="login" role="banner">
+		<div class="ts-header-main">
 		<div class="ts-header-main__brand">
 			<html:link styleClass="ts-header-brand-link" href="${contextPath}/task/${homePageNumber}?thisframe=true" titleKey="TASK">
 				<div id="logoHeader" class="ts-brand-inline">
@@ -329,15 +329,46 @@
 				</html:link>
 			</div>
 		</div>
+		</div>
 	</div>
-</div>
-<div class="controlPanel" role="group" aria-label="Task actions">
+	<div class="ts-task-context">
+	<div class="ts-task-context-bar">
+	<div class="controlPanel ts-task-main-actions ts-task-header-toolbar" role="group" aria-label="Task actions">
 	<script type="text/javascript">
-		var taskAddMenu = {};
+		var taskCreateMenu = null;
+		var taskCreateGroups = {};
+		var taskCreateOtherMenu = null;
+
+		function tsEnsureTaskCreateMenu() {
+			if (!taskCreateMenu) {
+				taskCreateMenu = new TSMenu();
+				taskCreateMenu.width = 336;
+			}
+			return taskCreateMenu;
+		}
+
+		function tsEnsureTaskCreateGroupMenu(name) {
+			if (!taskCreateGroups[name]) {
+				taskCreateGroups[name] = new TSMenu();
+				taskCreateGroups[name].width = 320;
+				tsEnsureTaskCreateMenu().add(new TSMenuItem(name, null, taskCreateGroups[name], false, "${contextPath}${ImageServlet}/cssimages/add.png"));
+			}
+			return taskCreateGroups[name];
+		}
+
+		function tsEnsureTaskCreateOtherMenu() {
+			if (!taskCreateOtherMenu) {
+				taskCreateOtherMenu = new TSMenu();
+				taskCreateOtherMenu.width = 320;
+				tsEnsureTaskCreateMenu().add(new TSMenuItem("<I18n:message key="OTHER_CATEGORIES"/>", null, taskCreateOtherMenu, false, "${contextPath}${ImageServlet}/cssimages/add.png"));
+			}
+			return taskCreateOtherMenu;
+		}
 	</script>
-	<span id="topleft" onclick="showTree();">
-                        <span id="closepanel" class="tree-toggle-button" aria-label="<I18n:message key="CLOSE"/>" title="<I18n:message key="CLOSE"/>"
-							  style="display: inline">&#x276E;</span>
+		<span class="ts-task-toolbar-main ts-task-header-main-group">
+		<span id="topleft" onclick="showTree();">
+	                        <span id="closepanel" class="tree-toggle-button" aria-label="<I18n:message key="CLOSE"/>" title="<I18n:message key="CLOSE"/>"
+								  style="display: inline">&#x276E;</span>
                         <span id="openpanel" class="tree-toggle-button" aria-label="<I18n:message key="OPEN"/>" title="<I18n:message key="OPEN"/>"
 							  style="display: none">&#x276F;</span>
                         <script type="text/javascript">
@@ -361,8 +392,8 @@
 		//            showTree();
 		//        }
 	</script>
- 	<span class="mainmenu" aria-label="Main menu">
-                    <script type="text/javascript">
+	 	<span class="mainmenu" aria-label="Main menu">
+	                    <script type="text/javascript">
 	                    //       var myBar = new TSMenuBar;
 						<c:if test="${canViewSubtasks}">
 						tsMenu.add(new TSMenuItem("<I18n:message key="TASKS_LIST"/>", "<c:out value="${contextPath}"/>/SubtaskAction.do?method=page&amp;id=<c:out value="${tci.id}"/>", false, false, "<c:out value="${contextPath}"/>${ImageServlet}/cssimages/ico.subtasks.gif", "", ""));
@@ -431,10 +462,12 @@
 						var myBar =new TSMenuBar();
 						myBar.add(new TSMenuBut("<I18n:message key="TASK_MANAGEMENT"/>", null, tsMenu, "${contextPath}${ImageServlet}/${urlHtml}/xtree/images/taskMGM.gif"));
 						document.write(myBar);
-                    </script>
-                    </span>
-	<span class="separator">&nbsp;</span>
-	<c:choose>
+	                    </script>
+	                    </span>
+		</span>
+		<span class="separator ts-task-toolbar-divider" aria-hidden="true">&nbsp;</span>
+		<span class="ts-task-toolbar-secondary ts-task-header-secondary">
+		<c:choose>
 	<c:when test="${archive == null}">
 	<c:if test="${showViewSubtasks}">
 		<html:link  href="${contextPath}/SubtaskAction.do?method=page&amp;id=${id}">
@@ -448,61 +481,43 @@
 			<I18n:message key="TASK_OVERVIEW"/>
 		</html:link>
 	</c:if>
-	<c:if test="${!empty categories}">
-		<c:forEach items="${categories}" var="category">
-			<c:choose>
-				<c:when test="${fn:indexOf(category.action,'/')>0}">
-					<c:set var="menuGroup" value="${fn:substringBefore(category.action,'/')}"/>
-					<script type="text/javascript">
-						if (!taskAddMenu['${fn:escapeXml(menuGroup)}']){
-							taskAddMenu['${fn:escapeXml(menuGroup)}'] = new TSMenu();
-							taskAddMenu['${fn:escapeXml(menuGroup)}'].width = 320;
-						}
-						taskAddMenu['${fn:escapeXml(menuGroup)}'].add(new TSMenuItem("${fn:substringAfter(category.action,'/')}", "<c:out value="${contextPath}/TaskEditAction.do?method=page&id=${id}&newTask=true&category=${category.id}"/>", false, false, "<c:out value="${contextPath}${ImageServlet}/icons/categories/${category.icon}"/>"));
-					</script>
-				</c:when>
-
-				<c:otherwise>
-					<c:choose>
-						<c:when test="${fn:indexOf(category.preferences,'T')>-1}">
-							<html:link  title="${category.description}"
-										href="${contextPath}/TaskEditAction.do?method=page&amp;id=${id}&amp;newTask=true&amp;category=${category.id}">
-								<html:img src="${contextPath}${ImageServlet}/icons/categories/${category.icon}" border="0" altKey="ADD"/>
-								<c:choose>
-									<c:when test="${category.action ne null && !empty category.action}">
-										<c:out value="${category.action}"/>
-									</c:when>
-									<c:otherwise>
-										<I18n:message key="ADD"/>
-										<c:out value="${category.name}"/>
-									</c:otherwise>
-								</c:choose>
-							</html:link>
-						</c:when>
-						<c:otherwise>
-							<script type="text/javascript">
-								if (!taskAddMenu['<I18n:message key="OTHER_CATEGORIES"/>']){
-									taskAddMenu['<I18n:message key="OTHER_CATEGORIES"/>'] = new TSMenu();
-									taskAddMenu['<I18n:message key="OTHER_CATEGORIES"/>'].width = 320;
-								}
-								taskAddMenu['<I18n:message key="OTHER_CATEGORIES"/>'].add(new TSMenuItem("<c:choose><c:when test="${category.action ne null && !empty category.action}"><c:out value="${category.action}"/></c:when><c:otherwise><I18n:message key="ADD"/>&nbsp;<c:out value="${category.name}"/></c:otherwise></c:choose>", "<c:out value="${contextPath}/TaskEditAction.do?method=page&id=${id}&newTask=true&category=${category.id}"/>", false, false, "<c:out value="${contextPath}${ImageServlet}/icons/categories/${category.icon}"/>"));
-							</script>
-						</c:otherwise>
-					</c:choose>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
 		<c:if test="${!empty categories}">
-    <span class="additional">
+			<c:forEach items="${categories}" var="category">
+				<c:choose>
+					<c:when test="${fn:indexOf(category.action,'/')>0}">
+						<c:set var="menuGroup" value="${fn:substringBefore(category.action,'/')}"/>
+						<script type="text/javascript">
+							tsEnsureTaskCreateGroupMenu("${fn:escapeXml(menuGroup)}").add(new TSMenuItem("<c:out value="${fn:substringAfter(category.action,'/')}" escapeXml="true"/>", "<c:out value="${contextPath}/TaskEditAction.do?method=page&id=${id}&newTask=true&category=${category.id}"/>", null, false, "<c:out value="${contextPath}${ImageServlet}/icons/categories/${category.icon}"/>"));
+						</script>
+					</c:when>
+
+					<c:otherwise>
+						<c:choose>
+							<c:when test="${fn:indexOf(category.preferences,'T')>-1}">
+								<script type="text/javascript">
+									tsEnsureTaskCreateMenu().add(new TSMenuItem("<c:choose><c:when test="${category.action ne null && !empty category.action}"><c:out value="${category.action}" escapeXml="true"/></c:when><c:otherwise><I18n:message key="ADD"/>&nbsp;<c:out value="${category.name}" escapeXml="true"/></c:otherwise></c:choose>", "<c:out value="${contextPath}/TaskEditAction.do?method=page&id=${id}&newTask=true&category=${category.id}"/>", null, false, "<c:out value="${contextPath}${ImageServlet}/icons/categories/${category.icon}"/>", "", "<c:out value="${category.description}" escapeXml="true"/>"));
+								</script>
+							</c:when>
+							<c:otherwise>
+								<script type="text/javascript">
+									tsEnsureTaskCreateOtherMenu().add(new TSMenuItem("<c:choose><c:when test="${category.action ne null && !empty category.action}"><c:out value="${category.action}" escapeXml="true"/></c:when><c:otherwise><I18n:message key="ADD"/>&nbsp;<c:out value="${category.name}" escapeXml="true"/></c:otherwise></c:choose>", "<c:out value="${contextPath}/TaskEditAction.do?method=page&id=${id}&newTask=true&category=${category.id}"/>", null, false, "<c:out value="${contextPath}${ImageServlet}/icons/categories/${category.icon}"/>"));
+								</script>
+							</c:otherwise>
+						</c:choose>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${!empty categories}">
+    <span class="additional ts-task-create-menu">
     <script type="text/javascript">
-	    var taskAddMenuBar =new TSMenuBar();
-		for(var h in taskAddMenu){
-			taskAddMenuBar.add(new TSMenuBut(h, null, taskAddMenu[h], "<c:out value="${contextPath}"/>${ImageServlet}/cssimages/add.png"));
+		if (taskCreateMenu != null && taskCreateMenu._menuItems.length > 0) {
+	    	var taskCreateMenuBar =new TSMenuBar();
+			taskCreateMenuBar.add(new TSMenuBut("<I18n:message key="CREATE"/>", null, taskCreateMenu, "<c:out value="${contextPath}"/>${ImageServlet}/cssimages/add.png"));
+			document.write(taskCreateMenuBar);
 		}
-		document.write(taskAddMenuBar);
     </script>
     </span>
-		</c:if>
+			</c:if>
 	</c:if>
 	</c:when>
 		<c:otherwise>
@@ -511,19 +526,21 @@
 				<I18n:message key="ARCHIVED_TASKS"/>
 			</html:link>
 		</c:otherwise>
-	</c:choose>
+		</c:choose>
+		</span>
 
-</div>
-<c:choose>
+	</div>
+	<div class="ts-task-context-meta">
+	<c:choose>
 	<c:when test="${archive == null}">
-	<nav class="logopath" aria-label="Breadcrumb">
+	<nav class="logopath ts-task-context-breadcrumb" aria-label="Breadcrumb">
 		<c:forEach var="task" items="${tci.ancestors}" varStatus="varCounter">
 			<html:link styleClass="internal" href="${contextPath}/task/${task.number}?thisframe=true" title="#${task.number}">
 				<c:out value="${task.name}" escapeXml="true"/>&nbsp;/
 			</html:link>
 		</c:forEach>
 	</nav>
-	<div class="taskTitle" role="heading" aria-level="1">
+	<div class="taskTitle ts-task-context-title" role="heading" aria-level="1">
 		<c:if test="${ asView == null || asView == 'task'}"><html:link styleClass="internal" href="${contextPath}/task/${tci.number}?thisframe=true" title="#${tci.number}">
 			<html:img   border="0" src="${contextPath}${ImageServlet}/icons/categories/${tci.category.icon}"/>
 			<html:img styleClass="state" border="0" style="background-color: ${tci.status.color}" src="${contextPath}${ImageServlet}${tci.status.image}"/>
@@ -532,10 +549,10 @@
 	</div>
 	</c:when>
 	<c:otherwise>
-		<div class="logopath">
+		<div class="logopath ts-task-context-breadcrumb">
 			<c:out value="${archive.path}" escapeXml="true"/>
 		</div>
-		<div class="taskTitle">
+		<div class="taskTitle ts-task-context-title">
 			<c:if test="${ asView == null || asView == 'task'}"><html:link styleClass="internal" href="${contextPath}/TaskViewAction.do?id=1&archiveId=${archive.id}&method=archive" title="#${archive.number}">
 				<html:img   border="0" src="${contextPath}${ImageServlet}/icons/categories/${archive.category.icon}"/>
 				<html:img styleClass="state" border="0" style="background-color: ${archive.status.color}" src="${contextPath}${ImageServlet}${archive.status.image}"/>
@@ -547,8 +564,11 @@
 			</c:if>
 		</div>
 	</c:otherwise>
-</c:choose>
-<c:if test="${isNotices}">
+	</c:choose>
+	</div>
+	</div>
+	</div>
+	<c:if test="${isNotices}">
 	<table cellspacing="0" cellpadding="0" class="notice">
 		<caption>
 			<I18n:message key="EMERGENCY_NOTICE"/>

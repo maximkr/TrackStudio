@@ -7,10 +7,11 @@
 <I18n:setBundle basename="language"/>
 <c:choose>
 <c:when test="${tabView.allowed && !tabPriorities.allowed && !tabStates.allowed && !tabMessageTypes.allowed && !tabCustomize.allowed}">
-<div class="caption"><I18n:message key="WORKFLOW_OVERVIEW"/></div>
+<div class="ts-admin-tabs-caption"><I18n:message key="WORKFLOW_OVERVIEW"/></div>
     </c:when>
     <c:otherwise>
-<table class="tabs">
+<div class="ts-admin-tabs-wrap">
+<table class="tabs ts-admin-tabs ts-admin-tabs--workflow">
     <tr>
         <c:if test="${tabView.allowed}">
             <td <c:if test="${tabView.selected}">class="selectedtab"</c:if>>
@@ -50,9 +51,9 @@
                 </html:link>
             </td>
         </c:if>
-        <th>&nbsp;</th>
+        <th class="ts-admin-tabs__fill">&nbsp;</th>
     </tr>
 </table>
+</div>
     </c:otherwise>
 </c:choose>
-

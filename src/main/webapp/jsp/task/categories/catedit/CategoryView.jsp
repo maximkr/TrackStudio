@@ -14,10 +14,10 @@
 <tiles:put name="tabs" value="/jsp/task/categories/CategorySubMenu.jsp"/>
 <tiles:put name="main" type="string">
 
-<div class="nblueborder">
+<div class="nblueborder ts-category-view">
 <div class="ncaption"></div>
 <c:if test="${canManage}">
-    <div class="controlPanel">
+    <div class="controlPanel ts-category-actions">
         <html:link
                 href="${contextPath}/CategoryEditAction.do?method=page&amp;categoryId=${currentCategory.id}&amp;id=${id}">
             <html:img src="${contextPath}${ImageServlet}/cssimages/ico.edit.gif" hspace="0" vspace="0" border="0" align="middle"/>
@@ -34,11 +34,11 @@
 
     </div>
 </c:if>
-<div class="indent">
+<div class="indent ts-category-view__content">
 <c:if test="${!isValid}">
     <c:set var="counter" value="${0}"/>
-    <div class="general">
-        <table class="error" cellpadding="0" cellspacing="0">
+    <div class="general ts-category-card ts-category-card--warning">
+        <table class="error ts-category-issues" cellpadding="0" cellspacing="0">
             <caption>
                 <I18n:message key="CATEGORY_INVALID_OVERVIEW"/>
             </caption>
@@ -111,8 +111,8 @@
         </table>
     </div>
 </c:if>
-<div class="general">
-    <table class="general" cellpadding="0" cellspacing="0">
+<div class="general ts-category-card">
+    <table class="general ts-category-properties" cellpadding="0" cellspacing="0">
         <caption>
             <I18n:message key="PROPERTIES"/>
         </caption>
@@ -295,8 +295,8 @@
         </tr>
     </table>
 </div>
-<div class="general">
-    <table class="general" cellpadding="0" cellspacing="0">
+<div class="general ts-category-card">
+    <table class="general ts-category-relations" cellpadding="0" cellspacing="0">
         <caption>
             <I18n:message key="RELATED_CATEGORIES"/>
         </caption>
@@ -333,8 +333,8 @@
     </table>
 </div>
 <c:if test="${canViewTriggers}">
-    <div class="general">
-        <table class="general" cellpadding="0" cellspacing="0">
+    <div class="general ts-category-card">
+        <table class="general ts-category-properties" cellpadding="0" cellspacing="0">
             <caption>
                 <I18n:message key="CREATE_TASK_TRIGGERS"/>
             </caption>
@@ -368,8 +368,8 @@
             </tr>
         </table>
     </div>
-    <div class="general">
-        <table class="general" cellpadding="0" cellspacing="0">
+    <div class="general ts-category-card">
+        <table class="general ts-category-properties" cellpadding="0" cellspacing="0">
             <caption>
                 <I18n:message key="TASK_EDIT_TRIGGERS"/>
             </caption>
@@ -405,8 +405,8 @@
     </div>
 </c:if>
 <c:if test="${template ne null}">
-    <div class="general">
-        <table class="general" cellpadding="0" cellspacing="0">
+    <div class="general ts-category-card">
+        <table class="general ts-category-properties" cellpadding="0" cellspacing="0">
             <caption>
                 <I18n:message key="CATEGORY_TEMPLATE"/>
             </caption>
@@ -423,8 +423,8 @@
     </div>
 </c:if>
 <c:if test="${canViewPermissions}">
-    <div class="general">
-        <table class="general" cellpadding="0" cellspacing="0">
+    <div class="general ts-category-card">
+        <table class="general ts-category-permissions" cellpadding="0" cellspacing="0">
             <caption>
                 <I18n:message key="PERMISSIONS_EDIT"/>
             </caption>

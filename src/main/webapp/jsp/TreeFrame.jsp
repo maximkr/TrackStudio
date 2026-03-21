@@ -27,17 +27,9 @@
 			min-height: 100%;
 			box-sizing: border-box;
 		}
-		/* Remove all focus outlines inside the tree (role=button expanders, container, etc.) */
-		/* L2: Removed outline: none to preserve keyboard accessibility */
-		/* Active node: bold text only, no background box */
-		.fancytree-active .fancytree-title {
-			color: #1a5a80;
-			font-weight: bold !important;
-			background: transparent !important;
+		.fancytree-focused .fancytree-title {
+			outline: none;
 		}
-		/* Override xp-skin hover/focused background */
-		span.fancytree-title:hover,
-		span.fancytree-focused span.fancytree-title { background: transparent !important; }
 	</style>
 	<script type="text/javascript">
 		TREE_LOADED = false;

@@ -56,7 +56,7 @@ body {
 }
 
 .ts-main-content {
-    padding-top: var(--ts-space-3);
+    padding-top: var(--ts-space-2);
 }
 
 /* Keep tabs visually attached to page body blocks (nblueborder/blueborder content). */
@@ -214,11 +214,14 @@ div.login {
     font-size: var(--ts-font-sm);
     color: var(--ts-text);
     background-color: var(--ts-surface);
-    padding: var(--ts-space-2) var(--ts-space-3);
+    min-height: var(--ts-header-height);
+    padding: 0 var(--ts-space-4);
     border-bottom: 1px solid var(--ts-border);
+    display: flex;
+    align-items: center;
 }
 div.login A {
-    font-size: var(--ts-font-sm);
+    font-size: var(--ts-font-base);
     color: var(--ts-primary-light);
     text-decoration: none;
 }
@@ -228,9 +231,10 @@ div.login A:hover {
 
 .ts-header-main {
     display: grid;
-    grid-template-columns: minmax(220px, 1fr) minmax(250px, 430px) minmax(260px, 1fr);
+    grid-template-columns: minmax(220px, 1fr) minmax(320px, 520px) minmax(260px, 1fr);
     align-items: center;
-    gap: var(--ts-space-2);
+    gap: var(--ts-space-4);
+    width: 100%;
 }
 
 .ts-header-brand-link {
@@ -247,7 +251,7 @@ div.login A:hover {
 .ts-header-main__search {
     justify-self: center;
     width: 100%;
-    max-width: 430px;
+    max-width: 520px;
 }
 
 .ts-header-search-form {
@@ -272,7 +276,7 @@ div.login A:hover {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: var(--ts-space-2);
+    gap: var(--ts-space-3);
     padding: 0;
     flex-wrap: wrap;
 }
@@ -280,8 +284,8 @@ div.login A:hover {
 .ts-header-user-info {
     display: inline-flex;
     align-items: center;
-    gap: var(--ts-space-1);
-    font-size: var(--ts-font-xs);
+    gap: var(--ts-space-2);
+    font-size: var(--ts-font-sm);
     color: var(--ts-text-muted);
     min-width: 0;
     max-width: 100%;
@@ -293,7 +297,7 @@ div.login A:hover {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: var(--ts-font-xs) !important;
+    font-size: var(--ts-font-sm) !important;
     font-weight: 600;
     color: var(--ts-text) !important;
     text-decoration: none;
@@ -317,7 +321,8 @@ div.login A:hover {
     border: 1px solid var(--ts-border);
     background: var(--ts-surface-muted);
     border-radius: 999px;
-    padding: 2px 8px;
+    min-height: 28px;
+    padding: 4px 10px;
     line-height: 1.3;
     max-width: 36ch;
     white-space: normal;
@@ -333,17 +338,20 @@ div.login A:hover {
 }
 
 .ts-header-action-link {
-    display: inline-block;
-    font-size: var(--ts-font-xs) !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    font-size: var(--ts-font-sm) !important;
     font-weight: 600;
     color: var(--ts-primary) !important;
     text-decoration: none;
-    padding: 2px 10px;
+    padding: 0 14px;
     border: 1px solid var(--ts-border);
     border-radius: var(--ts-radius-sm);
     transition: all var(--ts-transition);
     background: var(--ts-surface);
-    line-height: 1.6;
+    line-height: 1;
 }
 .ts-header-action-link:hover {
     background: var(--ts-primary-soft);
@@ -353,7 +361,7 @@ div.login A:hover {
 
 @media (max-width: 1200px) {
     .ts-header-main {
-        grid-template-columns: minmax(180px, 1fr) minmax(230px, 380px) minmax(220px, 1fr);
+        grid-template-columns: minmax(180px, 1fr) minmax(260px, 420px) minmax(220px, 1fr);
     }
     .ts-header-user-roles {
         max-width: 26ch;
@@ -385,7 +393,7 @@ div.login A:hover {
 
 /* Search box in header */
 input.form-autocomplete {
-    background: var(--ts-surface) url(cssimages/ico.search.gif) no-repeat calc(100% - 8px) center;
+    background: var(--ts-surface);
     border: 1px solid var(--ts-border-strong);
     border-radius: var(--ts-radius-sm);
     padding-right: 28px;
@@ -396,8 +404,9 @@ input.form-autocomplete {
     transition: border-color var(--ts-transition), box-shadow var(--ts-transition);
 }
 div.login input.form-autocomplete {
-    background: var(--ts-surface-muted) url(cssimages/ico.search.gif) no-repeat calc(100% - 8px) center;
+    background: var(--ts-surface-muted) url(cssimages/ico.search.gif) no-repeat calc(100% - 12px) center;
     color: var(--ts-text);
+    height: 40px;
 }
 input.form-autocomplete::placeholder {
     color: var(--ts-text-muted);
@@ -931,12 +940,12 @@ div.controlPanel span.separator {
 DIV.logopath {
     font-size: var(--ts-font-sm);
     color: var(--ts-text-muted);
-    padding: var(--ts-space-2) 0;
+    padding: 0;
     margin: 0;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 2px;
+    gap: 4px;
 }
 DIV.logopath A {
     font-size: var(--ts-font-sm);
@@ -965,18 +974,20 @@ DIV.logopath IMG {
 /* ── Task title ───────────────────────────────────────────── */
 
 DIV.taskTitle {
-    margin: 0 0 var(--ts-space-3) 0;
-    padding: var(--ts-space-2) 0;
-    border-bottom: 1px solid var(--ts-border);
+    margin: 0;
+    padding: 0;
+    border-bottom: none;
 }
 DIV.taskTitle A {
-    font-size: var(--ts-font-xl);
+    font-size: clamp(28px, 2vw, 32px);
     font-weight: 600;
     color: var(--ts-text);
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    flex-wrap: wrap;
+    gap: 10px;
+    line-height: 1.15;
 }
 DIV.taskTitle A:hover {
     color: var(--ts-primary);
@@ -992,10 +1003,10 @@ DIV.taskTitle SPAN {
 }
 DIV.taskTitle em.number {
     font-style: normal;
-    font-size: var(--ts-font-base);
-    font-weight: 400;
+    font-size: var(--ts-font-sm);
+    font-weight: 500;
     color: var(--ts-text-muted);
-    margin-left: 4px;
+    margin-left: 0;
 }
 DIV.taskTitle .ts-user-avatar,
 DIV.taskTitle .ts-role-avatar {
@@ -1018,6 +1029,258 @@ DIV.taskTitle .ts-role-avatar {
     color: var(--ts-role-avatar-bg, var(--ts-primary)) !important;
     background-color: var(--ts-surface) !important;
     border-radius: 50%;
+}
+
+/* ── Task context zone ─────────────────────────────────────── */
+
+.ts-task-context {
+    display: block;
+    padding: 6px var(--ts-space-4) 4px;
+    border-bottom: none;
+    background: transparent;
+}
+
+.ts-task-context-bar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 6px 14px;
+    padding: 8px 14px;
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-md);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--ts-surface) 96%, var(--ts-primary-soft)) 0%, var(--ts-surface) 100%);
+}
+
+.ts-task-context-meta {
+    grid-column: 1;
+    min-width: 0;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 2px 10px;
+    order: 1;
+}
+
+.ts-task-context .logopath,
+.ts-task-context .ts-task-context-breadcrumb {
+    order: 2;
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    min-width: 0;
+    font-size: var(--ts-font-xs);
+    line-height: 1.35;
+    color: var(--ts-text-muted);
+}
+
+.ts-task-context .logopath A,
+.ts-task-context .ts-task-context-breadcrumb A {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    font-size: var(--ts-font-xs);
+    color: inherit;
+}
+
+.ts-task-context .logopath A:hover,
+.ts-task-context .ts-task-context-breadcrumb A:hover {
+    color: var(--ts-text);
+}
+
+.ts-task-context .taskTitle,
+.ts-task-context .ts-task-context-title {
+    order: 1;
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--ts-space-2);
+    flex-wrap: wrap;
+}
+
+.ts-task-context .taskTitle A,
+.ts-task-context .taskTitle A.internal,
+.ts-task-context .ts-task-context-title A,
+.ts-task-context .ts-task-context-title A.internal {
+    max-width: 100%;
+    font-size: clamp(17px, 1.55vw, 24px);
+    gap: 8px;
+    line-height: 1.15;
+}
+
+.ts-task-context .taskTitle img.state,
+.ts-task-context .taskTitle img.icon,
+.ts-task-context .ts-task-context-title img.state,
+.ts-task-context .ts-task-context-title img.icon {
+    width: 16px;
+    height: 16px;
+}
+
+div.controlPanel.ts-task-header-toolbar {
+    display: inline-flex;
+    grid-column: 2;
+    justify-self: end;
+    width: auto;
+    max-width: 100%;
+    align-self: center;
+    order: 2;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    gap: 4px 8px;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    flex-wrap: wrap;
+    overflow: visible;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+div.controlPanel.ts-task-header-toolbar .ts-menu-bar {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+
+div.controlPanel.ts-task-header-toolbar A,
+div.controlPanel.ts-task-header-toolbar .ts-menu-bar a,
+div.controlPanel.ts-task-header-toolbar .ts-menu-bar a:visited {
+    min-height: 26px;
+    padding: 0 6px;
+    margin: 0;
+    border-radius: 999px;
+    font-size: var(--ts-font-xs);
+    font-weight: 600;
+    border-color: transparent;
+    background: transparent;
+    color: var(--ts-text-muted) !important;
+}
+
+div.controlPanel.ts-task-header-toolbar .mainmenu,
+div.controlPanel.ts-task-header-toolbar .additional {
+    display: inline-flex;
+    align-items: center;
+}
+
+div.controlPanel.ts-task-header-toolbar > .separator {
+    display: none;
+}
+
+div.controlPanel.ts-task-header-toolbar .ts-task-header-main-group,
+div.controlPanel.ts-task-header-toolbar .ts-task-header-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+div.controlPanel.ts-task-header-toolbar .ts-task-header-main-group {
+    flex: 0 0 auto;
+}
+
+div.controlPanel.ts-task-header-toolbar .ts-task-header-secondary {
+    flex: 0 1 auto;
+    justify-content: flex-end;
+}
+
+div.controlPanel.ts-task-header-toolbar .ts-task-create-menu {
+    display: inline-flex;
+    align-items: center;
+}
+
+div.controlPanel.ts-task-header-toolbar .ts-task-create-menu > A,
+div.controlPanel.ts-task-header-toolbar .ts-task-create-menu .ts-menu-bar a,
+div.controlPanel.ts-task-header-toolbar .ts-task-create-menu .ts-menu-bar a:visited {
+    border-color: color-mix(in srgb, var(--ts-primary-light) 22%, var(--ts-border));
+    background: color-mix(in srgb, var(--ts-primary-soft) 72%, var(--ts-surface));
+    color: var(--ts-primary) !important;
+}
+
+div.controlPanel.ts-task-header-toolbar .ts-task-create-menu > A:hover,
+div.controlPanel.ts-task-header-toolbar .ts-task-create-menu > A:focus,
+div.controlPanel.ts-task-header-toolbar .ts-task-create-menu > A:active,
+div.controlPanel.ts-task-header-toolbar .ts-task-create-menu .ts-menu-bar a:hover,
+div.controlPanel.ts-task-header-toolbar .ts-task-create-menu .ts-menu-bar a:focus,
+div.controlPanel.ts-task-header-toolbar .ts-task-create-menu .ts-menu-bar a:active {
+    background: color-mix(in srgb, var(--ts-primary-soft) 88%, var(--ts-surface));
+    border-color: color-mix(in srgb, var(--ts-primary-light) 36%, var(--ts-border));
+    color: var(--ts-primary) !important;
+}
+
+div.controlPanel.ts-task-header-toolbar #topleft {
+    display: inline-flex;
+    align-items: center;
+}
+
+div.controlPanel.ts-task-header-toolbar .tree-toggle-button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--ts-border);
+    background: var(--ts-surface);
+    color: var(--ts-text-muted);
+}
+
+div.controlPanel.ts-task-header-toolbar .ts-task-toolbar-divider {
+    display: none;
+}
+
+div.controlPanel.ts-task-header-toolbar .tree-toggle-button:hover {
+    background: var(--ts-primary-soft);
+    color: var(--ts-primary);
+}
+
+div.controlPanel.ts-task-header-toolbar A:hover,
+div.controlPanel.ts-task-header-toolbar A.selected,
+div.controlPanel.ts-task-header-toolbar A#selected,
+div.controlPanel.ts-task-header-toolbar .ts-menu-bar a:hover,
+div.controlPanel.ts-task-header-toolbar .ts-menu-bar a:focus,
+div.controlPanel.ts-task-header-toolbar .ts-menu-bar a:active {
+    background: var(--ts-surface);
+    border-color: var(--ts-border);
+    color: var(--ts-text) !important;
+}
+
+.ts-user-context .ts-task-context-bar {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+}
+
+.ts-user-context .ts-task-context-meta {
+    display: grid;
+    gap: 2px;
+    align-items: start;
+}
+
+.ts-user-context .ts-task-context-breadcrumb,
+.ts-user-context .logopath {
+    order: 1;
+}
+
+.ts-user-context .ts-task-context-title,
+.ts-user-context .taskTitle {
+    order: 2;
+}
+
+.ts-user-context .ts-user-header-toolbar {
+    grid-column: 1;
+    justify-self: stretch;
+    justify-content: flex-start;
+    order: 2;
+    width: 100%;
+    padding-top: 4px;
+    border-top: 1px solid color-mix(in srgb, var(--ts-border) 82%, transparent);
+}
+
+.ts-user-context .ts-user-header-toolbar A,
+.ts-user-context .ts-user-header-toolbar .ts-menu-bar a,
+.ts-user-context .ts-user-header-toolbar .ts-menu-bar a:visited {
+    min-height: 24px;
+    padding: 0 6px;
+    font-size: 11px;
 }
 
 
@@ -1241,6 +1504,45 @@ div.blueborder > DIV.caption IMG {
     vertical-align: middle;
     border: 0 !important;
     margin-right: 2px;
+}
+
+div.blueborder > DIV.caption.ts-task-list-caption {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--ts-space-4);
+    padding: 14px var(--ts-space-4) 10px;
+    border-bottom: none;
+    line-height: 1.3;
+}
+
+.ts-task-list-caption__main {
+    display: grid;
+    gap: 6px;
+    min-width: 0;
+}
+
+.ts-task-list-caption__eyebrow {
+    font-size: var(--ts-font-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ts-text-muted);
+}
+
+.ts-task-list-caption__title {
+    display: block;
+    font-size: clamp(22px, 1.8vw, 26px);
+    line-height: 1.2;
+    color: var(--ts-text);
+}
+
+div.blueborder > DIV.caption.ts-task-list-caption .ts-caption-actions {
+    float: none;
+    flex: 0 0 auto;
+    margin-left: auto;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 /* Document view caption/header */
@@ -1490,6 +1792,428 @@ div.nblueborder > div.ncaption {
 }
 div.nblueborder > div.indent {
     padding-top: var(--ts-space-2);
+}
+
+.ts-admin-header {
+    padding: 0 var(--ts-space-4) 6px;
+}
+
+.ts-admin-header__inner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    min-width: 0;
+    color: var(--ts-text-muted);
+    font-size: var(--ts-font-sm);
+}
+
+.ts-admin-header__crumb,
+.ts-admin-header__current,
+.ts-admin-header__current:visited {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    color: inherit;
+    text-decoration: none;
+}
+
+.ts-admin-header__crumb {
+    font-size: var(--ts-font-xs);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.ts-admin-header__current,
+.ts-admin-header__current:visited {
+    color: var(--ts-text);
+    font-weight: 600;
+}
+
+.ts-admin-header__crumb:hover,
+.ts-admin-header__current:hover {
+    color: var(--ts-primary);
+}
+
+.ts-admin-header__separator {
+    color: var(--ts-border-strong);
+}
+
+.ts-admin-header__current--new {
+    color: var(--ts-text-muted);
+    font-size: var(--ts-font-sm);
+}
+
+.ts-admin-tabs-wrap {
+    padding: 0 var(--ts-space-4);
+}
+
+table.tabs.ts-admin-tabs {
+    width: 100%;
+    table-layout: fixed;
+    border: none;
+    background: transparent;
+}
+
+table.tabs.ts-admin-tabs td,
+table.tabs.ts-admin-tabs th {
+    border: none;
+    background: transparent;
+    vertical-align: bottom;
+}
+
+table.tabs.ts-admin-tabs td A {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 34px;
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-radius: var(--ts-radius-sm) var(--ts-radius-sm) 0 0;
+    color: var(--ts-text-muted);
+    font-size: var(--ts-font-xs);
+    line-height: 1.15;
+    white-space: normal;
+    text-align: left;
+}
+
+table.tabs.ts-admin-tabs td A:hover {
+    background: color-mix(in srgb, var(--ts-primary-soft) 58%, var(--ts-surface));
+    border-color: color-mix(in srgb, var(--ts-primary-light) 18%, transparent);
+}
+
+table.tabs.ts-admin-tabs td.selectedtab {
+    background: transparent;
+}
+
+table.tabs.ts-admin-tabs td.selectedtab A {
+    background: var(--ts-surface);
+    border-color: var(--ts-border);
+    border-bottom-color: var(--ts-surface);
+    color: var(--ts-text);
+    box-shadow: inset 0 2px 0 var(--ts-primary-light);
+}
+
+table.tabs.ts-admin-tabs th.ts-admin-tabs__fill {
+    width: 1%;
+}
+
+.ts-admin-tabs-caption {
+    padding: 0 var(--ts-space-4) 6px;
+    color: var(--ts-text-muted);
+    font-size: var(--ts-font-xs);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+div.controlPanel.ts-admin-toolbar {
+    padding: 8px 14px;
+    gap: 6px 8px;
+    background: color-mix(in srgb, var(--ts-surface) 92%, var(--ts-primary-soft));
+}
+
+div.controlPanel.ts-admin-toolbar A {
+    min-height: 30px;
+    margin: 0;
+    padding: 0 10px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ts-text-muted);
+    font-weight: 600;
+}
+
+div.controlPanel.ts-admin-toolbar A:hover {
+    background: var(--ts-surface);
+    border-color: var(--ts-border);
+    color: var(--ts-text);
+}
+
+.ts-category-header {
+    padding: 0 var(--ts-space-4) 6px;
+}
+
+.ts-category-header__inner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    min-width: 0;
+    color: var(--ts-text-muted);
+    font-size: var(--ts-font-sm);
+}
+
+.ts-category-header__crumb,
+.ts-category-header__current,
+.ts-category-header__current:visited {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    color: inherit;
+    text-decoration: none;
+}
+
+.ts-category-header__crumb {
+    font-size: var(--ts-font-xs);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.ts-category-header__current,
+.ts-category-header__current:visited {
+    color: var(--ts-text);
+    font-weight: 600;
+}
+
+.ts-category-header__crumb:hover,
+.ts-category-header__current:hover {
+    color: var(--ts-primary);
+}
+
+.ts-category-header__separator {
+    color: var(--ts-border-strong);
+}
+
+.ts-category-header__current--new {
+    color: var(--ts-text-muted);
+    font-size: var(--ts-font-sm);
+}
+
+.ts-category-tabs-wrap {
+    padding: 0 var(--ts-space-4);
+}
+
+table.tabs.ts-category-tabs {
+    border: none;
+    background: transparent;
+}
+
+table.tabs.ts-category-tabs td,
+table.tabs.ts-category-tabs th {
+    border: none;
+    background: transparent;
+}
+
+table.tabs.ts-category-tabs td A {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 0 14px;
+    border: 1px solid transparent;
+    border-radius: var(--ts-radius-sm) var(--ts-radius-sm) 0 0;
+    color: var(--ts-text-muted);
+}
+
+table.tabs.ts-category-tabs td A:hover {
+    background: color-mix(in srgb, var(--ts-primary-soft) 58%, var(--ts-surface));
+    border-color: color-mix(in srgb, var(--ts-primary-light) 18%, transparent);
+}
+
+table.tabs.ts-category-tabs td.selectedtab A {
+    background: var(--ts-surface);
+    border-color: var(--ts-border);
+    border-bottom-color: var(--ts-surface);
+    color: var(--ts-text);
+    box-shadow: inset 0 2px 0 var(--ts-primary-light);
+}
+
+table.tabs.ts-category-tabs th.ts-category-tabs__fill {
+    width: auto;
+}
+
+.ts-category-view {
+    overflow: hidden;
+}
+
+div.nblueborder.ts-category-view > div.indent.ts-category-view__content {
+    display: grid;
+    gap: 12px;
+    padding-top: 0;
+}
+
+div.controlPanel.ts-category-actions {
+    padding: 8px 14px;
+    gap: 6px 8px;
+    background: color-mix(in srgb, var(--ts-surface) 92%, var(--ts-primary-soft));
+}
+
+div.controlPanel.ts-category-actions A {
+    min-height: 30px;
+    margin: 0;
+    padding: 0 10px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ts-text-muted);
+    font-weight: 600;
+}
+
+div.controlPanel.ts-category-actions A:hover {
+    background: var(--ts-surface);
+    border-color: var(--ts-border);
+    color: var(--ts-text);
+}
+
+.ts-category-view__content > .general {
+    margin: 0;
+}
+
+.ts-category-view__content > .general > table.general,
+.ts-category-view__content > .general > table.error {
+    margin-bottom: 0;
+}
+
+.ts-category-view TABLE.general.ts-category-properties TH,
+.ts-category-view TABLE.general.ts-category-permissions TH {
+    width: 34%;
+    max-width: 320px;
+}
+
+.ts-category-view TABLE.general.ts-category-properties TH,
+.ts-category-view TABLE.general.ts-category-properties TD,
+.ts-category-view TABLE.general.ts-category-permissions TH,
+.ts-category-view TABLE.general.ts-category-permissions TD,
+.ts-category-view TABLE.general.ts-category-relations TH,
+.ts-category-view TABLE.general.ts-category-relations TD {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.ts-category-view TABLE.general.ts-category-properties TD img,
+.ts-category-view TABLE.general.ts-category-permissions TD img,
+.ts-category-view TABLE.general.ts-category-relations TD img {
+    margin-right: 4px;
+}
+
+.ts-category-view TABLE.general.ts-category-relations TH {
+    text-align: left;
+}
+
+.ts-category-view .ts-category-issues caption {
+    margin-bottom: 0;
+}
+
+.ts-workflow-page {
+    overflow: hidden;
+}
+
+div.nblueborder.ts-workflow-page > div.indent.ts-workflow-page__content {
+    display: grid;
+    gap: 12px;
+    padding-top: 0;
+}
+
+div.controlPanel.ts-workflow-actions {
+    padding: 8px 14px;
+    gap: 6px 8px;
+    background: color-mix(in srgb, var(--ts-surface) 92%, var(--ts-primary-soft));
+}
+
+div.controlPanel.ts-workflow-actions A {
+    min-height: 30px;
+    margin: 0;
+    padding: 0 10px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ts-text-muted);
+    font-weight: 600;
+}
+
+div.controlPanel.ts-workflow-actions A:hover {
+    background: var(--ts-surface);
+    border-color: var(--ts-border);
+    color: var(--ts-text);
+}
+
+.ts-workflow-page__content > .general {
+    margin: 0;
+}
+
+.ts-workflow-page__content > .general > table.general,
+.ts-workflow-page__content > .general > table.error,
+.ts-workflow-page__content > table.general {
+    margin-bottom: 0;
+}
+
+.ts-workflow-page TABLE.general.ts-workflow-properties TH {
+    width: 34%;
+    max-width: 320px;
+}
+
+.ts-workflow-page TABLE.general.ts-workflow-properties TH,
+.ts-workflow-page TABLE.general.ts-workflow-properties TD,
+.ts-workflow-page TABLE.general.ts-workflow-list TH,
+.ts-workflow-page TABLE.general.ts-workflow-list TD {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.ts-workflow-page TABLE.general.ts-workflow-list TH {
+    text-align: left;
+}
+
+.ts-workflow-page TABLE.general.ts-workflow-list td:nth-child(3),
+.ts-workflow-page TABLE.general.ts-workflow-list th:nth-child(3),
+.ts-workflow-page TABLE.general.ts-workflow-list td:last-child,
+.ts-workflow-page TABLE.general.ts-workflow-list th:last-child {
+    white-space: nowrap;
+}
+
+.ts-workflow-page TABLE.general.ts-workflow-list td table {
+    width: auto;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.ts-workflow-page TABLE.general.ts-workflow-list td table td {
+    padding: 0 4px 0 0;
+    border: none;
+    background: transparent !important;
+}
+
+.ts-workflow-page TABLE.general.ts-workflow-list input.iconized[onclick*="swapCells"] {
+    min-width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 1px solid var(--ts-border) !important;
+    border-radius: 10px;
+    background-color: color-mix(in srgb, var(--ts-surface) 88%, var(--ts-primary-soft)) !important;
+    background-image: none !important;
+    box-shadow: none;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.ts-workflow-page TABLE.general.ts-workflow-list input.iconized[onclick*="swapCells("][value="↑"],
+.ts-workflow-page TABLE.general.ts-workflow-list input.iconized[onclick*="swapCells"] + input.iconized[value="↑"] {
+    color: var(--ts-primary) !important;
+}
+
+.ts-workflow-page TABLE.general.ts-workflow-list input.iconized[onclick*="swapCells("][value="↓"],
+.ts-workflow-page TABLE.general.ts-workflow-list input.iconized[onclick*="swapCells"] + input.iconized[value="↓"] {
+    color: var(--ts-danger) !important;
+}
+
+.ts-workflow-page TABLE.general.ts-workflow-list input.iconized[onclick*="swapCells"]:hover {
+    background-color: var(--ts-surface) !important;
+    border-color: color-mix(in srgb, var(--ts-primary-light) 22%, var(--ts-border)) !important;
+}
+
+.controls.ts-workflow-controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--ts-space-2);
+    flex-wrap: wrap;
+    padding: 12px 0 0;
+    margin-top: 12px;
+    border-top: 1px solid var(--ts-border);
 }
 
 span.bookmarks {
@@ -1794,16 +2518,18 @@ img.state {
 /* ── Status badge ─────────────────────────────────────────── */
 
 .ts-status-badge {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    min-height: 26px;
+    padding: 0 10px;
+    border-radius: 999px;
     font-size: var(--ts-font-xs);
     font-weight: 600;
     white-space: nowrap;
-    line-height: 1.5;
+    line-height: 1;
     background-color: var(--sc, var(--ts-primary-soft));
     background-color: color-mix(in srgb, var(--sc, var(--ts-primary)) 12%, var(--ts-surface, white));
-    color: var(--ts-text);
+    color: color-mix(in srgb, var(--sc, var(--ts-text)) 70%, var(--ts-text));
     border: 1px solid var(--sc, var(--ts-primary));
     border: 1px solid color-mix(in srgb, var(--sc, var(--ts-primary)) 28%, var(--ts-border));
     vertical-align: middle;
@@ -1813,25 +2539,118 @@ img.state {
 /* ── Quick filter ─────────────────────────────────────────── */
 
 .ts-quick-filter {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: var(--ts-space-2);
-    margin: 0 0 var(--ts-space-3);
+    margin: 0;
 }
+
 .ts-quick-filter__input {
     width: min(480px, 100%);
-    padding: var(--ts-space-2) var(--ts-space-3);
+    min-height: 40px;
+    padding: 0 14px;
     border: 1px solid var(--ts-border);
     border-radius: var(--ts-radius-sm);
-    background-color: var(--ts-surface);
+    background: var(--ts-surface) !important;
+    appearance: none;
     color: var(--ts-text);
     font-size: var(--ts-font-base);
+    line-height: 1;
     transition: border-color var(--ts-transition), box-shadow var(--ts-transition);
 }
+
+.ts-quick-filter__input::placeholder {
+    color: var(--ts-text-muted);
+}
+
 .ts-quick-filter__input:focus {
     border-color: var(--ts-primary);
     box-shadow: 0 0 0 2px var(--ts-primary-soft);
     outline: none;
+}
+
+.ts-task-list-toolbar-wrap {
+    padding: 0 var(--ts-space-4);
+}
+
+div.controlPanel.ts-task-list-toolbar {
+    padding: 8px 10px;
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-md);
+    background: color-mix(in srgb, var(--ts-surface) 84%, var(--ts-primary-soft));
+    box-shadow: none;
+    overflow: visible;
+    flex-wrap: wrap;
+    row-gap: 8px;
+}
+
+div.controlPanel.ts-task-list-toolbar A,
+div.controlPanel.ts-task-list-toolbar .ts-menu-bar a,
+div.controlPanel.ts-task-list-toolbar .ts-menu-bar a:visited {
+    min-height: 32px;
+    padding: 0 10px;
+    border-color: transparent;
+    background: transparent;
+    color: var(--ts-text-muted) !important;
+    font-size: var(--ts-font-sm);
+}
+
+div.controlPanel.ts-task-list-toolbar A:hover,
+div.controlPanel.ts-task-list-toolbar .ts-menu-bar a:hover,
+div.controlPanel.ts-task-list-toolbar .ts-menu-bar a:focus,
+div.controlPanel.ts-task-list-toolbar .ts-menu-bar a:active {
+    background: var(--ts-surface);
+    border-color: var(--ts-border);
+    color: var(--ts-text) !important;
+}
+
+div.controlPanel.ts-task-list-toolbar A.selected,
+div.controlPanel.ts-task-list-toolbar A#selected,
+div.controlPanel.ts-task-list-toolbar .ts-menu-bar a.selected,
+div.controlPanel.ts-task-list-toolbar .ts-menu-bar a#selected {
+    background: color-mix(in srgb, var(--ts-primary-soft) 68%, var(--ts-surface));
+    border-color: color-mix(in srgb, var(--ts-primary-light) 32%, var(--ts-border));
+    color: var(--ts-primary) !important;
+}
+
+div.controlPanel.ts-task-list-toolbar + .tabcontent,
+div.controlPanel.ts-task-list-toolbar + DIV.tabcontent {
+    display: none;
+}
+
+.ts-task-list-toolbar-utility {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ts-space-2);
+    padding: 6px var(--ts-space-4) 8px;
+    border-bottom: 1px solid color-mix(in srgb, var(--ts-border) 82%, transparent);
+    flex-wrap: wrap;
+}
+
+.ts-task-list-toolbar-search {
+    display: grid;
+    gap: 2px;
+    min-width: min(100%, 380px);
+}
+
+.ts-task-list-toolbar-search-label {
+    font-size: var(--ts-font-xs);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ts-text-muted);
+}
+
+.ts-task-list-toolbar-meta {
+    align-items: center;
+    padding: 0;
+    flex: 0 0 auto;
+}
+
+.ts-task-list-toolbar-meta .slider {
+    justify-content: flex-end;
+    padding: 0;
 }
 
 
@@ -1841,6 +2660,328 @@ TABLE.general.ts-task-list TH,
 TABLE.general.ts-task-list TD {
     padding: var(--ts-space-3) var(--ts-space-3);
     vertical-align: middle;
+}
+
+.ts-task-list-table-wrap {
+    overflow-x: auto;
+    overflow-y: visible;
+    width: 100%;
+}
+
+TABLE.general.ts-task-list {
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    min-width: max(100%, 960px);
+    background: transparent;
+}
+
+TABLE.general.ts-task-list TR.wide TH {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: color-mix(in srgb, var(--ts-surface) 88%, var(--ts-primary-soft));
+    color: var(--ts-text-muted);
+    font-size: var(--ts-font-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+TABLE.general.ts-task-list TH A,
+TABLE.general.ts-task-list TH A.underline,
+TABLE.general.ts-task-list TH A:visited {
+    color: inherit !important;
+    text-decoration: none !important;
+    font-weight: 700;
+}
+
+TABLE.general.ts-task-list TH A:hover {
+    color: var(--ts-primary-light) !important;
+}
+
+TABLE.general.ts-task-list TR[data-task-row="true"] TD {
+    min-height: 52px;
+}
+
+TABLE.general.ts-task-list TR[data-task-row="true"].is-selected TD,
+TABLE.general.ts-task-list TR.ts-task-list__details-row.is-selected-related TD {
+    background-color: color-mix(in srgb, var(--ts-primary-soft) 72%, var(--ts-surface)) !important;
+}
+
+TABLE.general.ts-task-list TR[data-task-row="true"].is-selected TD:first-child {
+    box-shadow: inset 3px 0 0 var(--ts-accent);
+}
+
+TABLE.general.ts-task-list TR[data-task-row="true"]:hover TD {
+    background-color: color-mix(in srgb, var(--ts-primary-soft) 44%, var(--ts-surface)) !important;
+}
+
+TABLE.general.ts-task-list .ts-task-list__select-head,
+TABLE.general.ts-task-list .ts-task-list__select-cell {
+    width: 56px;
+    min-width: 56px;
+    text-align: center;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+TABLE.general.ts-task-list .ts-task-list__number-cell {
+    white-space: nowrap;
+}
+
+TABLE.general.ts-task-list .ts-task-list__path-cell,
+TABLE.general.ts-task-list .ts-task-list__parent-cell,
+TABLE.general.ts-task-list .ts-task-list__category-cell,
+TABLE.general.ts-task-list .ts-task-list__submitter-cell,
+TABLE.general.ts-task-list .ts-task-list__handler-cell {
+    color: var(--ts-text-muted);
+}
+
+TABLE.general.ts-task-list .ts-task-list__name-cell {
+    min-width: 280px;
+}
+
+TABLE.general.ts-task-list .ts-task-list__name-cell A.internal:last-child,
+TABLE.general.ts-task-list .ts-task-list__path-cell A.internal:last-child,
+TABLE.general.ts-task-list .ts-task-list__parent-cell A.internal:last-child {
+    color: var(--ts-text) !important;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+TABLE.general.ts-task-list .ts-task-list__name-cell A.internal:last-child {
+    font-size: var(--ts-font-md);
+}
+
+TABLE.general.ts-task-list .ts-task-list__name-cell img.state,
+TABLE.general.ts-task-list .ts-task-list__name-cell img.icon,
+TABLE.general.ts-task-list .ts-task-list__path-cell img.state,
+TABLE.general.ts-task-list .ts-task-list__path-cell img.icon,
+TABLE.general.ts-task-list .ts-task-list__parent-cell img.state,
+TABLE.general.ts-task-list .ts-task-list__parent-cell img.icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+}
+
+TABLE.general.ts-task-list .ts-task-list__status-cell,
+TABLE.general.ts-task-list .ts-task-list__priority-cell {
+    white-space: nowrap;
+}
+
+TABLE.general.ts-task-list .msgcontainer {
+    padding-top: 0;
+    padding-bottom: var(--ts-space-3);
+    background-color: color-mix(in srgb, var(--ts-surface) 88%, var(--ts-primary-soft)) !important;
+}
+
+TABLE.general.ts-task-list .ts-task-list__empty-row TD {
+    padding: var(--ts-space-8) var(--ts-space-4);
+    text-align: center;
+    background-color: color-mix(in srgb, var(--ts-surface) 92%, var(--ts-primary-soft)) !important;
+}
+
+.ts-task-list__empty {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
+    color: var(--ts-text-muted);
+    font-size: var(--ts-font-md);
+}
+
+
+/* ── User list ────────────────────────────────────────────── */
+
+div.blueborder > DIV.caption.ts-user-list-caption {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--ts-space-3);
+    padding: 12px var(--ts-space-4) 8px;
+    border-bottom: none;
+}
+
+.ts-user-list-caption__main {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+}
+
+.ts-user-list-caption__eyebrow {
+    font-size: var(--ts-font-xs);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ts-text-muted);
+}
+
+.ts-user-list-caption__title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    min-width: 0;
+    font-size: clamp(20px, 1.75vw, 24px);
+    line-height: 1.2;
+    color: var(--ts-text);
+}
+
+.ts-user-list-toolbar-wrap {
+    padding: 0 var(--ts-space-4);
+}
+
+div.controlPanel.ts-user-list-toolbar {
+    padding: 8px 10px;
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-md);
+    background: color-mix(in srgb, var(--ts-surface) 88%, var(--ts-primary-soft));
+    gap: 6px 8px;
+}
+
+div.controlPanel.ts-user-list-toolbar A,
+div.controlPanel.ts-user-list-toolbar .ts-menu-bar a,
+div.controlPanel.ts-user-list-toolbar .ts-menu-bar a:visited {
+    min-height: 30px;
+    margin: 0;
+    padding: 0 10px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ts-text-muted) !important;
+    font-size: var(--ts-font-sm);
+    font-weight: 600;
+}
+
+div.controlPanel.ts-user-list-toolbar A:hover,
+div.controlPanel.ts-user-list-toolbar .ts-menu-bar a:hover,
+div.controlPanel.ts-user-list-toolbar .ts-menu-bar a:focus,
+div.controlPanel.ts-user-list-toolbar .ts-menu-bar a:active {
+    background: var(--ts-surface);
+    border-color: var(--ts-border);
+    color: var(--ts-text) !important;
+}
+
+div.controlPanel.ts-user-list-toolbar A.selected,
+div.controlPanel.ts-user-list-toolbar A#selected,
+div.controlPanel.ts-user-list-toolbar .ts-menu-bar a.selected,
+div.controlPanel.ts-user-list-toolbar .ts-menu-bar a#selected {
+    background: color-mix(in srgb, var(--ts-primary-soft) 70%, var(--ts-surface));
+    border-color: color-mix(in srgb, var(--ts-primary-light) 28%, var(--ts-border));
+    color: var(--ts-primary) !important;
+}
+
+div.controlPanel.ts-user-list-toolbar + .tabcontent,
+div.controlPanel.ts-user-list-toolbar + DIV.tabcontent {
+    margin-top: 8px;
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-md);
+    background: var(--ts-surface);
+    padding: 10px 12px;
+}
+
+.ts-user-list-body {
+    padding-top: 0;
+}
+
+.ts-user-list-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+TABLE.general.ts-user-list {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    min-width: max(100%, 880px);
+    background: transparent;
+}
+
+TABLE.general.ts-user-list TH,
+TABLE.general.ts-user-list TD {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    vertical-align: middle;
+}
+
+TABLE.general.ts-user-list TR.wide TH {
+    padding-top: 11px;
+    padding-bottom: 11px;
+    background: color-mix(in srgb, var(--ts-surface) 88%, var(--ts-primary-soft));
+    font-size: var(--ts-font-xs);
+    letter-spacing: 0.06em;
+}
+
+TABLE.general.ts-user-list TH A,
+TABLE.general.ts-user-list TH A.underline,
+TABLE.general.ts-user-list TH A:visited {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+TABLE.general.ts-user-list TD:first-child,
+TABLE.general.ts-user-list TH:first-child {
+    width: 48px;
+    min-width: 48px;
+    text-align: center;
+}
+
+TABLE.general.ts-user-list TD a.user,
+TABLE.general.ts-user-list TD a.internal {
+    color: var(--ts-text) !important;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+TABLE.general.ts-user-list TD a.user:hover,
+TABLE.general.ts-user-list TD a.internal:hover {
+    color: var(--ts-primary) !important;
+}
+
+TABLE.general.ts-user-list TD a.user img.icon,
+TABLE.general.ts-user-list TD a.internal img.icon {
+    margin-right: 4px;
+}
+
+TABLE.general.ts-user-list TR.line0:hover TD,
+TABLE.general.ts-user-list TR.line1:hover TD {
+    background-color: color-mix(in srgb, var(--ts-primary-soft) 38%, var(--ts-surface)) !important;
+}
+
+TABLE.general.ts-user-list .ts-user-list__empty-row TD {
+    padding: var(--ts-space-7) var(--ts-space-4);
+    text-align: center;
+    color: var(--ts-text-muted);
+    background: color-mix(in srgb, var(--ts-surface) 92%, var(--ts-primary-soft)) !important;
+}
+
+.controls.ts-user-list-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ts-space-3);
+    flex-wrap: wrap;
+    padding: 12px 0 0;
+    margin-top: 12px;
+    border-top: 1px solid var(--ts-border);
+}
+
+.ts-user-list-total {
+    color: var(--ts-text-muted);
+    font-size: var(--ts-font-sm);
+    font-weight: 600;
+}
+
+.ts-user-list-controls__actions {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: var(--ts-space-2);
+    margin-left: auto;
 }
 
 
@@ -1867,16 +3008,17 @@ TABLE.general span.internal {
 .ts-user {
     display: inline-flex;
     align-items: center;
-    gap: var(--ts-space-1);
+    gap: var(--ts-space-2);
     font-weight: 600;
     color: var(--ts-text);
+    min-width: 0;
 }
 .ts-user__name {
-    color: var(--ts-primary);
+    color: inherit;
 }
 .ts-avatar {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background-color: var(--ts-user-avatar-bg, var(--ts-primary));
     color: var(--ts-user-avatar-fg, #ffffff);
@@ -2094,7 +3236,7 @@ span.expired {
 
 .ts-task-layout {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
     gap: var(--ts-space-4);
     align-items: start;
 }
@@ -2114,17 +3256,27 @@ span.expired {
 .ts-task-main {
     grid-column: 1;
     min-width: 0;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
 }
 
 .ts-task-sidebar {
     grid-column: 2;
     min-width: 0;
+    align-self: stretch;
+    position: sticky;
+    top: var(--ts-space-3);
 }
 
 .ts-task-layout.ts-task-layout--single .ts-task-main,
 .ts-task-layout.ts-task-layout--single .ts-task-sidebar,
 .ts-task-layout.ts-task-layout--single .ts-task-layout__full {
     grid-column: 1;
+}
+
+.ts-task-layout.ts-task-layout--single .ts-task-sidebar {
+    position: static;
 }
 
 .ts-task-main .taskDescription {
@@ -2138,51 +3290,121 @@ span.expired {
 
 .ts-task-main-actions {
     grid-column: 1 / -1;
-    margin-bottom: var(--ts-space-1);
+    margin-bottom: 6px;
 }
 
 .ts-task-workflow-toolbar {
     grid-column: 1 / -1;
-    margin-top: var(--ts-space-1);
-    margin-bottom: var(--ts-space-2);
+    margin-top: 0;
+    margin-bottom: var(--ts-space-3);
 }
 
 div.controlPanel.ts-task-main-actions {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     border: 1px solid var(--ts-border);
     border-radius: var(--ts-radius-sm);
     background-color: var(--ts-surface);
     gap: var(--ts-space-2);
-    padding: var(--ts-space-2) var(--ts-space-3);
-    overflow-x: auto;
-    overflow-y: hidden;
+    padding: 10px 12px;
+    overflow: visible;
+    align-items: flex-start;
+}
+
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
+    gap: 8px 16px;
+    padding: 10px 14px;
+    border-radius: var(--ts-radius-md);
+    background:
+        linear-gradient(180deg,
+            color-mix(in srgb, var(--ts-surface) 94%, var(--ts-primary-soft)),
+            color-mix(in srgb, var(--ts-surface-muted) 88%, #ffffff));
+    box-shadow: none;
 }
 
 div.controlPanel.ts-task-main-actions A {
-    color: var(--ts-text);
-    border: 1px solid var(--ts-border);
-    background-color: var(--ts-surface-muted);
+    color: var(--ts-text-muted);
+    border: 1px solid transparent;
+    background-color: transparent;
     font-weight: 600;
 }
 
 div.controlPanel.ts-task-main-actions A:hover,
 div.controlPanel.ts-task-main-actions A.selected,
 div.controlPanel.ts-task-main-actions A#selected {
-    color: var(--ts-primary);
-    background-color: var(--ts-primary-soft);
-    border-color: var(--ts-primary);
+    color: var(--ts-text);
+    background-color: var(--ts-surface);
+    border-color: var(--ts-border);
 }
 
 .ts-task-toolbar-main {
     display: inline-flex;
     align-items: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: var(--ts-space-2);
-    min-width: fit-content;
-    white-space: nowrap;
-    flex: 0 0 auto;
+    min-width: 0;
+    white-space: normal;
+    flex: 1 1 auto;
+}
+
+.ts-task-overview-actions__primary {
+    justify-content: flex-start;
+}
+
+.ts-task-overview-actions__utility {
+    justify-content: flex-end;
+    flex: 0 1 auto;
+}
+
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-toolbar-divider {
+    display: none;
+}
+
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions A,
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-menu-bar a,
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-menu-bar a:visited {
+    min-height: 30px;
+    padding: 0 10px;
+    margin: 0;
+    border-radius: 999px;
+    font-size: var(--ts-font-xs);
+    font-weight: 700;
+}
+
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__primary A {
+    color: var(--ts-text) !important;
+    border-color: color-mix(in srgb, var(--ts-primary-light) 22%, var(--ts-border));
+    background: color-mix(in srgb, var(--ts-primary-soft) 70%, var(--ts-surface));
+}
+
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__primary A:hover,
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__primary A:focus,
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__primary A:active {
+    color: var(--ts-primary) !important;
+    border-color: color-mix(in srgb, var(--ts-primary-light) 38%, var(--ts-border));
+    background: color-mix(in srgb, var(--ts-primary-soft) 88%, var(--ts-surface));
+}
+
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility A,
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility .ts-menu-bar a,
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility .ts-menu-bar a:visited {
+    color: var(--ts-text-muted) !important;
+    border-color: transparent;
+    background: transparent;
+}
+
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility A:hover,
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility A:focus,
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility A:active,
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility .ts-menu-bar a:hover,
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility .ts-menu-bar a:focus,
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility .ts-menu-bar a:active {
+    color: var(--ts-text) !important;
+    border-color: var(--ts-border);
+    background: var(--ts-surface);
 }
 
 .ts-task-toolbar-main > span.additional {
@@ -2203,13 +3425,13 @@ div.controlPanel.ts-task-main-actions .ts-task-toolbar-divider {
     display: inline-flex;
     align-items: center;
     justify-content: flex-start;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: var(--ts-space-2);
-    min-width: fit-content;
+    min-width: 0;
     margin-left: 0;
     padding-left: 0;
-    white-space: nowrap;
-    flex: 0 0 auto;
+    white-space: normal;
+    flex: 1 1 auto;
 }
 
 div.controlPanel.ts-task-main-actions .ts-task-toolbar-secondary A {
@@ -2227,8 +3449,8 @@ div.controlPanel.ts-task-main-actions .ts-menu-bar {
 div.controlPanel.ts-task-main-actions .ts-menu-bar a,
 div.controlPanel.ts-task-main-actions .ts-menu-bar a:visited {
     /* L6: Inherits from base .ts-menu-bar, overrides only specific properties */
-    color: var(--ts-text);
-    background-color: var(--ts-surface-muted);
+    color: var(--ts-text-muted);
+    background-color: transparent;
     font-weight: 600;
 }
 
@@ -2236,9 +3458,9 @@ div.controlPanel.ts-task-main-actions .ts-menu-bar a:hover,
 div.controlPanel.ts-task-main-actions .ts-menu-bar a:focus,
 div.controlPanel.ts-task-main-actions .ts-menu-bar a:active {
     /* L6: Inherits from base .ts-menu-bar hover/focus/active */
-    color: var(--ts-primary);
-    background-color: var(--ts-primary-soft);
-    border-color: var(--ts-primary);
+    color: var(--ts-text);
+    background-color: var(--ts-surface);
+    border-color: var(--ts-border);
 }
 
 @media (max-width: 1180px) {
@@ -2247,12 +3469,29 @@ div.controlPanel.ts-task-main-actions .ts-menu-bar a:active {
         row-gap: var(--ts-space-2);
     }
 
+    div.controlPanel.ts-task-main-actions.ts-task-overview-actions {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
     div.controlPanel.ts-task-main-actions .ts-task-toolbar-divider {
         display: none;
     }
 
     .ts-task-toolbar-secondary {
         justify-content: flex-start;
+    }
+
+    .ts-task-sidebar {
+        position: static;
+    }
+
+    .ts-task-sidebar-caption {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .ts-task-sidebar-caption__bulk {
+        margin-left: 0;
     }
 }
 
@@ -2269,9 +3508,140 @@ div.controlPanel.ts-task-main-actions .ts-menu-bar a:active {
     border-top: none;
 }
 
+.ts-task-description-card {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    flex: 1 1 auto;
+    min-height: 260px;
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius-md);
+    background:
+        linear-gradient(180deg,
+            color-mix(in srgb, var(--ts-surface) 96%, var(--ts-primary-soft)),
+            color-mix(in srgb, var(--ts-surface-muted) 92%, #ffffff));
+    box-shadow: none;
+    overflow: hidden;
+}
+
+.ts-task-section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ts-space-2);
+    padding: 14px 18px 0;
+}
+
+.ts-task-section-heading__eyebrow {
+    font-size: var(--ts-font-xs);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ts-text-muted);
+}
+
+.ts-task-description-card .taskDescription {
+    margin-left: 0;
+    width: 100%;
+    max-width: none;
+    min-height: 100%;
+}
+
+.ts-task-description-card .taskDescription .content {
+    min-height: 100%;
+    padding: 8px 18px 18px;
+}
+
+.ts-task-description-card .taskDescription .indent {
+    padding: 0;
+}
+
+.ts-task-description-card #taskDescription,
+.ts-task-description-card #taskDescription p,
+.ts-task-description-card #taskDescription > div,
+.ts-task-description-card #taskDescription pre,
+.ts-task-description-card #taskDescription li {
+    color: var(--ts-text);
+    font-size: var(--ts-font-lg);
+    line-height: 1.75;
+}
+
+.ts-task-description-card #taskDescription p:last-child,
+.ts-task-description-card #taskDescription > div:last-child,
+.ts-task-description-card #taskDescription pre:last-child {
+    margin-bottom: 0;
+}
+
 .ts-task-properties-wrap {
     padding-left: 0;
     padding-right: 0;
+    padding-bottom: 0;
+}
+
+.ts-task-sidebar-caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ts-space-2);
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--ts-border);
+    background:
+        linear-gradient(180deg,
+            color-mix(in srgb, var(--ts-surface) 95%, var(--ts-primary-soft)),
+            var(--ts-surface));
+}
+
+.ts-task-sidebar-caption__meta {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    min-width: 0;
+    color: var(--ts-text-muted);
+    font-size: var(--ts-font-xs);
+    font-weight: 700;
+}
+
+.ts-task-sidebar-caption__bulk {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.ts-task-sidebar-caption__bulk select {
+    min-height: 32px;
+}
+
+.ts-task-sidebar-caption__bulk input.secondary {
+    min-height: 32px;
+    padding: 0 12px;
+    margin-right: 0 !important;
+    border: 1px solid var(--ts-border);
+    border-radius: 999px;
+    background: var(--ts-surface);
+    color: var(--ts-text);
+    font-size: var(--ts-font-xs);
+    font-weight: 700;
+}
+
+.ts-task-sidebar .caption .navigation a {
+    color: var(--ts-text);
+}
+
+.ts-task-sidebar .caption .navigation a:hover {
+    color: var(--ts-primary);
+}
+
+.ts-task-sidebar .ts-task-property-group-title {
+    font-size: var(--ts-font-sm);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.ts-task-sidebar TABLE.general.ts-task-properties .taskinfo-right.ts-task-property-group {
+    background: color-mix(in srgb, var(--ts-primary-soft) 26%, var(--ts-surface-muted)) !important;
+    padding-top: 14px;
+    padding-bottom: 12px;
 }
 
 TABLE.general.ts-task-properties {
@@ -2305,7 +3675,8 @@ TABLE.general.ts-task-properties tr.ts-task-property-label-row TH {
 
 TABLE.general.ts-task-properties tr.ts-task-property-value-row TD {
     padding-top: 0;
-    padding-left: var(--ts-space-4);
+    padding-left: 0;
+    padding-bottom: var(--ts-space-3);
     border-bottom: 1px solid var(--ts-border);
     word-break: break-word;
 }
@@ -2317,6 +3688,52 @@ TABLE.general.ts-task-properties tr.ts-task-property-value-row:last-child TD {
 TABLE.general.ts-task-customfields {
     margin-top: var(--ts-space-2);
     margin-bottom: 0;
+}
+
+.ts-task-overview-workflow {
+    align-items: center;
+    gap: 10px 14px;
+    padding: 10px 14px;
+    border-radius: var(--ts-radius-md);
+}
+
+.ts-task-workflow-toolbar__label {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    color: var(--ts-text-muted);
+    font-size: var(--ts-font-xs);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.ts-task-overview-workflow .ts-task-workflow-toolbar__group {
+    flex: 1 1 auto;
+}
+
+div.controlPanel.ts-task-overview-workflow A,
+div.controlPanel.ts-task-overview-workflow .ts-menu-bar a,
+div.controlPanel.ts-task-overview-workflow .ts-menu-bar a:visited {
+    min-height: 34px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background-color: var(--ts-surface);
+    border-color: color-mix(in srgb, var(--ts-primary-light) 18%, var(--ts-border));
+    color: var(--ts-text);
+}
+
+div.controlPanel.ts-task-overview-workflow .ts-task-workflow-toolbar__group > A:first-of-type {
+    background: color-mix(in srgb, var(--ts-primary-soft) 78%, var(--ts-surface));
+    border-color: color-mix(in srgb, var(--ts-primary-light) 34%, var(--ts-border));
+    color: var(--ts-primary);
+}
+
+div.controlPanel.ts-task-overview-workflow .ts-task-workflow-toolbar__group > A:first-of-type:hover,
+div.controlPanel.ts-task-overview-workflow .ts-task-workflow-toolbar__group > A:first-of-type:focus,
+div.controlPanel.ts-task-overview-workflow .ts-task-workflow-toolbar__group > A:first-of-type:active {
+    background: color-mix(in srgb, var(--ts-primary-soft) 90%, var(--ts-surface));
+    color: var(--ts-primary);
 }
 
 TABLE.general.ts-task-customfields colgroup {
@@ -3114,14 +4531,22 @@ div.indent {
 
 div.blueborder {
     border: 1px solid var(--ts-border);
-    border-radius: var(--ts-radius-sm);
-    margin-bottom: var(--ts-space-3);
+    border-radius: var(--ts-radius-md);
+    margin-bottom: var(--ts-space-2);
     box-shadow: none;
     background-color: var(--ts-surface);
     transition: box-shadow var(--ts-transition);
 }
 div.blueborder:hover {
-    box-shadow: var(--ts-shadow-lg);
+    box-shadow: none;
+}
+
+div.blueborder.ts-task-list-surface {
+    overflow: hidden;
+}
+
+div.blueborder.ts-task-list-surface > div.indent {
+    padding: 0 0 var(--ts-space-4);
 }
 
 /* Inside blueborder, tables should not duplicate the outer border */
@@ -3366,21 +4791,21 @@ button.iconized[name*="delete" i]:hover {
 /* ── Bulk bar ─────────────────────────────────────────────── */
 
 .ts-bulk-bar {
-    position: fixed;
-    left: 50%;
-    bottom: var(--ts-space-4);
-    transform: translateX(-50%);
+    position: sticky;
+    bottom: var(--ts-space-2);
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: var(--ts-space-3);
-    padding: var(--ts-space-2) var(--ts-space-4);
+    padding: var(--ts-space-3) var(--ts-space-4);
     border: 1px solid var(--ts-border);
-    border-radius: var(--ts-radius-lg);
-    background-color: var(--ts-surface);
-    box-shadow: var(--ts-shadow-lg);
-    z-index: 1000;
-    max-width: calc(100% - 32px);
+    border-radius: var(--ts-radius-md);
+    background-color: color-mix(in srgb, var(--ts-surface) 88%, var(--ts-primary-soft));
+    box-shadow: var(--ts-shadow);
+    z-index: 5;
+    width: 100%;
     flex-wrap: wrap;
+    margin-top: var(--ts-space-4);
 }
 .ts-bulk-bar__count {
     font-size: var(--ts-font-sm);
@@ -3388,9 +4813,23 @@ button.iconized[name*="delete" i]:hover {
     color: var(--ts-text);
 }
 .ts-bulk-bar__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1 1 480px;
+    flex-wrap: wrap;
+    gap: var(--ts-space-3);
+}
+
+.ts-bulk-bar__group {
     display: inline-flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: var(--ts-space-2);
+}
+
+.ts-bulk-bar__group--danger {
+    margin-left: auto;
 }
 
 /* Service panel (bulk selection bar) - hidden, replaced by ts-bulk-bar */
@@ -3416,6 +4855,99 @@ div.xfound, div.empty {
 /* Generic controls area */
 .controls {
     padding: var(--ts-space-2) 0;
+}
+
+.controls.ts-task-list-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ts-space-3);
+    flex-wrap: wrap;
+    padding: var(--ts-space-4) 0 0;
+    margin-top: var(--ts-space-4);
+    border-top: 1px solid var(--ts-border);
+}
+
+.controls.ts-task-list-controls > div {
+    min-width: 0;
+}
+
+.ts-task-list-total {
+    padding-top: var(--ts-space-4);
+    color: var(--ts-text-muted);
+    font-size: var(--ts-font-sm);
+}
+
+@media (max-width: 1024px) {
+    .ts-task-context {
+        padding-left: var(--ts-space-3);
+        padding-right: var(--ts-space-3);
+    }
+
+    .ts-task-context-bar {
+        grid-template-columns: minmax(0, 1fr);
+        align-items: start;
+        gap: 8px;
+    }
+
+    .ts-task-context-meta {
+        grid-column: auto;
+        align-items: flex-start;
+    }
+
+    div.controlPanel.ts-task-header-toolbar {
+        grid-column: auto;
+        justify-self: start;
+        justify-content: flex-start;
+    }
+
+    div.controlPanel.ts-task-header-toolbar .ts-task-header-secondary {
+        justify-content: flex-start;
+    }
+
+    div.blueborder > DIV.caption.ts-task-list-caption,
+    .ts-task-list-toolbar-wrap,
+    .ts-task-list-toolbar-utility {
+        padding-left: var(--ts-space-3);
+        padding-right: var(--ts-space-3);
+    }
+}
+
+@media (max-width: 768px) {
+    div.login {
+        padding-left: 52px;
+        padding-right: var(--ts-space-3);
+    }
+
+    .ts-task-context .taskTitle A {
+        font-size: 20px;
+    }
+
+    div.controlPanel.ts-task-header-toolbar {
+        overflow: visible;
+        flex-wrap: wrap;
+    }
+
+    div.controlPanel.ts-task-list-toolbar {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+    }
+
+    .ts-task-list-toolbar-utility {
+        align-items: stretch;
+    }
+
+    .ts-task-list-toolbar-search,
+    .ts-task-list-toolbar-meta,
+    .ts-bulk-bar__actions,
+    .ts-bulk-bar__group,
+    .controls.ts-task-list-controls {
+        width: 100%;
+    }
+
+    .ts-bulk-bar__group--danger {
+        margin-left: 0;
+    }
 }
 
 /* Fullpath (alt breadcrumb) */

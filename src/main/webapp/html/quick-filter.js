@@ -80,25 +80,48 @@
         return null;
     }
 
-    function initBulkBar() {
+    function initTaskSelectionState() {
+        var table = document.getElementById('taskListTable');
         var bulkBar = document.getElementById('bulkBar');
-        if (!bulkBar) {
-            return;
-        }
         var countEl = document.getElementById('bulkCount');
-        var formId = bulkBar.getAttribute('data-form');
-        var form = formId ? document.getElementById(formId) : null;
-        if (!form) {
-            form = bulkBar.closest ? bulkBar.closest('form') : findParentForm(bulkBar);
+        if (!table) {
+            return null;
+        }
+
+        function setGroupSelected(row, selected) {
+            row.classList[selected ? 'add' : 'remove']('is-selected');
+            row.setAttribute('aria-selected', selected ? 'true' : 'false');
+
+            var next = row.nextSibling;
+            while (next) {
+                if (next.nodeType === 1 && next.tagName === 'TR') {
+                    if (next.getAttribute('data-task-row') === 'true') {
+                        break;
+                    }
+                    next.classList[selected ? 'add' : 'remove']('is-selected-related');
+                }
+                next = next.nextSibling;
+            }
         }
 
         function update() {
-            var checked = document.querySelectorAll('input[name="SELTASK"]:checked');
-            var count = checked.length;
+            var rows = table.querySelectorAll('tr[data-task-row="true"]');
+            var count = 0;
+            for (var i = 0; i < rows.length; i++) {
+                var row = rows[i];
+                var checkbox = row.querySelector('input[name="SELTASK"]');
+                var selected = !!(checkbox && checkbox.checked);
+                if (selected) {
+                    count += 1;
+                }
+                setGroupSelected(row, selected);
+            }
             if (countEl) {
                 countEl.textContent = String(count);
             }
-            bulkBar.style.display = count > 0 ? 'flex' : 'none';
+            if (bulkBar) {
+                bulkBar.style.display = count > 0 ? 'flex' : 'none';
+            }
         }
 
         function scheduleUpdate(target) {
@@ -116,6 +139,27 @@
         document.addEventListener('change', function (event) {
             scheduleUpdate(event.target || event.srcElement);
         });
+
+        update();
+
+        return {
+            update: update
+        };
+    }
+
+    function initBulkBar(selectionState) {
+        var bulkBar = document.getElementById('bulkBar');
+        if (!bulkBar) {
+            if (selectionState && selectionState.update) {
+                selectionState.update();
+            }
+            return;
+        }
+        var formId = bulkBar.getAttribute('data-form');
+        var form = formId ? document.getElementById(formId) : null;
+        if (!form) {
+            form = bulkBar.closest ? bulkBar.closest('form') : findParentForm(bulkBar);
+        }
 
         bulkBar.addEventListener('click', function (event) {
             var target = event.target || event.srcElement;
@@ -145,8 +189,6 @@
                 trigger.click();
             }
         });
-
-        update();
     }
 
     function formatRelativeTime(diffMs, rtf) {
@@ -339,7 +381,8 @@
 
     onReady(function () {
         initQuickFilter();
-        initBulkBar();
+        var selectionState = initTaskSelectionState();
+        initBulkBar(selectionState);
         initRelativeTimes();
         initPriorityColors();
     });

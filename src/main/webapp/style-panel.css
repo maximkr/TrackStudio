@@ -107,21 +107,20 @@ body.ts-tree-body {
 }
 
 body.ts-tree-body div.content {
-    background: var(--ts-surface);
+    background: var(--ts-surface-muted);
     border-left: 0;
     border-right: 1px solid var(--ts-border);
 }
 
-/* Remove all browser-generated focus rings inside the tree (container, expander[role=button], etc.) */
-body.ts-tree-body *:focus,
-body.ts-tree-body *:focus-visible {
-    outline: none !important;
-}
-
 body.ts-tree-body div.head,
 body.ts-tree-body div.foot {
-    background: var(--ts-surface);
+    background: var(--ts-surface-muted);
     border-bottom: 1px solid var(--ts-border);
+}
+
+body.ts-tree-body div.foot {
+    border-top: 1px solid color-mix(in srgb, var(--ts-border) 88%, transparent);
+    border-bottom: none;
 }
 
 body.ts-tree-body label.header {
@@ -129,23 +128,29 @@ body.ts-tree-body label.header {
     align-items: center;
     gap: 6px;
     color: var(--ts-text-muted);
-    background-color: var(--ts-surface) !important;
+    background-color: transparent !important;
     font-family: var(--ts-font-family);
     font-size: var(--ts-font-xs);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.6px;
-    padding: var(--ts-space-1) var(--ts-space-2);
+    padding: 8px 12px;
     text-shadow: none;
     border: none;
     height: auto;
     cursor: pointer;
-    transition: color var(--ts-transition), background-color var(--ts-transition);
+    transition: color var(--ts-transition), background-color var(--ts-transition), box-shadow var(--ts-transition);
 }
 
 body.ts-tree-body label.header:hover {
     color: var(--ts-primary);
-    background-color: var(--ts-primary-soft) !important;
+    background-color: color-mix(in srgb, var(--ts-primary-soft) 68%, var(--ts-surface)) !important;
+}
+
+body.ts-tree-body label.header:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--ts-primary-light) 28%, transparent);
+    background-color: color-mix(in srgb, var(--ts-primary-soft) 78%, var(--ts-surface)) !important;
 }
 
 body.ts-tree-body label.header img {
@@ -157,49 +162,138 @@ body.ts-tree-body label.header img {
 
 body.ts-tree-body ul.fancytree-container {
     border: 0;
-    background: var(--ts-surface);
+    background: var(--ts-surface-muted);
     font-family: var(--ts-font-family);
     font-size: var(--ts-font-sm);
+    padding: 10px 8px 18px;
+}
+
+body.ts-tree-body ul.fancytree-container li,
+body.ts-tree-body ul.fancytree-container li.fancytree-lastsib,
+body.ts-tree-body ul.fancytree-container li ul {
+    background-image: none !important;
+}
+
+body.ts-tree-body span.fancytree-node {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-height: 34px;
+    margin: 1px 8px 0 4px;
+    padding: 0 8px 0 4px;
+    border-radius: 10px;
+    position: relative;
+    transition: background-color var(--ts-transition), box-shadow var(--ts-transition), color var(--ts-transition);
+}
+
+body.ts-tree-body span.fancytree-node::before {
+    content: "";
+    position: absolute;
+    left: -4px;
+    top: 6px;
+    bottom: 6px;
+    width: 3px;
+    border-radius: 999px;
+    background: transparent;
 }
 
 body.ts-tree-body .fancytree-title {
     color: var(--ts-text);
-}
-
-body.ts-tree-body #task_tree .fancytree-node,
-body.ts-tree-body #task_tree .fancytree-title {
-    background-color: transparent !important;
-}
-
-body.ts-tree-body #task_tree li {
-    outline: 0 !important;
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 7px 6px 7px 2px;
+    margin: 0;
     border: 0 !important;
-    box-shadow: none !important;
+    border-radius: 0;
+    background: transparent !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color var(--ts-transition);
 }
 
-body.ts-tree-body .fancytree-node:hover .fancytree-title {
-    color: var(--ts-primary);
+body.ts-tree-body span.fancytree-node:hover {
+    background-color: color-mix(in srgb, var(--ts-primary-soft) 58%, var(--ts-surface));
 }
 
-body.ts-tree-body .fancytree-active .fancytree-title {
-    color: var(--ts-primary-strong) !important;
+body.ts-tree-body span.fancytree-node:hover .fancytree-title {
+    color: var(--ts-primary-strong);
+}
+
+body.ts-tree-body span.fancytree-node.fancytree-active,
+body.ts-tree-body span.fancytree-node.fancytree-focused {
+    background-color: color-mix(in srgb, var(--ts-primary-soft) 86%, var(--ts-surface));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ts-primary-light) 18%, var(--ts-border));
+}
+
+body.ts-tree-body span.fancytree-node.fancytree-active::before,
+body.ts-tree-body span.fancytree-node.fancytree-focused::before {
+    background: var(--ts-accent);
+}
+
+body.ts-tree-body .fancytree-active .fancytree-title,
+body.ts-tree-body .fancytree-focused .fancytree-title {
+    color: var(--ts-text) !important;
     font-weight: 600;
-    background-color: transparent !important;
 }
 
-body.ts-tree-body #task_tree .fancytree-active,
-body.ts-tree-body #task_tree .fancytree-focused,
-body.ts-tree-body #task_tree .fancytree-active .fancytree-title,
-body.ts-tree-body #task_tree .fancytree-focused .fancytree-title {
+body.ts-tree-body .fancytree-focused span.fancytree-title {
     outline: none !important;
-    box-shadow: none !important;
-    border: 0 !important;
-    background-color: transparent !important;
 }
 
-body.ts-tree-body .fancytree-icon,
-body.ts-tree-body .fancytree-expander {
-    filter: saturate(1.05) contrast(1.05);
+body.ts-tree-body span.fancytree-expander {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    border-radius: 6px;
+    background-image: none !important;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    transition: background-color var(--ts-transition);
+}
+
+body.ts-tree-body span.fancytree-expander:hover {
+    background-color: color-mix(in srgb, var(--ts-primary-soft) 68%, var(--ts-surface));
+}
+
+body.ts-tree-body .fancytree-exp-c span.fancytree-expander,
+body.ts-tree-body .fancytree-exp-cl span.fancytree-expander,
+body.ts-tree-body .fancytree-exp-cd span.fancytree-expander,
+body.ts-tree-body .fancytree-exp-cdl span.fancytree-expander {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23475569' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' d='M6 3.5 10.5 8 6 12.5'/%3E%3C/svg%3E") !important;
+}
+
+body.ts-tree-body .fancytree-exp-e span.fancytree-expander,
+body.ts-tree-body .fancytree-exp-ed span.fancytree-expander,
+body.ts-tree-body .fancytree-exp-el span.fancytree-expander,
+body.ts-tree-body .fancytree-exp-edl span.fancytree-expander {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23475569' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' d='M3.5 6 8 10.5 12.5 6'/%3E%3C/svg%3E") !important;
+}
+
+body.ts-tree-body .fancytree-exp-n span.fancytree-expander,
+body.ts-tree-body .fancytree-exp-nl span.fancytree-expander {
+    background-image: none !important;
+}
+
+body.ts-tree-body span.fancytree-icon,
+body.ts-tree-body img.fancytree-icon {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    filter: saturate(0.92);
+}
+
+body.ts-tree-body #task_tree img.state,
+body.ts-tree-body #task_tree img.icon {
+    width: 14px;
+    height: 14px;
+    margin: 0 2px 0 0;
+    vertical-align: middle;
+}
+
+body.ts-tree-body #task_tree span.fancytree-checkbox {
+    margin-left: 0;
 }
 
 body.ts-tree-body #user_tree .ts-tree-user-avatar {

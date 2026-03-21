@@ -6,7 +6,7 @@
 <I18n:setTimeZone value='${sc.timezone}'/>
 <I18n:setBundle basename='language'/>
 
-    <div class="controlPanel">
+    <div class="controlPanel ts-admin-toolbar">
         <c:if test="${tabView.allowed}">
             <c:if test="${!tabView.selected}">
                 <html:link  href="${contextPath}/UserUdfViewAction.do?method=page&amp;id=${id}&amp;udfId=${udfId}">

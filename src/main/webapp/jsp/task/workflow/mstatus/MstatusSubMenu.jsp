@@ -5,7 +5,8 @@
 <I18n:setLocale value="${sc.locale}"/>
 <I18n:setTimeZone value="${sc.timezone}"/>
 <I18n:setBundle basename="language"/>
-<table class="tabs">
+<div class="ts-admin-tabs-wrap">
+<table class="tabs ts-admin-tabs ts-admin-tabs--mstatus">
     <tr>
         <c:if test="${tabView.allowed}">
             <td <c:if test="${tabView.selected}">class="selectedtab"</c:if>>
@@ -61,9 +62,9 @@
                 </html:link>
             </td>
         </c:if>
-        <th>&nbsp;</th>
+        <th class="ts-admin-tabs__fill">&nbsp;</th>
     </tr>
 </table>
-
+</div>
 
 

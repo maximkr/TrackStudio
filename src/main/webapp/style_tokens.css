@@ -5,35 +5,35 @@
    ============================================================ */
 
 :root {
-    color-scheme: light dark;
+    color-scheme: light;
 
     /* ── Colour palette ───────────────────────────────────── */
-    --ts-bg:              #F8F9FB;
+    --ts-bg:              #F8FAFC;
     --ts-surface:         #ffffff;
-    --ts-surface-muted:   #F0F2F5;
+    --ts-surface-muted:   #F3F6FA;
     --ts-border:          #E2E8F0;
     --ts-border-strong:   #CBD5E1; /* N10: Different from --ts-border for scrollbar visibility */
 
-    --ts-text:            #1E293B;
-    --ts-text-muted:      #64748B;
-    --ts-text-muted-2:    #94A3B8;
+    --ts-text:            #0F172A;
+    --ts-text-muted:      #475569;
+    --ts-text-muted-2:    #64748B;
 
     --ts-primary:         #0F2B46;
-    --ts-primary-strong:  #1B4F72;
-    --ts-primary-light:   #3498DB;
-    --ts-primary-soft:    #E8F4FD;
-    --ts-primary-glow:    #5DADE2;
+    --ts-primary-strong:  #0B3E63;
+    --ts-primary-light:   #0369A1;
+    --ts-primary-soft:    #E0F2FE;
+    --ts-primary-glow:    #7DD3FC;
 
-    --ts-accent:          #00D68F;
-    --ts-accent-hover:    #00B377;
+    --ts-accent:          #0369A1;
+    --ts-accent-hover:    #075985;
 
-    --ts-success:         #1e8a54;
-    --ts-success-soft:    #e6f5ed;
-    --ts-danger:          #c23b3b;
-    --ts-danger-soft:     #fde8e8;
-    --ts-warning:         #d68a00;
-    --ts-warning-soft:    #fff3d6;
-    --ts-info:            #3498DB;
+    --ts-success:         #16A34A;
+    --ts-success-soft:    #DCFCE7;
+    --ts-danger:          #DC2626;
+    --ts-danger-soft:     #FEE2E2;
+    --ts-warning:         #D97706;
+    --ts-warning-soft:    #FFEDD5;
+    --ts-info:            #0284C7;
 
     /* ── Typography ───────────────────────────────────────── */
     --ts-font-family:     "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
@@ -41,13 +41,13 @@
 
     --ts-font-xs:         11px;
     --ts-font-sm:         12px;
-    --ts-font-base:       13px;
-    --ts-font-md:         14px;
-    --ts-font-lg:         16px;
-    --ts-font-xl:         20px;
-    --ts-font-xxl:        24px;
+    --ts-font-base:       14px;
+    --ts-font-md:         15px;
+    --ts-font-lg:         18px;
+    --ts-font-xl:         24px;
+    --ts-font-xxl:        32px;
 
-    --ts-line-height:       1.65;
+    --ts-line-height:       1.5;
     --ts-line-height-tight: 1.25;
 
     /* ── Spacing scale ────────────────────────────────────── */
@@ -67,11 +67,11 @@
     --ts-radius-lg: 16px;
 
     /* ── Shadows ──────────────────────────────────────────── */
-    --ts-shadow-xs:    0 1px 1px rgba(0,0,0,0.03);
-    --ts-shadow-sm:    0 1px 2px rgba(0,0,0,0.05);
-    --ts-shadow:       0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
-    --ts-shadow-lg:    0 4px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04);
-    --ts-shadow-xl:    0 8px 24px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.04);
+    --ts-shadow-xs:    0 1px 1px rgba(15, 23, 42, 0.02);
+    --ts-shadow-sm:    0 1px 2px rgba(15, 23, 42, 0.05);
+    --ts-shadow:       0 8px 24px rgba(15, 23, 42, 0.04);
+    --ts-shadow-lg:    0 16px 36px rgba(15, 23, 42, 0.08);
+    --ts-shadow-xl:    0 24px 54px rgba(15, 23, 42, 0.12);
 
     /* ── Transitions ──────────────────────────────────────── */
     --ts-transition-fast: 0.1s ease;
@@ -79,11 +79,11 @@
     --ts-transition-slow: 0.3s ease;
 
     /* ── Layout sizes ─────────────────────────────────────── */
-    --ts-sidebar-width:   260px;
-    --ts-header-height:    48px;
+    --ts-sidebar-width:   296px;
+    --ts-header-height:    64px;
     --ts-toolbar-height:   40px;
     --ts-max-content:    1140px;
-    --ts-input-height:     34px;
+    --ts-input-height:     40px;
 
     /* ── Z-index scale ────────────────────────────────────── */
     --ts-z-base:             1;
@@ -179,7 +179,7 @@ SELECT:focus,
 TEXTAREA:focus {
     outline: none;
     border-color: var(--ts-primary-light);
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--ts-primary-light) 16%, transparent);
 }
 
 /* ── Buttons ──────────────────────────────────────────────── */
@@ -197,7 +197,7 @@ BUTTON,
     border: none;
     border-radius: var(--ts-radius-sm);
     background-color: var(--ts-accent);
-    color: #0A1628;
+    color: #ffffff;
     font-family: var(--ts-font-family);
     font-size: var(--ts-font-base);
     font-weight: 600;
@@ -252,9 +252,10 @@ INPUT.secondary[type="button"]:hover {
 .iconized.danger {
     background-color: var(--ts-danger);
     border: none;
+    color: #ffffff;
 }
 .iconized.danger:hover {
-    background-color: #a83232;
+    background-color: #B91C1C;
 }
 
 /* Checkbox / radio — don't force height */
@@ -277,32 +278,32 @@ INPUT[type="radio"] {
 @media (prefers-color-scheme: dark) {
     :root {
         color-scheme: dark;
-        --ts-bg:              #0d1117;
-        --ts-surface:         #161b22;
-        --ts-surface-muted:   #1c2129;
-        --ts-border:          #30363d;
-        --ts-border-strong:   #484f58;
+        --ts-bg:              #0B1220;
+        --ts-surface:         #121B2C;
+        --ts-surface-muted:   #182235;
+        --ts-border:          #243248;
+        --ts-border-strong:   #31445E;
 
-        --ts-text:            #e6edf3;
-        --ts-text-muted:      #8b949e;
-        --ts-text-muted-2:    #6e7681;
+        --ts-text:            #E2E8F0;
+        --ts-text-muted:      #A5B4C7;
+        --ts-text-muted-2:    #7C8DA4;
 
-        --ts-primary:         #58a6ff;
-        --ts-primary-strong:  #79c0ff;
-        --ts-primary-light:   #58a6ff;
-        --ts-primary-soft:    #0d2240;
-        --ts-primary-glow:    #79c0ff;
+        --ts-primary:         #93C5FD;
+        --ts-primary-strong:  #BFDBFE;
+        --ts-primary-light:   #38BDF8;
+        --ts-primary-soft:    #11233B;
+        --ts-primary-glow:    #7DD3FC;
 
-        --ts-accent:          #3fb950;
-        --ts-accent-hover:    #2ea043;
+        --ts-accent:          #0EA5E9;
+        --ts-accent-hover:    #0284C7;
 
-        --ts-success:         #3fb950;
-        --ts-success-soft:    #0d2818;
-        --ts-danger:          #f85149;
-        --ts-danger-soft:     #3d1214;
-        --ts-warning:         #d29922;
-        --ts-warning-soft:    #3d2e00;
-        --ts-info:            #58a6ff;
+        --ts-success:         #4ADE80;
+        --ts-success-soft:    #10261A;
+        --ts-danger:          #F87171;
+        --ts-danger-soft:     #331316;
+        --ts-warning:         #FB923C;
+        --ts-warning-soft:    #38210F;
+        --ts-info:            #38BDF8;
 
         --ts-shadow-sm:       0 1px 2px rgba(0, 0, 0, 0.3);
         --ts-shadow:          0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -313,32 +314,32 @@ INPUT[type="radio"] {
 
 [data-theme="dark"] {
     color-scheme: dark;
-    --ts-bg:              #0d1117;
-    --ts-surface:         #161b22;
-    --ts-surface-muted:   #1c2129;
-    --ts-border:          #30363d;
-    --ts-border-strong:   #484f58;
+    --ts-bg:              #0B1220;
+    --ts-surface:         #121B2C;
+    --ts-surface-muted:   #182235;
+    --ts-border:          #243248;
+    --ts-border-strong:   #31445E;
 
-    --ts-text:            #e6edf3;
-    --ts-text-muted:      #8b949e;
-    --ts-text-muted-2:    #6e7681;
+    --ts-text:            #E2E8F0;
+    --ts-text-muted:      #A5B4C7;
+    --ts-text-muted-2:    #7C8DA4;
 
-    --ts-primary:         #58a6ff;
-    --ts-primary-strong:  #79c0ff;
-    --ts-primary-light:   #58a6ff;
-    --ts-primary-soft:    #0d2240;
-    --ts-primary-glow:    #79c0ff;
+    --ts-primary:         #93C5FD;
+    --ts-primary-strong:  #BFDBFE;
+    --ts-primary-light:   #38BDF8;
+    --ts-primary-soft:    #11233B;
+    --ts-primary-glow:    #7DD3FC;
 
-    --ts-accent:          #3fb950;
-    --ts-accent-hover:    #2ea043;
+    --ts-accent:          #0EA5E9;
+    --ts-accent-hover:    #0284C7;
 
-    --ts-success:         #3fb950;
-    --ts-success-soft:    #0d2818;
-    --ts-danger:          #f85149;
-    --ts-danger-soft:     #3d1214;
-    --ts-warning:         #d29922;
-    --ts-warning-soft:    #3d2e00;
-    --ts-info:            #58a6ff;
+    --ts-success:         #4ADE80;
+    --ts-success-soft:    #10261A;
+    --ts-danger:          #F87171;
+    --ts-danger-soft:     #331316;
+    --ts-warning:         #FB923C;
+    --ts-warning-soft:    #38210F;
+    --ts-info:            #38BDF8;
 
     --ts-shadow-sm:       0 1px 2px rgba(0, 0, 0, 0.3);
     --ts-shadow:          0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.2);

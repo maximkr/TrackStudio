@@ -10,24 +10,75 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <link rel="icon" href="favicon.png" type="image/png"/>
     <link rel="stylesheet" href="style_tokens.css"/>
+    <link rel="stylesheet" href="style_components.css"/>
     <link rel="stylesheet" href="style_shell.css"/>
 </head>
-<body>
+<body class="ts-shell-page">
     <div class="ts-shell" id="tsShell">
-        <aside class="ts-sidebar" id="tsSidebar" role="complementary"
-               aria-label="Navigation sidebar">
-            <iframe id="tsSidebarFrame" src="TreeLoaderAction.do?method=init"
-                    class="ts-sidebar__frame" title="Navigation sidebar"></iframe>
-        </aside>
-        <div class="ts-sidebar-toggle" id="tsSidebarToggle" title="Toggle sidebar"
-             role="button" tabindex="0" aria-label="Toggle navigation sidebar"
-             aria-expanded="true" aria-controls="tsSidebar">
-            <span class="ts-sidebar-toggle__icon" aria-hidden="true">&#x276E;</span>
+        <header class="ts-shell-header" id="tsShellHeader" role="banner">
+            <div class="ts-shell-header__start">
+                <button class="ts-shell-nav-toggle" id="tsSidebarToggle" type="button"
+                        title="Toggle sidebar" aria-label="Toggle navigation sidebar"
+                        aria-expanded="true" aria-controls="tsSidebar">
+                    <span class="ts-shell-nav-toggle__icon" aria-hidden="true">&#9776;</span>
+                </button>
+                <a class="ts-header-brand-link ts-shell-brand-link" id="tsShellBrandLink"
+                   href="TaskAction.do" target="mainFrame" title="TrackStudio">
+                    <div class="ts-brand-inline">
+                        <span class="ts-brand-mark">TS</span>
+                        <span class="ts-brand-name">TrackStudio</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="ts-shell-header__center">
+                <div class="ts-shell-context-slot ts-shell-context-slot--leading" id="tsShellPrimaryAction"></div>
+
+                <div class="ts-shell-header__search" role="search">
+                    <form class="ts-header-search-form ts-shell-search-form" id="tsShellSearchForm"
+                          method="post" action="TaskDispatchAction.do" target="mainFrame" novalidate>
+                        <div id="tsShellSearchHidden"></div>
+                        <label class="ts-shell-search-field" for="tsShellSearchInput">
+                            <span class="ts-shell-search-field__icon" aria-hidden="true"></span>
+                            <input type="text" class="form-autocomplete ts-shell-search-input"
+                                   id="tsShellSearchInput" name="key" autocomplete="off"
+                                   placeholder="Поиск" disabled>
+                        </label>
+                    </form>
+                </div>
+
+                <div class="ts-shell-context-slot ts-shell-context-slot--trailing" id="tsShellCreateAction"></div>
+            </div>
+
+            <div class="ts-shell-header__user">
+                <div class="ts-shell-user" id="tsShellUser">
+                    <button class="ts-shell-user-button" id="tsShellUserButton" type="button"
+                            aria-haspopup="menu" aria-expanded="false" disabled>
+                        <span class="ts-shell-user-avatar" id="tsShellUserAvatar" aria-hidden="true">T</span>
+                        <span class="ts-shell-user-meta">
+                            <span class="ts-shell-user-name" id="tsShellUserName">TrackStudio</span>
+                            <span class="ts-shell-user-role" id="tsShellUserRole">Рабочее пространство</span>
+                        </span>
+                        <span class="ts-shell-user-caret" aria-hidden="true">&#x25BE;</span>
+                    </button>
+                    <div class="ts-shell-user-menu" id="tsShellUserMenu" role="menu" hidden></div>
+                </div>
+            </div>
+        </header>
+
+        <div class="ts-shell-body" id="tsShellBody">
+            <aside class="ts-sidebar" id="tsSidebar" role="complementary"
+                   aria-label="Navigation sidebar">
+                <iframe id="tsSidebarFrame" src="TreeLoaderAction.do?method=init"
+                        class="ts-sidebar__frame" title="Navigation sidebar"></iframe>
+            </aside>
+            <div class="ts-sidebar-handle" id="tsSidebarHandle" title="Resize sidebar"
+                 role="separator" aria-orientation="vertical" aria-label="Resize navigation sidebar"></div>
+            <main class="ts-main" id="tsMain" role="main">
+                <iframe id="tsContent" name="mainFrame" src="TaskAction.do"
+                        class="ts-main__frame" title="Main content"></iframe>
+            </main>
         </div>
-        <main class="ts-main" id="tsMain" role="main">
-            <iframe id="tsContent" name="mainFrame" src="TaskAction.do"
-                    class="ts-main__frame" title="Main content"></iframe>
-        </main>
     </div>
 
     <!-- Phase 9: Sidebar backdrop for tablet/mobile overlay -->
@@ -36,6 +87,10 @@
     <!-- Phase 10: Toast notification container -->
     <div class="ts-toast-container" id="tsToastContainer" aria-live="polite" aria-atomic="false"></div>
 
+    <script src="html/fancytree-2.38.6/lib/jquery.js"></script>
+    <script src="html/jquery/jquery-ui.min.js"></script>
+    <script src="html/ts-avatar.js"></script>
+    <script src="html/ts-predictor.js"></script>
     <script src="app-shell.js"></script>
     <script src="html/ts-toast.js"></script>
 </body>

@@ -219,8 +219,9 @@
         </div>
     </div>
 </div>
-<div>
-    <div class="controlPanel" role="group" aria-label="User actions">
+<div class="ts-task-context ts-user-context">
+    <div class="ts-task-context-bar">
+    <div class="controlPanel ts-task-main-actions ts-task-header-toolbar ts-user-header-toolbar" role="group" aria-label="User actions">
         <span id="topleft" onclick="showTree();">
             <span id="closepanel" class="tree-toggle-button" aria-label="<I18n:message key="CLOSE"/>" title="<I18n:message key="CLOSE"/>">&#x276E;</span>
             <span id="openpanel" class="tree-toggle-button" aria-label="<I18n:message key="OPEN"/>" title="<I18n:message key="OPEN"/>"
@@ -317,18 +318,21 @@
             </c:if>
         </c:if>
     </div>
-    <nav class="logopath" aria-label="Breadcrumb">
+    <div class="ts-task-context-meta">
+    <nav class="logopath ts-task-context-breadcrumb" aria-label="Breadcrumb">
         <c:forEach var="user" items="${currentUser.ancestors}" varStatus="varCounter">
             <html:link styleClass="internal" href="${contextPath}/user/${user.login}?thisframe=true" title="${user.login}">
                 <c:out value="${user.name}" escapeXml="true"/>
             </html:link>&nbsp;/
         </c:forEach>
     </nav>
-    <div class="taskTitle" role="heading" aria-level="1">
+    <div class="taskTitle ts-task-context-title" role="heading" aria-level="1">
         <html:link styleClass="internal" href="${contextPath}/user/${currentUser.login}?thisframe=true" title="${currentUser.login}">
             <html:img  border="0" src="${contextPath}${ImageServlet}/cssimages/${currentUser.active ? 'arw.usr.a.gif' : 'arw.usr.gif'}"/>
             <c:out value="${currentUser.name}" escapeXml="true"/>
         </html:link>
+    </div>
+    </div>
     </div>
     <c:if test="${isNotices}">
         <table cellspacing="0" cellpadding="0" class="notice">

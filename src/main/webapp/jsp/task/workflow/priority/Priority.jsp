@@ -15,10 +15,10 @@
 <tiles:put name="tabs" value="/jsp/task/workflow/WorkflowSubMenu.jsp"/>
 <tiles:put name="main" type="string">
 
-<div class="nblueborder">
+<div class="nblueborder ts-workflow-page">
 <div class="ncaption"></div>
 <c:if test="${canManage}">
-    <div class="controlPanel">
+    <div class="controlPanel ts-workflow-actions">
         <html:link styleClass="external"
                    href="${contextPath}${createObjectAction}?method=create&id=${id}&workflowId=${flow.id}">
             <html:img src="${contextPath}${ImageServlet}/cssimages/ico.edit.gif" hspace="0" vspace="0" border="0" align="middle"/>
@@ -27,7 +27,7 @@
     </div>
 </c:if>
 
-<div class="indent">
+<div class="indent ts-workflow-page__content">
 <c:choose>
 <c:when test="${!empty priorityList}">
 <html:form action="/PriorityAction" method="post" styleId="priorityFormId" onsubmit="return onSubmitFunction();">
@@ -36,7 +36,7 @@
 <html:hidden property="session" value="${session}"/>
 <html:hidden property="workflowId" value="${flow.id}"/>
 
-<table class="general" cellpadding="0" cellspacing="0">
+<table class="general ts-workflow-list" cellpadding="0" cellspacing="0">
     <tr class="wide">
         <c:if test="${canDelete}">
             <th width="1%" nowrap style="white-space:nowrap">
@@ -115,7 +115,7 @@
         </tr>
     </c:forEach>
 </table>
-<div class="controls">
+<div class="controls ts-workflow-controls">
       <c:if test="${canManage}">
         <input type="submit" class="iconized secondary"
                value="<I18n:message key="CLONE"/>"

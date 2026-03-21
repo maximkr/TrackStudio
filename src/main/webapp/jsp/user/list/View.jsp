@@ -37,21 +37,26 @@
 <script type="text/javascript">
     var servicePanelSrc = null;
 </script>
-<div class="blueborder">
-<div class="caption">
-    <c:out value="${headerSlider}" escapeXml="fasle"/>
+<div class="blueborder ts-user-list-surface">
+<div class="caption ts-user-list-caption">
+    <div class="ts-user-list-caption__main">
+        <span class="ts-user-list-caption__eyebrow"><I18n:message key="USERS"/></span>
+        <span class="ts-user-list-caption__title">
+            <c:out value="${headerSlider}" escapeXml="false"/>
+            <c:out value="${filterName}"/>
+        </span>
+    </div>
     <span class="ts-caption-actions">
         <html:link href="javascript:showBookmarkDialogSimple();" styleClass="link">
             <html:img src="${contextPath}${ImageServlet}/cssimages/ico.star.gif" border="0"/>
             <I18n:message key="BOOKMARKS"/>
         </html:link>
     </span>
-    <span><I18n:message key="USERS"/>:</span>
-    <c:out value="${filterName}"/>
 </div>
+<div class="ts-user-list-toolbar-wrap">
 <ajax:tabPanel
         panelStyleId="${sc.currentSpace}"
-        panelStyleClass="controlPanel"
+        panelStyleClass="controlPanel ts-user-list-toolbar"
         contentStyleId="yellowbox"
         currentStyleId="selected"
         baseUrl="${contextPath}/UserListAction.do?method=page&id=${id}"
@@ -115,6 +120,7 @@
     </c:if>
 
 </ajax:tabPanel>
+</div>
 
 <script type="text/javascript">
     var submitDelete = true;
@@ -140,7 +146,7 @@
     }
 </script>
 
-<div class="indent">
+<div class="indent ts-user-list-body">
 
 <html:form method="POST" action="/UserListAction" onsubmit="return onSubmitFunction(this);">
 <html:hidden property="method" value="deleteUsers" styleId="userListId"/>
@@ -148,7 +154,8 @@
 <html:hidden property="id" value="${id}"/>
 <html:hidden property="session" value="${session}"/>
 <html:hidden property="collector"/>
-<table class="general" cellpadding="0" cellspacing="0">
+<div class="ts-user-list-table-wrap">
+<table class="general ts-user-list" cellpadding="0" cellspacing="0">
 <tr class="wide">
     <c:set var="columns" value="1"/>
     <th width="4%" style="white-space:nowrap;text-align: center">
@@ -506,7 +513,7 @@
         </c:forEach>
     </c:when>
     <c:otherwise>
-        <tr>
+        <tr class="ts-user-list__empty-row">
             <td colspan="<c:out value="${columns}"/>" width="100%">
                 <span style="text-align: center">
                     <I18n:message key="EMPTY_USER_LIST"/>
@@ -516,24 +523,29 @@
     </c:otherwise>
 </c:choose>
 </table>
-<c:out value="${slider}" escapeXml="false"/>
-<div class="controls">
-    <c:if test="${canCutUser eq true}">
-        <input type="submit" class="iconized secondary"
-               value="<I18n:message key="CUT"/>"
-               name="CUT"
-               onClick="submitDelete=true; this.form['collector'].value=forrobots(document.forms['userListForm'].elements['SELUSER']); set('cut'); if(onSubmitFunction(this.form) ) this.form.submit();">
-    </c:if>
-    <c:if test="${canPasteUser eq true}">
-        <input type="submit" class="iconized secondary" value="<I18n:message key="PASTE"/>" name="PASTE"
-               onClick="set('paste'); closeServicePanel(document.forms['userListForm'].elements['SELUSER']); if(onSubmitFunction(this.form)) this.form.submit();">
-    </c:if>
-    <c:if test="${canDeleteUsers}">
-        <input type="submit" class="iconized" value="<I18n:message key="DELETE"/>" name="deleteButton"
-               onClick="deleteUser(); this.form['collector'].value=forrobots(document.forms['userListForm'].elements['SELUSER']); closeServicePanel(document.forms['userListForm'].elements['SELUSER']); set('deleteUsers'); if(onSubmitFunction(this.form) ) this.form.submit();">
-    </c:if>
 </div>
-<I18n:message key="TOTAL_USERS"/>&nbsp;:&nbsp;<c:out value="${totalChildrenCount}"/>
+<c:out value="${slider}" escapeXml="false"/>
+<div class="controls ts-user-list-controls">
+    <div class="ts-user-list-total">
+        <I18n:message key="TOTAL_USERS"/>&nbsp;:&nbsp;<c:out value="${totalChildrenCount}"/>
+    </div>
+    <div class="ts-user-list-controls__actions">
+        <c:if test="${canCutUser eq true}">
+            <input type="submit" class="iconized secondary"
+                   value="<I18n:message key="CUT"/>"
+                   name="CUT"
+                   onClick="submitDelete=true; this.form['collector'].value=forrobots(document.forms['userListForm'].elements['SELUSER']); set('cut'); if(onSubmitFunction(this.form) ) this.form.submit();">
+        </c:if>
+        <c:if test="${canPasteUser eq true}">
+            <input type="submit" class="iconized secondary" value="<I18n:message key="PASTE"/>" name="PASTE"
+                   onClick="set('paste'); closeServicePanel(document.forms['userListForm'].elements['SELUSER']); if(onSubmitFunction(this.form)) this.form.submit();">
+        </c:if>
+        <c:if test="${canDeleteUsers}">
+            <input type="submit" class="iconized" value="<I18n:message key="DELETE"/>" name="deleteButton"
+                   onClick="deleteUser(); this.form['collector'].value=forrobots(document.forms['userListForm'].elements['SELUSER']); closeServicePanel(document.forms['userListForm'].elements['SELUSER']); set('deleteUsers'); if(onSubmitFunction(this.form) ) this.form.submit();">
+        </c:if>
+    </div>
+</div>
 
 <script type="text/javascript">
     function set(target) {
@@ -623,5 +635,4 @@
 </div>
 </tiles:put>
 </tiles:insert>
-
 

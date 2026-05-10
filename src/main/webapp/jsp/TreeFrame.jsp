@@ -91,7 +91,6 @@
                             }
 						},
 						activate: function (event, data) {
-							data.node.title = "test";
 						},
                         createNode: function(event, data){
                             // bindContextMenu(data.node.span);
@@ -147,6 +146,7 @@
 
 		function selectNodesTsTree(nodes) {
 			var tree = $("#task_tree").fancytree("getTree");
+			clearTreeSelection(tree);
 			for(var i=0;i!=nodes.length;++i) {
 				var node = tree.getNodeByKey(nodes[i]);
 				if (node) {
@@ -157,12 +157,39 @@
 
 		function selectUsersTsTree(nodes) {
 			var tree = $("#user_tree").fancytree("getTree");
+			clearTreeSelection(tree);
 			for(var i=0;i!=nodes.length;++i) {
 				var node = tree.getNodeByKey(nodes[i]);
 				if (node) {
 					node.setSelected(true);
 				}
 			}
+		}
+
+		function clearTreeSelection(tree) {
+			var activeNode;
+			if (!tree) {
+				return;
+			}
+			activeNode = tree.getActiveNode();
+			if (activeNode) {
+				activeNode.setActive(false);
+			}
+			tree.visit(function(node) {
+				if (node.isSelected && node.isSelected()) {
+					node.setSelected(false);
+				}
+			});
+			$(tree.$container).find(".fancytree-active, .fancytree-selected, .fancytree-focused")
+				.removeClass("fancytree-active fancytree-selected fancytree-focused");
+		}
+
+		function clearTaskTreeSelectionTsTree() {
+			clearTreeSelection($("#task_tree").fancytree("getTree"));
+		}
+
+		function clearUserTreeSelectionTsTree() {
+			clearTreeSelection($("#user_tree").fancytree("getTree"));
 		}
 
 		$(function() {

@@ -82,6 +82,21 @@
         return new URL(url, window.location.origin + (APP_CONTEXT_PATH || '') + '/').toString();
     }
 
+    function getAppPath(url) {
+        var parsed;
+        var path;
+        try {
+            parsed = new URL(url, window.location.origin + (APP_CONTEXT_PATH || '') + '/');
+        } catch (e) {
+            return '';
+        }
+        path = parsed.pathname || '';
+        if (APP_CONTEXT_PATH && path.indexOf(APP_CONTEXT_PATH + '/') === 0) {
+            path = path.substring(APP_CONTEXT_PATH.length);
+        }
+        return path + (parsed.search || '');
+    }
+
     function isPathInsideAppContext(pathname) {
         if (!pathname || pathname.charAt(0) !== '/') {
             return false;
@@ -577,10 +592,6 @@
 
         var config = currentSearchConfig;
         var input = $(searchInput);
-        searchForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-            submitShellSearch();
-        });
         input.on('keydown.tsShellAutocomplete', function (event) {
             if ($.ui && event.keyCode === $.ui.keyCode.ENTER) {
                 event.preventDefault();
@@ -857,7 +868,8 @@
         style.id = 'ts-shell-embedded-style';
         style.textContent =
             '.login[role="banner"]{display:none !important;}' +
-            '.controlPanel #topleft{display:none !important;}';
+            '.controlPanel #topleft{display:none !important;}' +
+            '.controlPanel.ts-task-main-actions.ts-user-header-toolbar{display:none !important;}';
         doc.head.appendChild(style);
     }
 
@@ -889,6 +901,40 @@
                 '.ts-task-header-main-group,.ts-task-toolbar-divider,.ts-task-create-menu{display:none !important;}' +
                 'div.controlPanel.ts-task-header-toolbar{justify-content:flex-end !important;}';
         }
+    }
+
+    function isTreeBackedPage(path) {
+        return /^\/task\//i.test(path) || /^\/user\//i.test(path) || /^\/UserAction\.do/i.test(path);
+    }
+
+    function syncSidebarTreeState(path) {
+        if (!window.TS || !window.TS.tree || typeof window.TS.tree.clearTasks !== 'function' || typeof window.TS.tree.clearUsers !== 'function') {
+            return;
+        }
+
+        if (/^\/task\//i.test(path)) {
+            window.TS.tree.clearUsers();
+            return;
+        }
+        if (/^\/user\//i.test(path) || /^\/UserAction\.do/i.test(path)) {
+            window.TS.tree.clearTasks();
+            return;
+        }
+
+        window.TS.tree.clearTasks();
+        window.TS.tree.clearUsers();
+    }
+
+    function syncSidebarTreeStateAfterLegacyScripts(path) {
+        if (isTreeBackedPage(path)) {
+            return;
+        }
+        window.setTimeout(function () {
+            syncSidebarTreeState(path);
+        }, 250);
+        window.setTimeout(function () {
+            syncSidebarTreeState(path);
+        }, 1250);
     }
 
     function syncShellHeader() {
@@ -939,7 +985,9 @@
                 doc.body.setAttribute('data-shell-embedded', 'true');
             }
 
-            path = win.location.pathname + win.location.search;
+            path = getAppPath(win.location.href);
+            syncSidebarTreeState(path);
+            syncSidebarTreeStateAfterLegacyScripts(path);
             innerTitle = doc.title;
             if (innerTitle) {
                 document.title = innerTitle;
@@ -1011,9 +1059,8 @@
     });
 
     searchForm.addEventListener('submit', function (event) {
-        if (!canSubmitSearch()) {
-            event.preventDefault();
-        }
+        event.preventDefault();
+        submitShellSearch();
     });
 
     sidebarHandle.addEventListener('mousedown', function (event) {
@@ -1086,6 +1133,8 @@
         expand: function (path) { this._call('expandTsTree', [path]); },
         selectNodes: function (nodes) { this._call('selectNodesTsTree', [nodes]); },
         selectUsers: function (nodes) { this._call('selectUsersTsTree', [nodes]); },
+        clearTasks: function () { this._call('clearTaskTreeSelectionTsTree', []); },
+        clearUsers: function () { this._call('clearUserTreeSelectionTsTree', []); },
         updateBookmarks: function (url) { this._call('updateBookmarks', [url]); },
         isLoaded: function () {
             try {

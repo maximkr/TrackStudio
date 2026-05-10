@@ -64,7 +64,7 @@
                         </c:if>
                         <c:if test="${anonymous}">
                             <input type="button" name="register"
-                                   onclick="document.location='${contextPath}/app-shell.html?v=ui-update-3'; return true;"
+                                   onclick="document.location='${contextPath}/app-shell.html?v=ui-update-4'; return true;"
                                    class="iconized" value="<I18n:message key="ENTER_ANONYMOUS"/>">
                         </c:if>
                         <c:if test="${useX509}">

@@ -137,7 +137,7 @@
     if (parent === self || !window.top.TS) {
         // Page opened directly (not inside app-shell) — redirect into shell
         var currentUrl = encodeURIComponent(self.location.pathname + self.location.search + self.location.hash);
-        self.location.replace('${contextPath}/app-shell.html?v=ui-update-3&url=' + currentUrl);
+        self.location.replace('${contextPath}/app-shell.html?v=ui-update-4&url=' + currentUrl);
     }
 </script>
 <c:set var="urlHtml" value="html"/>

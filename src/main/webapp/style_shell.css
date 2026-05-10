@@ -381,6 +381,10 @@ body.ts-shell-page {
     outline: none;
 }
 
+.ts-shell-user-menu-item:focus-visible {
+    box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--ts-primary-light, #2563EB) 30%, transparent);
+}
+
 .ts-shell-user-menu-divider {
     height: 1px;
     margin: 6px 0;
@@ -510,7 +514,7 @@ body.ts-shell-page {
     }
 
     .ts-shell-header__center {
-        grid-template-columns: auto minmax(240px, 320px) auto;
+        grid-template-columns: auto minmax(180px, 320px) auto;
         gap: var(--ts-space-2);
     }
 
@@ -523,7 +527,7 @@ body.ts-shell-page {
         top: var(--ts-shell-header-height, 68px);
         left: 0;
         bottom: 0;
-        width: var(--ts-sidebar-width, 296px);
+        width: min(320px, 82vw);
         z-index: var(--ts-z-sidebar, 100);
         transform: translateX(-100%);
         transition: transform var(--ts-transition-slow, 0.3s ease);
@@ -590,7 +594,16 @@ body.ts-shell-page {
     }
 
     .ts-sidebar {
-        width: min(280px, 85vw);
+        width: min(256px, 78vw);
+    }
+
+    .ts-shell-search-field__icon {
+        left: 10px;
+    }
+
+    .ts-shell-search-input {
+        padding-left: 32px;
+        padding-right: 10px;
     }
 
     .ts-shell-user-button {
@@ -618,5 +631,19 @@ body.ts-shell-page {
         left: 0;
         right: auto;
         width: min(100%, 320px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ts-sidebar,
+    .ts-sidebar-backdrop,
+    .ts-sidebar-handle,
+    .ts-shell-nav-toggle,
+    .ts-shell-action-button,
+    .ts-shell-user-button,
+    .ts-shell-user-menu-item,
+    .ts-shell-action-item,
+    .ts-shell-action-submenu-toggle {
+        transition: none !important;
     }
 }

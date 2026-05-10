@@ -554,14 +554,15 @@
     }
 
     function submitShellSearch() {
+        var params;
+        var target;
         if (!canSubmitSearch()) {
             return false;
         }
-        if (typeof searchForm.requestSubmit === 'function') {
-            searchForm.requestSubmit();
-        } else {
-            searchForm.submit();
-        }
+        params = new URLSearchParams(new FormData(searchForm));
+        params.set(searchInput.name || 'key', searchInput.value.replace(/\s+/g, ' ').trim());
+        target = searchForm.action + '?' + params.toString();
+        contentFrame.src = normalizeNavigationUrl(target) || buildAbsoluteAppUrl('/TaskAction.do');
         return true;
     }
 
@@ -576,8 +577,13 @@
 
         var config = currentSearchConfig;
         var input = $(searchInput);
+        searchForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            submitShellSearch();
+        });
         input.on('keydown.tsShellAutocomplete', function (event) {
             if ($.ui && event.keyCode === $.ui.keyCode.ENTER) {
+                event.preventDefault();
                 submitShellSearch();
             }
         }).autocomplete({
@@ -603,6 +609,7 @@
             },
             select: function (event, ui) {
                 var value = window.TSPredictor.rawValue(ui.item.value);
+                event.preventDefault();
                 if (window.TSPredictor.isSearchRequestItem(value, ui.item.label)) {
                     submitShellSearch();
                 } else if (value.indexOf('_u-') > -1) {

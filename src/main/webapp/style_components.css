@@ -9,8 +9,15 @@
 
 BODY.ts-app {
     background-color: var(--ts-bg);
+    box-sizing: border-box;
     margin: 0;
     padding: var(--ts-space-4);
+    width: 100%;
+    max-width: 100%;
+}
+
+BODY.ts-app[data-shell-embedded="true"] {
+    overflow-x: hidden;
 }
 
 html,
@@ -51,8 +58,45 @@ body {
 }
 
 .ts-app-shell {
+    width: 100%;
     max-width: 1680px;
     margin: 0 auto;
+    min-width: 0;
+}
+
+BODY.ts-app[data-shell-embedded="true"] .ts-app-shell,
+BODY.ts-app[data-shell-embedded="true"] .blueborder,
+BODY.ts-app[data-shell-embedded="true"] .nblueborder,
+BODY.ts-app[data-shell-embedded="true"] DIV.general {
+    max-width: 100%;
+    min-width: 0;
+}
+
+BODY.ts-app[data-shell-embedded="true"] .blueborder,
+BODY.ts-app[data-shell-embedded="true"] .nblueborder,
+BODY.ts-app[data-shell-embedded="true"] DIV.general {
+    overflow-x: auto;
+}
+
+BODY.ts-app[data-shell-embedded="true"] TABLE.general {
+    max-width: 100%;
+}
+
+BODY.ts-app[data-shell-embedded="true"] TABLE.general TH[width] {
+    text-align: left;
+}
+
+BODY.ts-app[data-shell-embedded="true"] TABLE.general TH[width] A.underline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+    max-width: 100%;
+    white-space: normal;
+}
+
+BODY.ts-app[data-shell-embedded="true"] TABLE.general TH[width] A.underline IMG {
+    flex: 0 0 auto;
 }
 
 .ts-main-content {

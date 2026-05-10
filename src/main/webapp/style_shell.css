@@ -21,7 +21,7 @@ body.ts-shell-page {
 
 .ts-shell-header {
     display: grid;
-    grid-template-columns: minmax(220px, 1fr) auto minmax(220px, 1fr);
+    grid-template-columns: max-content minmax(0, 1fr) max-content;
     align-items: center;
     gap: var(--ts-space-4);
     min-height: var(--ts-shell-header-height);
@@ -48,7 +48,7 @@ body.ts-shell-page {
     display: grid;
     grid-template-columns: auto minmax(280px, 380px) auto;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     gap: var(--ts-space-3);
     min-width: 0;
 }

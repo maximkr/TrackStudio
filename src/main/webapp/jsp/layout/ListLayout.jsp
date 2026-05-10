@@ -137,7 +137,7 @@
     if (parent === self || !window.top.TS) {
         // Page opened directly (not inside app-shell) — redirect into shell
         var currentUrl = encodeURIComponent(self.location.pathname + self.location.search + self.location.hash);
-        self.location.replace('${contextPath}/app-shell.html?url=' + currentUrl);
+        self.location.replace('${contextPath}/app-shell.html?v=ui-update-2&url=' + currentUrl);
     }
 </script>
 <c:set var="urlHtml" value="html"/>
@@ -297,6 +297,14 @@
 <%----%>
 <c:if test="${empty noGoogle}">
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+</c:if>
+<c:if test="${not empty noGoogle}">
+    <script type="text/javascript">
+        window.google = window.google || {
+            load: function() {},
+            setOnLoadCallback: function() {}
+        };
+    </script>
 </c:if>
 <script type="text/javascript">
     var tsMenu = new TSMenu();

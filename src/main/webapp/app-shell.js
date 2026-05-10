@@ -89,6 +89,9 @@
         if (!url || typeof url !== 'string') {
             return false;
         }
+        if (url.indexOf('\uFFFD') !== -1) {
+            return false;
+        }
         try {
             var parsed = new URL(url, window.location.origin + (APP_CONTEXT_PATH || '') + '/');
             if (parsed.origin !== window.location.origin) {

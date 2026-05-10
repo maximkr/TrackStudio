@@ -247,7 +247,7 @@
 //                showTree();
 //            }
         </script>
-        <span class="mainmenu" aria-label="Main menu">
+        <span class="mainmenu ts-user-primary-menu" aria-label="Main menu">
         <script type="text/javascript">
             <c:set var="urlHtml" value="html"/>
             <c:if test="${user != null && currentTab=='TAB_USER_OVERVIEW'}">
@@ -285,8 +285,9 @@
             document.write(myBar);
         </script>
     </span>
-        <span class="separator">&nbsp;</span>
+        <span class="separator ts-user-toolbar-divider">&nbsp;</span>
         <c:if test="${sc.user.login != 'anonymous'}">
+            <span class="ts-user-navigation-actions">
             <c:choose>
                 <c:when test="${tabUserList.selected}">
                     <c:if test="${canViewUser}">
@@ -301,14 +302,17 @@
                     </c:if>
                 </c:otherwise>
             </c:choose>
+            </span>
             <c:if test="${canCreateUser && !empty prstatusesCreate}">
+                <span class="ts-user-create-actions">
                 <c:forEach items="${prstatusesCreate}" var="prstatus">
                     <a  href="${contextPath}/UserEditAction.do?method=page&amp;id=${id}&newUser=true&amp;prstatus=${prstatus.id}"><html:img  src="${contextPath}${ImageServlet}/cssimages/ico.adduser.gif" border="0" altKey="ADD_USER_WITH_PRSTATUS"  hspace="0" vspace="0"/><I18n:message key="ADD_USER_WITH_PRSTATUS"/> <c:out value="${prstatus.name}"/></a>
                 </c:forEach>
+                </span>
 
             </c:if>
             <c:if test="${canCreateUser && !empty additionalPrstatuses}">
-    <span class="additional">
+    <span class="additional ts-user-create-menu">
     <script type="text/javascript">
         var taskAddBar =new TSMenuBar();
         taskAddBar.add(new TSMenuBut("<I18n:message key="OTHER_ACTIONS"/>", null, taskAddMenu, "<c:out value="${contextPath}"/>${ImageServlet}/cssimages/add.png"));

@@ -51,6 +51,13 @@
         return window.innerWidth <= TABLET_BREAKPOINT;
     }
 
+    function preferredSidebarState() {
+        if (isTabletOrSmaller()) {
+            return localStorage.getItem('ts-sidebar-mobile') === 'open';
+        }
+        return localStorage.getItem('ts-sidebar') !== 'closed';
+    }
+
     function buildAbsoluteAppUrl(path) {
         var base = window.location.origin + (APP_CONTEXT_PATH || '');
         if (!path) {
@@ -86,14 +93,21 @@
     }
 
     function isValidInternalUrl(url) {
+        var parsed;
         if (!url || typeof url !== 'string') {
             return false;
         }
         if (url.indexOf('\uFFFD') !== -1) {
             return false;
         }
+        if (/%(?![0-9A-Fa-f]{2})/.test(url)) {
+            return false;
+        }
+        if (/^\s*\/\//.test(url) || /(^|\/)\.\.(\/|$)/.test(url)) {
+            return false;
+        }
         try {
-            var parsed = new URL(url, window.location.origin + (APP_CONTEXT_PATH || '') + '/');
+            parsed = new URL(url, window.location.origin + (APP_CONTEXT_PATH || '') + '/');
             if (parsed.origin !== window.location.origin) {
                 return false;
             }
@@ -130,7 +144,11 @@
 
     function setSidebarState(nextOpen) {
         sidebarOpen = !!nextOpen;
-        localStorage.setItem('ts-sidebar', sidebarOpen ? 'open' : 'closed');
+        if (isTabletOrSmaller()) {
+            localStorage.setItem('ts-sidebar-mobile', sidebarOpen ? 'open' : 'closed');
+        } else {
+            localStorage.setItem('ts-sidebar', sidebarOpen ? 'open' : 'closed');
+        }
         applyLayout();
     }
 
@@ -139,6 +157,7 @@
     }
 
     function applyLayout() {
+        sidebarOpen = !!sidebarOpen;
         if (!isTabletOrSmaller()) {
             shellBody.style.gridTemplateColumns = sidebarOpen
                 ? sidebarWidth + 'px ' + HANDLE_WIDTH + 'px 1fr'
@@ -224,6 +243,7 @@
         var menuItemCount = 0;
         var displayName = config && config.name ? config.name : 'TrackStudio';
         var displayRole = config && config.role ? config.role : 'Рабочее пространство';
+        var divider;
 
         clearChildren(userMenu);
 
@@ -238,7 +258,7 @@
 
         if (config && config.actions && config.actions.length) {
             if (menuItemCount > 0) {
-                var divider = document.createElement('div');
+                divider = document.createElement('div');
                 divider.className = 'ts-shell-user-menu-divider';
                 userMenu.appendChild(divider);
             }
@@ -295,6 +315,7 @@
                 title: decodeHtmlEntities(item.title || ''),
                 icon: item.image ? normalizeNavigationUrl(item.image) : '',
                 target: item.blank ? '_blank' : 'mainFrame',
+                source: 'same-origin-menu',
                 items: subItems || []
             });
         });
@@ -327,6 +348,10 @@
         }
 
         if (/^javascript:/i.test(item.href)) {
+            if (item.source !== 'same-origin-menu' || contentFrame.contentWindow.location.origin !== window.location.origin) {
+                console.warn('Blocked shell action from untrusted source:', item.label || item.href);
+                return;
+            }
             try {
                 contentFrame.contentWindow.eval(item.href.replace(/^javascript:/i, ''));
             } catch (e) {
@@ -348,6 +373,9 @@
         var icon;
         var labelWrap;
         var title;
+        var toggle;
+        var submenu;
+        var caret;
 
         if (item.type === 'separator') {
             node = document.createElement('div');
@@ -357,9 +385,9 @@
 
         if (item.type === 'submenu') {
             node = document.createElement('div');
-            var toggle = document.createElement('button');
-            var submenu = document.createElement('div');
-            var caret = document.createElement('span');
+            toggle = document.createElement('button');
+            submenu = document.createElement('div');
+            caret = document.createElement('span');
 
             node.className = 'ts-shell-action-submenu-group';
             toggle.className = 'ts-shell-action-submenu-toggle';
@@ -749,6 +777,71 @@
         };
     }
 
+    function serializeActionLinks(doc, selector) {
+        if (!doc) {
+            return null;
+        }
+        var items = [];
+        doc.querySelectorAll(selector).forEach(function (link) {
+            var label = textOf(link);
+            var href = link.getAttribute('href') || link.href || '';
+            var icon = link.querySelector('img');
+            if (!label || !href) {
+                return;
+            }
+            items.push({
+                type: 'item',
+                label: label,
+                href: /^javascript:/i.test(href) ? href : normalizeNavigationUrl(href),
+                title: decodeHtmlEntities(link.getAttribute('title') || ''),
+                icon: icon ? normalizeNavigationUrl(icon.getAttribute('src') || icon.src || '') : '',
+                target: 'mainFrame',
+                source: 'same-origin-menu',
+                items: []
+            });
+        });
+        return items.length ? items : null;
+    }
+
+    function mergeMenuItems() {
+        var merged = [];
+        Array.prototype.forEach.call(arguments, function (items) {
+            if (items && items.length) {
+                if (merged.length) {
+                    merged.push({ type: 'separator' });
+                }
+                merged = merged.concat(items);
+            }
+        });
+        return merged.length ? merged : null;
+    }
+
+    function extractUserShellActions(doc, win) {
+        if (!doc || !win || !doc.querySelector('.ts-user-context')) {
+            return null;
+        }
+
+        var primaryItems = serializeTsMenu(win.tsMenu);
+        var createItems = mergeMenuItems(
+            serializeActionLinks(doc, '.ts-user-create-actions a'),
+            serializeTsMenu(win.taskAddMenu)
+        );
+        var primaryMeta = extractMenuButtonMeta(doc, '.ts-user-primary-menu > a.menubut, .mainmenu > a.menubut', 'Управление пользователями');
+
+        return {
+            primary: primaryItems ? {
+                label: primaryMeta.label || 'Управление пользователями',
+                icon: primaryMeta.icon,
+                items: primaryItems
+            } : null,
+            create: createItems ? {
+                label: 'Создать пользователя',
+                icon: '',
+                items: createItems
+            } : null
+        };
+    }
+
     function ensureEmbeddedShellStyles(doc) {
         if (!doc || !doc.head || doc.getElementById('ts-shell-embedded-style')) {
             return;
@@ -761,13 +854,13 @@
         doc.head.appendChild(style);
     }
 
-    function applyEmbeddedTaskActionPromotion(doc, enabled) {
+    function applyEmbeddedActionPromotion(doc, mode) {
         if (!doc || !doc.head) {
             return;
         }
 
         var style = doc.getElementById('ts-shell-task-promoted-style');
-        if (!enabled) {
+        if (!mode) {
             if (style && style.parentNode) {
                 style.parentNode.removeChild(style);
             }
@@ -780,17 +873,32 @@
             doc.head.appendChild(style);
         }
 
-        style.textContent =
-            '.ts-task-header-main-group,.ts-task-toolbar-divider,.ts-task-create-menu{display:none !important;}' +
-            'div.controlPanel.ts-task-header-toolbar{justify-content:flex-end !important;}';
+        if (mode === 'user') {
+            style.textContent =
+                '.ts-user-primary-menu,.ts-user-toolbar-divider,.ts-user-navigation-actions,.ts-user-create-actions,.ts-user-create-menu{display:none !important;}' +
+                'div.controlPanel.ts-user-header-toolbar{justify-content:flex-end !important;}';
+        } else {
+            style.textContent =
+                '.ts-task-header-main-group,.ts-task-toolbar-divider,.ts-task-create-menu{display:none !important;}' +
+                'div.controlPanel.ts-task-header-toolbar{justify-content:flex-end !important;}';
+        }
     }
 
     function syncShellHeader() {
+        var doc;
+        var win;
+        var banner;
+        var brand;
+        var userConfig;
+        var userShellActions;
+        var taskShellActions;
+        var path;
+        var innerTitle;
         try {
-            var doc = contentFrame.contentDocument;
-            var win = contentFrame.contentWindow;
-            var banner = doc.querySelector('.login[role="banner"], .login.header[role="banner"]');
-            var brand = banner ? banner.querySelector('.ts-header-brand-link') : null;
+            doc = contentFrame.contentDocument;
+            win = contentFrame.contentWindow;
+            banner = doc.querySelector('.login[role="banner"], .login.header[role="banner"]');
+            brand = banner ? banner.querySelector('.ts-header-brand-link') : null;
 
             ensureEmbeddedShellStyles(doc);
 
@@ -805,14 +913,15 @@
 
             applySearchConfig(extractSearchConfig(doc, banner));
 
-            var userConfig = extractUserConfig(banner);
+            userConfig = extractUserConfig(banner);
             if (userConfig) {
                 lastUserConfig = userConfig;
             }
             applyUserConfig(lastUserConfig);
-            var taskShellActions = extractTaskShellActions(doc, win);
+            userShellActions = extractUserShellActions(doc, win);
+            taskShellActions = userShellActions || extractTaskShellActions(doc, win);
             applyShellContextConfig(taskShellActions);
-            applyEmbeddedTaskActionPromotion(doc, !!(taskShellActions && (taskShellActions.primary || taskShellActions.create)));
+            applyEmbeddedActionPromotion(doc, taskShellActions && (taskShellActions.primary || taskShellActions.create) ? (userShellActions ? 'user' : 'task') : null);
             closeUserMenu();
 
             if (banner) {
@@ -823,8 +932,8 @@
                 doc.body.setAttribute('data-shell-embedded', 'true');
             }
 
-            var path = win.location.pathname + win.location.search;
-            var innerTitle = doc.title;
+            path = win.location.pathname + win.location.search;
+            innerTitle = doc.title;
             if (innerTitle) {
                 document.title = innerTitle;
             }
@@ -835,6 +944,8 @@
             console.warn('Shell header sync failed:', e);
         }
     }
+
+    sidebarOpen = preferredSidebarState();
 
     var params = new URLSearchParams(window.location.search);
     var initialUrl = params.get('url');
@@ -938,6 +1049,7 @@
     window.addEventListener('resize', function () {
         var currentIsTablet = isTabletOrSmaller();
         if (lastWasTablet !== currentIsTablet) {
+            sidebarOpen = preferredSidebarState();
             applyLayout();
         }
         lastWasTablet = currentIsTablet;
@@ -952,8 +1064,9 @@
 
     window.TS.tree = {
         _call: function (fnName, args) {
+            var win;
             try {
-                var win = sidebarFrame.contentWindow;
+                win = sidebarFrame.contentWindow;
                 if (win && typeof win[fnName] === 'function') {
                     return win[fnName].apply(win, args);
                 }

@@ -78,6 +78,10 @@ BODY.ts-app[data-shell-embedded="true"] DIV.general {
     overflow-x: auto;
 }
 
+BODY.ts-app[data-shell-embedded="true"] .nblueborder {
+    border: 0;
+}
+
 BODY.ts-app[data-shell-embedded="true"] TABLE.general {
     max-width: 100%;
 }
@@ -1893,6 +1897,84 @@ div.nblueborder > div.ncaption {
 }
 div.nblueborder > div.indent {
     padding-top: var(--ts-space-2);
+}
+
+.ts-user-overview-card > .ts-user-overview-caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ts-space-3);
+    min-height: 54px;
+    padding: 0 var(--ts-space-4);
+    line-height: 1.2;
+}
+
+.ts-user-overview-caption__title {
+    min-width: 0;
+}
+
+.ts-user-overview-caption__actions {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--ts-space-2);
+    flex-wrap: wrap;
+}
+
+.ts-user-overview-caption__actions A,
+.ts-user-overview-caption__actions A.link,
+.ts-user-overview-caption__actions A.floatlink {
+    float: none !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 32px;
+    padding: 0 var(--ts-space-2) !important;
+    border: 1px solid var(--ts-border) !important;
+    border-radius: var(--ts-radius-sm);
+    background: var(--ts-surface) !important;
+    color: var(--ts-text-muted) !important;
+    font-size: var(--ts-font-sm) !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}
+
+.ts-user-overview-caption__actions A:hover,
+.ts-user-overview-caption__actions A:focus {
+    background: var(--ts-primary-soft) !important;
+    border-color: color-mix(in srgb, var(--ts-primary-light) 48%, var(--ts-border)) !important;
+    color: var(--ts-primary) !important;
+}
+
+.ts-user-overview-bookmark {
+    width: 34px;
+    padding: 0 !important;
+}
+
+.ts-user-overview-actions {
+    justify-content: flex-start;
+    gap: var(--ts-space-2);
+    padding: var(--ts-space-2) var(--ts-space-4);
+    background: color-mix(in srgb, var(--ts-surface-muted) 70%, transparent);
+}
+
+.ts-user-overview-actions A,
+.ts-user-overview-actions A.internal {
+    min-height: 34px;
+    padding: 0 var(--ts-space-3);
+    border-color: var(--ts-border);
+    background: var(--ts-surface);
+    color: var(--ts-text) !important;
+    font-size: var(--ts-font-sm);
+    font-weight: 600;
+}
+
+.ts-user-overview-actions A:hover,
+.ts-user-overview-actions A:focus {
+    background: var(--ts-primary-soft);
+    border-color: color-mix(in srgb, var(--ts-primary-light) 50%, var(--ts-border));
+    color: var(--ts-primary) !important;
 }
 
 .ts-admin-header {

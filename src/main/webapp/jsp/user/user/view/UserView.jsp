@@ -48,18 +48,20 @@
 <script type="text/javascript">
     var servicePanelSrc = null;
 </script>
-<div class="blueborder">
-<div class="caption">
-    <html:link href="javascript:showBookmarkDialogSimple();" styleClass="floatlink">
-        <html:img src="${contextPath}${ImageServlet}/cssimages/ico.star.gif" border="0" />
-    </html:link>
-    <I18n:message key="USER_OVERVIEW"/>
+<div class="blueborder ts-user-overview-card">
+<div class="caption ts-user-overview-caption">
+    <span class="ts-user-overview-caption__title"><I18n:message key="USER_OVERVIEW"/></span>
+    <span class="ts-user-overview-caption__actions">
     <c:if test="${showClipboardButton}">
         <html:link style="float: right; text-decoration: none; font-weight: normal;padding-right: 20px;" onclick="placeOnServicePanel('${user.id}','${user.login}');" href="${contextPath}/UserListAction.do?method=cut&amp;id=${uci.parent.id}&amp;collector=${id}&amp;operation=CUT"><html:img src="${contextPath}${ImageServlet}/cssimages/ico.cut.gif" border="0"/><I18n:message key="CUT"/></html:link>
     </c:if>
+    <html:link href="javascript:showBookmarkDialogSimple();" styleClass="floatlink ts-user-overview-bookmark" titleKey="BOOKMARK">
+        <html:img src="${contextPath}${ImageServlet}/cssimages/ico.star.gif" border="0" />
+    </html:link>
+    </span>
 </div>
 
-<div class="controlPanel">
+<div class="controlPanel ts-user-overview-actions">
     <c:if test="${canEditUser}">
         <html:link href="${contextPath}/UserEditAction.do?method=page&amp;id=${id}">
             <html:img styleClass="icon" src="${contextPath}${ImageServlet}/cssimages/ico.edit.gif" border="0"/>

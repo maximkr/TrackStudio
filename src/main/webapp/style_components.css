@@ -99,6 +99,37 @@ BODY.ts-app[data-shell-embedded="true"] TABLE.general TH[width] A.underline IMG 
     flex: 0 0 auto;
 }
 
+BODY.ts-app[data-shell-embedded="true"] .blueborder:empty,
+BODY.ts-app[data-shell-embedded="true"] .nblueborder:empty,
+BODY.ts-app[data-shell-embedded="true"] DIV.general:empty {
+    display: none;
+}
+
+BODY.ts-app[data-shell-embedded="true"] .taskinfo-left,
+BODY.ts-app[data-shell-embedded="true"] .taskinfo-right {
+    vertical-align: top;
+}
+
+BODY.ts-app[data-shell-embedded="true"] TABLE.general TH.taskinfo-left,
+BODY.ts-app[data-shell-embedded="true"] TABLE.general TH.taskinfo-right {
+    padding: var(--ts-space-2) var(--ts-space-3);
+}
+
+BODY.ts-app[data-shell-embedded="true"] TABLE.general TH.taskinfo-right {
+    width: min(34vw, 360px);
+    max-width: 360px;
+}
+
+BODY.ts-app[data-shell-embedded="true"] TABLE.general TH.taskinfo-right > *,
+BODY.ts-app[data-shell-embedded="true"] TABLE.general TD.taskinfo-right > * {
+    max-width: 100%;
+}
+
+BODY.ts-app[data-shell-embedded="true"] TABLE.general TH.taskinfo-right,
+BODY.ts-app[data-shell-embedded="true"] TABLE.general TD.taskinfo-right {
+    overflow-wrap: anywhere;
+}
+
 .ts-main-content {
     padding-top: var(--ts-space-2);
 }
@@ -393,7 +424,7 @@ div.login A:hover {
     padding: 0 14px;
     border: 1px solid var(--ts-border);
     border-radius: var(--ts-radius-sm);
-    transition: all var(--ts-transition);
+    transition: background-color var(--ts-transition), border-color var(--ts-transition), color var(--ts-transition), box-shadow var(--ts-transition);
     background: var(--ts-surface);
     line-height: 1;
 }
@@ -766,7 +797,6 @@ input[type="file"]::-webkit-file-upload-button {
 .ts-header-search-menu .ui-state-hover.ts-search-item .ts-search-item__key,
 .ts-header-search-menu .ui-state-focus.ts-search-item .ts-search-item__key,
 .ts-header-search-menu .ui-state-active.ts-search-item .ts-search-item__key {
-    background-color: rgba(52, 152, 219, 0.12);
     background-color: color-mix(in srgb, var(--ts-primary-soft) 55%, var(--ts-surface-muted));
 }
 .ts-header-search-menu .ui-menu-item-wrapper.ui-state-hover .ts-search-item__key,
@@ -911,7 +941,7 @@ div.controlPanel A {
     padding: var(--ts-space-1) var(--ts-space-2);
     border: 1px solid transparent;
     border-radius: var(--ts-radius-sm);
-    transition: all var(--ts-transition);
+    transition: background-color var(--ts-transition), border-color var(--ts-transition), color var(--ts-transition), box-shadow var(--ts-transition);
     white-space: nowrap;
     background-image: none;
     margin: 1px 2px;
@@ -1524,7 +1554,7 @@ div.blueborder > DIV.caption A.link {
     border-radius: var(--ts-radius-sm) !important;
     background-color: var(--ts-surface) !important;
     margin-left: var(--ts-space-1) !important;
-    transition: all var(--ts-transition);
+    transition: background-color var(--ts-transition), border-color var(--ts-transition), color var(--ts-transition), box-shadow var(--ts-transition);
     white-space: nowrap;
     line-height: normal;
 }
@@ -1739,7 +1769,7 @@ TABLE.tabbedpane TD LI A {
     color: var(--ts-text-muted);
     font-weight: 500;
     font-size: var(--ts-font-base);
-    transition: all var(--ts-transition);
+    transition: border-color var(--ts-transition), color var(--ts-transition), background-color var(--ts-transition);
     text-decoration: none;
 }
 
@@ -2319,7 +2349,7 @@ DIV.slider A {
     border: 1px solid var(--ts-border);
     border-radius: var(--ts-radius-sm);
     padding: 0 var(--ts-space-2);
-    transition: all var(--ts-transition);
+    transition: background-color var(--ts-transition), border-color var(--ts-transition), color var(--ts-transition), box-shadow var(--ts-transition);
 }
 DIV.slider A:hover {
     background-color: var(--ts-primary-soft);
@@ -2527,8 +2557,7 @@ TABLE.notice TD {
 
 /* ── Icons ────────────────────────────────────────────────── */
 
-img.icon,
-html\:img.icon {
+img.icon {
     height: 16px;
     width: 16px;
     object-fit: contain;
@@ -2552,8 +2581,6 @@ img.state {
     margin-right: 5px;
     display: inline-block;
     flex-shrink: 0;
-    background-color: var(--sc, var(--ts-text-muted-2));
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.28);
     background-color: color-mix(in srgb, var(--sc, var(--ts-text-muted-2)) 92%, #000);
     box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--sc, var(--ts-border-strong)) 45%, #000);
 }
@@ -2571,10 +2598,8 @@ img.state {
     font-weight: 600;
     white-space: nowrap;
     line-height: 1;
-    background-color: var(--sc, var(--ts-primary-soft));
     background-color: color-mix(in srgb, var(--sc, var(--ts-primary)) 12%, var(--ts-surface, white));
     color: color-mix(in srgb, var(--sc, var(--ts-text)) 70%, var(--ts-text));
-    border: 1px solid var(--sc, var(--ts-primary));
     border: 1px solid color-mix(in srgb, var(--sc, var(--ts-primary)) 28%, var(--ts-border));
     vertical-align: middle;
 }
@@ -3080,7 +3105,6 @@ TABLE.general span.internal {
 .ts-avatar--group {
     background-color: var(--ts-primary-soft);
     color: var(--ts-primary);
-    border-color: var(--ts-primary);
     border-color: color-mix(in srgb, var(--ts-primary) 50%, var(--ts-border));
 }
 #loggedUser.ts-user .ts-user__name {
@@ -4778,7 +4802,6 @@ cite {
     color: var(--ts-danger);
 }
 .ts-btn--danger:hover {
-    background-color: var(--ts-danger-soft);
     background-color: color-mix(in srgb, var(--ts-danger) 14%, var(--ts-surface));
 }
 
@@ -4826,7 +4849,6 @@ button.iconized[name*="delete" i] {
 input[type="submit"].iconized[name*="delete" i]:hover,
 input[type="button"].iconized[name*="delete" i]:hover,
 button.iconized[name*="delete" i]:hover {
-    background-color: var(--ts-danger-soft) !important;
     background-color: color-mix(in srgb, var(--ts-danger) 12%, var(--ts-surface)) !important;
     border-color: var(--ts-danger) !important;
     color: var(--ts-danger) !important;
@@ -5043,7 +5065,7 @@ label.header {
     z-index: var(--ts-z-modal);
     opacity: 0;
     pointer-events: none;
-    transition: all var(--ts-transition);
+    transition: opacity var(--ts-transition), transform var(--ts-transition);
     max-width: 90vw;
     max-height: 90vh;
     overflow: auto;
@@ -5106,7 +5128,7 @@ label.header {
     font-size: var(--ts-font-base);
     font-weight: 500;
     cursor: pointer;
-    transition: all var(--ts-transition);
+    transition: background-color var(--ts-transition), border-color var(--ts-transition), color var(--ts-transition), box-shadow var(--ts-transition);
     white-space: nowrap;
 }
 .ts-dialog-btn:hover {
@@ -5133,8 +5155,6 @@ label.header {
 }
 .ts-dialog-btn-danger:hover,
 .ts-dialog-quick-danger .ts-dialog-btn-primary:hover {
-    background-color: var(--ts-danger);
-    border-color: var(--ts-danger);
     background-color: color-mix(in srgb, var(--ts-danger) 84%, black);
     border-color: color-mix(in srgb, var(--ts-danger) 84%, black);
 }
@@ -5723,7 +5743,7 @@ BUTTON:focus-visible,
     z-index: var(--ts-z-modal, 1001);
     opacity: 0;
     pointer-events: none;
-    transition: all var(--ts-transition, 0.2s);
+    transition: opacity var(--ts-transition, 0.2s), transform var(--ts-transition, 0.2s);
     max-width: 90vw;
     max-height: 85vh;
     overflow: auto;
@@ -5792,7 +5812,7 @@ BUTTON:focus-visible,
     font-size: var(--ts-font-base, 14px);
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--ts-transition, 0.2s);
+    transition: background-color var(--ts-transition, 0.2s), border-color var(--ts-transition, 0.2s), color var(--ts-transition, 0.2s), box-shadow var(--ts-transition, 0.2s);
 }
 .ts-workflow-dialog__btn--secondary {
     background: var(--ts-surface-muted, #f7fafc);
@@ -5877,4 +5897,24 @@ BUTTON:focus-visible,
     outline: none;
     border-color: var(--ts-primary, #3182ce);
     box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15);
+}
+
+@media (max-width: 980px) {
+    BODY.ts-app[data-shell-embedded="true"] TABLE.general TH.taskinfo-right,
+    BODY.ts-app[data-shell-embedded="true"] TABLE.general TD.taskinfo-right {
+        display: block;
+        width: 100%;
+        max-width: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
 }

@@ -202,7 +202,7 @@ BUTTON,
     font-size: var(--ts-font-base);
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--ts-transition);
+    transition: background-color var(--ts-transition), color var(--ts-transition), box-shadow var(--ts-transition), border-color var(--ts-transition);
     text-decoration: none;
     white-space: nowrap;
     box-sizing: border-box;

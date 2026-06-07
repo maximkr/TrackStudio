@@ -52,7 +52,6 @@ public class TreeLoaderAction extends TSDispatchAction {
     public static final String TWO_WEEKS_AGO_GROUP = "4";
     public static final String OLD_GROUP = "5";
     public static final String USER_GROUP = "6";
-
     public static String imageServlet = "/ImageServlet/" + GeneralAction.SERVLET_KEY;
     private static final String HTML = "html";
     private static final String FOLDER_IMG = imageServlet + "/" + HTML + "/xtree/images/folder.png";
@@ -230,10 +229,18 @@ public class TreeLoaderAction extends TSDispatchAction {
     private TreeNode buildTaskNode(SessionContext sc, String contextPath, boolean udf, SecuredTaskBean stb) throws GranException {
         int total = AdapterManager.getInstance().getSecuredTaskAdapterManager().getTotalNotFinishChildren(sc, stb.getId());
         return new TreeNode(stb.getNumber(),
-                MacrosUtil.buildImageForState(stb.getStatus(), contextPath + imageServlet) + NodeMask.nameByMask(stb, true), total > 0,
+                buildTaskTitle(contextPath, stb), total > 0,
                 contextPath + imageServlet + "/icons/categories/" + stb.getCategory().getIcon(),
                 "",
                 String.format("#%s %s", stb.getNumber(), stb.getName()));
+    }
+
+    private String buildTaskTitle(String contextPath, SecuredTaskBean stb) throws GranException {
+        String title = NodeMask.nameByMask(stb, true);
+        if (TreeLoaderActionSupport.isDashboardCategory(stb.getCategory().getName())) {
+            return title;
+        }
+        return MacrosUtil.buildImageForState(stb.getStatus(), contextPath + imageServlet) + title;
     }
 
 

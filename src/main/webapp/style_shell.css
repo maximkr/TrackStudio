@@ -113,12 +113,12 @@ body.ts-shell-page {
     appearance: none;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     min-height: 38px;
-    padding: 0 14px;
-    border: 1px solid var(--ts-border, #E2E8F0);
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--ts-surface, #ffffff) 92%, var(--ts-primary-soft, #E8F4FD));
+    padding: 0 12px;
+    border: 1px solid color-mix(in srgb, var(--ts-border, #E2E8F0) 74%, transparent);
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--ts-surface, #ffffff) 86%, transparent);
     color: var(--ts-text, #1F2937);
     font-size: var(--ts-font-sm);
     font-weight: 700;
@@ -129,13 +129,13 @@ body.ts-shell-page {
 
 .ts-shell-action-button:hover,
 .ts-shell-action-button[aria-expanded="true"] {
-    background: var(--ts-surface, #ffffff);
+    background: color-mix(in srgb, var(--ts-surface, #ffffff) 92%, var(--ts-primary-soft, #E8F4FD));
     border-color: color-mix(in srgb, var(--ts-primary-light, #2563EB) 24%, var(--ts-border, #E2E8F0));
     box-shadow: var(--ts-shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.05));
 }
 
 .ts-shell-action-button--create {
-    background: color-mix(in srgb, var(--ts-primary-soft, #E8F4FD) 70%, var(--ts-surface, #ffffff));
+    background: color-mix(in srgb, var(--ts-primary-soft, #E8F4FD) 58%, var(--ts-surface, #ffffff));
     color: var(--ts-primary, #2563EB);
 }
 
@@ -147,9 +147,13 @@ body.ts-shell-page {
 }
 
 .ts-shell-action-button-caret {
-    font-size: 10px;
+    font-size: 9px;
     color: var(--ts-text-muted, #64748B);
     flex: 0 0 auto;
+}
+
+.ts-shell-action-button .arrow {
+    display: none;
 }
 
 .ts-shell-action-dropdown {
@@ -585,10 +589,11 @@ body.ts-shell-page {
 
 @media (max-width: 767px) {
     .ts-shell {
-        --ts-shell-header-height: 112px;
+        --ts-shell-header-height: 192px;
     }
 
     .ts-shell-header {
+        align-content: start;
         padding-left: var(--ts-space-2);
         padding-right: var(--ts-space-2);
     }

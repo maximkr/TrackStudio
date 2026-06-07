@@ -47,6 +47,10 @@
     var currentSearchConfig = null;
     var lastUserConfig = null;
 
+    function normalizeMenuLabel(label) {
+        return String(label || '').replace(/[\s\u00a0]*[▾▼⌄]+\s*$/, '').replace(/\s+/g, ' ').trim();
+    }
+
     function isTabletOrSmaller() {
         return window.innerWidth <= TABLET_BREAKPOINT;
     }
@@ -98,13 +102,18 @@
     }
 
     function isPathInsideAppContext(pathname) {
+        var appPath;
         if (!pathname || pathname.charAt(0) !== '/') {
             return false;
         }
         if (!APP_CONTEXT_PATH) {
-            return true;
+            return pathname === '/' || /^\/(?:[A-Za-z][A-Za-z0-9]*Action\.do|task(?:\/|$)|user(?:\/|$))/i.test(pathname);
         }
-        return pathname === APP_CONTEXT_PATH || pathname.indexOf(APP_CONTEXT_PATH + '/') === 0;
+        if (pathname !== APP_CONTEXT_PATH && pathname.indexOf(APP_CONTEXT_PATH + '/') !== 0) {
+            return false;
+        }
+        appPath = pathname.substring(APP_CONTEXT_PATH.length) || '/';
+        return appPath === '/' || /^\/(?:[A-Za-z][A-Za-z0-9]*Action\.do|task(?:\/|$)|user(?:\/|$))/i.test(appPath);
     }
 
     function isValidInternalUrl(url) {
@@ -136,10 +145,15 @@
     }
 
     function textOf(node) {
+        var clone;
         if (!node) {
             return '';
         }
-        return (node.textContent || node.innerText || '').replace(/\s+/g, ' ').trim();
+        clone = node.cloneNode(true);
+        Array.prototype.forEach.call(clone.querySelectorAll('.arrow'), function (arrow) {
+            arrow.parentNode.removeChild(arrow);
+        });
+        return normalizeMenuLabel(clone.textContent || clone.innerText || '');
     }
 
     function clearChildren(node) {
@@ -510,7 +524,7 @@
             button.appendChild(icon);
         }
 
-        label.textContent = config.label;
+        label.textContent = normalizeMenuLabel(config.label);
         button.appendChild(label);
 
         caret.className = 'ts-shell-action-button-caret';
@@ -1011,6 +1025,7 @@
             contentFrame.src = normalizeNavigationUrl(initialUrl);
         } else {
             console.warn('Blocked potentially unsafe URL:', initialUrl);
+            contentFrame.src = buildAbsoluteAppUrl('/TaskAction.do');
         }
     } else {
         contentFrame.src = buildAbsoluteAppUrl('/TaskAction.do');

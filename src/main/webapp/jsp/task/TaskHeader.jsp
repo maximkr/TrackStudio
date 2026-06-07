@@ -333,7 +333,7 @@
 	</div>
 	<div class="ts-task-context">
 	<div class="ts-task-context-bar">
-	<div class="controlPanel ts-task-main-actions ts-task-header-toolbar" role="group" aria-label="Task actions">
+	<div class="controlPanel ts-task-main-actions ts-task-header-toolbar" role="group" aria-label="<I18n:message key="TASK_ACTIONS"/>">
 	<script type="text/javascript">
 		var taskCreateMenu = null;
 		var taskCreateGroups = {};
@@ -392,7 +392,7 @@
 		//            showTree();
 		//        }
 	</script>
-	 	<span class="mainmenu" aria-label="Main menu">
+		<span class="mainmenu" aria-label="<I18n:message key="MAIN_MENU"/>">
 	                    <script type="text/javascript">
 	                    //       var myBar = new TSMenuBar;
 						<c:if test="${canViewSubtasks}">
@@ -460,7 +460,7 @@
 						</c:if>
 
 						var myBar =new TSMenuBar();
-						myBar.add(new TSMenuBut("<I18n:message key="TASK_MANAGEMENT"/>", null, tsMenu, "${contextPath}${ImageServlet}/${urlHtml}/xtree/images/taskMGM.gif"));
+						myBar.add(new TSMenuBut("<I18n:message key="TASK_PROJECT_CONTEXT"/>", null, tsMenu, "${contextPath}${ImageServlet}/${urlHtml}/xtree/images/taskMGM.gif"));
 						document.write(myBar);
 	                    </script>
 	                    </span>
@@ -469,18 +469,32 @@
 		<span class="ts-task-toolbar-secondary ts-task-header-secondary">
 		<c:choose>
 	<c:when test="${archive == null}">
+		<span class="ts-task-view-switch" role="group" aria-label="<I18n:message key="TASK_VIEW_MODE"/>">
 	<c:if test="${showViewSubtasks}">
-		<html:link  href="${contextPath}/SubtaskAction.do?method=page&amp;id=${id}">
+		<c:if test="${!showViewTask}">
+			<span class="ts-task-view-switch__item ts-task-view-switch__item--active" aria-current="page">
+				<html:img src="${contextPath}${ImageServlet}/cssimages/ico.task.gif" border="0" altKey="VIEW"/>
+				<I18n:message key="TASK_OVERVIEW"/>
+			</span>
+		</c:if>
+		<html:link styleClass="ts-task-view-switch__item" href="${contextPath}/SubtaskAction.do?method=page&amp;id=${id}">
 			<html:img src="${contextPath}${ImageServlet}/cssimages/ico.subtasks.gif" border="0" altKey="VIEW"/>
 			<I18n:message key="VIEW_SUBTASKS"/>
 		</html:link>
 	</c:if>
 	<c:if test="${showViewTask}">
-		<html:link  href="${contextPath}/TaskViewAction.do?method=page&amp;id=${id}">
+		<html:link styleClass="ts-task-view-switch__item" href="${contextPath}/TaskViewAction.do?method=page&amp;id=${id}">
 			<html:img src="${contextPath}${ImageServlet}/cssimages/ico.task.gif" border="0" altKey="VIEW"/>
 			<I18n:message key="TASK_OVERVIEW"/>
 		</html:link>
+		<c:if test="${!showViewSubtasks}">
+			<span class="ts-task-view-switch__item ts-task-view-switch__item--active" aria-current="page">
+				<html:img src="${contextPath}${ImageServlet}/cssimages/ico.subtasks.gif" border="0" altKey="VIEW"/>
+				<I18n:message key="VIEW_SUBTASKS"/>
+			</span>
+		</c:if>
 	</c:if>
+		</span>
 		<c:if test="${!empty categories}">
 			<c:forEach items="${categories}" var="category">
 				<c:choose>
@@ -533,7 +547,7 @@
 	<div class="ts-task-context-meta">
 	<c:choose>
 	<c:when test="${archive == null}">
-	<nav class="logopath ts-task-context-breadcrumb" aria-label="Breadcrumb">
+	<nav class="logopath ts-task-context-breadcrumb" aria-label="<I18n:message key="BREADCRUMB"/>">
 		<c:forEach var="task" items="${tci.ancestors}" varStatus="varCounter">
 			<html:link styleClass="internal" href="${contextPath}/task/${task.number}?thisframe=true" title="#${task.number}">
 				<c:out value="${task.name}" escapeXml="true"/>&nbsp;/

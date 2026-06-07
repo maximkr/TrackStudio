@@ -33,28 +33,38 @@
     var resourceId = "${tci.id}";
     var number = "${tci.number}";
     var taskUpload = true;
-    // Small tolerance for browser rounding noise in scroll metrics.
     var TASK_LAYOUT_SCROLL_TOLERANCE_PX = 1;
-    // Width delta required before switching back to two columns.
     var TASK_LAYOUT_HYSTERESIS_PX = 72;
+    var TASK_LAYOUT_SINGLE_COLUMN_WIDTH_PX = 1080;
     var taskLayoutForcedSingleAtWidth = null;
     var taskLayoutSyncTimer = null;
 
     function syncTaskLayoutMode() {
         var layout = document.querySelector('.ts-task-layout');
         if (!layout) return;
-        var docEl = document.documentElement;
-        var viewportWidth = window.innerWidth || docEl.clientWidth;
-        var overflowPx = docEl.scrollWidth - docEl.clientWidth;
-        var hasHorizontalScroll = overflowPx > TASK_LAYOUT_SCROLL_TOLERANCE_PX;
-        if (!layout.classList.contains('ts-task-layout--single') && hasHorizontalScroll) {
-            layout.classList.add('ts-task-layout--single');
+        var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+        var documentWidth = document.documentElement.scrollWidth || viewportWidth;
+        var clientWidth = document.documentElement.clientWidth || viewportWidth;
+        var hasHorizontalOverflow = documentWidth - clientWidth > TASK_LAYOUT_SCROLL_TOLERANCE_PX;
+
+        if (hasHorizontalOverflow && !layout.classList.contains('ts-task-layout--single')) {
             taskLayoutForcedSingleAtWidth = viewportWidth;
-        } else if (layout.classList.contains('ts-task-layout--single') && taskLayoutForcedSingleAtWidth !== null
-            && viewportWidth >= taskLayoutForcedSingleAtWidth + TASK_LAYOUT_HYSTERESIS_PX && !hasHorizontalScroll) {
-            layout.classList.remove('ts-task-layout--single');
-            taskLayoutForcedSingleAtWidth = null;
+            layout.classList.add('ts-task-layout--single');
+            return;
         }
+
+        if (viewportWidth < TASK_LAYOUT_SINGLE_COLUMN_WIDTH_PX) {
+            layout.classList.add('ts-task-layout--single');
+            return;
+        }
+
+        if (taskLayoutForcedSingleAtWidth != null && viewportWidth < taskLayoutForcedSingleAtWidth + TASK_LAYOUT_HYSTERESIS_PX) {
+            layout.classList.add('ts-task-layout--single');
+            return;
+        }
+
+        taskLayoutForcedSingleAtWidth = null;
+        layout.classList.remove('ts-task-layout--single');
     }
 
     function scheduleTaskLayoutSync() {
@@ -106,7 +116,7 @@
     </c:forEach>
 
 </div>
-<div class="controlPanel ts-task-layout__full ts-task-main-actions ts-task-overview-actions">
+<div class="controlPanel ts-task-layout__full ts-task-main-actions ts-task-overview-actions ${canEditTask ? '' : 'ts-task-overview-actions--utility-only'}" role="group" aria-label="<I18n:message key="TASK_ACTIONS"/>">
     <span class="ts-task-toolbar-main ts-task-overview-actions__primary">
         <c:if test="${canEditTask}">
             <html:link href="${contextPath}/TaskEditAction.do?method=page&id=${id}">
@@ -171,7 +181,7 @@
     </span>
 </div>
 <c:if test="${!empty mstatuses}">
-    <div class="controlPanel ts-task-layout__full ts-workflow-toolbar ts-task-workflow-toolbar ts-task-overview-workflow">
+    <div id="taskWorkflowCloud" class="controlPanel ts-task-layout__full ts-workflow-toolbar ts-task-workflow-toolbar ts-task-overview-workflow ts-task-workflow-cloud" role="group" aria-label="<I18n:message key="WORKFLOW_ACTIONS"/>">
         <script type="text/javascript">
             var taskWorkflowMenu = {};
         </script>
@@ -276,7 +286,17 @@
             </span>
         </span>
     </div>
+    <script type="text/javascript">
+        (function () {
+            var workflow = document.getElementById('taskWorkflowCloud');
+            var header = document.querySelector('.ts-task-context-bar');
+            if (workflow && header) {
+                header.appendChild(workflow);
+            }
+        }());
+    </script>
 </c:if>
+
 <c:if test="${isDescription}">
     <div class="ts-task-main">
         <section class="ts-task-description-card">

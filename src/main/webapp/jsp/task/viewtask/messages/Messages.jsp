@@ -177,14 +177,6 @@
                 if (!toolbar || !historyBody || !controls) {
                     return;
                 }
-                var shouldStickToBottom = !newestFirst;
-                if (shouldStickToBottom) {
-                    historyBody.insertBefore(toolbar, controls);
-                    if (toolbar.className.indexOf('ts-message-history-toolbar--bottom') === -1) {
-                        toolbar.className += ' ts-message-history-toolbar--bottom';
-                    }
-                    return;
-                }
                 historyBody.parentNode.insertBefore(toolbar, historyBody);
                 toolbar.className = toolbar.className.replace(/\s*ts-message-history-toolbar--bottom\b/g, '');
             })();

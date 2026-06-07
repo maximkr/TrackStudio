@@ -662,12 +662,13 @@ input[type="file"]::-webkit-file-upload-button {
     color: var(--ts-text);
 }
 .ts-header-search-menu {
-    min-width: 560px;
-    max-width: min(760px, calc(100vw - 24px));
+    width: min(380px, calc(100vw - (var(--ts-space-3) * 2))) !important;
+    min-width: 0;
+    max-width: calc(100vw - (var(--ts-space-3) * 2));
     max-height: min(420px, calc(100vh - 120px));
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 0;
+    padding: var(--ts-space-1);
     list-style: none;
     background-color: var(--ts-surface);
     color: var(--ts-text);
@@ -683,60 +684,72 @@ input[type="file"]::-webkit-file-upload-button {
     display: block;
 }
 .ts-header-search-menu .ui-menu-item + .ui-menu-item {
-    border-top: 1px solid var(--ts-border);
+    border-top: 1px solid color-mix(in srgb, var(--ts-border) 58%, transparent);
 }
 .ts-header-search-menu .ts-search-item {
     display: grid;
-    grid-template-columns: 118px minmax(0, 1fr);
-    align-items: stretch;
-    gap: 0;
-    padding: 0;
+    grid-template-columns: max-content minmax(0, 1fr);
+    align-items: center;
+    gap: var(--ts-space-2);
+    padding: var(--ts-space-1);
     text-decoration: none;
     color: var(--ts-text);
-    min-height: 34px;
+    min-height: var(--ts-space-8);
+    border-radius: var(--ts-radius-sm);
 }
 .ts-header-search-menu .ts-search-item--no-key {
     grid-template-columns: minmax(0, 1fr);
 }
 .ts-header-search-menu .ts-search-item__key {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     font-family: var(--ts-font-mono);
-    font-size: 12px;
+    font-size: var(--ts-font-xs);
     font-weight: 700;
     color: var(--ts-primary);
     background-color: var(--ts-surface-muted);
-    border-right: 1px solid var(--ts-border);
-    padding: 0 var(--ts-space-2);
+    border: 1px solid color-mix(in srgb, var(--ts-border) 64%, transparent);
+    border-radius: var(--ts-radius-sm);
+    padding: var(--ts-space-1) var(--ts-space-2);
     text-align: center;
     letter-spacing: 0.15px;
+    line-height: 1;
+    max-width: 12ch;
 }
 .ts-header-search-menu .ts-search-item__key--query {
-    font-size: 11px;
-    letter-spacing: 0.4px;
-    color: var(--ts-primary-strong);
-    text-transform: uppercase;
-    background-color: var(--ts-primary-soft);
+    color: var(--ts-text-muted-2);
+    background-color: transparent;
+    border-color: transparent;
+    padding: 0;
+    font-family: var(--ts-font-family);
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
 }
 .ts-header-search-menu .ts-search-item__main {
     min-width: 0;
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 4px var(--ts-space-2);
+    padding: 0;
     line-height: 1.2;
 }
 .ts-header-search-menu .ts-search-item__icons {
-    width: 32px;
-    min-width: 32px;
+    width: auto;
+    min-width: 0;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 4px;
+    flex: 0 0 auto;
+}
+.ts-header-search-menu .ts-search-item__icons:empty,
+.ts-header-search-menu .ts-search-item--query .ts-search-item__icons {
+    display: none;
 }
 .ts-header-search-menu .ts-search-item__icons img {
     width: 16px;
@@ -770,7 +783,8 @@ input[type="file"]::-webkit-file-upload-button {
     color: var(--ts-text);
 }
 .ts-header-search-menu .ts-search-item--query .ts-search-item__title {
-    font-weight: 600;
+    color: var(--ts-text-muted);
+    font-weight: 500;
 }
 .ts-header-search-menu .ui-state-hover,
 .ts-header-search-menu .ui-state-focus,
@@ -1113,42 +1127,41 @@ DIV.taskTitle .ts-role-avatar {
 
 .ts-task-context {
     display: block;
-    padding: 6px var(--ts-space-4) 4px;
+    padding: 0 var(--ts-space-3);
     border-bottom: none;
     background: transparent;
 }
 
 .ts-task-context-bar {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 6px 14px;
-    padding: 8px 14px;
-    border: 1px solid var(--ts-border);
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 420px);
+    align-items: start;
+    gap: var(--ts-space-1) var(--ts-space-3);
+    padding: 0;
+    border: 0;
     border-radius: var(--ts-radius-md);
-    background: linear-gradient(180deg, color-mix(in srgb, var(--ts-surface) 96%, var(--ts-primary-soft)) 0%, var(--ts-surface) 100%);
+    background: transparent;
 }
 
 .ts-task-context-meta {
     grid-column: 1;
     min-width: 0;
-    display: flex;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    gap: 2px 10px;
+    display: grid;
+    align-items: start;
+    gap: var(--ts-space-1);
     order: 1;
 }
 
 .ts-task-context .logopath,
 .ts-task-context .ts-task-context-breadcrumb {
-    order: 2;
+    order: 1;
     display: inline-flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: var(--ts-space-1);
     min-width: 0;
     font-size: var(--ts-font-xs);
-    line-height: 1.35;
+    line-height: var(--ts-line-height-tight);
     color: var(--ts-text-muted);
 }
 
@@ -1168,7 +1181,7 @@ DIV.taskTitle .ts-role-avatar {
 
 .ts-task-context .taskTitle,
 .ts-task-context .ts-task-context-title {
-    order: 1;
+    order: 2;
     display: flex;
     min-width: 0;
     align-items: center;
@@ -1182,39 +1195,40 @@ DIV.taskTitle .ts-role-avatar {
 .ts-task-context .ts-task-context-title A,
 .ts-task-context .ts-task-context-title A.internal {
     max-width: 100%;
-    font-size: clamp(17px, 1.55vw, 24px);
-    gap: 8px;
-    line-height: 1.15;
+    font-size: clamp(var(--ts-font-md), 1.1vw, var(--ts-font-lg));
+    gap: var(--ts-space-1);
+    line-height: var(--ts-line-height-tight);
 }
 
 .ts-task-context .taskTitle img.state,
 .ts-task-context .taskTitle img.icon,
 .ts-task-context .ts-task-context-title img.state,
 .ts-task-context .ts-task-context-title img.icon {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
 }
 
 div.controlPanel.ts-task-header-toolbar {
     display: inline-flex;
-    grid-column: 2;
-    justify-self: end;
-    width: auto;
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    width: 100%;
     max-width: 100%;
     align-self: center;
     order: 2;
     margin-top: 0;
     margin-bottom: 0;
     padding: 0;
-    gap: 4px 8px;
-    border: none;
+    gap: var(--ts-space-1);
+    border: 0;
+    border-top: 1px solid color-mix(in srgb, var(--ts-border) 36%, transparent);
     border-radius: 0;
     background: transparent;
     box-shadow: none;
     flex-wrap: wrap;
     overflow: visible;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 div.controlPanel.ts-task-header-toolbar .ts-menu-bar {
@@ -1227,13 +1241,13 @@ div.controlPanel.ts-task-header-toolbar .ts-menu-bar {
 div.controlPanel.ts-task-header-toolbar A,
 div.controlPanel.ts-task-header-toolbar .ts-menu-bar a,
 div.controlPanel.ts-task-header-toolbar .ts-menu-bar a:visited {
-    min-height: 26px;
-    padding: 0 6px;
+    min-height: 28px;
+    padding: 0 var(--ts-space-2);
     margin: 0;
-    border-radius: 999px;
+    border-radius: var(--ts-radius-sm);
     font-size: var(--ts-font-xs);
     font-weight: 600;
-    border-color: transparent;
+    border: 1px solid transparent;
     background: transparent;
     color: var(--ts-text-muted) !important;
 }
@@ -1252,29 +1266,186 @@ div.controlPanel.ts-task-header-toolbar .ts-task-header-main-group,
 div.controlPanel.ts-task-header-toolbar .ts-task-header-secondary {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: var(--ts-space-1);
     flex-wrap: wrap;
 }
 
 div.controlPanel.ts-task-header-toolbar .ts-task-header-main-group {
     flex: 0 0 auto;
+    order: 2;
+    margin-left: auto;
 }
 
 div.controlPanel.ts-task-header-toolbar .ts-task-header-secondary {
+    flex: 1 1 auto;
+    order: 1;
+    justify-content: space-between;
+    gap: var(--ts-space-2);
+}
+
+.ts-task-view-switch {
+    display: inline-flex;
+    align-items: stretch;
     flex: 0 1 auto;
+    order: 1;
+    padding: var(--ts-space-1);
+    gap: 0;
+    border: 1px solid color-mix(in srgb, var(--ts-border) 76%, transparent);
+    border-radius: var(--ts-radius-lg);
+    background: color-mix(in srgb, var(--ts-surface-muted) 82%, var(--ts-surface));
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--ts-surface) 72%, transparent);
+}
+
+.ts-task-view-switch__item + .ts-task-view-switch__item {
+    border-left-color: color-mix(in srgb, var(--ts-border) 62%, transparent);
+}
+
+.ts-task-view-switch__item,
+div.controlPanel.ts-task-header-toolbar .ts-task-view-switch__item,
+div.controlPanel.ts-task-header-toolbar A.ts-task-view-switch__item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ts-space-1);
+    min-height: var(--ts-space-8);
+    padding: 0 var(--ts-space-2);
+    margin: 0;
+    border: 1px solid transparent;
+    border-radius: calc(var(--ts-radius-lg) - var(--ts-space-1));
+    background: transparent;
+    color: var(--ts-text-muted) !important;
+    font-size: var(--ts-font-xs);
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.ts-task-view-switch__item img {
+    width: var(--ts-space-4);
+    height: var(--ts-space-4);
+    object-fit: contain;
+}
+
+.ts-task-view-switch__item--active,
+div.controlPanel.ts-task-header-toolbar .ts-task-view-switch__item--active {
+    border-color: color-mix(in srgb, var(--ts-primary-light) 22%, var(--ts-border));
+    background: var(--ts-surface);
+    color: var(--ts-text) !important;
+    box-shadow: var(--ts-shadow-xs);
+}
+
+.ts-task-view-switch__item--active + .ts-task-view-switch__item {
+    border-left-color: transparent;
+}
+
+.ts-task-workflow-cloud {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    align-self: start;
+    display: flex;
+    align-items: flex-start;
     justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: var(--ts-space-1);
+    width: min(100%, 420px);
+    padding: var(--ts-space-1);
+    border: 1px solid color-mix(in srgb, var(--ts-border) 50%, transparent);
+    border-radius: var(--ts-radius-lg);
+    background: color-mix(in srgb, var(--ts-surface) 82%, var(--ts-bg));
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--ts-surface) 64%, transparent);
+}
+
+.ts-task-workflow-cloud__label {
+    align-self: center;
+    flex: 0 0 100%;
+    color: var(--ts-text-muted-2);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.ts-task-workflow-cloud .ts-task-workflow-toolbar__group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: var(--ts-space-1);
+    min-width: 0;
+}
+
+.ts-task-workflow-cloud A,
+.ts-task-workflow-cloud .ts-menu-bar a,
+.ts-task-workflow-cloud .ts-menu-bar a:visited {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ts-space-1);
+    min-height: calc(var(--ts-space-6) + var(--ts-space-1));
+    padding: 0 var(--ts-space-2);
+    margin: 0;
+    border: 1px solid color-mix(in srgb, var(--ts-border) 60%, transparent);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--ts-surface) 72%, var(--ts-surface-muted));
+    color: var(--ts-text) !important;
+    font-size: var(--ts-font-xs);
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    box-shadow: none;
+}
+
+.ts-task-workflow-cloud A IMG,
+.ts-task-workflow-cloud .ts-menu-bar a IMG {
+    width: var(--ts-space-4);
+    height: var(--ts-space-4);
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.ts-task-workflow-cloud A:hover,
+.ts-task-workflow-cloud A:focus,
+.ts-task-workflow-cloud A:active,
+.ts-task-workflow-cloud .ts-menu-bar a:hover,
+.ts-task-workflow-cloud .ts-menu-bar a:focus,
+.ts-task-workflow-cloud .ts-menu-bar a:active {
+    border-color: color-mix(in srgb, var(--ts-primary-light) 36%, var(--ts-border));
+    background: color-mix(in srgb, var(--ts-primary-soft) 42%, var(--ts-surface));
+    color: var(--ts-primary) !important;
+}
+
+div.controlPanel.ts-task-header-toolbar A.ts-task-view-switch__item:hover,
+div.controlPanel.ts-task-header-toolbar A.ts-task-view-switch__item:focus,
+div.controlPanel.ts-task-header-toolbar A.ts-task-view-switch__item:active {
+    border-color: color-mix(in srgb, var(--ts-border) 64%, transparent);
+    background: color-mix(in srgb, var(--ts-surface-muted) 86%, transparent);
+    color: var(--ts-text) !important;
+}
+
+div.controlPanel.ts-task-header-toolbar .ts-task-header-secondary A,
+div.controlPanel.ts-task-header-toolbar .ts-task-header-secondary .ts-menu-bar a,
+div.controlPanel.ts-task-header-toolbar .ts-task-header-secondary .ts-menu-bar a:visited {
+    border-color: transparent;
+    background: transparent;
+    color: var(--ts-text-muted) !important;
+    box-shadow: none;
 }
 
 div.controlPanel.ts-task-header-toolbar .ts-task-create-menu {
     display: inline-flex;
     align-items: center;
+    order: 2;
+    margin-left: auto;
 }
 
 div.controlPanel.ts-task-header-toolbar .ts-task-create-menu > A,
 div.controlPanel.ts-task-header-toolbar .ts-task-create-menu .ts-menu-bar a,
 div.controlPanel.ts-task-header-toolbar .ts-task-create-menu .ts-menu-bar a:visited {
-    border-color: color-mix(in srgb, var(--ts-primary-light) 22%, var(--ts-border));
-    background: color-mix(in srgb, var(--ts-primary-soft) 72%, var(--ts-surface));
+    border-color: color-mix(in srgb, var(--ts-primary-light) 22%, transparent);
+    background: color-mix(in srgb, var(--ts-primary-soft) 56%, transparent);
     color: var(--ts-primary) !important;
 }
 
@@ -1317,9 +1488,29 @@ div.controlPanel.ts-task-header-toolbar A#selected,
 div.controlPanel.ts-task-header-toolbar .ts-menu-bar a:hover,
 div.controlPanel.ts-task-header-toolbar .ts-menu-bar a:focus,
 div.controlPanel.ts-task-header-toolbar .ts-menu-bar a:active {
-    background: var(--ts-surface);
-    border-color: var(--ts-border);
+    background: color-mix(in srgb, var(--ts-surface) 88%, var(--ts-primary-soft));
+    border-color: color-mix(in srgb, var(--ts-primary-light) 24%, var(--ts-border));
     color: var(--ts-text) !important;
+}
+
+div.controlPanel.ts-task-header-toolbar .ts-task-header-secondary A.selected,
+div.controlPanel.ts-task-header-toolbar .ts-task-header-secondary A#selected,
+div.controlPanel.ts-task-header-toolbar .ts-task-header-secondary .ts-menu-bar a.selected,
+div.controlPanel.ts-task-header-toolbar .ts-task-header-secondary .ts-menu-bar a#selected {
+    border-color: transparent;
+    background: transparent;
+    color: var(--ts-text-muted) !important;
+    box-shadow: none;
+}
+
+div.controlPanel.ts-task-header-toolbar .ts-task-header-secondary A:hover,
+div.controlPanel.ts-task-header-toolbar .ts-task-header-secondary A:focus,
+div.controlPanel.ts-task-header-toolbar .ts-task-header-secondary .ts-menu-bar a:hover,
+div.controlPanel.ts-task-header-toolbar .ts-task-header-secondary .ts-menu-bar a:focus {
+    border-color: color-mix(in srgb, var(--ts-primary-light) 20%, transparent);
+    background: color-mix(in srgb, var(--ts-primary-soft) 42%, transparent);
+    color: var(--ts-text) !important;
+    box-shadow: none;
 }
 
 .ts-user-context .ts-task-context-bar {
@@ -1350,7 +1541,7 @@ div.controlPanel.ts-task-header-toolbar .ts-menu-bar a:active {
     order: 2;
     width: 100%;
     padding-top: 4px;
-    border-top: 1px solid color-mix(in srgb, var(--ts-border) 82%, transparent);
+    border-top: 0;
 }
 
 .ts-user-context .ts-user-header-toolbar A,
@@ -1686,6 +1877,9 @@ div.blueborder > DIV.caption.ts-task-list-caption .ts-caption-actions {
     background-color: var(--ts-accent-hover);
 }
 .ts-document-meta {
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-x: auto;
     padding: 0 var(--ts-space-4);
     color: var(--ts-text-muted);
     margin-top: var(--ts-space-2);
@@ -1931,9 +2125,9 @@ div.nblueborder > div.indent {
     gap: 6px;
     min-height: 32px;
     padding: 0 var(--ts-space-2) !important;
-    border: 1px solid var(--ts-border) !important;
-    border-radius: var(--ts-radius-sm);
-    background: var(--ts-surface) !important;
+    border: 1px solid transparent !important;
+    border-radius: 10px;
+    background: transparent !important;
     color: var(--ts-text-muted) !important;
     font-size: var(--ts-font-sm) !important;
     font-weight: 600 !important;
@@ -1943,7 +2137,7 @@ div.nblueborder > div.indent {
 .ts-user-overview-caption__actions A:hover,
 .ts-user-overview-caption__actions A:focus {
     background: var(--ts-primary-soft) !important;
-    border-color: color-mix(in srgb, var(--ts-primary-light) 48%, var(--ts-border)) !important;
+    border-color: color-mix(in srgb, var(--ts-primary-light) 24%, var(--ts-border)) !important;
     color: var(--ts-primary) !important;
 }
 
@@ -3413,8 +3607,8 @@ span.expired {
 
 .ts-task-layout {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
-    gap: var(--ts-space-4);
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 380px);
+    gap: var(--ts-space-5);
     align-items: start;
 }
 
@@ -3424,6 +3618,11 @@ span.expired {
 
 .ts-task-layout__full {
     grid-column: 1 / -1;
+    order: 4;
+}
+
+.ts-task-layout > #servicePanel {
+    order: 0;
 }
 
 .ts-task-layout > .strut {
@@ -3436,14 +3635,14 @@ span.expired {
     align-self: stretch;
     display: flex;
     flex-direction: column;
+    order: 3;
 }
 
 .ts-task-sidebar {
     grid-column: 2;
     min-width: 0;
-    align-self: stretch;
-    position: sticky;
-    top: var(--ts-space-3);
+    align-self: start;
+    order: 3;
 }
 
 .ts-task-layout.ts-task-layout--single .ts-task-main,
@@ -3454,6 +3653,17 @@ span.expired {
 
 .ts-task-layout.ts-task-layout--single .ts-task-sidebar {
     position: static;
+    max-height: none;
+}
+
+div.blueborder.ts-task-sidebar {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border-color: color-mix(in srgb, var(--ts-border) 42%, transparent);
+    border-radius: var(--ts-radius-lg);
+    background: color-mix(in srgb, var(--ts-surface) 84%, var(--ts-bg));
+    box-shadow: none;
 }
 
 .ts-task-main .taskDescription {
@@ -3467,61 +3677,99 @@ span.expired {
 
 .ts-task-main-actions {
     grid-column: 1 / -1;
-    margin-bottom: 6px;
+    margin-bottom: 0;
 }
 
-.ts-task-workflow-toolbar {
+.ts-task-layout > .ts-task-layout__full {
+    order: 4;
+}
+
+#servicePanel.ts-task-layout__full {
+    order: 0;
+}
+
+.ts-task-layout > .ts-task-layout__full.ts-task-workflow-toolbar {
     grid-column: 1 / -1;
+    order: 1;
     margin-top: 0;
-    margin-bottom: var(--ts-space-3);
+    margin-bottom: var(--ts-space-2);
+}
+
+.ts-task-layout > .ts-task-layout__full.ts-task-main--activity {
+    order: 6;
 }
 
 div.controlPanel.ts-task-main-actions {
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid var(--ts-border);
-    border-radius: var(--ts-radius-sm);
-    background-color: var(--ts-surface);
+    border: 1px solid color-mix(in srgb, var(--ts-border) 58%, transparent);
+    border-radius: var(--ts-radius-lg);
+    background:
+        linear-gradient(180deg,
+            color-mix(in srgb, var(--ts-surface) 94%, var(--ts-surface-muted)),
+            color-mix(in srgb, var(--ts-surface) 86%, var(--ts-bg)));
     gap: var(--ts-space-2);
-    padding: 10px 12px;
+    padding: var(--ts-space-3);
     overflow: visible;
-    align-items: flex-start;
+    align-items: center;
+    box-shadow: var(--ts-shadow-sm);
 }
 
 div.controlPanel.ts-task-main-actions.ts-task-overview-actions {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
-    gap: 8px 16px;
-    padding: 10px 14px;
-    border-radius: var(--ts-radius-md);
-    background:
-        linear-gradient(180deg,
-            color-mix(in srgb, var(--ts-surface) 94%, var(--ts-primary-soft)),
-            color-mix(in srgb, var(--ts-surface-muted) 88%, #ffffff));
+    justify-content: end;
+    justify-self: end;
+    order: 2;
+    gap: var(--ts-space-1);
+    width: auto;
+    margin-left: auto;
+    padding: 0 0 var(--ts-space-1);
+    border-color: transparent;
+    border-radius: 0;
+    background: transparent;
     box-shadow: none;
 }
 
 div.controlPanel.ts-task-main-actions A {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ts-space-2);
+    min-height: 36px;
+    padding: 0 var(--ts-space-3);
     color: var(--ts-text-muted);
-    border: 1px solid transparent;
-    background-color: transparent;
-    font-weight: 600;
+    border: 1px solid color-mix(in srgb, var(--ts-border) 60%, transparent);
+    border-radius: 12px;
+    background-color: color-mix(in srgb, var(--ts-surface) 72%, transparent);
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    box-shadow: inset 0 1px 0 color-mix(in srgb, #ffffff 42%, transparent);
+}
+
+div.controlPanel.ts-task-main-actions A IMG {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    border-radius: 5px;
+    opacity: 0.86;
 }
 
 div.controlPanel.ts-task-main-actions A:hover,
 div.controlPanel.ts-task-main-actions A.selected,
 div.controlPanel.ts-task-main-actions A#selected {
     color: var(--ts-text);
-    background-color: var(--ts-surface);
-    border-color: var(--ts-border);
+    background-color: color-mix(in srgb, var(--ts-surface) 92%, var(--ts-primary-soft));
+    border-color: color-mix(in srgb, var(--ts-primary-light) 28%, var(--ts-border));
 }
 
 .ts-task-toolbar-main {
     display: inline-flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: var(--ts-space-2);
+    gap: var(--ts-space-1);
     min-width: 0;
     white-space: normal;
     flex: 1 1 auto;
@@ -3529,11 +3777,32 @@ div.controlPanel.ts-task-main-actions A#selected {
 
 .ts-task-overview-actions__primary {
     justify-content: flex-start;
+    flex: 0 1 auto;
+}
+
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions.ts-task-overview-actions--utility-only {
+    display: inline-flex;
+    justify-content: flex-end;
+    justify-self: end;
+    width: auto;
+    margin-left: auto;
+    padding: var(--ts-space-1);
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+}
+
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions.ts-task-overview-actions--utility-only .ts-task-overview-actions__primary,
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions.ts-task-overview-actions--utility-only .ts-task-toolbar-divider {
+    display: none;
 }
 
 .ts-task-overview-actions__utility {
     justify-content: flex-end;
     flex: 0 1 auto;
+    gap: var(--ts-space-1);
+    padding-left: 0;
+    border-left: none;
 }
 
 div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-toolbar-divider {
@@ -3543,26 +3812,48 @@ div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-toolbar-
 div.controlPanel.ts-task-main-actions.ts-task-overview-actions A,
 div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-menu-bar a,
 div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-menu-bar a:visited {
-    min-height: 30px;
-    padding: 0 10px;
+    min-height: 28px;
+    padding: 0 var(--ts-space-2);
     margin: 0;
-    border-radius: 999px;
+    border-radius: var(--ts-radius-sm);
     font-size: var(--ts-font-xs);
-    font-weight: 700;
+    font-weight: 600;
+}
+
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions A IMG {
+    width: 14px;
+    height: 14px;
+    opacity: 0.72;
 }
 
 div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__primary A {
-    color: var(--ts-text) !important;
-    border-color: color-mix(in srgb, var(--ts-primary-light) 22%, var(--ts-border));
-    background: color-mix(in srgb, var(--ts-primary-soft) 70%, var(--ts-surface));
+    color: var(--ts-text-muted) !important;
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+}
+
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__primary A:first-child {
+    color: var(--ts-text-muted) !important;
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
 }
 
 div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__primary A:hover,
 div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__primary A:focus,
 div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__primary A:active {
-    color: var(--ts-primary) !important;
-    border-color: color-mix(in srgb, var(--ts-primary-light) 38%, var(--ts-border));
-    background: color-mix(in srgb, var(--ts-primary-soft) 88%, var(--ts-surface));
+    color: var(--ts-text) !important;
+    border-color: color-mix(in srgb, var(--ts-border) 68%, transparent);
+    background: color-mix(in srgb, var(--ts-surface) 70%, var(--ts-surface-muted));
+}
+
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__primary A:first-child:hover,
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__primary A:first-child:focus,
+div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__primary A:first-child:active {
+    color: var(--ts-text) !important;
+    border-color: color-mix(in srgb, var(--ts-border) 68%, transparent);
+    background: color-mix(in srgb, var(--ts-surface) 70%, var(--ts-surface-muted));
 }
 
 div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility A,
@@ -3571,6 +3862,7 @@ div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview
     color: var(--ts-text-muted) !important;
     border-color: transparent;
     background: transparent;
+    box-shadow: none;
 }
 
 div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility A:hover,
@@ -3580,8 +3872,8 @@ div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview
 div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility .ts-menu-bar a:focus,
 div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility .ts-menu-bar a:active {
     color: var(--ts-text) !important;
-    border-color: var(--ts-border);
-    background: var(--ts-surface);
+    border-color: color-mix(in srgb, var(--ts-border) 72%, transparent);
+    background: color-mix(in srgb, var(--ts-surface) 72%, var(--ts-surface-muted));
 }
 
 .ts-task-toolbar-main > span.additional {
@@ -3603,7 +3895,7 @@ div.controlPanel.ts-task-main-actions .ts-task-toolbar-divider {
     align-items: center;
     justify-content: flex-start;
     flex-wrap: wrap;
-    gap: var(--ts-space-2);
+    gap: var(--ts-space-1);
     min-width: 0;
     margin-left: 0;
     padding-left: 0;
@@ -3614,6 +3906,39 @@ div.controlPanel.ts-task-main-actions .ts-task-toolbar-divider {
 div.controlPanel.ts-task-main-actions .ts-task-toolbar-secondary A {
     background-color: var(--ts-surface-muted);
     border-color: var(--ts-border);
+}
+
+div.controlPanel.ts-task-header-toolbar.ts-task-main-actions .ts-task-header-secondary A,
+div.controlPanel.ts-task-header-toolbar.ts-task-main-actions .ts-task-header-secondary A:visited,
+div.controlPanel.ts-task-header-toolbar.ts-task-main-actions .ts-task-header-secondary A.selected,
+div.controlPanel.ts-task-header-toolbar.ts-task-main-actions .ts-task-header-secondary A#selected {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    color: var(--ts-text-muted) !important;
+}
+
+div.controlPanel.ts-task-header-toolbar.ts-task-main-actions .ts-task-header-secondary A:hover,
+div.controlPanel.ts-task-header-toolbar.ts-task-main-actions .ts-task-header-secondary A:focus {
+    border-color: color-mix(in srgb, var(--ts-primary-light) 20%, transparent);
+    background: color-mix(in srgb, var(--ts-primary-soft) 42%, transparent);
+    box-shadow: none;
+    color: var(--ts-text) !important;
+}
+
+div.controlPanel.ts-task-header-toolbar.ts-task-main-actions .ts-task-header-secondary A.ts-task-view-switch__item,
+div.controlPanel.ts-task-header-toolbar.ts-task-main-actions .ts-task-header-secondary A.ts-task-view-switch__item:visited {
+    border-color: transparent;
+    background: transparent;
+    color: var(--ts-text-muted) !important;
+}
+
+div.controlPanel.ts-task-header-toolbar.ts-task-main-actions .ts-task-header-secondary A.ts-task-view-switch__item:hover,
+div.controlPanel.ts-task-header-toolbar.ts-task-main-actions .ts-task-header-secondary A.ts-task-view-switch__item:focus,
+div.controlPanel.ts-task-header-toolbar.ts-task-main-actions .ts-task-header-secondary A.ts-task-view-switch__item:active {
+    border-color: color-mix(in srgb, var(--ts-primary-light) 28%, var(--ts-border));
+    background: color-mix(in srgb, var(--ts-primary-soft) 54%, var(--ts-surface));
+    color: var(--ts-primary) !important;
 }
 
 div.controlPanel.ts-task-main-actions .ts-menu-bar {
@@ -3640,10 +3965,14 @@ div.controlPanel.ts-task-main-actions .ts-menu-bar a:active {
     border-color: var(--ts-border);
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 1080px) {
+    .ts-task-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
     div.controlPanel.ts-task-main-actions {
         grid-template-columns: minmax(0, 1fr);
-        row-gap: var(--ts-space-2);
+        row-gap: var(--ts-space-1);
     }
 
     div.controlPanel.ts-task-main-actions.ts-task-overview-actions {
@@ -3658,8 +3987,15 @@ div.controlPanel.ts-task-main-actions .ts-menu-bar a:active {
         justify-content: flex-start;
     }
 
+    .ts-task-overview-actions__utility {
+        padding-left: 0;
+        border-left: none;
+    }
+
     .ts-task-sidebar {
+        grid-column: 1;
         position: static;
+        max-height: none;
     }
 
     .ts-task-sidebar-caption {
@@ -3672,11 +4008,42 @@ div.controlPanel.ts-task-main-actions .ts-menu-bar a:active {
     }
 }
 
+@media (max-width: 980px) {
+    .ts-task-context {
+        padding-right: var(--ts-space-3);
+        padding-left: var(--ts-space-3);
+    }
+
+    div.controlPanel.ts-task-header-toolbar {
+        align-items: stretch;
+        justify-content: flex-start;
+    }
+
+    div.controlPanel.ts-task-header-toolbar .ts-task-header-secondary,
+    div.controlPanel.ts-task-header-toolbar .ts-task-header-main-group {
+        flex: 1 1 100%;
+        width: 100%;
+        margin-left: 0;
+        justify-content: flex-start;
+    }
+
+    .ts-task-view-switch {
+        flex: 1 1 100%;
+        order: 0;
+    }
+
+    .ts-task-view-switch__item,
+    div.controlPanel.ts-task-header-toolbar .ts-task-view-switch__item,
+    div.controlPanel.ts-task-header-toolbar A.ts-task-view-switch__item {
+        flex: 1 1 auto;
+    }
+}
+
 .ts-task-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--ts-space-2);
-    padding: var(--ts-space-2) var(--ts-space-3);
+    gap: var(--ts-space-1);
+    padding: var(--ts-space-1) var(--ts-space-2);
     border-bottom: 1px solid var(--ts-border);
     background-color: var(--ts-surface-muted);
 }
@@ -3689,14 +4056,11 @@ div.controlPanel.ts-task-main-actions .ts-menu-bar a:active {
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);
     flex: 1 1 auto;
-    min-height: 260px;
-    border: 1px solid var(--ts-border);
-    border-radius: var(--ts-radius-md);
-    background:
-        linear-gradient(180deg,
-            color-mix(in srgb, var(--ts-surface) 96%, var(--ts-primary-soft)),
-            color-mix(in srgb, var(--ts-surface-muted) 92%, #ffffff));
-    box-shadow: none;
+    min-height: 220px;
+    border: 1px solid color-mix(in srgb, var(--ts-border) 64%, transparent);
+    border-radius: var(--ts-radius-lg);
+    background: var(--ts-surface);
+    box-shadow: var(--ts-shadow-sm);
     overflow: hidden;
 }
 
@@ -3705,7 +4069,7 @@ div.controlPanel.ts-task-main-actions .ts-menu-bar a:active {
     align-items: center;
     justify-content: space-between;
     gap: var(--ts-space-2);
-    padding: 14px 18px 0;
+    padding: var(--ts-space-3) var(--ts-space-4) 0;
 }
 
 .ts-task-section-heading__eyebrow {
@@ -3725,10 +4089,11 @@ div.controlPanel.ts-task-main-actions .ts-menu-bar a:active {
 
 .ts-task-description-card .taskDescription .content {
     min-height: 100%;
-    padding: 8px 18px 18px;
+    padding: var(--ts-space-2) var(--ts-space-4) var(--ts-space-4);
 }
 
 .ts-task-description-card .taskDescription .indent {
+    max-width: 70ch;
     padding: 0;
 }
 
@@ -3738,8 +4103,8 @@ div.controlPanel.ts-task-main-actions .ts-menu-bar a:active {
 .ts-task-description-card #taskDescription pre,
 .ts-task-description-card #taskDescription li {
     color: var(--ts-text);
-    font-size: var(--ts-font-lg);
-    line-height: 1.75;
+    font-size: var(--ts-font-base);
+    line-height: 1.6;
 }
 
 .ts-task-description-card #taskDescription p:last-child,
@@ -3749,9 +4114,14 @@ div.controlPanel.ts-task-main-actions .ts-menu-bar a:active {
 }
 
 .ts-task-properties-wrap {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--ts-border-strong) var(--ts-surface-muted);
 }
 
 .ts-task-sidebar-caption {
@@ -3759,19 +4129,16 @@ div.controlPanel.ts-task-main-actions .ts-menu-bar a:active {
     align-items: center;
     justify-content: space-between;
     gap: var(--ts-space-2);
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--ts-border);
-    background:
-        linear-gradient(180deg,
-            color-mix(in srgb, var(--ts-surface) 95%, var(--ts-primary-soft)),
-            var(--ts-surface));
+    padding: var(--ts-space-2) var(--ts-space-3);
+    border-bottom: 1px solid color-mix(in srgb, var(--ts-border) 38%, transparent);
+    background: transparent;
 }
 
 .ts-task-sidebar-caption__meta {
     display: inline-flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 6px 10px;
+    gap: var(--ts-space-2) var(--ts-space-3);
     min-width: 0;
     color: var(--ts-text-muted);
     font-size: var(--ts-font-xs);
@@ -3781,17 +4148,17 @@ div.controlPanel.ts-task-main-actions .ts-menu-bar a:active {
 .ts-task-sidebar-caption__bulk {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--ts-space-2);
     margin-left: auto;
 }
 
 .ts-task-sidebar-caption__bulk select {
-    min-height: 32px;
+    min-height: var(--ts-space-8);
 }
 
 .ts-task-sidebar-caption__bulk input.secondary {
-    min-height: 32px;
-    padding: 0 12px;
+    min-height: var(--ts-space-8);
+    padding: 0 var(--ts-space-3);
     margin-right: 0 !important;
     border: 1px solid var(--ts-border);
     border-radius: 999px;
@@ -3810,20 +4177,21 @@ div.controlPanel.ts-task-main-actions .ts-menu-bar a:active {
 }
 
 .ts-task-sidebar .ts-task-property-group-title {
-    font-size: var(--ts-font-sm);
+    font-size: var(--ts-font-xs);
     font-weight: 800;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
 }
 
 .ts-task-sidebar TABLE.general.ts-task-properties .taskinfo-right.ts-task-property-group {
-    background: color-mix(in srgb, var(--ts-primary-soft) 26%, var(--ts-surface-muted)) !important;
-    padding-top: 14px;
-    padding-bottom: 12px;
+    background: transparent !important;
+    border-bottom: 1px solid color-mix(in srgb, var(--ts-border) 42%, transparent) !important;
+    padding: var(--ts-space-2) var(--ts-space-3) var(--ts-space-1);
 }
 
 TABLE.general.ts-task-properties {
     margin-bottom: 0;
     table-layout: fixed;
+    background: transparent !important;
 }
 
 TABLE.general.ts-task-properties TH,
@@ -3838,23 +4206,26 @@ TABLE.general.ts-task-properties .taskinfo-right.ts-task-property-group {
 }
 
 .ts-task-property-group-title {
-    color: var(--ts-text);
+    color: var(--ts-text-muted);
 }
 
 TABLE.general.ts-task-properties tr.ts-task-property-label-row TH {
     border-bottom: none;
-    padding-bottom: 2px;
+    padding: var(--ts-space-1) var(--ts-space-3) var(--ts-space-1);
     font-size: var(--ts-font-xs);
     font-weight: 700;
     text-transform: uppercase;
-    color: var(--ts-text-muted);
+    letter-spacing: 0.06em;
+    color: var(--ts-text-muted-2);
 }
 
 TABLE.general.ts-task-properties tr.ts-task-property-value-row TD {
-    padding-top: 0;
-    padding-left: 0;
-    padding-bottom: var(--ts-space-3);
-    border-bottom: 1px solid var(--ts-border);
+    padding: 0 var(--ts-space-3) var(--ts-space-2);
+    border-bottom: 1px solid color-mix(in srgb, var(--ts-border) 36%, transparent);
+    color: var(--ts-text-muted);
+    font-size: var(--ts-font-sm);
+    font-weight: 500;
+    line-height: 1.45;
     word-break: break-word;
 }
 
@@ -3867,11 +4238,14 @@ TABLE.general.ts-task-customfields {
     margin-bottom: 0;
 }
 
-.ts-task-overview-workflow {
+div.controlPanel.ts-task-overview-workflow {
     align-items: center;
-    gap: 10px 14px;
-    padding: 10px 14px;
+    gap: var(--ts-space-2);
+    padding: var(--ts-space-2);
+    border: 1px solid color-mix(in srgb, var(--ts-border) 52%, transparent);
     border-radius: var(--ts-radius-md);
+    background: color-mix(in srgb, var(--ts-surface) 88%, var(--ts-bg));
+    box-shadow: var(--ts-shadow-xs);
 }
 
 .ts-task-workflow-toolbar__label {
@@ -3887,29 +4261,35 @@ TABLE.general.ts-task-customfields {
 
 .ts-task-overview-workflow .ts-task-workflow-toolbar__group {
     flex: 1 1 auto;
+    gap: var(--ts-space-1);
 }
 
 div.controlPanel.ts-task-overview-workflow A,
 div.controlPanel.ts-task-overview-workflow .ts-menu-bar a,
 div.controlPanel.ts-task-overview-workflow .ts-menu-bar a:visited {
-    min-height: 34px;
-    padding: 0 12px;
-    border-radius: 999px;
+    min-height: 38px;
+    padding: 0 var(--ts-space-3);
+    border-radius: var(--ts-radius-sm);
     background-color: var(--ts-surface);
-    border-color: color-mix(in srgb, var(--ts-primary-light) 18%, var(--ts-border));
+    border-color: color-mix(in srgb, var(--ts-border) 66%, transparent);
     color: var(--ts-text);
+    font-size: var(--ts-font-xs);
+    font-weight: 700;
+    box-shadow: none;
 }
 
 div.controlPanel.ts-task-overview-workflow .ts-task-workflow-toolbar__group > A:first-of-type {
-    background: color-mix(in srgb, var(--ts-primary-soft) 78%, var(--ts-surface));
-    border-color: color-mix(in srgb, var(--ts-primary-light) 34%, var(--ts-border));
-    color: var(--ts-primary);
+    background: var(--ts-surface);
+    border-color: color-mix(in srgb, var(--ts-border) 66%, transparent);
+    color: var(--ts-text);
+    box-shadow: none;
 }
 
 div.controlPanel.ts-task-overview-workflow .ts-task-workflow-toolbar__group > A:first-of-type:hover,
 div.controlPanel.ts-task-overview-workflow .ts-task-workflow-toolbar__group > A:first-of-type:focus,
 div.controlPanel.ts-task-overview-workflow .ts-task-workflow-toolbar__group > A:first-of-type:active {
-    background: color-mix(in srgb, var(--ts-primary-soft) 90%, var(--ts-surface));
+    background: color-mix(in srgb, var(--ts-primary-soft) 54%, var(--ts-surface));
+    border-color: color-mix(in srgb, var(--ts-primary-light) 34%, var(--ts-border));
     color: var(--ts-primary);
 }
 
@@ -3952,23 +4332,25 @@ TABLE.general.ts-task-customfields tr TD {
 
 .ts-task-messages {
     margin-bottom: 0;
-    border-radius: var(--ts-radius-md);
+    border-radius: var(--ts-radius-lg);
     overflow: hidden;
-    border: 1px solid var(--ts-border);
-    box-shadow: var(--ts-shadow-sm);
-    background-color: var(--ts-surface);
+    border: 1px solid color-mix(in srgb, var(--ts-border) 48%, transparent);
+    box-shadow: none;
+    background: color-mix(in srgb, var(--ts-surface) 86%, var(--ts-bg));
 }
 
 .ts-task-messages > .caption {
-    background: linear-gradient(180deg, color-mix(in srgb, var(--ts-primary-soft) 44%, #ffffff), var(--ts-surface));
-    border-bottom: 1px solid var(--ts-border);
-    padding: var(--ts-space-3) var(--ts-space-4);
+    background: transparent;
+    border-bottom: 1px solid color-mix(in srgb, var(--ts-border) 44%, transparent);
+    padding: var(--ts-space-2) var(--ts-space-3);
 }
 
 .ts-task-messages #messageHistoryHeader {
-    color: var(--ts-primary);
-    font-weight: 700;
-    letter-spacing: 0.01em;
+    color: var(--ts-text-muted);
+    font-size: var(--ts-font-sm);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .ts-message-history-caption {
@@ -4046,10 +4428,10 @@ TABLE.general.ts-task-customfields tr TD {
 }
 
 .ts-workflow-toolbar.ts-message-history-toolbar--bottom {
-    border-top: 1px solid color-mix(in srgb, var(--ts-primary) 22%, var(--ts-border));
-    border-bottom: none;
-    margin-top: var(--ts-space-1);
-    border-radius: 0 0 var(--ts-radius-sm) var(--ts-radius-sm);
+    border-top-color: color-mix(in srgb, var(--ts-border) 42%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--ts-border) 42%, transparent);
+    margin-top: var(--ts-space-2);
+    border-radius: var(--ts-radius-md);
 }
 
 .ts-workflow-toolbar__group {
@@ -4099,10 +4481,96 @@ div.controlPanel.ts-workflow-toolbar .ts-menu-bar a:active {
     border-color: var(--ts-primary);
 }
 
+div.controlPanel.ts-task-workflow-cloud.ts-task-overview-workflow {
+    align-items: flex-start;
+    gap: var(--ts-space-1);
+    padding: var(--ts-space-1);
+    border: 1px solid color-mix(in srgb, var(--ts-border) 50%, transparent);
+    border-left-width: 1px;
+    border-radius: var(--ts-radius-lg);
+    background: color-mix(in srgb, var(--ts-surface) 82%, var(--ts-bg));
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--ts-surface) 64%, transparent);
+}
+
+div.controlPanel.ts-task-workflow-cloud.ts-task-overview-workflow .ts-task-workflow-toolbar__group {
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    gap: var(--ts-space-1);
+}
+
+div.controlPanel.ts-task-workflow-cloud.ts-task-overview-workflow A,
+div.controlPanel.ts-task-workflow-cloud.ts-task-overview-workflow .ts-menu-bar a,
+div.controlPanel.ts-task-workflow-cloud.ts-task-overview-workflow .ts-menu-bar a:visited,
+div.controlPanel.ts-task-workflow-cloud.ts-task-overview-workflow .ts-task-workflow-toolbar__group > A:first-of-type {
+    min-height: calc(var(--ts-space-6) + var(--ts-space-1));
+    padding: 0 var(--ts-space-2);
+    border-radius: 999px;
+    border-color: color-mix(in srgb, var(--ts-border) 60%, transparent);
+    background: color-mix(in srgb, var(--ts-surface) 72%, var(--ts-surface-muted));
+    color: var(--ts-text) !important;
+    font-size: var(--ts-font-xs);
+    font-weight: 700;
+    box-shadow: none;
+}
+
+div.controlPanel.ts-task-workflow-cloud.ts-task-overview-workflow A:hover,
+div.controlPanel.ts-task-workflow-cloud.ts-task-overview-workflow A:focus,
+div.controlPanel.ts-task-workflow-cloud.ts-task-overview-workflow A:active,
+div.controlPanel.ts-task-workflow-cloud.ts-task-overview-workflow .ts-menu-bar a:hover,
+div.controlPanel.ts-task-workflow-cloud.ts-task-overview-workflow .ts-menu-bar a:focus,
+div.controlPanel.ts-task-workflow-cloud.ts-task-overview-workflow .ts-menu-bar a:active,
+div.controlPanel.ts-task-workflow-cloud.ts-task-overview-workflow .ts-task-workflow-toolbar__group > A:first-of-type:hover,
+div.controlPanel.ts-task-workflow-cloud.ts-task-overview-workflow .ts-task-workflow-toolbar__group > A:first-of-type:focus,
+div.controlPanel.ts-task-workflow-cloud.ts-task-overview-workflow .ts-task-workflow-toolbar__group > A:first-of-type:active {
+    border-color: color-mix(in srgb, var(--ts-primary-light) 36%, var(--ts-border));
+    background: color-mix(in srgb, var(--ts-primary-soft) 42%, var(--ts-surface));
+    color: var(--ts-primary) !important;
+}
+
+.ts-task-overview-workflow.ts-workflow-toolbar {
+    padding: var(--ts-space-1);
+    border: 1px solid color-mix(in srgb, var(--ts-border) 52%, transparent);
+    border-radius: var(--ts-radius-md);
+    background: color-mix(in srgb, var(--ts-surface) 88%, var(--ts-bg));
+    box-shadow: none;
+}
+
+div.controlPanel.ts-task-overview-workflow A,
+div.controlPanel.ts-task-overview-workflow .ts-menu-bar a,
+div.controlPanel.ts-task-overview-workflow .ts-menu-bar a:visited {
+    min-height: calc(var(--ts-space-6) + var(--ts-space-1));
+    padding: 0 var(--ts-space-2);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--ts-surface) 72%, var(--ts-surface-muted));
+    border-color: color-mix(in srgb, var(--ts-border) 60%, transparent);
+    color: var(--ts-text) !important;
+    font-size: var(--ts-font-xs);
+    font-weight: 700;
+    box-shadow: none;
+}
+
+div.controlPanel.ts-task-overview-workflow A:hover,
+div.controlPanel.ts-task-overview-workflow A:focus,
+div.controlPanel.ts-task-overview-workflow A:active,
+div.controlPanel.ts-task-overview-workflow .ts-menu-bar a:hover,
+div.controlPanel.ts-task-overview-workflow .ts-menu-bar a:focus,
+div.controlPanel.ts-task-overview-workflow .ts-menu-bar a:active {
+    background: color-mix(in srgb, var(--ts-primary-soft) 54%, var(--ts-surface));
+    border-color: color-mix(in srgb, var(--ts-primary-light) 34%, var(--ts-border));
+    color: var(--ts-primary);
+}
+
 .ts-message-history-toolbar {
     flex-wrap: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
+    margin: var(--ts-space-1) var(--ts-space-2) 0;
+    padding: 0 0 var(--ts-space-1);
+    border: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--ts-border) 52%, transparent);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
 }
 
 .ts-message-history-toolbar .ts-workflow-toolbar__group,
@@ -4111,22 +4579,31 @@ div.controlPanel.ts-workflow-toolbar .ts-menu-bar a:active {
     white-space: nowrap;
 }
 
+.ts-message-history-toolbar A,
+.ts-message-history-toolbar .ts-menu-bar a,
+.ts-message-history-toolbar .ts-menu-bar a:visited {
+    min-height: calc(var(--ts-space-6) + var(--ts-space-1));
+    padding: 0 var(--ts-space-2);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--ts-surface) 72%, var(--ts-surface-muted));
+    color: var(--ts-text-muted) !important;
+    font-size: var(--ts-font-xs);
+}
+
 .ts-activity-feed {
     padding: var(--ts-space-2);
-    background:
-        radial-gradient(circle at 8% 0%, color-mix(in srgb, var(--ts-primary) 12%, transparent), transparent 32%),
-        var(--ts-surface);
+    background: transparent;
 }
 
 /* Keep !important to neutralize legacy row striping (.line0/.line1) from old tables. */
 .ts-activity-feed .ts-activity-item {
-    border: 1px solid var(--ts-border);
-    border-radius: var(--ts-radius-sm);
+    border: 1px solid color-mix(in srgb, var(--ts-border) 48%, transparent);
+    border-radius: var(--ts-radius-md);
     margin-bottom: var(--ts-space-2);
     overflow: hidden;
-    background-color: var(--ts-surface) !important;
-    box-shadow: var(--ts-shadow-xs);
-    border-left: 3px solid color-mix(in srgb, var(--ts-border) 75%, #ffffff);
+    background-color: color-mix(in srgb, var(--ts-surface) 78%, var(--ts-bg)) !important;
+    box-shadow: none;
+    border-left: 3px solid color-mix(in srgb, var(--ts-border) 62%, transparent);
 }
 
 .ts-activity-feed .ts-activity-item.line0,
@@ -5661,6 +6138,51 @@ BUTTON:focus-visible,
     .container-internal {
         color: var(--ts-text-muted) !important;
     }
+
+    div.blueborder.ts-task-sidebar,
+    .ts-task-description-card,
+    div.controlPanel.ts-task-main-actions,
+    div.controlPanel.ts-task-main-actions.ts-task-overview-actions,
+    div.controlPanel.ts-task-overview-workflow {
+        border-color: color-mix(in srgb, var(--ts-border) 34%, transparent);
+        background: var(--ts-surface);
+        box-shadow: none;
+    }
+
+    div.controlPanel.ts-task-overview-workflow {
+        background: color-mix(in srgb, var(--ts-surface) 88%, var(--ts-bg));
+    }
+
+    div.controlPanel.ts-task-main-actions.ts-task-overview-actions,
+    .ts-task-sidebar-caption {
+        background: transparent;
+    }
+
+    .ts-task-overview-actions__utility,
+    TABLE.general.ts-task-properties tr.ts-task-property-value-row TD,
+    .ts-task-sidebar-caption {
+        border-color: color-mix(in srgb, var(--ts-border) 46%, transparent);
+    }
+
+    div.controlPanel.ts-task-overview-workflow A,
+    div.controlPanel.ts-task-overview-workflow .ts-menu-bar a,
+    div.controlPanel.ts-task-overview-workflow .ts-menu-bar a:visited,
+    div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility A:hover,
+    div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility A:focus,
+    div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility A:active,
+    div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility .ts-menu-bar a:hover,
+    div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility .ts-menu-bar a:focus,
+    div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility .ts-menu-bar a:active {
+        border-color: color-mix(in srgb, var(--ts-border) 52%, transparent);
+        background: color-mix(in srgb, var(--ts-surface) 84%, var(--ts-surface-muted));
+    }
+
+    div.controlPanel.ts-task-main-actions.ts-task-overview-actions {
+        border-color: transparent;
+        background: transparent;
+        box-shadow: none;
+    }
+
 }
 
 /* Manual dark mode toggle via data attribute */
@@ -5714,6 +6236,74 @@ BUTTON:focus-visible,
 }
 [data-theme="dark"] .container-internal {
     color: var(--ts-text-muted) !important;
+}
+
+
+[data-theme="dark"] div.blueborder.ts-task-sidebar,
+[data-theme="dark"] .ts-task-description-card,
+[data-theme="dark"] div.controlPanel.ts-task-main-actions,
+[data-theme="dark"] div.controlPanel.ts-task-main-actions.ts-task-overview-actions,
+[data-theme="dark"] div.controlPanel.ts-task-overview-workflow {
+    border-color: color-mix(in srgb, var(--ts-border) 32%, transparent);
+    background: var(--ts-surface);
+    box-shadow: none;
+}
+
+[data-theme="dark"] div.controlPanel.ts-task-overview-workflow {
+    background: color-mix(in srgb, var(--ts-surface) 90%, var(--ts-bg));
+}
+
+[data-theme="dark"] div.controlPanel.ts-task-main-actions.ts-task-overview-actions,
+[data-theme="dark"] .ts-task-sidebar-caption {
+    background: transparent;
+}
+
+[data-theme="dark"] .ts-task-overview-actions__utility,
+[data-theme="dark"] TABLE.general.ts-task-properties tr.ts-task-property-value-row TD,
+[data-theme="dark"] .ts-task-sidebar-caption {
+    border-color: color-mix(in srgb, var(--ts-border) 46%, transparent);
+}
+
+[data-theme="dark"] div.controlPanel.ts-task-overview-workflow A,
+[data-theme="dark"] div.controlPanel.ts-task-overview-workflow .ts-menu-bar a,
+[data-theme="dark"] div.controlPanel.ts-task-overview-workflow .ts-menu-bar a:visited,
+[data-theme="dark"] div.controlPanel.ts-task-main-actions A,
+[data-theme="dark"] div.controlPanel.ts-task-main-actions .ts-menu-bar a,
+[data-theme="dark"] div.controlPanel.ts-task-main-actions .ts-menu-bar a:visited,
+[data-theme="dark"] div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility A:hover,
+[data-theme="dark"] div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility A:focus,
+[data-theme="dark"] div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility A:active,
+[data-theme="dark"] div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility .ts-menu-bar a:hover,
+[data-theme="dark"] div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility .ts-menu-bar a:focus,
+[data-theme="dark"] div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__utility .ts-menu-bar a:active {
+    border-color: color-mix(in srgb, var(--ts-border) 42%, transparent);
+    background: color-mix(in srgb, var(--ts-surface) 78%, #263245);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, #ffffff 8%, transparent);
+}
+
+[data-theme="dark"] div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__primary A:first-child {
+    background: transparent;
+    box-shadow: none;
+}
+
+[data-theme="dark"] div.controlPanel.ts-task-main-actions A:hover,
+[data-theme="dark"] div.controlPanel.ts-task-main-actions A:focus,
+[data-theme="dark"] div.controlPanel.ts-task-overview-workflow A:hover,
+[data-theme="dark"] div.controlPanel.ts-task-overview-workflow A:focus {
+    color: var(--ts-text);
+    border-color: color-mix(in srgb, var(--ts-primary-light) 34%, var(--ts-border));
+    background: color-mix(in srgb, var(--ts-surface) 68%, #1f6feb);
+}
+
+[data-theme="dark"] div.controlPanel.ts-task-main-actions.ts-task-overview-actions {
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+}
+
+[data-theme="dark"] div.controlPanel.ts-task-main-actions.ts-task-overview-actions .ts-task-overview-actions__primary A:first-child {
+    background: transparent;
+    box-shadow: none;
 }
 
 /* N14: Tabs dark mode — dark background, light text */

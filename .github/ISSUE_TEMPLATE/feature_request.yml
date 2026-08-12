@@ -1,0 +1,46 @@
+name: Предложить улучшение
+description: Идея новой возможности или улучшения существующей
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Какую задачу это решает
+      description: Опишите ситуацию, в которой сейчас неудобно. Что вы пытаетесь сделать и почему это не получается.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Как это могло бы работать
+      description: Ваше предложение. Если представляете интерфейс — опишите или приложите набросок.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Что пробовали вместо этого
+      description: Обходные пути, настройки, скрипты — то, чем задача решается сейчас, если решается.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Какой части системы касается
+      options:
+        - Задачи и рабочие процессы
+        - Права доступа и роли
+        - Фильтры и отчёты
+        - Уведомления и подписки
+        - REST API и интеграции
+        - Интерфейс
+        - Развёртывание и администрирование
+        - Другое
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Участие
+      options:
+        - label: Я готов взяться за реализацию сам

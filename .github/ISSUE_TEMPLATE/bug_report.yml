@@ -1,0 +1,71 @@
+name: Сообщить об ошибке
+description: Что-то работает не так, как должно
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Спасибо за отчёт. Чем точнее шаги воспроизведения, тем быстрее получится починить.
+
+        **Нашли уязвимость?** Не описывайте её здесь — воспользуйтесь [приватной формой](https://github.com/maximkr/TrackStudio/security/advisories/new), см. [SECURITY.md](https://github.com/maximkr/TrackStudio/blob/main/SECURITY.md).
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Что происходит
+      description: Опишите проблему и что вы ожидали увидеть вместо этого.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Шаги воспроизведения
+      placeholder: |
+        1. Войти как ...
+        2. Открыть задачу ...
+        3. Нажать ...
+        4. Появляется ошибка ...
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Версия TrackStudio
+      description: "Вывод `./gradlew printVersion` или значение `trackstudio.version` из развёрнутого приложения. Если неизвестна — укажите дату сборки или хеш коммита."
+      placeholder: "v6.0.0-56-g1764993"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: deployment
+    attributes:
+      label: Способ развёртывания
+      options:
+        - Docker Compose
+        - Kubernetes
+        - Ручная установка в Tomcat
+        - Другое
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Окружение
+      description: Версия PostgreSQL, ОС хоста, браузер — то, что относится к делу.
+      placeholder: "PostgreSQL 17, Ubuntu 24.04, Firefox 130"
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Логи
+      description: "Относящийся к делу фрагмент из `docker compose logs trackstudio` или из логов Tomcat. Стектрейс целиком, если он есть."
+      render: text
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Дополнительно
+      description: Скриншоты, обходные пути, всё, что может помочь.

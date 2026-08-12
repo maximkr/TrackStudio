@@ -1,0 +1,41 @@
+version: 2
+
+updates:
+  # Зависимости Gradle. Проект содержит много старых библиотек, поэтому
+  # обновления сгруппированы и ограничены по количеству PR — иначе dependabot
+  # завалит репозиторий десятками отдельных пулл-реквестов.
+  - package-ecosystem: gradle
+    directory: "/"
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 5
+    groups:
+      logging:
+        patterns:
+          - "org.slf4j:*"
+          - "ch.qos.logback:*"
+      hibernate:
+        patterns:
+          - "org.hibernate:*"
+      lucene:
+        patterns:
+          - "org.apache.lucene:*"
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+    ignore:
+      # Struts 1.3.10 снят с поддержки в 2013 году, новых версий не будет.
+      # Уход с него — отдельная большая задача, а не обновление зависимости.
+      - dependency-name: "org.apache.struts:*"
+
+  # Версии GitHub Actions в workflow
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 5
+    groups:
+      actions:
+        patterns:
+          - "*"

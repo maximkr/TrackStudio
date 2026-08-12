@@ -1,5 +1,10 @@
 # TrackStudio Enterprise 6 (Open Source)
 
+[![Build](https://github.com/maximkr/TrackStudio/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/maximkr/TrackStudio/actions/workflows/build.yml?query=branch%3Amain)
+[![Docker Image CI](https://github.com/maximkr/TrackStudio/actions/workflows/docker-image.yml/badge.svg?branch=main)](https://github.com/maximkr/TrackStudio/actions/workflows/docker-image.yml?query=branch%3Amain)
+[![CodeQL](https://github.com/maximkr/TrackStudio/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/maximkr/TrackStudio/actions/workflows/codeql.yml?query=branch%3Amain)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
+
 TrackStudio — это классический трекер задач уровня Enterprise с иерархией задач и пользователей, настраиваемыми рабочими процессами, ролями и правами, SLA-правилами и мощным механизмом уведомлений. Поддерживает сотни тысяч задач и десятки тысяч пользователей на одном сервере.
 
 <img alt="image" src="screenshot.png" />

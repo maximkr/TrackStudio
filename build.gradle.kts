@@ -87,8 +87,8 @@ dependencies {
     implementation("org.apache.lucene:lucene-highlighter:7.6.0")
     implementation("org.apache.lucene:lucene-queryparser:7.6.0")
 
-    implementation("org.hibernate:hibernate-core:5.6.15.Final")
-    implementation("org.hibernate:hibernate-c3p0:5.6.15.Final")
+    implementation("org.hibernate:hibernate-core:7.4.5.Final")
+    implementation("org.hibernate:hibernate-c3p0:7.4.5.Final")
     implementation("antlr:antlr:2.7.6")
 
     implementation("javax.servlet:jstl:1.2")

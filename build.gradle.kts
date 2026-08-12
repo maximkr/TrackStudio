@@ -82,10 +82,10 @@ dependencies {
 
     implementation("org.freemarker:freemarker:2.3.33")
 
-    implementation("org.apache.lucene:lucene-core:7.6.0")
-    implementation("org.apache.lucene:lucene-analyzers-common:7.6.0")
-    implementation("org.apache.lucene:lucene-highlighter:7.6.0")
-    implementation("org.apache.lucene:lucene-queryparser:7.6.0")
+    implementation("org.apache.lucene:lucene-core:10.5.0")
+    implementation("org.apache.lucene:lucene-analyzers-common:10.5.0")
+    implementation("org.apache.lucene:lucene-highlighter:10.5.0")
+    implementation("org.apache.lucene:lucene-queryparser:10.5.0")
 
     implementation("org.hibernate:hibernate-core:5.6.15.Final")
     implementation("org.hibernate:hibernate-c3p0:5.6.15.Final")

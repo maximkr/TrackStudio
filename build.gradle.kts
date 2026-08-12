@@ -1,7 +1,7 @@
 plugins {
     `java`
     war
-    id("com.palantir.git-version") version "4.0.0"
+    id("com.palantir.git-version") version "4.3.0"
 }
 
 // Автоматическое версионирование на основе git тегов
@@ -65,11 +65,11 @@ dependencies {
 
     // Остальное как implementation
     // Logging - миграция с Log4j 1.2 на SLF4J + Logback
-    implementation("org.slf4j:slf4j-api:2.0.12")
-    implementation("ch.qos.logback:logback-classic:1.4.14")
-    implementation("ch.qos.logback:logback-core:1.4.14")
-    implementation("org.slf4j:jcl-over-slf4j:2.0.12") // Commons Logging через SLF4J
-    implementation("org.slf4j:log4j-over-slf4j:2.0.12") // Log4j 1.2 через SLF4J (для legacy кода)
+    implementation("org.slf4j:slf4j-api:2.0.18")
+    implementation("ch.qos.logback:logback-classic:1.6.1")
+    implementation("ch.qos.logback:logback-core:1.6.1")
+    implementation("org.slf4j:jcl-over-slf4j:2.0.18") // Commons Logging через SLF4J
+    implementation("org.slf4j:log4j-over-slf4j:2.0.18") // Log4j 1.2 через SLF4J (для legacy кода)
     
     implementation("org.json:json:20240303")
     implementation("com.github.stephenc.jcip:jcip-annotations:1.0-1")
@@ -80,12 +80,12 @@ dependencies {
     implementation("org.apache.struts:struts-el:1.3.10")
     implementation("org.apache.struts:struts-extras:1.3.10")
 
-    implementation("org.freemarker:freemarker:2.3.33")
+    implementation("org.freemarker:freemarker:2.3.34")
 
-    implementation("org.apache.lucene:lucene-core:7.6.0")
-    implementation("org.apache.lucene:lucene-analyzers-common:7.6.0")
-    implementation("org.apache.lucene:lucene-highlighter:7.6.0")
-    implementation("org.apache.lucene:lucene-queryparser:7.6.0")
+    implementation("org.apache.lucene:lucene-core:7.7.3")
+    implementation("org.apache.lucene:lucene-analyzers-common:7.7.3")
+    implementation("org.apache.lucene:lucene-highlighter:7.7.3")
+    implementation("org.apache.lucene:lucene-queryparser:7.7.3")
 
     implementation("org.hibernate:hibernate-core:5.6.15.Final")
     implementation("org.hibernate:hibernate-c3p0:5.6.15.Final")
@@ -95,7 +95,7 @@ dependencies {
     // Удаляем log4j:log4j:1.2.17 - заменяем на SLF4J + Logback выше
     implementation("com.sun.mail:javax.mail:1.6.2")
     implementation("org.apache-extras.beanshell:bsh:2.0b6")
-    implementation("org.quartz-scheduler:quartz:2.3.2")
+    implementation("org.quartz-scheduler:quartz:2.5.2")
     implementation("xerces:xercesImpl:2.12.2")
     implementation("org.htmlparser:htmlparser:2.1")
     implementation("com.github.kevinsawicki:http-request:6.0")
@@ -106,9 +106,9 @@ dependencies {
     implementation("org.codehaus.jackson:jackson-xc:1.9.13")
     implementation("org.codehaus.jackson:jackson-jaxrs:1.9.13")
     implementation("net.htmlparser.jericho:jericho-html:3.4")
-    implementation("com.mchange:c3p0:0.9.5.5")
-    implementation("org.postgresql:postgresql:42.7.7")
-    implementation("commons-codec:commons-codec:1.17.0")
+    implementation("com.mchange:c3p0:0.14.1")
+    implementation("org.postgresql:postgresql:42.7.13")
+    implementation("commons-codec:commons-codec:1.22.1")
     implementation("commons-fileupload:commons-fileupload:1.6.0")
 }
 

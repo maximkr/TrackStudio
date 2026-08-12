@@ -1,0 +1,29 @@
+# Контекст сборки — весь репозиторий, но Dockerfile берёт из него только
+# .git, файлы сборки Gradle и src/, а Dockerfile.migrator — liquibase/.
+# Всё остальное исключаем, чтобы не гонять десятки мегабайт в билдер.
+#
+# ВНИМАНИЕ: .git исключать нельзя — Dockerfile копирует его внутрь,
+# плагин com.palantir.git-version определяет по нему версию сборки.
+
+# Результаты сборки
+/build/
+.gradle/
+*.war
+*.ear
+*.class
+
+# Документация и картинки
+/docs/
+/markdown_en/
+/markdown_ru/
+screenshot.png
+*.md
+
+# Инфраструктура, не участвующая в сборке образа
+/k8s/
+docker-compose.yml
+.env
+
+# IDE
+.idea/
+*.iml

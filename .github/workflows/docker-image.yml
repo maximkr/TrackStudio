@@ -5,14 +5,40 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
+
+concurrency:
+  group: docker-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
-
   build:
-
+    name: Docker build
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag trackstudio/app:$(date +%s)
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Dockerfile копирует .git внутрь сборки, а com.palantir.git-version
+          # определяет version по тегам. При shallow clone тегов нет и в образ
+          # попадает версия-заглушка вместо реальной.
+          fetch-depth: 0
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build the Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: false
+          load: false
+          tags: trackstudio/app:${{ github.sha }}
+          # Кеш слоёв между прогонами: без него Gradle качает зависимости заново
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

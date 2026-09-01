@@ -66,8 +66,8 @@ dependencies {
     // Остальное как implementation
     // Logging - миграция с Log4j 1.2 на SLF4J + Logback
     implementation("org.slf4j:slf4j-api:2.0.18")
-    implementation("ch.qos.logback:logback-classic:1.6.1")
-    implementation("ch.qos.logback:logback-core:1.6.1")
+    implementation("ch.qos.logback:logback-classic:1.6.3")
+    implementation("ch.qos.logback:logback-core:1.6.3")
     implementation("org.slf4j:jcl-over-slf4j:2.0.18") // Commons Logging через SLF4J
     implementation("org.slf4j:log4j-over-slf4j:2.0.18") // Log4j 1.2 через SLF4J (для legacy кода)
     
@@ -80,7 +80,7 @@ dependencies {
     implementation("org.apache.struts:struts-el:1.3.10")
     implementation("org.apache.struts:struts-extras:1.3.10")
 
-    implementation("org.freemarker:freemarker:2.3.34")
+    implementation("org.freemarker:freemarker:2.3.35")
 
     implementation("org.apache.lucene:lucene-core:7.7.3")
     implementation("org.apache.lucene:lucene-analyzers-common:7.7.3")

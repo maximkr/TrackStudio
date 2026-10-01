@@ -65,11 +65,11 @@ dependencies {
 
     // Остальное как implementation
     // Logging - миграция с Log4j 1.2 на SLF4J + Logback
-    implementation("org.slf4j:slf4j-api:2.0.18")
-    implementation("ch.qos.logback:logback-classic:1.6.1")
-    implementation("ch.qos.logback:logback-core:1.6.1")
-    implementation("org.slf4j:jcl-over-slf4j:2.0.18") // Commons Logging через SLF4J
-    implementation("org.slf4j:log4j-over-slf4j:2.0.18") // Log4j 1.2 через SLF4J (для legacy кода)
+    implementation("org.slf4j:slf4j-api:2.0.20")
+    implementation("ch.qos.logback:logback-classic:1.6.4")
+    implementation("ch.qos.logback:logback-core:1.6.4")
+    implementation("org.slf4j:jcl-over-slf4j:2.0.20") // Commons Logging через SLF4J
+    implementation("org.slf4j:log4j-over-slf4j:2.0.20") // Log4j 1.2 через SLF4J (для legacy кода)
     
     implementation("org.json:json:20240303")
     implementation("com.github.stephenc.jcip:jcip-annotations:1.0-1")
@@ -80,7 +80,7 @@ dependencies {
     implementation("org.apache.struts:struts-el:1.3.10")
     implementation("org.apache.struts:struts-extras:1.3.10")
 
-    implementation("org.freemarker:freemarker:2.3.34")
+    implementation("org.freemarker:freemarker:2.3.35")
 
     implementation("org.apache.lucene:lucene-core:7.7.3")
     implementation("org.apache.lucene:lucene-analyzers-common:7.7.3")
@@ -106,7 +106,7 @@ dependencies {
     implementation("org.codehaus.jackson:jackson-xc:1.9.13")
     implementation("org.codehaus.jackson:jackson-jaxrs:1.9.13")
     implementation("net.htmlparser.jericho:jericho-html:3.4")
-    implementation("com.mchange:c3p0:0.14.1")
+    implementation("com.mchange:c3p0:0.14.2")
     implementation("org.postgresql:postgresql:42.7.13")
     implementation("commons-codec:commons-codec:1.22.1")
     implementation("commons-fileupload:commons-fileupload:1.6.0")
